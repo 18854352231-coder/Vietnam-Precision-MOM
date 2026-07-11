@@ -1,0 +1,40 @@
+<h2>“装托列表”布局方案</h2>
+<p class="subtitle">在“包装中”页签新增已装托数据列表，请选择你觉得现场操作最直观的布局</p>
+
+<div class="options">
+  <div class="option" data-choice="a" onclick="toggleSelect(this)">
+    <div class="letter">A</div>
+    <div class="content">
+      <h3>上下分屏（经典布局）</h3>
+      <p>上半部分显示“待装托明细”（主表），下半部分显示“本次已装托列表”。操作完上方数据，直接在下方看到生成结果，视线从上往下走。</p>
+      <div style="margin-top: 10px; border: 1px solid #ccc; padding: 10px; border-radius: 4px;">
+        <div style="height: 60px; background: #eef2f6; text-align: center; line-height: 60px; margin-bottom: 5px; color: #666;">上方：主表（料框列表与短支）</div>
+        <div style="height: 60px; background: #e1f3d8; text-align: center; line-height: 60px; color: #666;">下方：已装托列表（生成的栈板）</div>
+      </div>
+    </div>
+  </div>
+
+  <div class="option" data-choice="b" onclick="toggleSelect(this)">
+    <div class="letter">B</div>
+    <div class="content">
+      <h3>左右分屏（宽屏友好）</h3>
+      <p>左侧占大部分显示主表，右侧固定一个面板显示“已装托列表”。适合宽屏显示器，无需上下滚动即可同时看到两边。</p>
+      <div style="margin-top: 10px; border: 1px solid #ccc; padding: 10px; border-radius: 4px; display: flex; gap: 5px;">
+        <div style="height: 125px; flex: 2; background: #eef2f6; text-align: center; line-height: 125px; color: #666;">左侧：主表</div>
+        <div style="height: 125px; flex: 1; background: #e1f3d8; text-align: center; line-height: 125px; color: #666;">右侧：装托列表</div>
+      </div>
+    </div>
+  </div>
+
+  <div class="option" data-choice="c" onclick="toggleSelect(this)">
+    <div class="letter">C</div>
+    <div class="content">
+      <h3>抽屉/弹窗模式（空间最大化）</h3>
+      <p>主表仍然占满全屏，右上角增加一个“查看已装托(5)”按钮。点击后从右侧滑出抽屉显示已装托数据。最大化利用主表空间。</p>
+      <div style="margin-top: 10px; border: 1px solid #ccc; padding: 10px; border-radius: 4px; position: relative;">
+        <div style="height: 125px; background: #eef2f6; text-align: center; line-height: 125px; color: #666;">全屏主表</div>
+        <div style="position: absolute; right: 10px; top: 10px; background: #fff; border: 1px solid #999; padding: 2px 8px; font-size: 12px; border-radius: 2px;">已装托(5)</div>
+      </div>
+    </div>
+  </div>
+</div>

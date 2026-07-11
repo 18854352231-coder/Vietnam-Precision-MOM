@@ -1,0 +1,231 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>包装中装托页面方案对比</title>
+  <style>
+    body {
+      margin: 0;
+      padding: 24px;
+      font-family: "Segoe UI", Arial, sans-serif;
+      background: #f5f7fb;
+      color: #1f2937;
+    }
+    h1 {
+      margin: 0 0 8px;
+      font-size: 28px;
+    }
+    .subtitle {
+      margin: 0 0 24px;
+      color: #6b7280;
+      font-size: 14px;
+    }
+    .grid {
+      display: grid;
+      grid-template-columns: repeat(3, minmax(280px, 1fr));
+      gap: 20px;
+    }
+    .card {
+      background: #fff;
+      border: 1px solid #dbe3f0;
+      border-radius: 16px;
+      box-shadow: 0 10px 30px rgba(15, 23, 42, 0.08);
+      overflow: hidden;
+    }
+    .card-header {
+      padding: 16px 18px;
+      background: linear-gradient(135deg, #667eea, #764ba2);
+      color: #fff;
+    }
+    .card-header h2 {
+      margin: 0 0 6px;
+      font-size: 18px;
+    }
+    .card-header p {
+      margin: 0;
+      font-size: 13px;
+      opacity: 0.9;
+    }
+    .mockup {
+      padding: 16px;
+    }
+    .toolbar {
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+      gap: 8px;
+      margin-bottom: 12px;
+    }
+    .tag {
+      display: inline-block;
+      padding: 4px 10px;
+      border-radius: 999px;
+      font-size: 12px;
+      background: #eef2ff;
+      color: #4338ca;
+    }
+    .btn {
+      padding: 8px 14px;
+      border-radius: 10px;
+      background: #4f46e5;
+      color: #fff;
+      font-size: 13px;
+      border: none;
+    }
+    .row {
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      gap: 8px;
+      padding: 10px 12px;
+      border: 1px solid #e5e7eb;
+      border-radius: 10px;
+      background: #fafafa;
+      margin-bottom: 8px;
+      font-size: 13px;
+    }
+    .row.highlight {
+      border-color: #6366f1;
+      background: #eef2ff;
+    }
+    .detail-box {
+      margin-top: 8px;
+      padding: 10px;
+      border-radius: 10px;
+      background: #f8fafc;
+      border: 1px dashed #cbd5e1;
+      font-size: 12px;
+      color: #475569;
+    }
+    .panel {
+      margin-top: 12px;
+      padding: 12px;
+      border-radius: 12px;
+      background: #f8fafc;
+      border: 1px solid #dbe3f0;
+    }
+    .input {
+      margin-top: 8px;
+      padding: 10px 12px;
+      border-radius: 10px;
+      border: 1px solid #d1d5db;
+      background: #fff;
+      color: #9ca3af;
+      font-size: 13px;
+    }
+    ul {
+      margin: 12px 0 0 18px;
+      padding: 0;
+      color: #4b5563;
+      font-size: 13px;
+      line-height: 1.7;
+    }
+    .recommend {
+      margin-top: 18px;
+      padding: 14px 16px;
+      border-radius: 12px;
+      background: #ecfeff;
+      border: 1px solid #a5f3fc;
+      color: #0f766e;
+      font-size: 14px;
+    }
+    @media (max-width: 1100px) {
+      .grid {
+        grid-template-columns: 1fr;
+      }
+    }
+  </style>
+</head>
+<body>
+  <h1>包装中页面装托方案</h1>
+  <p class="subtitle">目标：让现场人员用最少步骤完成装托，同时兼容有码料与无码料。</p>
+
+  <div class="grid">
+    <section class="card">
+      <div class="card-header">
+        <h2>A 方案：保持表格主导</h2>
+        <p>在现有列表上继续优化，减少跳转感</p>
+      </div>
+      <div class="mockup">
+        <div class="toolbar">
+          <span class="tag">右上角装托</span>
+          <button class="btn">装托</button>
+        </div>
+        <div class="row highlight">
+          <span>F-2605007 | 有码 | 剩余72支</span>
+          <span>已选2根短支</span>
+        </div>
+        <div class="detail-box">展开区直接勾选短支，底部浮动显示“已选 36 支，可装托”</div>
+        <div class="row">
+          <span>F-2605009 | 无码 | 剩余96支</span>
+          <span>点装托后输数量</span>
+        </div>
+        <ul>
+          <li>优点：改动小，延续当前使用习惯</li>
+          <li>缺点：主表选择 + 子表选择仍然是两层动作</li>
+        </ul>
+      </div>
+    </section>
+
+    <section class="card">
+      <div class="card-header">
+        <h2>B 方案：主推卡片式装托</h2>
+        <p>把“选哪条、装多少、下一步”做成一屏</p>
+      </div>
+      <div class="mockup">
+        <div class="row highlight">
+          <span>当前装托对象：F-2605007</span>
+          <span>有码料</span>
+        </div>
+        <div class="panel">
+          <strong>步骤1 选择短支</strong>
+          <div class="detail-box">短支列表固定展示在右侧区域，不靠展开行</div>
+        </div>
+        <div class="panel">
+          <strong>步骤2 扫码/输入栈板号</strong>
+          <div class="input">请扫描/手输栈板号</div>
+        </div>
+        <div class="panel">
+          <strong>步骤3 确认装托</strong>
+          <div class="row"><span>本次装托 36 支</span><button class="btn">确认装托</button></div>
+        </div>
+        <ul>
+          <li>优点：流程最清楚，培训成本低</li>
+          <li>缺点：页面结构变化较大</li>
+        </ul>
+      </div>
+    </section>
+
+    <section class="card">
+      <div class="card-header">
+        <h2>C 方案：待办队列式</h2>
+        <p>只保留最该处理的物料，适合节拍快的现场</p>
+      </div>
+      <div class="mockup">
+        <div class="panel">
+          <strong>顶部待办条</strong>
+          <div class="row highlight"><span>下一框待装托：F-2605008</span><button class="btn">开始装托</button></div>
+        </div>
+        <div class="panel">
+          <strong>中部操作面板</strong>
+          <div class="detail-box">有码料显示短支勾选区，无码料显示数量输入区</div>
+        </div>
+        <div class="panel">
+          <strong>底部列表</strong>
+          <div class="row"><span>剩余包装中 5 框</span><span>仅做查看</span></div>
+        </div>
+        <ul>
+          <li>优点：最像现场工位操作台，注意力集中</li>
+          <li>缺点：需要重新定义“当前待处理对象”规则</li>
+        </ul>
+      </div>
+    </section>
+  </div>
+
+  <div class="recommend">
+    推荐方向：如果你想“尽快落地且现场更顺手”，优先选 A/B 之间的折中版。
+    核心原则是把“选择对象、选择短支/数量、扫码确认”压成同一视区，避免来回找入口。
+  </div>
+</body>
+</html>
