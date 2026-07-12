@@ -1,4 +1,4 @@
-﻿<template>
+<template>
   <div class="page-container">
     <el-card class="full-card">
       <template #header>
@@ -84,13 +84,6 @@ const operationTree = [
     { id: 'quality:lab:add', title: '录入检测结果' },
     { id: 'quality:config:manage', title: '产品检验配置管理' }
   ]},
-  { id: 'casting', title: '熔铸生产', children: [
-    { id: 'casting:schedule:add', title: '新建排程' },
-    { id: 'casting:melting:operate', title: '熔炼操作' },
-    { id: 'casting:casting:operate', title: '铸造操作' },
-    { id: 'casting:homo:operate', title: '均质操作' },
-    { id: 'casting:sawing:operate', title: '锯切操作' }
-  ]},
   { id: 'extrusion', title: '挤压生产', children: [
     { id: 'extrusion:schedule:add', title: '新建排程' },
     { id: 'extrusion:extrusion:operate', title: '挤压操作' },
@@ -106,9 +99,7 @@ const operationTree = [
   ]},
   { id: 'reports', title: '报表分析', children: [
     { id: 'reports:extrusion:view', title: '查看挤压报表' },
-    { id: 'reports:extrusion:export', title: '导出挤压报表' },
-    { id: 'reports:casting:view', title: '查看熔铸报表' },
-    { id: 'reports:casting:export', title: '导出熔铸报表' }
+    { id: 'reports:extrusion:export', title: '导出挤压报表' }
   ]}
 ]
 

@@ -89,13 +89,6 @@ const menuTree = [
         { id: 'labTesting', title: '实验室' }
       ]}
     ]},
-    { id: 'casting', title: '熔铸生产', children: [
-      { id: 'castingSchedule', title: '下发排程' },
-      { id: 'castingMelting', title: '熔炼工作台' },
-      { id: 'castingWorkbench', title: '铸造工作台' },
-      { id: 'castingHomogenizing', title: '均质工作台' },
-      { id: 'castingSawing', title: '锯切工作台' }
-    ]},
     { id: 'extrusion', title: '挤压生产', children: [
       { id: 'extrusionSchedule', title: '下发排程' },
       { id: 'extrusionWorkbench', title: '挤压工作台' },

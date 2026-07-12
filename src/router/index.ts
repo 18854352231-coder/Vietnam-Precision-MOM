@@ -35,44 +35,6 @@ const routes: Array<RouteRecordRaw> = [
         ]
       },
       {
-        path: 'casting',
-        name: 'CastingProduction',
-        meta: { title: '熔铸生产', titleKey: 'routes.casting.root', icon: 'HotWater' },
-        component: RouterViewContainer,
-        children: [
-          {
-            path: 'scheduling',
-            name: 'CastingScheduling',
-            component: () => import('@/views/casting/IssueScheduling.vue'),
-            meta: { title: '下发排程', titleKey: 'routes.casting.scheduling' }
-          },
-          {
-            path: 'melting-workbench',
-            name: 'MeltingWorkbench',
-            component: () => import('@/views/casting/MeltingWorkbench.vue'),
-            meta: { title: '熔炼工作台', titleKey: 'routes.casting.meltingWorkbench' }
-          },
-          {
-            path: 'casting-workbench',
-            name: 'CastingWorkbench',
-            component: () => import('@/views/casting/CastingWorkbench.vue'),
-            meta: { title: '铸造工作台', titleKey: 'routes.casting.castingWorkbench' }
-          },
-          {
-            path: 'homogenizing-workbench',
-            name: 'HomogenizingWorkbench',
-            component: () => import('@/views/casting/HomogenizingWorkbench.vue'),
-            meta: { title: '均质工作台', titleKey: 'routes.casting.homogenizingWorkbench' }
-          },
-          {
-            path: 'sawing-workbench',
-            name: 'CastingSawingWorkbench',
-            component: () => import('@/views/casting/SawingWorkbench.vue'),
-            meta: { title: '锯切工作台', titleKey: 'routes.casting.sawingWorkbench' }
-          }
-        ]
-      },
-      {
         path: 'extrusion',
         name: 'ExtrusionProduction',
         meta: { title: '挤压生产', titleKey: 'routes.extrusion.root', icon: 'Finished' },
@@ -259,12 +221,6 @@ const routes: Array<RouteRecordRaw> = [
                 meta: { title: '裁切生产', titleKey: 'routes.reports.extrusion.cutting' }
               }
             ]
-          },
-          {
-            path: 'casting',
-            name: 'ReportCasting',
-            meta: { title: '熔铸报表', titleKey: 'routes.reports.casting' },
-            component: () => import('@/views/reports/casting/CastingReport.vue')
           }
         ]
       },
