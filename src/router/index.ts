@@ -235,26 +235,6 @@ const routes: Array<RouteRecordRaw> = [
         ]
       },
       {
-        path: 'equipment',
-        name: 'EquipmentManagement',
-        meta: { title: '设备管理', titleKey: 'routes.equipment.root', icon: 'Cpu' },
-        component: RouterViewContainer,
-        children: [
-          {
-            path: 'tooling',
-            name: 'ToolingManagement',
-            component: () => import('@/views/equipment/ToolingManagement.vue'),
-            meta: { title: '工装管理', titleKey: 'routes.equipment.tooling' }
-          },
-          {
-            path: 'frame',
-            name: 'FrameManagement',
-            component: () => import('@/views/equipment/FrameManagement.vue'),
-            meta: { title: '料框管理', titleKey: 'routes.equipment.frame' }
-          }
-        ]
-      },
-      {
         path: 'reports',
         name: 'ReportAnalysis',
         meta: { title: '报表分析', titleKey: 'routes.reports.root', icon: 'PieChart' },
