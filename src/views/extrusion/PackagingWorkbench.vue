@@ -5,7 +5,7 @@
         <div class="card-header">
           <div class="header-left">
             <el-button type="success" @click="handleClockIn" style="margin-right: 15px">
-              {{ isClockedIn ? `已上班 (${currentTeam} - ${clockInTime})` : '上班' }}
+              {{ isClockedIn ? `已上班 (${currentTeam} ${clockInTime})` : '上班' }}
             </el-button>
             <el-button type="danger" @click="handleClockOut" style="margin-right: 15px" v-if="isClockedIn">
               下班
@@ -17,22 +17,52 @@
 
       <div class="search-wrapper">
         <el-form class="search-form" :inline="true" :model="searchForm">
-          <el-form-item label="框号">
+          <el-form-item v-if="showFrameNoSearch" :label="activeTab === '栈板列表' ? '料框' : '框号'">
             <el-input v-model="searchForm.frameNo" placeholder="请输入框号" clearable />
           </el-form-item>
-          <el-form-item label="挤压批次号">
+          <el-form-item v-if="showPalletNoSearch" label="栈板编号">
+            <el-input v-model="searchForm.palletNo" placeholder="请输入栈板编号" clearable />
+          </el-form-item>
+          <el-form-item v-if="showBatchNoSearch" label="挤压批次号">
             <el-input v-model="searchForm.batchNo" placeholder="请输入批次号" clearable />
           </el-form-item>
-          <el-form-item label="客户名称">
+          <el-form-item v-if="showCustomerSearch" label="客户名称">
             <el-input v-model="searchForm.customerName" placeholder="请输入客户名称" clearable />
           </el-form-item>
-          <el-form-item label="模具号">
+          <el-form-item v-if="showMoldSearch" label="模具号">
             <el-input v-model="searchForm.moldNo" placeholder="请输入模具号" clearable />
           </el-form-item>
-          <el-form-item label="炉次号">
+          <el-form-item v-if="showFurnaceSearch" label="炉次号">
             <el-input v-model="searchForm.furnaceNo" placeholder="请输入炉次号" clearable />
           </el-form-item>
-          <el-form-item label="时间范围">
+          <el-form-item v-if="showPalletTypeSearch" label="栈板类型">
+            <el-select v-model="searchForm.palletType" placeholder="请选择栈板类型" clearable style="width: 180px">
+              <el-option label="正常生产" value="正常生产" />
+              <el-option label="验证料" value="验证料" />
+              <el-option label="客户需求" value="客户需求" />
+            </el-select>
+          </el-form-item>
+          <el-form-item v-if="showShiftTeamSearch" label="班组">
+            <el-select v-model="searchForm.shiftTeam" placeholder="请选择班组" clearable style="width: 160px">
+              <el-option label="甲班" value="甲班" />
+              <el-option label="乙班" value="乙班" />
+              <el-option label="丙班" value="丙班" />
+            </el-select>
+          </el-form-item>
+          <el-form-item v-if="showScrapCategorySearch" label="报废类型">
+            <el-select v-model="searchForm.scrapCategory" placeholder="请选择报废类型" clearable style="width: 160px">
+              <el-option label="设备类" value="设备类" />
+              <el-option label="模具类" value="模具类" />
+              <el-option label="工艺类" value="工艺类" />
+              <el-option label="操作类" value="操作类" />
+            </el-select>
+          </el-form-item>
+          <el-form-item v-if="showScrapReasonSearch" label="报废原因">
+            <el-select v-model="searchForm.scrapReason" placeholder="请选择报废原因" clearable style="width: 180px">
+              <el-option v-for="item in scrapReasons" :key="item" :label="item" :value="item" />
+            </el-select>
+          </el-form-item>
+          <el-form-item v-if="showTimeRangeSearch" :label="currentTimeRangeLabel">
             <el-date-picker
               v-model="searchForm.timeRange"
               type="datetimerange"
@@ -48,9 +78,10 @@
           </el-form-item>
         </el-form>
         <div class="action-buttons">
-          <el-button 
-            type="info" 
-            :disabled="selectedRows.length !== 1" 
+          <el-button
+            v-if="activeTab !== '栈板列表'"
+            type="info"
+            :disabled="selectedRows.length !== 1"
             @click="handleViewProcessDoc"
           >
             查看工艺文件
@@ -58,23 +89,23 @@
           <el-button
             v-if="activeTab === '料框列表'"
             type="primary"
-            :disabled="selectedRows.length !== 1"
+            :disabled="selectedRows.length === 0"
             @click="handleTopPack"
           >
             装托
           </el-button>
           <el-button
-            v-if="['料框列表', '栈板列表'].includes(activeTab)"
+            v-if="activeTab === '料框列表'"
             type="primary"
             :disabled="selectedRows.length === 0"
             @click="handleComplete"
           >
             完工
           </el-button>
-          <el-button 
-            v-if="['料框列表', '栈板列表'].includes(activeTab)"
-            type="danger" 
-            :disabled="!hasAnySelection" 
+          <el-button
+            v-if="activeTab === '料框列表'"
+            type="danger"
+            :disabled="!hasAnySelection"
             @click="openScrapDialog"
           >
             来料报废
@@ -109,7 +140,11 @@
         
         <template v-if="activeTab === '栈板列表'">
           <el-table-column prop="palletNo" label="栈板编号" min-width="150" show-overflow-tooltip />
-          <el-table-column prop="frameNo" label="框号" min-width="120" show-overflow-tooltip />
+          <el-table-column label="料框" min-width="220" show-overflow-tooltip>
+            <template #default="{ row }">
+              {{ getSourceFrameSummary(row) }}
+            </template>
+          </el-table-column>
           <el-table-column prop="palletType" label="栈板类型" width="100" />
           <el-table-column prop="shiftTeam" label="班组" width="120" />
           <el-table-column prop="packTime" label="装托时间" width="180" />
@@ -126,11 +161,13 @@
         
         <template v-else-if="activeTab === '报废列表'">
           <template v-if="scrapType === '长支'">
+            <el-table-column prop="frameNo" label="框号" min-width="180" show-overflow-tooltip />
             <el-table-column label="二维码编号" min-width="280" show-overflow-tooltip>
               <template #default="{ row }">
                 {{ row.details && row.details.length > 0 ? row.details[0].code : '-' }}
               </template>
             </el-table-column>
+            <el-table-column prop="qty" label="报废数量" width="100" align="right" />
             <el-table-column prop="scrapTime" label="报废时间" width="180" />
             <el-table-column prop="scrapReason" label="报废原因" width="150" show-overflow-tooltip />
             <el-table-column prop="shiftTeam" label="报废班组" width="100" />
@@ -147,8 +184,6 @@
         
         <template v-else>
           <el-table-column prop="frameNo" label="框号" width="120" show-overflow-tooltip />
-          <el-table-column v-if="activeTab === '已完工'" prop="palletNo" label="栈板编号" min-width="150" show-overflow-tooltip />
-          <el-table-column v-if="activeTab === '已完工'" prop="palletType" label="栈板类型" width="100" />
           <el-table-column prop="orderNo" label="订单号" width="160" show-overflow-tooltip />
           <el-table-column prop="batchNo" label="挤压批次号" width="160" show-overflow-tooltip />
           <el-table-column prop="customerCode" label="客户代码" width="90" />
@@ -166,11 +201,6 @@
               <el-tag size="small" type="info">{{ row.source }}</el-tag>
             </template>
           </el-table-column>
-          <el-table-column v-if="activeTab !== '料框列表'" label="操作" width="150" align="center">
-            <template #default="{ row }">
-              <el-button type="primary" link size="small" @click="viewProcessDocument(row)">查看工艺文件</el-button>
-            </template>
-          </el-table-column>
         </template>
       </el-table>
       
@@ -186,18 +216,15 @@
     </el-card>
 
     <!-- 装托包装弹窗 -->
-    <el-dialog v-model="dialogs.pack.visible" title="物料装托" width="600px">
-      <div v-if="currentRow">
+    <el-dialog v-model="dialogs.pack.visible" title="物料装托" width="760px">
+      <div v-if="currentPackRows.length > 0">
         <el-descriptions :column="2" border style="margin-bottom: 20px">
-          <el-descriptions-item label="框号">{{ currentRow.frameNo }}</el-descriptions-item>
-          <el-descriptions-item label="产品号">{{ currentRow.productNo }}</el-descriptions-item>
-          <el-descriptions-item label="订单号">{{ currentRow.orderNo }}</el-descriptions-item>
-          <el-descriptions-item label="框内剩余支数">{{ currentRow.qty }}</el-descriptions-item>
+          <el-descriptions-item label="挤压批次号">{{ currentPackBatchNo }}</el-descriptions-item>
+          <el-descriptions-item label="已选料框数">{{ currentPackRows.length }}</el-descriptions-item>
+          <el-descriptions-item label="客户名称">{{ currentPackRows[0]?.customerName || '-' }}</el-descriptions-item>
+          <el-descriptions-item label="本次装托总支数">{{ currentPackTotalQty }}</el-descriptions-item>
         </el-descriptions>
         <el-form :model="dialogs.pack.form" label-width="110px">
-          <el-form-item label="栈板编号" required>
-            <el-input v-model="dialogs.pack.form.palletNo" placeholder="请输入装托栈板编号" />
-          </el-form-item>
           <el-form-item label="栈板类型" required>
             <el-select v-model="dialogs.pack.form.type" placeholder="请选择栈板类型" style="width: 100%">
               <el-option label="正常生产" value="正常生产" />
@@ -205,15 +232,26 @@
               <el-option label="客户需求" value="客户需求" />
             </el-select>
           </el-form-item>
-          <el-form-item label="本次装托数量" required>
-            <el-input-number v-model="dialogs.pack.form.qtyPerPack" :min="1" :max="currentRow.qty" style="width: 100%" />
-          </el-form-item>
         </el-form>
+        <div style="display: flex; justify-content: flex-end; margin-bottom: 12px;">
+          <el-button type="danger" @click="openPackScrapDialog">不良品报工</el-button>
+        </div>
+        <el-table :data="dialogs.pack.form.items" border stripe size="small">
+          <el-table-column type="index" label="序号" width="60" align="center" />
+          <el-table-column prop="frameNo" label="料框号" min-width="180" show-overflow-tooltip />
+          <el-table-column prop="productName" label="产品名称" min-width="120" show-overflow-tooltip />
+          <el-table-column prop="qty" label="剩余支数" width="100" align="right" />
+          <el-table-column label="本次装托数" width="160" align="center">
+            <template #default="{ row }">
+              <el-input-number v-model="row.packQty" :min="0" :max="row.qty" style="width: 120px" />
+            </template>
+          </el-table-column>
+        </el-table>
       </div>
       <template #footer>
         <span class="dialog-footer">
           <el-button @click="cancelPackage">取消</el-button>
-          <el-button type="primary" @click="submitPackage">生成托盘并预览标识卡</el-button>
+          <el-button type="primary" @click="submitPackage">确认</el-button>
         </span>
       </template>
     </el-dialog>
@@ -252,14 +290,45 @@
       </template>
     </el-dialog>
 
+    <el-dialog v-model="packScrapDialog.visible" title="不良品报工" width="420px">
+      <el-form label-width="90px">
+        <el-form-item label="报工数量" required>
+          <el-input-number
+            v-model="packScrapDialog.qty"
+            :min="1"
+            :max="packScrapDialog.maxQty"
+            style="width: 100%"
+          />
+        </el-form-item>
+        <el-form-item label="报废原因" required>
+          <el-select v-model="packScrapDialog.reason" placeholder="请选择报废原因" style="width: 100%">
+            <el-option v-for="item in scrapReasons" :key="item" :label="item" :value="item" />
+          </el-select>
+        </el-form-item>
+      </el-form>
+      <template #footer>
+        <span class="dialog-footer">
+          <el-button @click="closePackScrapDialog">取消</el-button>
+          <el-button type="primary" @click="submitPackScrap">确定</el-button>
+        </span>
+      </template>
+    </el-dialog>
+
     <el-dialog v-model="shortBarPackDialogVisible" title="装托" width="860px" class="short-bar-pack-modal">
       <div v-if="selectedPackRow" class="short-bar-pack-dialog">
-          <div class="short-bar-pack-line">来料框号/栈板编号：{{ selectedPackRow.frameNo }}</div>
+          <div class="short-bar-pack-line">来料框号/栈板编号：{{ selectedPackFrameSummary }}</div>
           
           <div v-if="selectedPackRow.isCoded" style="margin-bottom: 20px;">
             <div style="margin-bottom: 10px; display: flex; justify-content: space-between; align-items: center;">
               <span class="short-bar-pack-label">长支明细 (已选: {{ dialogSelectedDetails.length }})</span>
               <div style="display: flex; gap: 10px; align-items: center;">
+                <el-input
+                  v-model="detailCodeKeyword"
+                  placeholder="请输入长支码"
+                  size="small"
+                  style="width: 220px;"
+                  clearable
+                />
                 <el-input v-model="selectionRange" placeholder="如 1-5, 8" size="small" style="width: 140px;" clearable @keyup.enter="handleRangeSelection" />
                 <el-button type="primary" size="small" @click="handleRangeSelection">快速选择</el-button>
                 <el-button type="danger" size="small" :disabled="dialogSelectedDetails.length === 0" @click="openDetailScrapDialog">不良品报工</el-button>
@@ -267,7 +336,7 @@
             </div>
             <el-table
               ref="detailTableRef"
-              :data="selectedPackRow.details"
+              :data="filteredMergedSelectedPackDetails"
               border
               stripe
               size="small"
@@ -278,11 +347,12 @@
               <el-table-column type="selection" width="55" align="center" />
               <el-table-column type="index" label="序号" width="60" align="center" />
               <el-table-column prop="code" label="长支码" min-width="280" show-overflow-tooltip />
+              <el-table-column v-if="selectedPackRows.length > 1" prop="sourceFrameNo" label="料框" min-width="180" show-overflow-tooltip />
               <el-table-column prop="productName" label="产品名称" min-width="140" show-overflow-tooltip />
               <el-table-column prop="fixedLength" label="长支长度" width="140" align="right" />
               <el-table-column label="挤压批次" min-width="180" show-overflow-tooltip>
                 <template #default>
-                  {{ selectedPackRow.batchNo }}
+                  {{ currentCodedPackBatchNo }}
                 </template>
               </el-table-column>
             </el-table>
@@ -298,9 +368,7 @@
           />
         </div>
         
-        <div class="short-bar-pack-line">班组：{{ shortBarPackForm.team }}</div>
-        
-        <div class="short-bar-pack-input-row" style="margin-bottom: 16px;">
+        <div class="short-bar-pack-input-row" style="margin-bottom: 16px; margin-top: 16px;">
           <span class="short-bar-pack-label">栈板类型：</span>
           <el-select v-model="shortBarPackForm.palletType" placeholder="请选择栈板类型" style="flex: 1">
             <el-option label="正常生产" value="正常生产" />
@@ -334,9 +402,16 @@
     <el-dialog v-model="packDetailsDialogVisible" title="装托明细" width="800px">
       <el-table :data="currentPackDetails" border stripe size="small" height="400">
         <el-table-column type="index" label="序号" width="60" align="center" />
-        <el-table-column prop="code" label="长支码" min-width="280" show-overflow-tooltip />
-        <el-table-column prop="productName" label="产品名称" min-width="140" show-overflow-tooltip />
-        <el-table-column prop="fixedLength" label="长支长度" width="140" align="right" />
+        <template v-if="currentPackDetailMode === 'detail'">
+          <el-table-column prop="code" label="长支码" min-width="280" show-overflow-tooltip />
+          <el-table-column prop="productName" label="产品名称" min-width="140" show-overflow-tooltip />
+          <el-table-column prop="fixedLength" label="长支长度" width="140" align="right" />
+        </template>
+        <template v-else>
+          <el-table-column prop="frameNo" label="料框" min-width="180" show-overflow-tooltip />
+          <el-table-column prop="productName" label="产品名称" min-width="140" show-overflow-tooltip />
+          <el-table-column prop="packQty" label="装托支数" width="120" align="right" />
+        </template>
       </el-table>
       <template #footer>
         <el-button @click="packDetailsDialogVisible = false">关闭</el-button>
@@ -452,12 +527,13 @@
 </template>
 
 <script setup lang="ts">
-import { ref, computed } from 'vue'
+import { ref, computed, watch } from 'vue'
 import { ElMessage, ElMessageBox } from 'element-plus'
 import QRCode from 'qrcode'
 import ProcessDocumentDialog from '@/components/ProcessDocumentDialog.vue'
 import { useTaskLiteralDomI18n } from '@/composables/useTaskLiteralDomI18n'
 import { buildMaterialTagPreviewData } from '@/utils/materialTagPreviewData'
+import { buildPendingStorageRecordFromPackaging, upsertPendingStorageRecord } from '@/utils/pendingStorageFlow'
 
 useTaskLiteralDomI18n()
 
@@ -507,14 +583,20 @@ const handleClockOut = () => {
 }
 
 // 业务逻辑
-const searchForm = ref({
+const createDefaultSearchForm = () => ({
   frameNo: '',
+  palletNo: '',
   batchNo: '',
   customerName: '',
   moldNo: '',
   furnaceNo: '',
+  palletType: '',
+  shiftTeam: '',
+  scrapCategory: '',
+  scrapReason: '',
   timeRange: [] as string[]
 })
+const searchForm = ref(createDefaultSearchForm())
 const currentPage = ref(1)
 const pageSize = ref(20)
 const activeTab = ref('料框列表')
@@ -529,7 +611,7 @@ const getRowClassName = ({ row }: { row: any }) => {
   const classes = []
   if (!row.isCoded) classes.push('uncoded-row')
   
-  if (activeTab.value === '装托列表') {
+  if (activeTab.value === '栈板列表') {
     if (row.printCount === 1) classes.push('printed-once-row')
     else if (row.printCount > 1) classes.push('printed-multiple-row')
   }
@@ -545,269 +627,324 @@ const hasAnySelection = computed(() => {
   return selectedRows.value.length > 0
 })
 
+const showFrameNoSearch = computed(() => ['料框列表', '栈板列表', '已完工', '报废列表'].includes(activeTab.value))
+const showPalletNoSearch = computed(() => activeTab.value === '栈板列表')
+const showBatchNoSearch = computed(() => ['料框列表', '已完工'].includes(activeTab.value))
+const showCustomerSearch = computed(() => ['料框列表', '已完工'].includes(activeTab.value))
+const showMoldSearch = computed(() => ['料框列表', '已完工'].includes(activeTab.value))
+const showFurnaceSearch = computed(() => ['料框列表', '已完工'].includes(activeTab.value))
+const showPalletTypeSearch = computed(() => activeTab.value === '栈板列表')
+const showShiftTeamSearch = computed(() => ['栈板列表', '已完工', '报废列表'].includes(activeTab.value))
+const showScrapCategorySearch = computed(() => activeTab.value === '报废列表' && scrapType.value === '料框')
+const showScrapReasonSearch = computed(() => activeTab.value === '报废列表')
+const showTimeRangeSearch = computed(() => ['栈板列表', '报废列表'].includes(activeTab.value))
+const currentTimeRangeLabel = computed(() => {
+  if (activeTab.value === '栈板列表') return '装托时间'
+  if (activeTab.value === '报废列表') return '报废时间'
+  return '时间范围'
+})
+const currentTimeField = computed(() => {
+  if (activeTab.value === '栈板列表') return 'packTime'
+  if (activeTab.value === '报废列表') return 'scrapTime'
+  return ''
+})
+
 // 设计思路：不进行裁切的产品，在时效完成后，自动进入包装数据队列
 const tableData = ref([
   {
-    id: 1,
-    frameNo: 'CV-A-A-L6000*W1250*H650*0001',
-    orderNo: 'ORD-20260501-001',
-    batchNo: 'EB-20260502-001',
-    customerCode: 'CUST-A',
-    customerName: '客户A',
-    productNo: 'P-1001',
-    productName: 'FC28',
-    length: '6.0',
-    fixedLength: 6000,
-    qty: 100,
+    id: 13,
+    frameNo: 'CV-A-A-L6000*W1250*H650*0012',
+    orderNo: 'ORD-20260501-013',
+    batchNo: 'EB-20260502-013',
+    customerCode: 'CUST-M',
+    customerName: '客户M',
+    productNo: 'P-1313',
+    productName: 'FC131',
+    length: '5.6',
+    fixedLength: 5600,
+    qty: 88,
     source: '时效',
-    status: '包装列表',
-    furnaceNo: 'F-2026-001',
-    moldNo: 'M10-0649-200',
-    extrusionMachine: 'JY-35',
+    status: '料框列表',
+    furnaceNo: 'F-2026-013',
+    moldNo: 'M13-0313-131',
+    extrusionMachine: 'JY-13',
     alloy: '6063-T5',
     shiftTeam: '-',
     productionType: '量产',
-    finishTime: '2026-07-04 08:30:00',
-    isCoded: true,
-    details: [
-      { id: 11, code: 'CV-6061RS-260524V111EE001G-03E010506-A01-0101-00000000-000FC194-JY2605241G0A010002XXX2-H1-103A-SX03G01260524', productName: 'FC08', productNo: 'P-1001', length: '6.0', qty: 20, status: '料框列表', fixedLength: 6000 },
-      { id: 12, code: 'CV-6061RS-260524V111EE001G-03E010506-A01-0101-00000000-000FC194-JY2605241G0A010002XXX2-H1-103A-SX03G01260525', productName: 'FC117', productNo: 'P-1001', length: '6.0', qty: 30, status: '料框列表', fixedLength: 6000 },
-      { id: 13, code: 'CV-6061RS-260524V111EE001G-03E010506-A01-0101-00000000-000FC194-JY2605241G0A010002XXX2-H1-103A-SX03G01260526', productName: 'FC29', productNo: 'P-1001', length: '6.0', qty: 50, status: '料框列表', fixedLength: 6000 }
-    ]
-  },
-  {
-    id: 2,
-    frameNo: 'CV-A-A-L6000*W1250*H650*0002',
-    orderNo: 'ORD-20260501-002',
-    batchNo: 'EB-20260502-002',
-    customerCode: 'CUST-B',
-    customerName: '客户B',
-    productNo: 'P-2002',
-    productName: 'FC71',
-    length: '5.8',
-    fixedLength: 5800,
-    qty: 120,
-    source: '时效',
-    status: '料框列表',
-    furnaceNo: 'F-2026-002',
-    moldNo: 'M10-0721-104',
-    extrusionMachine: 'JY-07',
-    alloy: '6082H',
-    shiftTeam: '-',
-    productionType: '试产',
-    finishTime: '2026-07-04 10:15:00',
+    finishTime: '2026-07-08 08:20:00',
     isCoded: false,
     details: []
   },
   {
-    id: 3,
-    frameNo: 'CV-A-A-L6000*W1250*H650*0003',
-    orderNo: 'ORD-20260501-003',
-    batchNo: 'EB-20260502-003',
-    customerCode: 'CUST-C',
-    customerName: '客户C',
-    productNo: 'P-3003',
-    productName: 'FC103',
-    length: '6.0',
-    fixedLength: 6000,
-    qty: 80,
+    id: 14,
+    frameNo: 'CV-A-A-L6000*W1250*H650*0013',
+    orderNo: 'ORD-20260501-014',
+    batchNo: 'EB-20260502-013',
+    customerCode: 'CUST-M',
+    customerName: '客户M',
+    productNo: 'P-1313',
+    productName: 'FC131',
+    length: '5.6',
+    fixedLength: 5600,
+    qty: 76,
     source: '时效',
     status: '料框列表',
-    furnaceNo: 'F-2026-003',
-    moldNo: 'M09-0118-773',
-    extrusionMachine: 'JY-21',
+    furnaceNo: 'F-2026-013',
+    moldNo: 'M13-0313-131',
+    extrusionMachine: 'JY-13',
+    alloy: '6063-T5',
+    shiftTeam: '-',
+    productionType: '量产',
+    finishTime: '2026-07-08 08:45:00',
+    isCoded: false,
+    details: []
+  },
+  {
+    id: 15,
+    frameNo: 'CV-A-A-L6000*W1250*H650*0014',
+    orderNo: 'ORD-20260501-015',
+    batchNo: 'EB-20260502-014',
+    customerCode: 'CUST-N',
+    customerName: '客户N',
+    productNo: 'P-1414',
+    productName: 'FC141',
+    length: '6.1',
+    fixedLength: 6100,
+    qty: 60,
+    source: '时效',
+    status: '料框列表',
+    furnaceNo: 'F-2026-014',
+    moldNo: 'M14-0414-141',
+    extrusionMachine: 'JY-14',
     alloy: '6005A',
     shiftTeam: '-',
     productionType: '量产',
-    finishTime: '2026-07-04 13:45:00',
+    finishTime: '2026-07-08 09:10:00',
     isCoded: true,
     details: [
-      { id: 31, code: 'CV-6061RS-260524V111EE001G-03E010506-A01-0101-00000000-000FC194-JY2605241G0A010002XXX2-H1-103A-SX03G01260527', productName: 'FC129', productNo: 'P-3003', length: '6.0', qty: 20, status: '料框列表', fixedLength: 5800 },
-      { id: 32, code: 'CV-6061RS-260524V111EE001G-03E010506-A01-0101-00000000-000FC194-JY2605241G0A010002XXX2-H1-103A-SX03G01260528', productName: 'FC29', productNo: 'P-3003', length: '6.0', qty: 30, status: '料框列表', fixedLength: 5800 },
-      { id: 33, code: 'CV-6061RS-260524V111EE001G-03E010506-A01-0101-00000000-000FC194-JY2605241G0A010002XXX2-H1-103A-SX03G01260529', productName: 'FC60', productNo: 'P-3003', length: '6.0', qty: 30, status: '料框列表', fixedLength: 5800 }
+      { id: 141, code: 'CV-6061RS-260524V111EE001G-03E010506-A01-0101-00000000-000FC194-JY2605241G0A010002XXX2-H1-103A-SX03G01260811', productName: 'FC141-A', productNo: 'P-1414', length: '6.1', qty: 20, status: '料框列表', fixedLength: 6100 },
+      { id: 142, code: 'CV-6061RS-260524V111EE001G-03E010506-A01-0101-00000000-000FC194-JY2605241G0A010002XXX2-H1-103A-SX03G01260812', productName: 'FC141-B', productNo: 'P-1414', length: '6.1', qty: 20, status: '料框列表', fixedLength: 6100 },
+      { id: 143, code: 'CV-6061RS-260524V111EE001G-03E010506-A01-0101-00000000-000FC194-JY2605241G0A010002XXX2-H1-103A-SX03G01260813', productName: 'FC141-C', productNo: 'P-1414', length: '6.1', qty: 20, status: '料框列表', fixedLength: 6100 }
     ]
   },
   {
-    id: 4,
-    frameNo: 'CV-A-A-L6000*W1250*H650*0004',
-    palletNo: 'JM-9004',
+    id: 16,
+    frameNo: 'CV-A-A-L6000*W1250*H650*0015',
+    orderNo: 'ORD-20260501-016',
+    batchNo: 'EB-20260502-014',
+    customerCode: 'CUST-N',
+    customerName: '客户N',
+    productNo: 'P-1414',
+    productName: 'FC141',
+    length: '6.1',
+    fixedLength: 6100,
+    qty: 54,
+    source: '时效',
+    status: '料框列表',
+    furnaceNo: 'F-2026-014',
+    moldNo: 'M14-0414-141',
+    extrusionMachine: 'JY-14',
+    alloy: '6005A',
+    shiftTeam: '-',
+    productionType: '量产',
+    finishTime: '2026-07-08 09:35:00',
+    isCoded: true,
+    details: [
+      { id: 144, code: 'CV-6061RS-260524V111EE001G-03E010506-A01-0101-00000000-000FC194-JY2605241G0A010002XXX2-H1-103A-SX03G01260814', productName: 'FC141-D', productNo: 'P-1414', length: '6.1', qty: 18, status: '料框列表', fixedLength: 6100 },
+      { id: 145, code: 'CV-6061RS-260524V111EE001G-03E010506-A01-0101-00000000-000FC194-JY2605241G0A010002XXX2-H1-103A-SX03G01260815', productName: 'FC141-E', productNo: 'P-1414', length: '6.1', qty: 18, status: '料框列表', fixedLength: 6100 },
+      { id: 146, code: 'CV-6061RS-260524V111EE001G-03E010506-A01-0101-00000000-000FC194-JY2605241G0A010002XXX2-H1-103A-SX03G01260816', productName: 'FC141-F', productNo: 'P-1414', length: '6.1', qty: 18, status: '料框列表', fixedLength: 6100 }
+    ]
+  },
+  {
+    id: 21,
+    palletNo: '20260713-01',
+    frameNo: 'CV-A-A-L6000*W1250*H650*0012',
+    orderNo: 'ORD-20260501-021',
+    batchNo: 'EB-20260502-021',
+    customerCode: 'CUST-P',
+    customerName: '客户P',
+    productNo: 'P-2121',
+    productName: 'FC212',
+    length: '5.8',
+    fixedLength: 5800,
+    qty: 72,
+    source: '时效',
+    status: '栈板列表',
     palletType: '正常生产',
-    orderNo: 'ORD-20260501-004',
-    batchNo: 'EB-20260502-004',
-    customerCode: 'CUST-D',
-    customerName: '客户D',
-    productNo: 'P-4004',
-    productName: 'FC58',
-    length: '6.0',
-    fixedLength: 6000,
-    qty: 200,
+    packTime: '2026-07-13 10:20:00',
+    printCount: 0,
+    printTime: '',
+    furnaceNo: 'F-2026-021',
+    moldNo: 'M21-0212-188',
+    extrusionMachine: 'JY-18',
+    alloy: '6063-T5',
+    shiftTeam: '甲班',
+    productionType: '量产',
+    finishTime: '2026-07-13 10:15:00',
+    isCoded: false,
+    sourceFrames: [
+      { frameNo: 'CV-A-A-L6000*W1250*H650*0012', packQty: 40, productName: 'FC212', productNo: 'P-2121' },
+      { frameNo: 'CV-A-A-L6000*W1250*H650*0013', packQty: 32, productName: 'FC212', productNo: 'P-2121' }
+    ],
+    details: []
+  },
+  {
+    id: 22,
+    palletNo: '20260713-02',
+    frameNo: 'CV-A-A-L6000*W1250*H650*0014',
+    orderNo: 'ORD-20260501-022',
+    batchNo: 'EB-20260502-022',
+    customerCode: 'CUST-Q',
+    customerName: '客户Q',
+    productNo: 'P-2222',
+    productName: 'FC222',
+    length: '6.1',
+    fixedLength: 6100,
+    qty: 54,
+    source: '时效',
+    status: '栈板列表',
+    palletType: '客户需求',
+    packTime: '2026-07-13 11:05:00',
+    printCount: 1,
+    printTime: '2026-07-13 11:10:00',
+    furnaceNo: 'F-2026-022',
+    moldNo: 'M22-0222-166',
+    extrusionMachine: 'JY-22',
+    alloy: '6005A',
+    shiftTeam: '乙班',
+    productionType: '试产',
+    finishTime: '2026-07-13 11:00:00',
+    isCoded: true,
+    sourceFrames: [
+      { frameNo: 'CV-A-A-L6000*W1250*H650*0014', packQty: 36, productName: 'FC222', productNo: 'P-2222' },
+      { frameNo: 'CV-A-A-L6000*W1250*H650*0015', packQty: 18, productName: 'FC222', productNo: 'P-2222' }
+    ],
+    details: [
+      { id: 221, code: 'CV-6061RS-260713V222EE022G-03E010506-A01-0101-00000000-000FC222-JY2607132G0A022001XXX2-H1-222A-SX03G01260731', productName: 'FC222-A', productNo: 'P-2222', length: '6.1', qty: 18, status: '栈板列表', fixedLength: 6100 },
+      { id: 222, code: 'CV-6061RS-260713V222EE022G-03E010506-A01-0101-00000000-000FC222-JY2607132G0A022002XXX2-H1-222B-SX03G01260732', productName: 'FC222-B', productNo: 'P-2222', length: '6.1', qty: 18, status: '栈板列表', fixedLength: 6100 },
+      { id: 223, code: 'CV-6061RS-260713V222EE022G-03E010506-A01-0101-00000000-000FC222-JY2607132G0A022003XXX2-H1-222C-SX03G01260733', productName: 'FC222-C', productNo: 'P-2222', length: '6.1', qty: 18, status: '栈板列表', fixedLength: 6100 }
+    ]
+  },
+  {
+    id: 23,
+    frameNo: 'CV-A-A-L6000*W1250*H650*0023',
+    orderNo: 'ORD-20260501-023',
+    batchNo: 'EB-20260502-023',
+    customerCode: 'CUST-R',
+    customerName: '客户R',
+    productNo: 'P-2323',
+    productName: 'FC232',
+    length: '5.4',
+    fixedLength: 5400,
+    qty: 96,
     source: '时效',
     status: '已完工',
-    furnaceNo: 'F-2026-004',
-    moldNo: 'M10-0649-200',
-    extrusionMachine: 'JY-35',
-    alloy: '6063-T5',
-    shiftTeam: '包装一班',
+    palletType: '正常生产',
+    furnaceNo: 'F-2026-023',
+    moldNo: 'M23-0232-144',
+    extrusionMachine: 'JY-23',
+    alloy: '6061-T6',
+    shiftTeam: '甲班',
     productionType: '量产',
-    finishTime: '2026-07-03 17:20:00',
+    finishTime: '2026-07-13 13:30:00',
     isCoded: false,
     details: []
   },
   {
-    id: 5,
-    frameNo: 'CV-A-A-L6000*W1250*H650*0005',
-    orderNo: 'ORD-20260501-005',
-    batchNo: 'EB-20260502-005',
-    customerCode: 'CUST-E',
-    customerName: '客户E',
-    productNo: 'P-5005',
-    productName: 'FC87',
+    id: 24,
+    frameNo: 'CV-A-A-L6000*W1250*H650*0024',
+    orderNo: 'ORD-20260501-024',
+    batchNo: 'EB-20260502-024',
+    customerCode: 'CUST-S',
+    customerName: '客户S',
+    productNo: 'P-2424',
+    productName: 'FC242',
     length: '6.0',
     fixedLength: 6000,
-    qty: 10,
+    qty: 48,
+    source: '锯切',
+    status: '已完工',
+    palletType: '验证料',
+    furnaceNo: 'F-2026-024',
+    moldNo: 'M24-0242-118',
+    extrusionMachine: 'JY-24',
+    alloy: '6082-T5',
+    shiftTeam: '丙班',
+    productionType: '试产',
+    finishTime: '2026-07-13 14:10:00',
+    isCoded: true,
+    details: [
+      { id: 241, code: 'CV-6061RS-260713V242EE024G-03E010506-A01-0101-00000000-000FC242-JY2607132G0A024001XXX2-H1-242A-SX03G01260741', productName: 'FC242-A', productNo: 'P-2424', length: '6.0', qty: 24, status: '已完工', fixedLength: 6000 },
+      { id: 242, code: 'CV-6061RS-260713V242EE024G-03E010506-A01-0101-00000000-000FC242-JY2607132G0A024002XXX2-H1-242B-SX03G01260742', productName: 'FC242-B', productNo: 'P-2424', length: '6.0', qty: 24, status: '已完工', fixedLength: 6000 }
+    ]
+  },
+  {
+    id: 25,
+    frameNo: 'CV-A-A-L6000*W1250*H650*0025',
+    orderNo: 'ORD-20260501-025',
+    batchNo: 'EB-20260502-025',
+    customerCode: 'CUST-T',
+    customerName: '客户T',
+    productNo: 'P-2525',
+    productName: 'FC252',
+    length: '5.7',
+    fixedLength: 5700,
+    qty: 36,
     source: '时效',
     status: '已报废',
     scrapLevel: '料框',
     scrapCategory: '操作类',
     scrapReason: '划伤',
-    scrapRemark: '人为操作失误划伤表面',
-    scrapTime: '2026-07-02 09:15:00',
-    furnaceNo: 'F-2026-005',
-    moldNo: 'M10-0649-200',
-    extrusionMachine: 'JY-35',
+    scrapRemark: '转运过程中表面划伤',
+    scrapTime: '2026-07-13 15:00:00',
+    furnaceNo: 'F-2026-025',
+    moldNo: 'M25-0252-105',
+    extrusionMachine: 'JY-25',
     alloy: '6063-T5',
-    shiftTeam: '包装一班',
+    shiftTeam: '甲班',
     productionType: '量产',
-    finishTime: '2026-07-02 09:10:00',
-    isCoded: true,
-    details: [
-      { id: 51, code: 'CV-6061RS-260524V111EE001G-03E010506-A01-0101-00000000-000FC194-JY2605241G0A010002XXX2-H1-103A-SX03G01260530', productName: 'FC135', productNo: 'P-5005', length: '6.0', qty: 4, status: '已报废', fixedLength: 6200 },
-      { id: 52, code: 'CV-6061RS-260524V111EE001G-03E010506-A01-0101-00000000-000FC194-JY2605241G0A010002XXX2-H1-103A-SX03G01260531', productName: 'FC24', productNo: 'P-5005', length: '6.0', qty: 6, status: '已报废', fixedLength: 6200 }
-    ]
-  },
-  {
-    id: 6,
-    frameNo: 'CV-A-A-L6000*W1250*H650*0006',
-    orderNo: 'ORD-20260501-006',
-    batchNo: 'EB-20260502-006',
-    customerCode: 'CUST-F',
-    customerName: '客户F',
-    productNo: 'P-6006',
-    productName: 'FC95',
-    length: '5.5',
-    fixedLength: 5500,
-    qty: 64,
-    source: '时效',
-    status: '料框列表',
-    furnaceNo: 'F-2026-006',
-    moldNo: 'M12-0216-305',
-    extrusionMachine: 'JY-18',
-    alloy: '6061RS',
-    shiftTeam: '-',
-    productionType: '量产',
-    finishTime: '2026-07-05 08:40:00',
+    finishTime: '2026-07-13 14:50:00',
     isCoded: false,
     details: []
   },
   {
-    id: 7,
-    frameNo: 'CV-A-A-L6000*W1250*H650*0007',
-    orderNo: 'ORD-20260501-007',
-    batchNo: 'EB-20260502-007',
-    customerCode: 'CUST-G',
-    customerName: '客户G',
-    productNo: 'P-7007',
-    productName: 'FC06',
+    id: 26,
+    frameNo: 'CV-A-A-L6000*W1250*H650*0026',
+    orderNo: 'ORD-20260501-026',
+    batchNo: 'EB-20260502-026',
+    customerCode: 'CUST-U',
+    customerName: '客户U',
+    productNo: 'P-2626',
+    productName: 'FC262',
     length: '6.2',
     fixedLength: 6200,
-    qty: 72,
-    source: '时效',
-    status: '料框列表',
-    furnaceNo: 'F-2026-007',
-    moldNo: 'M15-0428-117',
-    extrusionMachine: 'JY-11',
-    alloy: '6063-T5',
-    shiftTeam: '包装二班',
-    productionType: '量产',
-    finishTime: '2026-07-05 09:20:00',
-    isCoded: true,
-    details: [
-      { id: 71, code: 'CV-6061RS-260524V111EE001G-03E010506-A01-0101-00000000-000FC194-JY2605241G0A010002XXX2-H1-103A-SX03G01260541', productName: 'FC25', productNo: 'P-7007', length: '6.2', qty: 12, status: '料框列表', fixedLength: 6200 },
-      { id: 72, code: 'CV-6061RS-260524V111EE001G-03E010506-A01-0101-00000000-000FC194-JY2605241G0A010002XXX2-H1-103A-SX03G01260542', productName: 'FC132', productNo: 'P-7007', length: '6.2', qty: 24, status: '料框列表', fixedLength: 6200 },
-      { id: 73, code: 'CV-6061RS-260524V111EE001G-03E010506-A01-0101-00000000-000FC194-JY2605241G0A010002XXX2-H1-103A-SX03G01260543', productName: 'FC97', productNo: 'P-7007', length: '6.2', qty: 36, status: '料框列表', fixedLength: 6200 }
-    ]
-  },
-  {
-    id: 8,
-    palletNo: '20260705-01',
-    frameNo: 'CV-A-A-L6000*W1250*H650*0008',
-    orderNo: 'ORD-20260501-008',
-    batchNo: 'EB-20260502-008',
-    customerCode: 'CUST-H',
-    customerName: '客户H',
-    productNo: 'P-8008',
-    productName: 'FC107',
-    length: '5.9',
-    fixedLength: 5900,
-    qty: 54,
-    source: '时效',
-    status: '装托列表',
-    palletType: '正常生产',
-    packTime: '2026-07-05 11:15:00',
-    printCount: 0,
-    printTime: '',
-    furnaceNo: 'F-2026-008',
-    moldNo: 'M16-0386-204',
-    extrusionMachine: 'JY-22',
-    alloy: '6005A',
-    shiftTeam: '包装一班',
+    qty: 28,
+    source: '锯切',
+    status: '已报废',
+    scrapLevel: '料框',
+    scrapCategory: '工艺类',
+    scrapReason: '尺寸',
+    scrapRemark: '规格超差无法转下工序',
+    scrapTime: '2026-07-13 15:18:00',
+    furnaceNo: 'F-2026-026',
+    moldNo: 'M26-0262-132',
+    extrusionMachine: 'JY-26',
+    alloy: '6082-T5',
+    shiftTeam: '乙班',
     productionType: '试产',
-    finishTime: '2026-07-05 11:05:00',
-    isCoded: true,
-    details: [
-      { id: 81, code: 'CV-6061RS-260524V111EE001G-03E010506-A01-0101-00000000-000FC194-JY2605241G0A010002XXX2-H1-103A-SX03G01260544', productName: 'FC11', productNo: 'P-8008', length: '5.9', qty: 18, status: '装托列表', fixedLength: 5900 },
-      { id: 82, code: 'CV-6061RS-260524V111EE001G-03E010506-A01-0101-00000000-000FC194-JY2605241G0A010002XXX2-H1-103A-SX03G01260545', productName: 'FC96', productNo: 'P-8008', length: '5.9', qty: 18, status: '装托列表', fixedLength: 5900 },
-      { id: 83, code: 'CV-6061RS-260524V111EE001G-03E010506-A01-0101-00000000-000FC194-JY2605241G0A010002XXX2-H1-103A-SX03G01260546', productName: 'FC08', productNo: 'P-8008', length: '5.9', qty: 18, status: '装托列表', fixedLength: 5900 }
-    ]
-  },
-  {
-    id: 9,
-    palletNo: '20260705-02',
-    frameNo: 'CV-A-A-L6000*W1250*H650*0009',
-    orderNo: 'ORD-20260501-009',
-    batchNo: 'EB-20260502-009',
-    customerCode: 'CUST-I',
-    customerName: '客户I',
-    productNo: 'P-9009',
-    productName: 'FC91',
-    length: '5.4',
-    fixedLength: 5400,
-    qty: 96,
-    source: '时效',
-    status: '装托列表',
-    palletType: '验证料',
-    packTime: '2026-07-05 14:20:00',
-    printCount: 0,
-    printTime: '',
-    furnaceNo: 'F-2026-009',
-    moldNo: 'M13-0158-602',
-    extrusionMachine: 'JY-09',
-    alloy: '6061RS',
-    shiftTeam: '包装三班',
-    productionType: '量产',
-    finishTime: '2026-07-05 14:10:00',
+    finishTime: '2026-07-13 15:05:00',
     isCoded: false,
     details: []
   },
   {
-    id: 10,
-    frameNo: 'CV-A-A-L6000*W1250*H650*0010',
-    orderNo: 'ORD-20260501-010',
-    batchNo: 'EB-20260502-010',
-    customerCode: 'CUST-J',
-    customerName: '客户J',
-    productNo: 'P-1010',
-    productName: 'FC63',
+    id: 27,
+    frameNo: 'CV-A-A-L6000*W1250*H650*0027',
+    orderNo: 'ORD-20260501-027',
+    batchNo: 'EB-20260502-027',
+    customerCode: 'CUST-V',
+    customerName: '客户V',
+    productNo: 'P-2727',
+    productName: 'FC272',
     length: '6.0',
     fixedLength: 6000,
     qty: 1,
@@ -815,80 +952,50 @@ const tableData = ref([
     status: '已报废',
     scrapLevel: '长支',
     scrapCategory: '操作类',
-    scrapReason: '划伤',
+    scrapReason: '碰伤',
     scrapRemark: '',
-    scrapTime: '2026-07-06 09:15:00',
-    furnaceNo: 'F-2026-010',
-    moldNo: 'M10-0649-200',
-    extrusionMachine: 'JY-35',
-    alloy: '6063-T5',
-    shiftTeam: '包装一班',
+    scrapTime: '2026-07-13 15:35:00',
+    furnaceNo: 'F-2026-027',
+    moldNo: 'M27-0272-156',
+    extrusionMachine: 'JY-27',
+    alloy: '6005A',
+    shiftTeam: '丙班',
     productionType: '量产',
-    finishTime: '2026-07-06 09:10:00',
+    finishTime: '2026-07-13 15:25:00',
     isCoded: true,
     details: [
-      { id: 101, code: 'CV-6061RS-260524V111EE001G-03E010506-A01-0101-00000000-000FC194-JY2605241G0A010002XXX2-H1-103A-SX03G01260999', productName: 'FC88', productNo: 'P-1010', length: '6.0', qty: 1, status: '已报废', fixedLength: 6000 }
+      { id: 271, code: 'CV-6061RS-260713V272EE027G-03E010506-A01-0101-00000000-000FC272-JY2607132G0A027001XXX2-H1-272A-SX03G01260751', productName: 'FC272-A', productNo: 'P-2727', length: '6.0', qty: 1, status: '已报废', fixedLength: 6000 }
     ]
   },
   {
-    id: 11,
-    palletNo: '20260707-01',
-    frameNo: 'CV-A-A-L6000*W1250*H650*0011',
-    orderNo: 'ORD-20260501-011',
-    batchNo: 'EB-20260502-011',
-    customerCode: 'CUST-K',
-    customerName: '客户K',
-    productNo: 'P-1111',
-    productName: 'FC55',
-    length: '6.0',
-    fixedLength: 6000,
-    qty: 50,
-    source: '时效',
-    status: '栈板列表',
-    palletType: '正常生产',
-    packTime: '2026-07-07 10:00:00',
-    printCount: 0,
-    printTime: '',
-    furnaceNo: 'F-2026-011',
-    moldNo: 'M11-0111-111',
-    extrusionMachine: 'JY-11',
-    alloy: '6063-T5',
-    shiftTeam: '包装一班',
-    productionType: '量产',
-    finishTime: '2026-07-07 09:30:00',
-    isCoded: false,
-    details: []
-  },
-  {
-    id: 12,
-    palletNo: '20260707-02',
-    frameNo: 'CV-A-A-L6000*W1250*H650*0211',
-    orderNo: 'ORD-20260501-012',
-    batchNo: 'EB-20260502-012',
-    customerCode: 'CUST-L',
-    customerName: '客户L',
-    productNo: 'P-1212',
-    productName: 'FC91',
-    length: '5.8',
-    fixedLength: 5800,
-    qty: 80,
+    id: 28,
+    frameNo: 'CV-A-A-L6000*W1250*H650*0028',
+    orderNo: 'ORD-20260501-028',
+    batchNo: 'EB-20260502-028',
+    customerCode: 'CUST-W',
+    customerName: '客户W',
+    productNo: 'P-2828',
+    productName: 'FC282',
+    length: '5.5',
+    fixedLength: 5500,
+    qty: 1,
     source: '锯切',
-    status: '栈板列表',
-    palletType: '验证料',
-    packTime: '2026-07-07 10:15:00',
-    printCount: 1,
-    printTime: '2026-07-07 10:20:00',
-    furnaceNo: 'F-2026-012',
-    moldNo: 'M12-0222-222',
-    extrusionMachine: 'JY-12',
-    alloy: '6005A',
-    shiftTeam: '包装二班',
+    status: '已报废',
+    scrapLevel: '长支',
+    scrapCategory: '模具类',
+    scrapReason: '模线',
+    scrapRemark: '',
+    scrapTime: '2026-07-13 15:52:00',
+    furnaceNo: 'F-2026-028',
+    moldNo: 'M28-0282-172',
+    extrusionMachine: 'JY-28',
+    alloy: '6061-T6',
+    shiftTeam: '甲班',
     productionType: '试产',
-    finishTime: '2026-07-07 09:45:00',
+    finishTime: '2026-07-13 15:40:00',
     isCoded: true,
     details: [
-      { id: 121, code: 'CV-6061RS-260524V111EE001G-03E010506-A01-0101-00000000-000FC194-JY2605241G0A010002XXX2-H1-103A-SX03G01260801', productName: 'FC39', productNo: 'P-1212', length: '5.8', qty: 40, status: '栈板列表', fixedLength: 5800 },
-      { id: 122, code: 'CV-6061RS-260524V111EE001G-03E010506-A01-0101-00000000-000FC194-JY2605241G0A010002XXX2-H1-103A-SX03G01260802', productName: 'FC48', productNo: 'P-1212', length: '5.8', qty: 40, status: '栈板列表', fixedLength: 5800 }
+      { id: 281, code: 'CV-6061RS-260713V282EE028G-03E010506-A01-0101-00000000-000FC282-JY2607132G0A028001XXX2-H1-282A-SX03G01260761', productName: 'FC282-A', productNo: 'P-2828', length: '5.5', qty: 1, status: '已报废', fixedLength: 5500 }
     ]
   }
 ])
@@ -906,15 +1013,25 @@ const filteredTableData = computed(() => {
       if (item.status !== activeTab.value) return false
     }
 
-    if (searchForm.value.frameNo && !keywordMatch(item.frameNo, searchForm.value.frameNo)) return false
-    if (searchForm.value.batchNo && !keywordMatch(item.batchNo, searchForm.value.batchNo)) return false
-    if (searchForm.value.customerName && !keywordMatch(item.customerName, searchForm.value.customerName)) return false
-    if (searchForm.value.moldNo && !keywordMatch(item.moldNo, searchForm.value.moldNo)) return false
-    if (searchForm.value.furnaceNo && !keywordMatch(item.furnaceNo, searchForm.value.furnaceNo)) return false
+    if (showFrameNoSearch.value) {
+      const frameKeyword = activeTab.value === '栈板列表' ? getSourceFrameSummary(item) : item.frameNo
+      if (searchForm.value.frameNo && !keywordMatch(frameKeyword, searchForm.value.frameNo)) return false
+    }
+    if (showPalletNoSearch.value && searchForm.value.palletNo && !keywordMatch(item.palletNo, searchForm.value.palletNo)) return false
+    if (showBatchNoSearch.value && searchForm.value.batchNo && !keywordMatch(item.batchNo, searchForm.value.batchNo)) return false
+    if (showCustomerSearch.value && searchForm.value.customerName && !keywordMatch(item.customerName, searchForm.value.customerName)) return false
+    if (showMoldSearch.value && searchForm.value.moldNo && !keywordMatch(item.moldNo, searchForm.value.moldNo)) return false
+    if (showFurnaceSearch.value && searchForm.value.furnaceNo && !keywordMatch(item.furnaceNo, searchForm.value.furnaceNo)) return false
+    if (showPalletTypeSearch.value && searchForm.value.palletType && !keywordMatch(item.palletType, searchForm.value.palletType)) return false
+    if (showShiftTeamSearch.value && searchForm.value.shiftTeam && !keywordMatch(item.shiftTeam, searchForm.value.shiftTeam)) return false
+    if (showScrapCategorySearch.value && searchForm.value.scrapCategory && !keywordMatch(item.scrapCategory, searchForm.value.scrapCategory)) return false
+    if (showScrapReasonSearch.value && searchForm.value.scrapReason && !keywordMatch(item.scrapReason, searchForm.value.scrapReason)) return false
 
-    if (searchForm.value.timeRange && searchForm.value.timeRange.length === 2) {
+    if (showTimeRangeSearch.value && searchForm.value.timeRange && searchForm.value.timeRange.length === 2 && currentTimeField.value) {
       const [start, end] = searchForm.value.timeRange
-      const current = new Date(item.finishTime).getTime()
+      const currentTimeValue = item[currentTimeField.value]
+      if (!currentTimeValue) return false
+      const current = new Date(currentTimeValue).getTime()
       if (current < new Date(start).getTime() || current > new Date(end).getTime()) return false
     }
 
@@ -930,17 +1047,28 @@ const paginatedData = computed(() => {
 
 const visibleHasCodedRows = computed(() => paginatedData.value.some(item => item.isCoded))
 
-const currentRow = ref<any>(null)
+const currentPackRows = ref<any[]>([])
 const dialogs = ref({
   pack: {
     visible: false,
-    form: { palletNo: '', type: '', qtyPerPack: 50 }
+    form: {
+      palletNo: '',
+      type: '',
+      items: [] as Array<{ id: number; frameNo: string; productName: string; qty: number; packQty: number }>
+    }
   },
   scrap: {
     visible: false,
     level: '料框',
+    source: 'table',
     form: { type: '', reason: '', remark: '' }
   }
+})
+const packScrapDialog = ref({
+  visible: false,
+  reason: '',
+  qty: 1,
+  maxQty: 1
 })
 
 const scrapReasons = ['切斜', '划伤', '取样报废', '变形', '壁厚', '定尺', '尺寸', '平面', '弯扭', '托烂', '模线', '橘皮', '气泡', '直线度', '磕碰伤']
@@ -951,12 +1079,92 @@ const teamQrUrl = ref('')
 const processDocDialogVisible = ref(false)
 const processDocContext = ref({ productNo: '', productName: '' })
 const selectedPackRow = ref<any>(null)
+const selectedPackRows = ref<any[]>([])
 const shortBarPackDialogVisible = ref(false)
 const shortBarPackForm = ref({
+  palletNo: '',
   team: '',
   goodQty: 0,
   packQty: 1,
   palletType: '正常生产'
+})
+
+const PALLET_LIST_STATUS = '栈板列表'
+
+const formatDateTime = (date = new Date()) => date.toLocaleString('zh-CN', { hour12: false }).replace(/\//g, '-')
+
+const currentPackBatchNo = computed(() => currentPackRows.value[0]?.batchNo || '')
+const currentPackTotalQty = computed(() =>
+  dialogs.value.pack.form.items.reduce((sum, item) => sum + Number(item.packQty || 0), 0)
+)
+
+const generatePalletNo = (date = new Date()) => {
+  const year = date.getFullYear()
+  const month = String(date.getMonth() + 1).padStart(2, '0')
+  const day = String(date.getDate()).padStart(2, '0')
+  const dateStr = `${year}${month}${day}`
+
+  const maxSeq = tableData.value.reduce((max, item) => {
+    const match = String(item.palletNo || '').match(/^(\d{8})-(\d{2})$/)
+    if (!match || match[1] !== dateStr) return max
+    return Math.max(max, Number(match[2]))
+  }, 0)
+
+  return `${dateStr}-${String(maxSeq + 1).padStart(2, '0')}`
+}
+
+const getSourceFrameSummary = (row: any) => {
+  const sourceFrames = Array.isArray(row?.sourceFrames) && row.sourceFrames.length > 0
+    ? row.sourceFrames
+    : [{ frameNo: row?.frameNo, packQty: row?.qty }]
+
+  const frameNos = [...new Set(sourceFrames.map((item: any) => item?.frameNo).filter(Boolean))]
+  return frameNos.length > 0 ? frameNos.join('、') : '-'
+}
+
+const buildPalletRecord = ({
+  sourceRow,
+  palletNo,
+  palletType,
+  packedQty,
+  packedDetails,
+  isCoded,
+  sourceFrames = []
+}: {
+  sourceRow: any
+  palletNo: string
+  palletType: string
+  packedQty: number
+  packedDetails: any[]
+  isCoded: boolean
+  sourceFrames?: any[]
+}) => ({
+  ...sourceRow,
+  id: Date.now() + Math.random(),
+  frameNo: sourceFrames.length > 0 ? getSourceFrameSummary({ sourceFrames }) : sourceRow.frameNo,
+  palletNo,
+  qty: packedQty,
+  status: PALLET_LIST_STATUS,
+  palletType,
+  packTime: formatDateTime(),
+  printCount: 0,
+  printTime: '',
+  shiftTeam: currentTeam.value || sourceRow.shiftTeam || '包装班',
+  mixPack: sourceFrames.length > 1,
+  sourceFrames: (sourceFrames.length > 0
+    ? sourceFrames
+    : [{ frameNo: sourceRow.frameNo, packQty: packedQty, productName: sourceRow.productName, productNo: sourceRow.productNo }]
+  ).map(item => ({
+    frameNo: item.frameNo,
+    packQty: Number(item.packQty || 0),
+    productName: item.productName || sourceRow.productName,
+    productNo: item.productNo || sourceRow.productNo
+  })),
+  isCoded,
+  details: packedDetails.map(detail => ({
+    ...detail,
+    status: PALLET_LIST_STATUS
+  }))
 })
 
 const handleSearch = () => {
@@ -964,15 +1172,20 @@ const handleSearch = () => {
 }
 
 const handleReset = () => {
-  searchForm.value = {
-    frameNo: '',
-    batchNo: '',
-    customerName: '',
-    moldNo: '',
-    furnaceNo: '',
-    timeRange: []
-  }
+  searchForm.value = createDefaultSearchForm()
 }
+
+watch(activeTab, () => {
+  handleReset()
+  selectedRows.value = []
+  currentPage.value = 1
+})
+
+watch(scrapType, () => {
+  if (activeTab.value !== '报废列表') return
+  handleReset()
+  currentPage.value = 1
+})
 
 const handleViewProcessDoc = () => {
   const row = selectedRows.value[0]
@@ -992,9 +1205,19 @@ const viewProcessDocument = (row?: any) => {
   processDocDialogVisible.value = true
 }
 
-const openPackageDialog = (row: any) => {
-  currentRow.value = row
-  dialogs.value.pack.form = { palletNo: currentTeam.value || '', type: '', qtyPerPack: row.qty }
+const openPackageDialog = (rows: any[]) => {
+  currentPackRows.value = rows
+  dialogs.value.pack.form = {
+    palletNo: generatePalletNo(),
+    type: '',
+    items: rows.map(row => ({
+      id: row.id,
+      frameNo: row.frameNo,
+      productName: row.productName,
+      qty: Number(row.qty || 0),
+      packQty: Number(row.qty || 0)
+    }))
+  }
   dialogs.value.pack.visible = true
 }
 
@@ -1003,17 +1226,29 @@ const handleTopPack = () => {
     ElMessage.warning('请先选择一条包装列表数据')
     return
   }
-  if (selectedRows.value.length > 1) {
-    ElMessage.warning('装托时只能选择一条数据')
+
+  const batchNos = [...new Set(selectedRows.value.map(row => row.batchNo).filter(Boolean))]
+  if (batchNos.length > 1) {
+    ElMessage.warning('混合装托仅支持相同批次号的料框')
     return
   }
 
   const [row] = selectedRows.value
-  openShortBarPackDialog(row)
+  if (selectedRows.value.some(item => item?.isCoded)) {
+    if (!selectedRows.value.every(item => item?.isCoded)) {
+      ElMessage.warning('有码料框和无码料框不能混合装托')
+      return
+    }
+    openShortBarPackDialog([...selectedRows.value])
+    return
+  }
+
+  openPackageDialog([...selectedRows.value])
 }
 
 const dialogSelectedDetails = ref<any[]>([])
 const detailTableRef = ref()
+const detailCodeKeyword = ref('')
 const selectionRange = ref('')
 
 const handleDialogDetailSelectionChange = (val: any[]) => {
@@ -1024,11 +1259,41 @@ const detailScrapReason = ref('')
 
 const packDetailsDialogVisible = ref(false)
 const currentPackDetails = ref<any[]>([])
+const currentPackDetailMode = ref<'detail' | 'frame'>('detail')
+const currentCodedPackBatchNo = computed(() => selectedPackRows.value[0]?.batchNo || selectedPackRow.value?.batchNo || '')
+const selectedPackFrameSummary = computed(() => {
+  const rows = selectedPackRows.value.length > 0 ? selectedPackRows.value : (selectedPackRow.value ? [selectedPackRow.value] : [])
+  if (rows.length === 0) return '-'
+  if (rows.length === 1) return rows[0]?.frameNo || '-'
+  return `${rows[0]?.frameNo || '-'} 等${rows.length}个料框`
+})
+const mergedSelectedPackDetails = computed(() => {
+  return selectedPackRows.value.flatMap(row =>
+    (row.details || []).map((detail: any) => ({
+      ...detail,
+      sourceRowId: row.id,
+      sourceFrameNo: row.frameNo,
+      sourceBatchNo: row.batchNo
+    }))
+  )
+})
+const filteredMergedSelectedPackDetails = computed(() => {
+  const keyword = detailCodeKeyword.value.trim().toLowerCase()
+  if (!keyword) return mergedSelectedPackDetails.value
+  return mergedSelectedPackDetails.value.filter((detail: any) =>
+    String(detail.code ?? '').toLowerCase().includes(keyword)
+  )
+})
 
 const viewPackDetails = (row: any) => {
   if (row.isCoded && row.details) {
+    currentPackDetailMode.value = 'detail'
     currentPackDetails.value = row.details
+  } else if (row.sourceFrames && row.sourceFrames.length > 0) {
+    currentPackDetailMode.value = 'frame'
+    currentPackDetails.value = row.sourceFrames
   } else {
+    currentPackDetailMode.value = 'detail'
     currentPackDetails.value = []
   }
   packDetailsDialogVisible.value = true
@@ -1068,7 +1333,7 @@ const handleRangeSelection = () => {
 
   if (detailTableRef.value) {
     detailTableRef.value.clearSelection()
-    selectedPackRow.value.details.forEach((row: any, index: number) => {
+    filteredMergedSelectedPackDetails.value.forEach((row: any, index: number) => {
       if (selectedIndices.has(index + 1)) {
         detailTableRef.value.toggleRowSelection(row, true)
       }
@@ -1076,14 +1341,17 @@ const handleRangeSelection = () => {
   }
 }
 
-const openShortBarPackDialog = (row: any) => {
-  selectedPackRow.value = row
+const openShortBarPackDialog = (rows: any[]) => {
+  selectedPackRows.value = rows
+  selectedPackRow.value = rows[0] || null
   dialogSelectedDetails.value = []
+  detailCodeKeyword.value = ''
   selectionRange.value = ''
   shortBarPackForm.value = {
+    palletNo: generatePalletNo(),
     team: currentTeam.value || '包装现场',
     goodQty: 0,
-    packQty: row.isCoded ? 0 : Number(row.qty || 0),
+    packQty: rows.length === 1 && !rows[0]?.isCoded ? Number(rows[0]?.qty || 0) : 0,
     palletType: '正常生产'
   }
   shortBarPackDialogVisible.value = true
@@ -1116,33 +1384,163 @@ const handleComplete = () => {
 
 const cancelPackage = () => {
   dialogs.value.pack.visible = false
+  currentPackRows.value = []
+  packScrapDialog.value = {
+    visible: false,
+    reason: '',
+    qty: 1,
+    maxQty: 1
+  }
+}
+
+const openPackScrapDialog = () => {
+  if (currentPackRows.value.length === 0) {
+    ElMessage.warning('当前没有可报工的料框')
+    return
+  }
+
+  packScrapDialog.value = {
+    visible: true,
+    reason: '',
+    qty: 1,
+    maxQty: Math.max(1, currentPackRows.value.reduce((sum, row) => sum + Number(row.qty || 0), 0))
+  }
+}
+
+const closePackScrapDialog = () => {
+  packScrapDialog.value = {
+    visible: false,
+    reason: '',
+    qty: 1,
+    maxQty: 1
+  }
+}
+
+const submitPackScrap = () => {
+  if (!packScrapDialog.value.reason) {
+    ElMessage.warning('请选择报废原因')
+    return
+  }
+
+  const scrapQty = Number(packScrapDialog.value.qty || 0)
+  if (scrapQty <= 0) {
+    ElMessage.warning('请填写报工数量')
+    return
+  }
+
+  const scrapTime = new Date().toLocaleString('zh-CN', { hour12: false }).replace(/\//g, '-')
+  let remainingScrapQty = scrapQty
+
+  currentPackRows.value.forEach(sourceRow => {
+    if (remainingScrapQty <= 0) return
+    const packRow = dialogs.value.pack.form.items.find(row => row.id === sourceRow.id)
+    if (!packRow) return
+
+    const currentQty = Number(sourceRow.qty || 0)
+    const rowScrapQty = Math.min(currentQty, remainingScrapQty)
+    if (rowScrapQty <= 0) return
+
+    tableData.value.unshift({
+      ...sourceRow,
+      id: Date.now() + Math.random(),
+      qty: rowScrapQty,
+      status: '已报废',
+      scrapLevel: '长支',
+      scrapCategory: '操作类',
+      scrapReason: packScrapDialog.value.reason,
+      scrapRemark: '',
+      scrapTime,
+      shiftTeam: currentTeam.value || sourceRow.shiftTeam || '-',
+      isCoded: false,
+      details: []
+    })
+
+    sourceRow.qty = Math.max(0, currentQty - rowScrapQty)
+    packRow.qty = Number(sourceRow.qty || 0)
+    if (Number(packRow.packQty || 0) > Number(packRow.qty || 0)) {
+      packRow.packQty = Number(packRow.qty || 0)
+    }
+
+    if (Number(sourceRow.qty || 0) <= 0) {
+      const index = tableData.value.findIndex(row => row.id === sourceRow.id)
+      if (index > -1) {
+        tableData.value.splice(index, 1)
+      }
+    }
+
+    remainingScrapQty -= rowScrapQty
+  })
+
+  currentPackRows.value = currentPackRows.value.filter(row => Number(row.qty || 0) > 0)
+  dialogs.value.pack.form.items = dialogs.value.pack.form.items.filter(item => Number(item.qty || 0) > 0)
+
+  closePackScrapDialog()
+  ElMessage.success(`成功登记 ${scrapQty} 支不良品报工`)
+
+  if (currentPackRows.value.length === 0) {
+    dialogs.value.pack.visible = false
+    selectedRows.value = []
+  }
 }
 
 const submitPackage = () => {
-  if (!dialogs.value.pack.form.palletNo) {
-    ElMessage.warning('请输入栈板编号')
-    return
-  }
   if (!dialogs.value.pack.form.type) {
     ElMessage.warning('请选择栈板类型')
     return
   }
+  if (currentPackRows.value.length === 0) return
 
-  currentPrintRow.value = currentRow.value
-  currentPrintRow.value.packageType = dialogs.value.pack.form.type
-  previewData.value = buildMaterialTagPreviewData({
-    source: {
-      ...currentRow.value,
-      frameNo: dialogs.value.pack.form.palletNo, // 使用栈板编号覆盖原来的料框号
-      materialQty: dialogs.value.pack.form.qtyPerPack, // 使用本托数量
-      fixedLength: currentRow.value.fixedLength || (currentRow.value.length ? Number(currentRow.value.length) * 1000 : '')
-    },
-    shiftTeam: currentTeam.value || '包装班'
+  const selectedItems = dialogs.value.pack.form.items.filter(item => Number(item.packQty || 0) > 0)
+  if (selectedItems.length === 0) {
+    ElMessage.warning('请至少填写一个料框的装托数量')
+    return
+  }
+
+  if (selectedItems.some(item => Number(item.packQty || 0) > Number(item.qty || 0))) {
+    ElMessage.warning('装托数量不能大于料框剩余支数')
+    return
+  }
+
+  const packedQty = selectedItems.reduce((sum, item) => sum + Number(item.packQty || 0), 0)
+  const baseRow = currentPackRows.value[0]
+
+  const palletNo = dialogs.value.pack.form.palletNo || generatePalletNo()
+  const newPallet = buildPalletRecord({
+    sourceRow: baseRow,
+    palletNo,
+    palletType: dialogs.value.pack.form.type,
+    packedQty,
+    packedDetails: [],
+    isCoded: false,
+    sourceFrames: selectedItems.map(item => ({
+      frameNo: item.frameNo,
+      packQty: item.packQty,
+      productName: item.productName,
+      productNo: currentPackRows.value.find(row => row.id === item.id)?.productNo || ''
+    }))
   })
-  buildTeamQr(previewData.value.shiftTeam)
-  
+
+  tableData.value.unshift(newPallet)
+
+  selectedItems.forEach(item => {
+    const row = currentPackRows.value.find(current => current.id === item.id)
+    if (!row) return
+    row.qty = Math.max(0, Number(row.qty || 0) - Number(item.packQty || 0))
+    if (row.qty <= 0) {
+      const index = tableData.value.findIndex(tableRow => tableRow.id === row.id)
+      if (index > -1) {
+        tableData.value.splice(index, 1)
+      }
+    }
+  })
+
   dialogs.value.pack.visible = false
-  printPreviewVisible.value = true
+  currentPackRows.value = []
+  selectedRows.value = []
+  currentPrintRow.value = null
+  previewData.value = {}
+  teamQrUrl.value = ''
+  ElMessage.success(`装托完成，数据已进入${PALLET_LIST_STATUS}，请在需要时手动切换查看`)
 }
 
 const buildTeamQr = async (teamText: string) => {
@@ -1159,7 +1557,18 @@ const buildTeamQr = async (teamText: string) => {
 
 const closeShortBarPackDialog = () => {
   shortBarPackDialogVisible.value = false
+  shortBarPackForm.value = {
+    palletNo: '',
+    team: '',
+    goodQty: 0,
+    packQty: 1,
+    palletType: '正常生产'
+  }
+  selectedPackRows.value = []
   selectedPackRow.value = null
+  dialogSelectedDetails.value = []
+  detailCodeKeyword.value = ''
+  selectionRange.value = ''
 }
 
 const confirmShortBarPack = () => {
@@ -1170,8 +1579,9 @@ const confirmShortBarPack = () => {
   }
 
   let packedQty = 0
-  let isCoded = selectedPackRow.value.isCoded
-  let packedDetails = []
+  const isCoded = selectedPackRow.value.isCoded
+  let packedDetails: any[] = []
+  let sourceFrames: any[] = []
 
   if (isCoded) {
     if (dialogSelectedDetails.value.length === 0) {
@@ -1181,9 +1591,29 @@ const confirmShortBarPack = () => {
 
     packedDetails = dialogSelectedDetails.value
     packedQty = packedDetails.reduce((sum: number, item: any) => sum + Number(item.qty || 0), 0)
+    const detailGroupMap = new Map<number, any[]>()
+    packedDetails.forEach((detail: any) => {
+      const sourceRowId = Number(detail.sourceRowId)
+      const currentList = detailGroupMap.get(sourceRowId) || []
+      currentList.push(detail)
+      detailGroupMap.set(sourceRowId, currentList)
+    })
 
-    const selectedIds = new Set(packedDetails.map((d: any) => d.id))
-    selectedPackRow.value.details = selectedPackRow.value.details.filter((item: any) => !selectedIds.has(item.id))
+    selectedPackRows.value.forEach(row => {
+      const currentDetails = detailGroupMap.get(Number(row.id)) || []
+      if (currentDetails.length === 0) return
+
+      const selectedIds = new Set(currentDetails.map((detail: any) => detail.id))
+      row.details = row.details.filter((item: any) => !selectedIds.has(item.id))
+      const rowPackedQty = currentDetails.reduce((sum: number, detail: any) => sum + Number(detail.qty || 0), 0)
+      row.qty = Math.max(0, Number(row.qty || 0) - rowPackedQty)
+      sourceFrames.push({
+        frameNo: row.frameNo,
+        packQty: rowPackedQty,
+        productName: row.productName,
+        productNo: row.productNo
+      })
+    })
     dialogSelectedDetails.value = []
   } else {
     const packQty = Number(shortBarPackForm.value.packQty || 0)
@@ -1193,46 +1623,40 @@ const confirmShortBarPack = () => {
       return
     }
     packedQty = packQty
+    selectedPackRow.value.qty = Math.max(0, Number(selectedPackRow.value.qty || 0) - packedQty)
+    sourceFrames = [{
+      frameNo: selectedPackRow.value.frameNo,
+      packQty: packedQty,
+      productName: selectedPackRow.value.productName,
+      productNo: selectedPackRow.value.productNo
+    }]
   }
-
-  selectedPackRow.value.qty = Math.max(0, Number(selectedPackRow.value.qty || 0) - packedQty)
-
-  const now = new Date()
-  const year = now.getFullYear()
-  const month = String(now.getMonth() + 1).padStart(2, '0')
-  const day = String(now.getDate()).padStart(2, '0')
-  const dateStr = `${year}${month}${day}`
-  
-  // 生成随机序号 (01 到 99 之间)
-  const randomSeq = String(Math.floor(Math.random() * 99) + 1).padStart(2, '0')
-  const newPalletNo = `${dateStr}-${randomSeq}`
-
-  const newPallet = {
-    ...selectedPackRow.value,
-    id: Date.now(),
-    palletNo: newPalletNo,
-    qty: packedQty,
-    status: '装托列表',
+  const newPallet = buildPalletRecord({
+    sourceRow: selectedPackRow.value,
+    palletNo: shortBarPackForm.value.palletNo || generatePalletNo(),
     palletType: shortBarPackForm.value.palletType,
-    packTime: new Date().toLocaleString('zh-CN', { hour12: false }).replace(/\//g, '-'),
-    printCount: 0,
-    printTime: '',
-    isCoded: isCoded,
-    details: packedDetails
-  }
+    packedQty,
+    packedDetails,
+    isCoded,
+    sourceFrames
+  })
   tableData.value.unshift(newPallet)
 
-  if (selectedPackRow.value.qty <= 0) {
-    const index = tableData.value.findIndex(item => item.id === selectedPackRow.value.id)
-    if (index > -1) {
-      tableData.value.splice(index, 1)
+  const rowsToSync = isCoded ? selectedPackRows.value : [selectedPackRow.value]
+  rowsToSync.forEach(row => {
+    if (Number(row?.qty || 0) <= 0) {
+      const index = tableData.value.findIndex(item => item.id === row.id)
+      if (index > -1) {
+        tableData.value.splice(index, 1)
+      }
     }
-  }
+  })
 
   shortBarPackDialogVisible.value = false
+  selectedPackRows.value = []
   selectedPackRow.value = null
   selectedRows.value = []
-  ElMessage.success('装托完成，已生成装托数据')
+  ElMessage.success(`装托完成，数据已进入${PALLET_LIST_STATUS}，请在需要时手动切换查看`)
 }
 
 const openScrapDialog = () => {
@@ -1242,6 +1666,7 @@ const openScrapDialog = () => {
   }
 
   dialogs.value.scrap.level = '料框'
+  dialogs.value.scrap.source = 'table'
   dialogs.value.scrap.form = { type: '', reason: '', remark: '' }
   dialogs.value.scrap.visible = true
 }
@@ -1270,6 +1695,7 @@ const submitScrap = () => {
   
   selectedRows.value = []
   dialogs.value.scrap.visible = false
+  dialogs.value.scrap.source = 'table'
 }
 
 const openDetailScrapDialog = () => {
@@ -1290,15 +1716,28 @@ const submitDetailScrap = () => {
   const scrappedDetails = dialogSelectedDetails.value
   const scrapCount = scrappedDetails.length
   
-  const selectedIds = new Set(scrappedDetails.map(d => d.id))
-  selectedPackRow.value.details = selectedPackRow.value.details.filter((d: any) => !selectedIds.has(d.id))
-  
-  selectedPackRow.value.qty -= scrappedDetails.reduce((sum: number, d: any) => sum + Number(d.qty || 0), 0)
-  
   const scrapTime = new Date().toLocaleString('zh-CN', { hour12: false }).replace(/\//g, '-')
+  const detailGroupMap = new Map<number, any[]>()
   scrappedDetails.forEach((detail: any) => {
+    const sourceRowId = Number(detail.sourceRowId ?? selectedPackRow.value?.id)
+    const currentList = detailGroupMap.get(sourceRowId) || []
+    currentList.push(detail)
+    detailGroupMap.set(sourceRowId, currentList)
+  })
+
+  selectedPackRows.value.forEach(row => {
+    const rowScrappedDetails = detailGroupMap.get(Number(row.id)) || []
+    if (rowScrappedDetails.length === 0) return
+
+    const selectedIds = new Set(rowScrappedDetails.map((detail: any) => detail.id))
+    row.details = row.details.filter((detail: any) => !selectedIds.has(detail.id))
+    row.qty = Math.max(0, Number(row.qty || 0) - rowScrappedDetails.reduce((sum: number, detail: any) => sum + Number(detail.qty || 0), 0))
+  })
+
+  scrappedDetails.forEach((detail: any) => {
+    const sourceRow = selectedPackRows.value.find(row => Number(row.id) === Number(detail.sourceRowId)) || selectedPackRow.value
     const scrapRecord = {
-      ...selectedPackRow.value,
+      ...sourceRow,
       id: Date.now() + Math.random(),
       status: '已报废',
       scrapLevel: '长支',
@@ -1307,16 +1746,19 @@ const submitDetailScrap = () => {
       details: [detail],
       scrapReason: detailScrapReason.value,
       scrapTime: scrapTime,
-      shiftTeam: currentTeam.value || selectedPackRow.value.shiftTeam
+      shiftTeam: currentTeam.value || sourceRow.shiftTeam
     }
     tableData.value.unshift(scrapRecord)
   })
 
-  if (selectedPackRow.value.qty <= 0) {
-    const index = tableData.value.findIndex(item => item.id === selectedPackRow.value.id)
-    if (index > -1) tableData.value.splice(index, 1)
-    shortBarPackDialogVisible.value = false
-  }
+  const hasRemainingRows = selectedPackRows.value.some(row => Number(row.qty || 0) > 0)
+  selectedPackRows.value.forEach(row => {
+    if (Number(row.qty || 0) <= 0) {
+      const index = tableData.value.findIndex(item => item.id === row.id)
+      if (index > -1) tableData.value.splice(index, 1)
+    }
+  })
+  if (!hasRemainingRows) shortBarPackDialogVisible.value = false
   
   detailScrapDialogVisible.value = false
   dialogSelectedDetails.value = []
@@ -1341,12 +1783,12 @@ const handlePrintLabel = (row: any) => {
 
 const confirmPrint = () => {
   if (!currentPrintRow.value) return
-  ElMessage.success('物料标识卡打印指令已发送')
-  
   currentPrintRow.value.printCount = (currentPrintRow.value.printCount || 0) + 1
   currentPrintRow.value.printTime = new Date().toLocaleString('zh-CN', { hour12: false }).replace(/\//g, '-')
+  upsertPendingStorageRecord(buildPendingStorageRecordFromPackaging(currentPrintRow.value))
   
   printPreviewVisible.value = false
+  ElMessage.success('物料标识卡打印指令已发送，已流转至待入库清单称重页面')
   currentPrintRow.value = null
 }
 </script>

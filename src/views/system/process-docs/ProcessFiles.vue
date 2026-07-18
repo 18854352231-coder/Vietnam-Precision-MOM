@@ -163,20 +163,20 @@
       <el-dialog v-model="dialogVisible" :title="dialogTitle">
         <el-form :model="form" label-width="120px">
           <el-form-item label="所属工艺">
-            <el-radio-group v-model="form.processType">
+            <el-radio-group v-model="form.processType" :disabled="isVersionEditMode">
               <el-radio label="extrusion">挤压</el-radio>
               <el-radio label="casting">铸造</el-radio>
             </el-radio-group>
           </el-form-item>
           <el-form-item label="产品名称">
-            <el-select v-model="form.productName" placeholder="选择产品" style="width: 100%">
+            <el-select v-model="form.productName" placeholder="选择产品" style="width: 100%" :disabled="isVersionEditMode">
               <el-option label="铝型材-6063" value="铝型材-6063" />
               <el-option label="铝型材-6061" value="铝型材-6061" />
               <el-option label="铝棒-A级" value="铝棒-A级" />
             </el-select>
           </el-form-item>
           <el-form-item label="文件分类">
-            <el-radio-group v-model="form.type">
+            <el-radio-group v-model="form.type" :disabled="isVersionEditMode">
               <el-radio label="SOP">SOP</el-radio>
               <el-radio label="SIP">SIP</el-radio>
               <el-radio label="POP">POP</el-radio>
@@ -193,7 +193,12 @@
             <el-input v-model="form.agingProgram" placeholder="请输入该产品的时效制度" />
           </el-form-item>
           <el-form-item label="文件类型">
-            <el-select v-model="form.fileCategory" placeholder="请选择文件类型" style="width: 100%">
+            <el-select
+              v-model="form.fileCategory"
+              placeholder="请选择文件类型"
+              style="width: 100%"
+              :disabled="isVersionEditMode"
+            >
               <el-option label="正式文件" value="正式文件" />
               <el-option label="临时文件" value="临时文件" />
             </el-select>
@@ -255,6 +260,7 @@ const tableData = ref<any[]>([])
 
 const dialogVisible = ref(false)
 const dialogTitle = ref('新建工艺文件')
+const isVersionEditMode = ref(false)
 const form = ref({
   processType: 'extrusion',
   productName: '',
@@ -298,6 +304,7 @@ const handleSearch = () => {
 
 const handleAdd = () => {
   dialogTitle.value = '新建工艺文件'
+  isVersionEditMode.value = false
   form.value = {
     processType: processType.value,
     productName: '',
@@ -319,6 +326,7 @@ const handleView = (row: any) => {
 
 const handleEdit = (row: any) => {
   dialogTitle.value = '修改工艺文件版本'
+  isVersionEditMode.value = true
   form.value = {
     processType: processType.value,
     productName: row.productName,
@@ -346,6 +354,7 @@ const handleSave = () => {
 
   ElMessage.success(t('pages.processFiles.messages.saveSuccess'))
   dialogVisible.value = false
+  isVersionEditMode.value = false
   loadTableData()
 }
 

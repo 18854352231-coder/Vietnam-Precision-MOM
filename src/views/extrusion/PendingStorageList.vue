@@ -43,17 +43,17 @@
         <el-tab-pane label="入库" name="待入库"></el-tab-pane>
       </el-tabs>
 
-      <div class="toolbar" v-if="activeTab === '待入库'">
-        <el-button type="success" icon="Check" @click="handleBatchStorage" :disabled="!selectedRows.length">批量入库</el-button>
-      </div>
-
       <el-table :data="filteredTableData" border stripe height="calc(100vh - 330px)" @selection-change="handleSelectionChange">
         <el-table-column type="selection" width="55" align="center" />
         <el-table-column type="index" label="序号" width="60" align="center" />
         <el-table-column prop="palletNo" label="栈板编号" width="170" show-overflow-tooltip />
         <el-table-column prop="palletType" label="栈板类型" width="100" />
         <el-table-column prop="customerCode" label="客户代码" width="100" />
-        <el-table-column prop="customerMaterialName" label="客户物料名称" width="170" show-overflow-tooltip />
+        <el-table-column label="客户名称" width="170" show-overflow-tooltip>
+          <template #default="{ row }">
+            {{ row.customerName || row.customerMaterialName || '-' }}
+          </template>
+        </el-table-column>
         <el-table-column prop="customerMaterialCode" label="客户料号" width="130" show-overflow-tooltip />
         <el-table-column prop="quantity" label="数量(支)" width="100" align="right" />
         <el-table-column prop="netWeight" label="净重" width="100" align="right" />
@@ -104,27 +104,20 @@
         <el-form-item label="栈板编号" required>
           <el-input v-model="storageForm.palletNo" placeholder="请输入栈板编号" />
         </el-form-item>
-        <el-form-item label="栈板类型" required>
-          <el-select v-model="storageForm.palletType" placeholder="请选择栈板类型" style="width: 100%">
-            <el-option label="正常生产" value="正常生产" />
-            <el-option label="验证料" value="验证料" />
-            <el-option label="客户需求" value="客户需求" />
-          </el-select>
-        </el-form-item>
         <el-form-item label="产品名称">
           <span>{{ storageForm.productName }} ({{ storageForm.productNo }})</span>
         </el-form-item>
         <el-form-item label="数量(支)">
           <span>{{ storageForm.quantity }}</span>
         </el-form-item>
-        <el-form-item label="净重(KG)" required>
-          <el-input-number v-model="storageForm.netWeight" :min="0" :precision="2" :step="0.1" style="width: 100%" @change="calculateGrossWeight" />
+        <el-form-item label="总重(KG)" required>
+          <el-input-number v-model="storageForm.grossWeight" :min="0" :precision="2" :step="0.1" style="width: 100%" @change="calculateNetWeight" />
         </el-form-item>
         <el-form-item label="皮重(KG)" required>
-          <el-input-number v-model="storageForm.tareWeight" :min="0" :precision="2" :step="0.1" style="width: 100%" @change="calculateGrossWeight" />
+          <el-input-number v-model="storageForm.tareWeight" :min="0" :precision="2" :step="0.1" style="width: 100%" @change="calculateNetWeight" />
         </el-form-item>
-        <el-form-item label="总重(KG)">
-          <el-input-number v-model="storageForm.grossWeight" :min="0" :precision="2" disabled style="width: 100%" />
+        <el-form-item label="净重(KG)">
+          <el-input-number v-model="storageForm.netWeight" :min="0" :precision="2" :step="0.1" style="width: 100%" />
         </el-form-item>
       </el-form>
       <template #footer>
@@ -197,8 +190,8 @@
             <tr>
               <td class="label-cell">Mã khách hàng<br>Customer Code<br>客户代码</td>
               <td class="value-cell">{{ printData.customerCode }}</td>
-              <td class="label-cell">Tên vật liệu khách hàng<br>Customer's material name<br>客户物料名称</td>
-              <td class="value-cell">{{ printData.customerMaterialName }}</td>
+              <td class="label-cell">Tên khách hàng<br>Customer Name<br>客户名称</td>
+              <td class="value-cell">{{ printData.customerName || printData.customerMaterialName }}</td>
               <td class="label-cell">Mã liệu khách hàng<br>Customer's material code<br>客户料号</td>
               <td class="value-cell">{{ printData.customerMaterialCode }}</td>
             </tr>
@@ -296,6 +289,7 @@
 import { ref, computed } from 'vue'
 import { ElMessage, ElMessageBox } from 'element-plus'
 import { useTaskLiteralDomI18n } from '@/composables/useTaskLiteralDomI18n'
+import { loadPendingStorageRecords, savePendingStorageRecords } from '@/utils/pendingStorageFlow'
 
 useTaskLiteralDomI18n()
 
@@ -320,7 +314,7 @@ const currentPage = ref(1)
 const pageSize = ref(20)
 const selectedRows = ref<any[]>([])
 
-const tableData = ref([
+const defaultTableData = [
   {
     id: 1,
     batchNo: 'PKG-20260511-001',
@@ -332,7 +326,7 @@ const tableData = ref([
     operator: '张三',
     status: '待称重',
     customerCode: 'CUST-001',
-    customerMaterialName: '铝型材A',
+    customerName: '客户A',
     customerMaterialCode: 'C-MAT-001',
     netWeight: 250.5,
     grossWeight: 252.0,
@@ -356,7 +350,7 @@ const tableData = ref([
     finishTime: '2026-05-11 10:15:00',
     status: '待入库',
     customerCode: 'CUST-002',
-    customerMaterialName: '边框型材B',
+    customerName: '客户B',
     customerMaterialCode: 'C-MAT-002',
     netWeight: 300.0,
     grossWeight: 301.5,
@@ -381,7 +375,7 @@ const tableData = ref([
     operator: '张三',
     status: '待入库',
     customerCode: 'CUST-001',
-    customerMaterialName: '铝型材A',
+    customerName: '客户A',
     customerMaterialCode: 'C-MAT-001',
     netWeight: 200.0,
     grossWeight: 201.5,
@@ -395,7 +389,9 @@ const tableData = ref([
     palletNo: 'PLT-003',
     mfgDate: '2026-05-11'
   }
-])
+]
+
+const tableData = ref(loadPendingStorageRecords(defaultTableData))
 
 const filteredTableData = computed(() => {
   const keywordMatch = (source: unknown, keyword: string) =>
@@ -470,9 +466,11 @@ const storageForm = ref<any>({
   location: 'A区'
 })
 
-const calculateGrossWeight = () => {
-  const gross = (storageForm.value.netWeight || 0) + (storageForm.value.tareWeight || 0)
-  storageForm.value.grossWeight = Number(gross.toFixed(2))
+const calculateNetWeight = () => {
+  const gross = Number(storageForm.value.grossWeight || 0)
+  const tare = Number(storageForm.value.tareWeight || 0)
+  const net = Math.max(gross - tare, 0)
+  storageForm.value.netWeight = Number(net.toFixed(2))
 }
 
 const openWeighDialog = (row: any) => {
@@ -480,17 +478,16 @@ const openWeighDialog = (row: any) => {
     id: row.id,
     batchNo: row.batchNo,
     palletNo: row.palletNo || '',
-    palletType: row.palletType,
     productNo: row.productNo,
     productName: row.productName,
     quantity: row.quantity,
     grossWeight: row.grossWeight || 0,
-    tareWeight: 1.5,
+    tareWeight: row.tareWeight ?? 1.5,
     netWeight: row.netWeight || 0,
     quality: row.quality || '',
     location: ''
   }
-  calculateGrossWeight()
+  calculateNetWeight()
   weighDialogVisible.value = true
 }
 
@@ -499,22 +496,23 @@ const submitWeigh = () => {
     ElMessage.warning('请输入栈板编号')
     return
   }
-  if (!storageForm.value.palletType) {
-    ElMessage.warning('请选择栈板类型')
+  if (storageForm.value.grossWeight <= 0) {
+    ElMessage.warning('请输入有效的总重')
     return
   }
-  if (storageForm.value.netWeight <= 0) {
-    ElMessage.warning('请输入有效的净重')
+  if (storageForm.value.grossWeight < storageForm.value.tareWeight) {
+    ElMessage.warning('总重不能小于皮重')
     return
   }
 
   const index = tableData.value.findIndex(item => item.id === storageForm.value.id)
   if (index !== -1) {
     tableData.value[index].palletNo = storageForm.value.palletNo
-    tableData.value[index].palletType = storageForm.value.palletType
     tableData.value[index].grossWeight = storageForm.value.grossWeight
+    tableData.value[index].tareWeight = storageForm.value.tareWeight
     tableData.value[index].netWeight = storageForm.value.netWeight
     tableData.value[index].status = '待入库'
+    savePendingStorageRecords(tableData.value)
   }
 
   ElMessage.success(`栈板 ${storageForm.value.palletNo} 称重完成，已流转至入库列表`)
@@ -530,7 +528,7 @@ const openStorageDialog = (row: any) => {
     productName: row.productName,
     quantity: row.quantity,
     grossWeight: row.grossWeight || 0,
-    tareWeight: 1.5,
+    tareWeight: row.tareWeight ?? 1.5,
     netWeight: row.netWeight || 0,
     quality: row.quality || '',
     location: 'A区'
@@ -544,28 +542,15 @@ const submitStorage = () => {
     return
   }
 
-  // 模拟提交入库
   const index = tableData.value.findIndex(item => item.id === storageForm.value.id)
   if (index !== -1) {
-    tableData.value.splice(index, 1)
+    tableData.value[index].status = '已入库'
+    tableData.value[index].location = storageForm.value.location
+    savePendingStorageRecords(tableData.value)
   }
 
   ElMessage.success(`栈板 ${storageForm.value.palletNo} 已成功入库至 ${storageForm.value.location}`)
   storageDialogVisible.value = false
-}
-
-const handleBatchStorage = () => {
-  ElMessageBox.confirm(`确定要批量入库选中的 ${selectedRows.value.length} 个栈板吗？\n(批量入库将跳过称重，采用理论重量入库)`, '批量入库', {
-    type: 'warning'
-  }).then(() => {
-    selectedRows.value.forEach(row => {
-      const index = tableData.value.findIndex(item => item.id === row.id)
-      if (index !== -1) {
-        tableData.value.splice(index, 1)
-      }
-    })
-    ElMessage.success('批量入库成功')
-  }).catch(() => {})
 }
 
 // 打印相关
@@ -671,7 +656,6 @@ const handlePrint = () => {
   overflow: hidden;
 }
 .search-wrapper { margin-bottom: 16px; }
-.toolbar { margin-bottom: 16px; display: flex; gap: 8px; }
 .pagination-container { margin-top: 16px; display: flex; justify-content: flex-end; }
 .operation-actions {
   display: flex;

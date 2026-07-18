@@ -78,7 +78,15 @@ export default {
     equipment: {
       root: '设备管理',
       tooling: '工装管理',
-      frame: '料框管理'
+      frame: '料框管理',
+      measuring: '监视与测量设备管理',
+      measuringSub: {
+        ledger: '台账管理',
+        project: '校验项目管理',
+        template: '校验模板管理',
+        task: '校验任务管理',
+        reminder: '校验提醒管理'
+      }
     },
     reports: {
       root: '报表分析',

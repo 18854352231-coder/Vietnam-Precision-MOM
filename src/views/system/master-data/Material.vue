@@ -174,11 +174,10 @@
             </el-tag>
           </template>
         </el-table-column>
-        <el-table-column label="操作" width="260" align="center">
+        <el-table-column label="操作" width="190" align="center">
           <template #default="scope">
             <el-button size="small" type="success" link @click="handlePublish(scope.row)" v-if="scope.row.status === 'unpublished'">发布</el-button>
             <el-button size="small" type="primary" link @click="handleEdit(scope.row)">编辑</el-button>
-            <el-button size="small" type="primary" link @click="handleUpload(scope.row)">上传附件</el-button>
             <el-button size="small" type="danger" link @click="handleDelete(scope.row)">删除</el-button>
           </template>
         </el-table-column>
@@ -623,10 +622,6 @@ const handleDelete = (row: any) => {
   })
 }
 
-const handleUpload = (row: any) => {
-  ElMessage.info(`上传附件：${row.productMaterialNo || row.rodMaterialNo || row.componentMaterialNo || row.rawMaterial || row.id}`)
-}
-
 const handleExport = () => {
   ElMessage.info('导出中...')
 }
@@ -666,4 +661,3 @@ onMounted(() => {
   justify-content: flex-end;
 }
 </style>
-

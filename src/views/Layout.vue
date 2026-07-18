@@ -2,8 +2,7 @@
   <el-container class="layout-container">
     <el-aside width="240px">
       <div class="logo">
-        <el-icon :size="24" color="#409EFF"><Box /></el-icon>
-        <span>{{ t('common.appName') }}</span>
+        <img :src="appLogo" alt="app logo" class="logo-icon" />
       </div>
       <el-menu
         :default-active="activeMenu"
@@ -61,8 +60,13 @@
         <div class="header-left">
           <el-breadcrumb separator="/">
             <el-breadcrumb-item :to="{ path: '/' }">{{ t('layout.home') }}</el-breadcrumb-item>
-            <el-breadcrumb-item>{{ currentParentTitle }}</el-breadcrumb-item>
-            <el-breadcrumb-item>{{ currentTitle }}</el-breadcrumb-item>
+            <el-breadcrumb-item
+              v-for="(match, index) in matchedRoutes"
+              :key="match.path"
+              :to="index < matchedRoutes.length - 1 ? { path: getClickablePath(match) } : undefined"
+            >
+              {{ getRouteTitle(match.meta) }}
+            </el-breadcrumb-item>
           </el-breadcrumb>
         </div>
         <div class="header-right">
@@ -113,6 +117,7 @@ import { useRoute, useRouter } from 'vue-router'
 import { useI18n } from 'vue-i18n'
 import { SUPPORTED_LANGUAGES, type AppLanguage } from '@/constants/language'
 import { locale, setLanguage } from '@/i18n'
+import appLogo from '@/assets/logo-wide.png'
 
 const route = useRoute()
 const router = useRouter()
@@ -134,12 +139,27 @@ const systemRoutes = computed(() => {
 
 const activeMenu = computed(() => route.path)
 
-const currentParentTitle = computed(() => {
-  const parent = systemRoutes.value.find(r => route.path.startsWith('/' + r.path))
-  return getRouteTitle(parent?.meta)
+const matchedRoutes = computed(() => {
+  return route.matched.filter(m => m.path !== '/' && (m.meta?.title || m.meta?.titleKey))
 })
 
-const currentTitle = computed(() => getRouteTitle(route.meta))
+const getFirstChildPath = (routeRecord: any, basePath = ''): string => {
+  // Fix multiple slashes
+  const currentPath = basePath ? `${basePath}/${routeRecord.path}`.replace(/\/+/g, '/') : `/${routeRecord.path}`.replace(/\/+/g, '/')
+  if (routeRecord.redirect) return typeof routeRecord.redirect === 'string' ? routeRecord.redirect : currentPath
+  if (routeRecord.children && routeRecord.children.length > 0) {
+    return getFirstChildPath(routeRecord.children[0], currentPath)
+  }
+  return currentPath
+}
+
+const getClickablePath = (match: any): string => {
+  if (match.redirect) return typeof match.redirect === 'string' ? match.redirect : match.path
+  if (match.children && match.children.length > 0) {
+    return getFirstChildPath(match.children[0], match.path)
+  }
+  return match.path
+}
 
 const handleLanguageChange = (language: string | number | object) => {
   setLanguage(language as AppLanguage)
@@ -165,6 +185,12 @@ const joinPaths = (...parts: string[]) =>
   border-bottom: 1px solid var(--border-subtle);
   gap: 12px;
   color: var(--text-primary);
+}
+
+.logo-icon {
+  height: 32px;
+  width: auto;
+  object-fit: contain;
 }
 
 .el-aside {

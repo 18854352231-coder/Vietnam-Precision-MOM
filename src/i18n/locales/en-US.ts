@@ -60,6 +60,12 @@ export default {
       ipqc: {
         root: 'IPQC',
         processInspection: 'Process Inspection',
+        extrusion: 'Extrusion IPQC',
+        aging: 'Aging IPQC',
+        cuttingFeed: 'Cutting Feed IPQC',
+        cutting: 'Cutting IPQC',
+        prePackaging: 'Pre-packaging IPQC',
+        leaderReview: 'Leader Review',
         processQualityInspection: 'Process Quality Inspection',
         inspectionConfig: 'Product Inspection Config'
       },
@@ -72,7 +78,15 @@ export default {
     equipment: {
       root: 'Equipment Management',
       tooling: 'Tooling Management',
-      frame: 'Frame Management'
+      frame: 'Frame Management',
+      measuring: 'Monitoring & Measuring Equipment',
+      measuringSub: {
+        ledger: 'Ledger Management',
+        project: 'Calibration Project Management',
+        template: 'Calibration Template Management',
+        task: 'Calibration Task Management',
+        reminder: 'Calibration Reminder Management'
+      }
     },
     reports: {
       root: 'Reports',

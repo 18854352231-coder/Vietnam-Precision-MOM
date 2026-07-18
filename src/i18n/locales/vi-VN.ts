@@ -60,6 +60,12 @@ export default {
       ipqc: {
         root: 'IPQC',
         processInspection: 'Kiem tra quy trinh',
+        extrusion: 'IPQC ep de',
+        aging: 'IPQC hoa gia',
+        cuttingFeed: 'IPQC nap lieu cat',
+        cutting: 'IPQC cat',
+        prePackaging: 'IPQC truoc dong goi',
+        leaderReview: 'To truong duyet',
         processQualityInspection: 'Kiem tra cong doan',
         inspectionConfig: 'Cau hinh kiem tra san pham'
       },
@@ -72,7 +78,15 @@ export default {
     equipment: {
       root: 'Quan ly thiet bi',
       tooling: 'Quan ly do gá',
-      frame: 'Quan ly khung vat lieu'
+      frame: 'Quan ly khung vat lieu',
+      measuring: 'Quản lý thiết bị giám sát & đo lường',
+      measuringSub: {
+        ledger: 'Quản lý sổ cái',
+        project: 'Quản lý dự án hiệu chuẩn',
+        template: 'Quản lý mẫu hiệu chuẩn',
+        task: 'Quản lý nhiệm vụ hiệu chuẩn',
+        reminder: 'Quản lý nhắc nhở hiệu chuẩn'
+      }
     },
     reports: {
       root: 'Phan tich bao cao',

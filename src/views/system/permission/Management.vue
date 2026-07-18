@@ -1,4 +1,4 @@
-﻿﻿﻿﻿﻿﻿﻿﻿﻿﻿﻿﻿﻿﻿﻿﻿﻿﻿﻿﻿﻿﻿﻿﻿﻿﻿﻿﻿﻿﻿﻿﻿﻿﻿﻿﻿﻿﻿﻿﻿<template>
+﻿﻿﻿﻿﻿﻿﻿﻿﻿﻿﻿﻿﻿﻿﻿﻿﻿﻿﻿﻿﻿﻿﻿﻿﻿﻿﻿﻿﻿﻿﻿﻿﻿﻿﻿﻿﻿﻿﻿﻿﻿﻿﻿﻿﻿﻿﻿﻿﻿﻿﻿﻿<template>
   <div class="page-container">
     <el-card class="full-card">
       <template #header>
@@ -101,7 +101,14 @@ const menuTree = [
     ]},
     { id: 'equipment', title: '设备管理', children: [
       { id: 'tooling', title: '工装管理' },
-      { id: 'frame', title: '料框管理' }
+      { id: 'frame', title: '料框管理' },
+      { id: 'measuring', title: '监视与测量设备管理', children: [
+        { id: 'measuringLedger', title: '台账管理' },
+        { id: 'measuringProject', title: '校验项目管理' },
+        { id: 'measuringTemplate', title: '校验模板管理' },
+        { id: 'measuringTask', title: '校验任务管理' },
+        { id: 'measuringReminder', title: '校验提醒管理' }
+      ]}
     ]},
     { id: 'reports', title: '报表分析', children: [
       { id: 'reportExtrusion', title: '挤压报表', children: [

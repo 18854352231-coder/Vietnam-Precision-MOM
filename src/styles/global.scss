@@ -115,6 +115,14 @@ body {
   --el-table-row-hover-bg-color: var(--bg-tertiary);
 }
 
+.el-table .cell {
+  white-space: nowrap;
+  overflow: hidden;
+  text-overflow: ellipsis;
+  word-break: normal;
+  overflow-wrap: normal;
+}
+
 .el-button--primary {
   --el-button-bg-color: #000000;
   --el-button-border-color: #000000;

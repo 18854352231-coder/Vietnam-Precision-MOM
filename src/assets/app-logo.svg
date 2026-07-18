@@ -1,0 +1,19 @@
+<svg width="96" height="96" viewBox="0 0 96 96" fill="none" xmlns="http://www.w3.org/2000/svg">
+  <defs>
+    <linearGradient id="logo-main" x1="22" y1="18" x2="70" y2="78" gradientUnits="userSpaceOnUse">
+      <stop stop-color="#F6F7FA"/>
+      <stop offset="0.5" stop-color="#CBD0D9"/>
+      <stop offset="1" stop-color="#9199A8"/>
+    </linearGradient>
+    <linearGradient id="logo-shadow" x1="30" y1="24" x2="58" y2="74" gradientUnits="userSpaceOnUse">
+      <stop stop-color="#D5DAE3"/>
+      <stop offset="1" stop-color="#737C8C"/>
+    </linearGradient>
+  </defs>
+  <path d="M47 8L67 28L58 37L38 17L47 8Z" fill="#E94B4B"/>
+  <path d="M28 23L52 23L73 44L49 44L28 23Z" fill="url(#logo-main)"/>
+  <path d="M21 38L45 38L66 59L42 59L21 38Z" fill="url(#logo-shadow)"/>
+  <path d="M28 53L52 53L73 74L49 74L28 53Z" fill="url(#logo-main)"/>
+  <path d="M21 38L28 31L49 52L42 59L21 38Z" fill="#B1B8C5"/>
+  <path d="M42 59L49 52L73 52L66 59L42 59Z" fill="#868FA0" fill-opacity="0.8"/>
+</svg>

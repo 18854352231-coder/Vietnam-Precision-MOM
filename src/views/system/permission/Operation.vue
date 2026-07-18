@@ -95,7 +95,14 @@ const operationTree = [
   ]},
   { id: 'equipment', title: '设备管理', children: [
     { id: 'equipment:tooling:manage', title: '工装管理' },
-    { id: 'equipment:frame:manage', title: '料框管理' }
+    { id: 'equipment:frame:manage', title: '料框管理' },
+    { id: 'equipment:measuring:manage', title: '监视与测量设备管理', children: [
+      { id: 'equipment:measuring:ledger', title: '台账管理' },
+      { id: 'equipment:measuring:project', title: '校验项目管理' },
+      { id: 'equipment:measuring:template', title: '校验模板管理' },
+      { id: 'equipment:measuring:task', title: '校验任务管理' },
+      { id: 'equipment:measuring:reminder', title: '校验提醒管理' }
+    ]}
   ]},
   { id: 'reports', title: '报表分析', children: [
     { id: 'reports:extrusion:view', title: '查看挤压报表' },

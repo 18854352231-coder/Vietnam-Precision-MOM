@@ -225,6 +225,86 @@ const routes: Array<RouteRecordRaw> = [
         ]
       },
       {
+        path: 'equipment',
+        name: 'EquipmentManagement',
+        meta: { title: '设备管理', titleKey: 'routes.equipment.root', icon: 'Odometer' },
+        component: RouterViewContainer,
+        children: [
+          {
+            path: 'frame',
+            name: 'FrameManagement',
+            component: () => import('@/views/equipment/FrameManagement.vue'),
+            meta: { title: '料框管理', titleKey: 'routes.equipment.frame' }
+          },
+          {
+            path: 'measuring',
+            name: 'MeasuringEquipment',
+            meta: { title: '监视与测量设备管理', titleKey: 'routes.equipment.measuring' },
+            component: RouterViewContainer,
+            children: [
+              {
+                path: 'ledger',
+                name: 'LedgerManagement',
+                component: () => import('@/views/equipment/measuring/LedgerManagement.vue'),
+                meta: { title: '台账管理', titleKey: 'routes.equipment.measuringSub.ledger' }
+              },
+              {
+                path: 'project',
+                name: 'CalibrationProject',
+                component: () => import('@/views/equipment/measuring/CalibrationProject.vue'),
+                meta: { title: '校验项目管理', titleKey: 'routes.equipment.measuringSub.project' }
+              },
+              {
+                path: 'template',
+                name: 'CalibrationTemplate',
+                component: () => import('@/views/equipment/measuring/CalibrationTemplate.vue'),
+                meta: { title: '校验模板管理', titleKey: 'routes.equipment.measuringSub.template' }
+              },
+              {
+                path: 'task',
+                name: 'CalibrationTask',
+                component: () => import('@/views/equipment/measuring/CalibrationTask.vue'),
+                meta: { title: '校验任务管理', titleKey: 'routes.equipment.measuringSub.task' }
+              },
+              {
+                path: 'reminder',
+                name: 'CalibrationReminder',
+                component: () => import('@/views/equipment/measuring/CalibrationReminder.vue'),
+                meta: { title: '校验提醒管理', titleKey: 'routes.equipment.measuringSub.reminder' }
+              }
+            ]
+          }
+        ]
+      },
+      {
+        path: 'reports',
+        name: 'ReportAnalysis',
+        meta: { title: '报表分析', titleKey: 'routes.reports.root', icon: 'PieChart' },
+        component: RouterViewContainer,
+        children: [
+          {
+            path: 'extrusion',
+            name: 'ReportExtrusion',
+            meta: { title: '挤压报表', titleKey: 'routes.reports.extrusion.root' },
+            component: RouterViewContainer,
+            children: [
+              {
+                path: 'production',
+                name: 'ReportExtrusionProduction',
+                component: () => import('@/views/reports/extrusion/ExtrusionReport.vue'),
+                meta: { title: '挤压生产', titleKey: 'routes.reports.extrusion.production' }
+              },
+              {
+                path: 'cutting',
+                name: 'ReportCuttingProduction',
+                component: () => import('@/views/reports/extrusion/CuttingReport.vue'),
+                meta: { title: '裁切生产', titleKey: 'routes.reports.extrusion.cutting' }
+              }
+            ]
+          }
+        ]
+      },
+      {
         path: 'settings',
         name: 'SystemSettings',
         meta: { title: '系统设置', titleKey: 'routes.settings.root', icon: 'Setting' },

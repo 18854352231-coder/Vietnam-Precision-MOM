@@ -75,10 +75,7 @@
               </template>
             </el-table-column>
             <el-table-column prop="moldNo" label="模具号" width="140" show-overflow-tooltip />
-            <el-table-column prop="productType" label="产品类型" width="110" show-overflow-tooltip />
-            <el-table-column prop="scheduleType" label="排程类型" width="110" />
-            <el-table-column prop="isCoded" label="是否打码" width="80" align="center" />
-            <el-table-column prop="cuttingSchedule" label="裁切排程" width="120" align="center" show-overflow-tooltip />
+            <el-table-column prop="scheduleNo" label="排程编号" width="160" show-overflow-tooltip />
             <el-table-column prop="quantity" label="数量" width="90" align="right" />
             <el-table-column prop="fixedLength" label="定长(mm)" width="100" align="right" />
             <el-table-column prop="netWeight" label="净重(kg)" width="100" align="right" />
@@ -299,7 +296,6 @@
       >
         <el-table-column type="index" label="序号" width="60" align="center" />
         <el-table-column prop="scheduleNo" label="排程编号" width="160" />
-        <el-table-column prop="scheduleType" label="排程类型" width="120" />
         <el-table-column prop="customerCode" label="客户代码" width="120" />
         <el-table-column prop="customerName" label="客户名称" width="160" />
         <el-table-column prop="planQty" label="计划量" width="100" align="right" />
@@ -399,7 +395,7 @@
             <td colspan="3" class="tag-top-right">
               <div class="tag-top-right-row">
                 <span class="tag-top-right-label">Khách hàng</span>
-                <span class="tag-top-right-value">{{ previewData.customerName || scheduleInfo.customerName || '-' }}</span>
+                <span class="tag-top-right-value">{{ previewData.customerName || '-' }}</span>
               </div>
               <div class="tag-checkbox-grid">
                 <div class="tag-checkbox-item">
@@ -425,7 +421,8 @@
             <td class="tag-value">{{ previewData.furnaceNo || '-' }}</td>
             <td colspan="2" rowspan="5" class="tag-qr-cell">
               <div class="tag-qr-box">
-                <img :src="teamQrUrl" class="tag-qr-img" alt="team-qr" />
+                <img v-if="teamQrUrl" :src="teamQrUrl" class="tag-qr-img" alt="team-qr" />
+                <div v-else class="tag-qr-placeholder">二维码生成中</div>
               </div>
             </td>
           </tr>
@@ -439,14 +436,14 @@
 
           <tr>
             <td class="tag-key">Số lượng - Q’ty<br />数量</td>
-            <td class="tag-value">{{ (previewData.materialQty ?? '-') }} PCS</td>
+            <td class="tag-value">{{ previewData.materialQty ?? '-' }} PCS</td>
             <td class="tag-key">Số kê<br />Frame No.<br />框号</td>
             <td class="tag-value">{{ previewData.frameNo || '-' }}</td>
           </tr>
 
           <tr>
             <td class="tag-key">Chiều dài cố định<br />Fixed length<br />定长</td>
-            <td class="tag-value">{{ (previewData.fixedLength ?? '-') }} mm</td>
+            <td class="tag-value">{{ previewData.fixedLength ?? '-' }} mm</td>
             <td class="tag-key">Số máy<br />Machine No.<br />机台号</td>
             <td class="tag-value">{{ previewData.extrusionMachine || '-' }}</td>
           </tr>
@@ -504,9 +501,8 @@
       </div>
 
       <template #footer>
-        <div class="dialog-footer" style="display: flex; justify-content: space-between; align-items: center;">
-          <el-button type="danger" plain v-if="previewType === 'pallet'" @click="printPreviewVisible = false">挂起</el-button>
-          <div style="flex: 1; text-align: right;">
+        <div class="dialog-footer" style="display: flex; justify-content: flex-end; align-items: center;">
+          <div>
             <el-button @click="printPreviewVisible = false">取消</el-button>
             <el-button type="primary" @click="confirmPrint">{{ previewType === 'pallet' ? '确定并打印' : '打印' }}</el-button>
           </div>
@@ -771,9 +767,12 @@ const searchForm = ref({
 })
 
 const materialList = ref<any[]>([
-  { id: 1, frameNo: 'CV-A-A-L6000*W1250*H650*0196', locationNo: 'A1-01', isCPK: '否', productName: 'FC140', furnaceNo: '26-423-02-24-02', extrusionBatch: 'JY2602260001', extrusionMachine: 'JY-35', status: '待收料', moldNo: '049#', productType: '量产', scheduleType: '正常', isCoded: '是', cuttingSchedule: '是', quantity: 10, fixedLength: 341.79, netWeight: 50.5, feedingTime: '-', completionTime: '-', goodQty: 0, defectiveQty: 0 },
-  { id: 2, frameNo: 'CV-A-A-L6000*W1250*H650*0197', locationNo: 'B2-05', isCPK: '是', productName: 'FC49', furnaceNo: '25-412-06-11-03', extrusionBatch: 'JY2603070002', extrusionMachine: 'JY-07', status: '已收料', moldNo: '999#', productType: '试产', scheduleType: '加急', isCoded: '否', cuttingSchedule: '否', quantity: 20, fixedLength: 130.0, netWeight: 42.0, feedingTime: '2026-04-24 08:30:00', completionTime: '-', goodQty: 0, defectiveQty: 0 },
-  { id: 3, frameNo: 'CV-A-A-L6000*W1250*H650*0198', locationNo: 'C3-12', isCPK: '否', productName: 'FC104', furnaceNo: '26-423-02-24-02', extrusionBatch: 'JY2602260001', extrusionMachine: 'JY-35', status: '已完工', moldNo: '049#', productType: '量产', scheduleType: '正常', isCoded: '是', cuttingSchedule: '是', quantity: 15, fixedLength: 341.79, netWeight: 75.2, feedingTime: '2026-04-24 09:00:00', completionTime: '2026-04-24 11:30:00', goodQty: 14, defectiveQty: 1 }
+  { id: 1, frameNo: 'CV-A-A-L6000*W1250*H650*0196', locationNo: 'A1-01', isCPK: '否', productName: 'FC140', furnaceNo: '26-423-02-24-02', extrusionBatch: 'JY2602260001', extrusionMachine: 'JY-35', status: '待收料', moldNo: '049#', productType: '量产', scheduleType: '正常', scheduleNo: 'PC-20260424-001', isCoded: '是', cuttingSchedule: '是', quantity: 10, fixedLength: 341.79, netWeight: 50.5, feedingTime: '-', completionTime: '-', goodQty: 0, defectiveQty: 0 },
+  { id: 2, frameNo: 'CV-A-A-L6000*W1250*H650*0197', locationNo: 'B2-05', isCPK: '是', productName: 'FC49', furnaceNo: '25-412-06-11-03', extrusionBatch: 'JY2603070002', extrusionMachine: 'JY-07', status: '已收料', moldNo: '999#', productType: '试产', scheduleType: '加急', scheduleNo: 'PC-20260424-003', isCoded: '否', cuttingSchedule: '否', quantity: 20, fixedLength: 130.0, netWeight: 42.0, feedingTime: '2026-04-24 08:30:00', completionTime: '-', goodQty: 0, defectiveQty: 0 },
+  { id: 3, frameNo: 'CV-A-A-L6000*W1250*H650*0198', locationNo: 'C3-12', isCPK: '否', productName: 'FC104', furnaceNo: '26-423-02-24-02', extrusionBatch: 'JY2602260001', extrusionMachine: 'JY-35', status: '已完工', moldNo: '049#', productType: '量产', scheduleType: '正常', scheduleNo: 'PC-20260424-001', isCoded: '是', cuttingSchedule: '是', quantity: 15, fixedLength: 341.79, netWeight: 75.2, feedingTime: '2026-04-24 09:00:00', completionTime: '2026-04-24 11:30:00', goodQty: 14, defectiveQty: 1 },
+  { id: 4, frameNo: 'CV-A-A-L6000*W1250*H650*0199', locationNo: 'B2-06', isCPK: '否', productName: 'FC113', furnaceNo: '25-412-06-11-03', extrusionBatch: 'JY2603070002', extrusionMachine: 'JY-07', status: '待收料', moldNo: '999#', productType: '试产', scheduleType: '加急', scheduleNo: 'PC-20260424-002', isCoded: '否', cuttingSchedule: '是', quantity: 24, fixedLength: 130.0, netWeight: 43.2, feedingTime: '-', completionTime: '-', goodQty: 0, defectiveQty: 0 },
+  { id: 5, frameNo: 'CV-A-A-L6000*W1250*H650*0200', locationNo: 'B2-07', isCPK: '是', productName: 'FC113', furnaceNo: '25-412-06-11-03', extrusionBatch: 'JY2603070002', extrusionMachine: 'JY-07', status: '待收料', moldNo: '999#', productType: '试产', scheduleType: '加急', scheduleNo: 'PC-20260424-002', isCoded: '否', cuttingSchedule: '是', quantity: 18, fixedLength: 130.0, netWeight: 32.4, feedingTime: '-', completionTime: '-', goodQty: 0, defectiveQty: 0 },
+  { id: 6, frameNo: 'CV-A-A-L6000*W1250*H650*0201', locationNo: 'B2-08', isCPK: '否', productName: 'FC113', furnaceNo: '25-412-06-11-03', extrusionBatch: 'JY2603070002', extrusionMachine: 'JY-07', status: '待收料', moldNo: '999#', productType: '试产', scheduleType: '加急', scheduleNo: 'PC-20260424-002', isCoded: '否', cuttingSchedule: '是', quantity: 30, fixedLength: 130.0, netWeight: 54.0, feedingTime: '-', completionTime: '-', goodQty: 0, defectiveQty: 0 }
 ])
 
 const filteredMaterialList = computed(() => {
@@ -830,7 +829,10 @@ const handleFeedMaterial = () => {
         origin.feedingTime = timeStr
       }
     })
-    ElMessage.success('上料成功')
+    const currentScheduleFrameCount = selectedMaterials.value.filter(item => item.scheduleNo === scheduleInfo.value.scheduleNo).length
+    ElMessage.success(currentScheduleFrameCount > 0
+      ? `上料成功，当前排程的 ${currentScheduleFrameCount} 个料框已可在打印物料标识卡中选择`
+      : '上料成功')
   }).catch(() => {})
 }
 
@@ -1078,18 +1080,13 @@ const removePackageBranch = (index: number) => {
 
 
 // --- 打印物料标识卡模块 ---
-const hasActiveSchedule = ref(true)
+const hasActiveSchedule = ref(false)
 
 const availableSourceFrames = computed(() => {
   if (!scheduleInfo.value.scheduleNo) return []
-  // 在实际业务中，这应该从排程详情或者物料清单中获取。这里模拟从物料清单中筛选。
-  const frames = new Set<string>()
-  materialList.value.forEach(item => {
-    if (item.extrusionBatch === scheduleInfo.value.extrusionBatchNo && item.productName === scheduleInfo.value.productName) {
-      frames.add(item.frameNo)
-    }
-  })
-  return Array.from(frames)
+  return materialList.value
+    .filter(item => item.scheduleNo === scheduleInfo.value.scheduleNo && item.status === '已收料')
+    .map(item => item.frameNo)
 })
 
 const completeSchedule = () => {
@@ -1118,22 +1115,22 @@ const completeSchedule = () => {
 }
 
 const scheduleInfo = ref({
-  scheduleNo: 'PC-20260424-002',
-  scheduleType: '加急',
-  customerCode: 'C009887',
-  customerName: '客户A',
-  planQty: 500,
-  singleWeight: 2.5,
-  furnaceNo: '25-412-06-11-03',
-  extrusionBatchNo: 'JY2603070002',
-  moldNo: '999#',
-  fixedLength: '130.0',
-  alloy: '6R02',
-  productName: 'FC13',
-  componentMaterialNo: 'CM-002',
-  customerMaterialNo: 'C-MAT-002',
-  customerProductName: 'Customer SR-34',
-  productionType: '试产'
+  scheduleNo: '',
+  scheduleType: '',
+  customerCode: '',
+  customerName: '',
+  planQty: 0,
+  singleWeight: 0,
+  furnaceNo: '',
+  extrusionBatchNo: '',
+  moldNo: '',
+  fixedLength: '',
+  alloy: '',
+  productName: '',
+  componentMaterialNo: '',
+  customerMaterialNo: '',
+  customerProductName: '',
+  productionType: ''
 })
 
 const printForm = ref({

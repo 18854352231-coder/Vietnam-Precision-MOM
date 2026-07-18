@@ -173,14 +173,6 @@
         <el-form-item label="成分含量" prop="content">
           <el-input v-model="form.content" type="textarea" :rows="3" placeholder="Si: 0.2-0.6, Mg: 0.45-0.9..." />
         </el-form-item>
-        <el-form-item label="附件名" prop="fileName">
-          <el-input v-model="form.fileName" readonly>
-            <template #append>
-              <el-button icon="Upload" v-if="!isDetail">选择文件</el-button>
-              <el-button icon="Download" v-else>下载附件</el-button>
-            </template>
-          </el-input>
-        </el-form-item>
       </el-form>
       <template #footer>
         <el-button @click="dialogVisible = false">{{ isDetail ? '关闭' : '取消' }}</el-button>
@@ -226,7 +218,6 @@ const form = ref({
   recoveryRatio: '',
   greenPowerRatio: '',
   aluminumScrapRatio: '',
-  fileName: '',
   content: '',
   publishStatus: '待发布',
   publisher: '',
@@ -244,14 +235,14 @@ const mockData = [
     id: 1, seq: 1, code: 'C-6063-V1', isTemp: false, rodType: 'normal', name: '6063合金锭', supplier: '供应商A', 
     spec: 'Φ178', rAngle: 'R5', alloyGrade: '6063', lenTolerance: '±2', diaTolerance: '±1', 
     density: '2.7', meterWeight: '6.5', recoveryRatio: '20%', greenPowerRatio: '30%', 
-    aluminumScrapRatio: '10%', fileName: '6063标准.pdf', content: 'Si: 0.4, Mg: 0.5', 
+    aluminumScrapRatio: '10%', content: 'Si: 0.4, Mg: 0.5', 
     publishStatus: '已发布', publisher: '张三', effectiveDate: '2026-04-11' 
   },
   { 
     id: 2, seq: 2, code: 'C-TEMP-001', isTemp: true, rodType: 'recycled', name: '临时实验合金', supplier: '供应商B', 
     spec: 'Φ120', rAngle: 'R3', alloyGrade: '6061', lenTolerance: '±5', diaTolerance: '±2', 
     density: '2.7', meterWeight: '4.2', recoveryRatio: '50%', greenPowerRatio: '10%', 
-    aluminumScrapRatio: '40%', fileName: '实验数据.xlsx', content: 'Si: 0.6, Mg: 1.0', 
+    aluminumScrapRatio: '40%', content: 'Si: 0.6, Mg: 1.0', 
     publishStatus: '待发布', publisher: '李四', effectiveDate: '2026-05-01' 
   }
 ]
@@ -276,7 +267,7 @@ const handleAdd = () => {
   form.value = {
     id: null, seq: null, code: '', isTemp: false, rodType: 'normal', name: '', supplier: '', spec: '', 
     rAngle: '', alloyGrade: '', lenTolerance: '', diaTolerance: '', density: '', meterWeight: '', 
-    recoveryRatio: '', greenPowerRatio: '', aluminumScrapRatio: '', fileName: '', content: '', 
+    recoveryRatio: '', greenPowerRatio: '', aluminumScrapRatio: '', content: '', 
     publishStatus: '待发布', publisher: '', effectiveDate: ''
   }
   dialogVisible.value = true
