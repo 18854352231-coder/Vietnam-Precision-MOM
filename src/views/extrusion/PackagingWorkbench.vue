@@ -44,9 +44,8 @@
           </el-form-item>
           <el-form-item v-if="showShiftTeamSearch" label="班组">
             <el-select v-model="searchForm.shiftTeam" placeholder="请选择班组" clearable style="width: 160px">
-              <el-option label="甲班" value="甲班" />
-              <el-option label="乙班" value="乙班" />
-              <el-option label="丙班" value="丙班" />
+              <el-option label="包装A" value="包装A" />
+              <el-option label="包装B" value="包装B" />
             </el-select>
           </el-form-item>
           <el-form-item v-if="showScrapCategorySearch" label="报废类型">
@@ -422,9 +421,8 @@
       <el-form :model="clockInForm" label-width="80px">
         <el-form-item label="上班班组">
           <el-select v-model="clockInForm.team" style="width: 100%">
-            <el-option label="甲班" value="甲班" />
-            <el-option label="乙班" value="乙班" />
-            <el-option label="丙班" value="丙班" />
+            <el-option label="包装A" value="包装A" />
+            <el-option label="包装B" value="包装B" />
           </el-select>
         </el-form-item>
       </el-form>

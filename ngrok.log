@@ -1,0 +1,291 @@
+{"lvl":"info","msg":"no configuration paths supplied","t":"2026-07-21T13:48:54.2933196+07:00"}
+{"lvl":"info","msg":"using configuration at default config path","path":"C:\\Users\\ptn_z\\AppData\\Local\\ngrok\\ngrok.yml","t":"2026-07-21T13:48:54.3483813+07:00"}
+{"err":"\u003cnil\u003e","lvl":"info","msg":"open config file","path":"C:\\Users\\ptn_z\\AppData\\Local\\ngrok\\ngrok.yml","t":"2026-07-21T13:48:54.358493+07:00"}
+{"enabled":false,"lvl":"info","msg":"FIPS 140 mode","t":"2026-07-21T13:48:54.3632046+07:00"}
+{"addr":"127.0.0.1:4040","allow_hosts":null,"lvl":"info","msg":"starting web service","obj":"web","t":"2026-07-21T13:48:54.4108461+07:00"}
+{"lvl":"info","msg":"client session established","obj":"tunnels.session","t":"2026-07-21T13:48:57.4673749+07:00"}
+{"lvl":"info","msg":"tunnel session started","obj":"tunnels.session","t":"2026-07-21T13:48:57.4678877+07:00"}
+{"addr":"http://localhost:5173","lvl":"info","msg":"started tunnel","name":"command_line","obj":"tunnels","t":"2026-07-21T13:48:57.6702159+07:00","url":"https://appointee-zigzagged-arena.ngrok-free.dev"}
+{"id":"4dda949f0b333f9b","lvl":"info","msg":"start","pg":"/api/tunnels","t":"2026-07-21T13:49:01.6727185+07:00"}
+{"dur":"508.3µs","id":"4dda949f0b333f9b","lvl":"info","msg":"end","pg":"/api/tunnels","status":200,"t":"2026-07-21T13:49:01.6732268+07:00"}
+{"id":"482eaaa58523","l":"127.0.0.1:5173","lvl":"info","msg":"join connections","obj":"join","r":"66.249.77.10:51772","t":"2026-07-21T13:49:12.1774368+07:00"}
+{"id":"5c6e2c6bbd15","l":"127.0.0.1:5173","lvl":"info","msg":"join connections","obj":"join","r":"66.249.77.10:50733","t":"2026-07-21T13:49:12.7580427+07:00"}
+{"id":"86c9b36146f8","l":"127.0.0.1:5173","lvl":"info","msg":"join connections","obj":"join","r":"66.249.77.9:38680","t":"2026-07-21T13:49:12.7978124+07:00"}
+{"id":"09693f1be26b","l":"127.0.0.1:5173","lvl":"info","msg":"join connections","obj":"join","r":"66.249.77.12:59419","t":"2026-07-21T13:49:13.5178024+07:00"}
+{"id":"301299962714","l":"127.0.0.1:5173","lvl":"info","msg":"join connections","obj":"join","r":"66.249.77.9:52015","t":"2026-07-21T13:49:13.5269683+07:00"}
+{"id":"eabc15bef093","l":"127.0.0.1:5173","lvl":"info","msg":"join connections","obj":"join","r":"66.249.77.11:47493","t":"2026-07-21T13:49:13.6593788+07:00"}
+{"id":"1540db4d14bf","l":"127.0.0.1:5173","lvl":"info","msg":"join connections","obj":"join","r":"66.249.77.9:63763","t":"2026-07-21T13:49:13.739677+07:00"}
+{"id":"08250be850b5","l":"127.0.0.1:5173","lvl":"info","msg":"join connections","obj":"join","r":"66.249.77.9:47245","t":"2026-07-21T13:49:14.1286223+07:00"}
+{"id":"8184e5b82566","l":"127.0.0.1:5173","lvl":"info","msg":"join connections","obj":"join","r":"66.249.77.11:51580","t":"2026-07-21T13:49:14.8334992+07:00"}
+{"id":"0a9417eb9edf","l":"127.0.0.1:5173","lvl":"info","msg":"join connections","obj":"join","r":"66.249.77.10:40062","t":"2026-07-21T13:49:15.6384762+07:00"}
+{"id":"7949ffd78550","l":"127.0.0.1:5173","lvl":"info","msg":"join connections","obj":"join","r":"66.249.77.10:41394","t":"2026-07-21T13:49:15.8280528+07:00"}
+{"id":"8f526fba3f64","l":"127.0.0.1:5173","lvl":"info","msg":"join connections","obj":"join","r":"66.249.77.11:63735","t":"2026-07-21T13:49:16.1108853+07:00"}
+{"id":"7d93ae408a63","l":"127.0.0.1:5173","lvl":"info","msg":"join connections","obj":"join","r":"66.249.77.10:37159","t":"2026-07-21T13:49:16.6952092+07:00"}
+{"id":"5727bba61fb9","l":"127.0.0.1:5173","lvl":"info","msg":"join connections","obj":"join","r":"66.249.77.11:62527","t":"2026-07-21T13:49:17.0321696+07:00"}
+{"id":"57b366f6ca7c","l":"127.0.0.1:5173","lvl":"info","msg":"join connections","obj":"join","r":"66.249.77.11:57199","t":"2026-07-21T13:49:17.4436877+07:00"}
+{"id":"4efaa9f90e86","l":"127.0.0.1:5173","lvl":"info","msg":"join connections","obj":"join","r":"66.249.77.10:38841","t":"2026-07-21T13:49:18.428697+07:00"}
+{"id":"82e741070702","l":"127.0.0.1:5173","lvl":"info","msg":"join connections","obj":"join","r":"66.249.77.12:40771","t":"2026-07-21T13:49:22.0347214+07:00"}
+{"id":"92b0d8567ca6","l":"127.0.0.1:5173","lvl":"info","msg":"join connections","obj":"join","r":"66.249.77.11:57199","t":"2026-07-21T13:49:26.2326234+07:00"}
+{"id":"d61e93ed08e0","l":"127.0.0.1:5173","lvl":"info","msg":"join connections","obj":"join","r":"66.249.77.9:38680","t":"2026-07-21T13:49:27.4100105+07:00"}
+{"id":"0f2d75eac140","l":"127.0.0.1:5173","lvl":"info","msg":"join connections","obj":"join","r":"66.249.77.9:63300","t":"2026-07-21T13:49:27.6068753+07:00"}
+{"id":"317e4c62ee70","l":"127.0.0.1:5173","lvl":"info","msg":"join connections","obj":"join","r":"103.153.220.21:2840","t":"2026-07-21T13:49:32.9029172+07:00"}
+{"id":"95c992d3a6e3","l":"127.0.0.1:5173","lvl":"info","msg":"join connections","obj":"join","r":"103.153.220.21:2840","t":"2026-07-21T13:49:33.0338124+07:00"}
+{"id":"e7049dd61090","l":"127.0.0.1:5173","lvl":"info","msg":"join connections","obj":"join","r":"103.153.220.21:2840","t":"2026-07-21T13:49:33.154919+07:00"}
+{"id":"fb43180900cc","l":"127.0.0.1:5173","lvl":"info","msg":"join connections","obj":"join","r":"103.153.220.21:2840","t":"2026-07-21T13:49:33.1702206+07:00"}
+{"id":"584fa77cea11","l":"127.0.0.1:5173","lvl":"info","msg":"join connections","obj":"join","r":"103.153.220.21:2840","t":"2026-07-21T13:49:33.1702206+07:00"}
+{"id":"0aa27b0a021f","l":"127.0.0.1:5173","lvl":"info","msg":"join connections","obj":"join","r":"103.153.220.21:2840","t":"2026-07-21T13:49:33.1702206+07:00"}
+{"id":"725ebda101b7","l":"127.0.0.1:5173","lvl":"info","msg":"join connections","obj":"join","r":"103.153.220.21:2840","t":"2026-07-21T13:49:33.333673+07:00"}
+{"id":"6e740ca81c0e","l":"127.0.0.1:5173","lvl":"info","msg":"join connections","obj":"join","r":"103.153.220.21:2840","t":"2026-07-21T13:49:33.3584505+07:00"}
+{"id":"137b30fcd730","l":"127.0.0.1:5173","lvl":"info","msg":"join connections","obj":"join","r":"103.153.220.21:2840","t":"2026-07-21T13:49:33.3609042+07:00"}
+{"id":"ccb5853ced9e","l":"127.0.0.1:5173","lvl":"info","msg":"join connections","obj":"join","r":"103.153.220.21:2840","t":"2026-07-21T13:49:33.3609042+07:00"}
+{"id":"c7552989e67b","l":"127.0.0.1:5173","lvl":"info","msg":"join connections","obj":"join","r":"103.153.220.21:2840","t":"2026-07-21T13:49:33.3609042+07:00"}
+{"id":"b72f901b255f","l":"127.0.0.1:5173","lvl":"info","msg":"join connections","obj":"join","r":"103.153.220.21:2840","t":"2026-07-21T13:49:33.3627328+07:00"}
+{"id":"59710ada73ab","l":"127.0.0.1:5173","lvl":"info","msg":"join connections","obj":"join","r":"103.153.220.21:2840","t":"2026-07-21T13:49:33.3903325+07:00"}
+{"id":"02f0046fe25c","l":"127.0.0.1:5173","lvl":"info","msg":"join connections","obj":"join","r":"103.153.220.21:2840","t":"2026-07-21T13:49:33.3903325+07:00"}
+{"id":"1394c81666a3","l":"127.0.0.1:5173","lvl":"info","msg":"join connections","obj":"join","r":"103.153.220.21:2840","t":"2026-07-21T13:49:33.490199+07:00"}
+{"id":"3de29eb5a282","l":"127.0.0.1:5173","lvl":"info","msg":"join connections","obj":"join","r":"103.153.220.21:2840","t":"2026-07-21T13:49:33.4920558+07:00"}
+{"id":"ae5b378ee82c","l":"127.0.0.1:5173","lvl":"info","msg":"join connections","obj":"join","r":"103.153.220.21:2840","t":"2026-07-21T13:49:33.496069+07:00"}
+{"id":"fa612d66b810","l":"127.0.0.1:5173","lvl":"info","msg":"join connections","obj":"join","r":"103.153.220.21:2840","t":"2026-07-21T13:49:33.496069+07:00"}
+{"id":"98445e5001bd","l":"127.0.0.1:5173","lvl":"info","msg":"join connections","obj":"join","r":"103.153.220.21:2840","t":"2026-07-21T13:49:34.1042357+07:00"}
+{"id":"8d016346e7c8","l":"127.0.0.1:5173","lvl":"info","msg":"join connections","obj":"join","r":"103.153.220.21:2840","t":"2026-07-21T13:49:34.1056804+07:00"}
+{"id":"a10c5e72d149","l":"127.0.0.1:5173","lvl":"info","msg":"join connections","obj":"join","r":"103.153.220.21:2840","t":"2026-07-21T13:49:34.1061588+07:00"}
+{"id":"a52267d4267e","l":"127.0.0.1:5173","lvl":"info","msg":"join connections","obj":"join","r":"103.153.220.21:2840","t":"2026-07-21T13:49:34.3034593+07:00"}
+{"id":"754fc49e61a9","l":"127.0.0.1:5173","lvl":"info","msg":"join connections","obj":"join","r":"103.153.220.21:2841","t":"2026-07-21T13:49:36.0009674+07:00"}
+{"id":"4e0c5da0f2c7","l":"127.0.0.1:5173","lvl":"info","msg":"join connections","obj":"join","r":"103.153.220.21:2840","t":"2026-07-21T14:11:55.4027477+07:00"}
+{"id":"226473469840","l":"127.0.0.1:5173","lvl":"info","msg":"join connections","obj":"join","r":"103.153.220.21:2840","t":"2026-07-21T14:11:55.7293025+07:00"}
+{"id":"7be282192008","l":"127.0.0.1:5173","lvl":"info","msg":"join connections","obj":"join","r":"103.153.220.21:2840","t":"2026-07-21T14:11:55.8688411+07:00"}
+{"id":"62aa994fbb3a","l":"127.0.0.1:5173","lvl":"info","msg":"join connections","obj":"join","r":"103.153.220.21:2840","t":"2026-07-21T14:11:55.8888099+07:00"}
+{"id":"07915853822a","l":"127.0.0.1:5173","lvl":"info","msg":"join connections","obj":"join","r":"103.153.220.21:2840","t":"2026-07-21T14:11:55.925579+07:00"}
+{"id":"73b5485fcf30","l":"127.0.0.1:5173","lvl":"info","msg":"join connections","obj":"join","r":"103.153.220.21:2840","t":"2026-07-21T14:11:55.925579+07:00"}
+{"id":"9e293c4ac51a","l":"127.0.0.1:5173","lvl":"info","msg":"join connections","obj":"join","r":"103.153.220.21:2840","t":"2026-07-21T14:11:56.0425032+07:00"}
+{"id":"4e0ab5e5d701","l":"127.0.0.1:5173","lvl":"info","msg":"join connections","obj":"join","r":"103.153.220.21:2840","t":"2026-07-21T14:11:56.0671868+07:00"}
+{"id":"bbea27262909","l":"127.0.0.1:5173","lvl":"info","msg":"join connections","obj":"join","r":"103.153.220.21:2840","t":"2026-07-21T14:11:56.0803743+07:00"}
+{"id":"27f84cb69337","l":"127.0.0.1:5173","lvl":"info","msg":"join connections","obj":"join","r":"103.153.220.21:2840","t":"2026-07-21T14:11:56.0808794+07:00"}
+{"id":"5a51b01a1632","l":"127.0.0.1:5173","lvl":"info","msg":"join connections","obj":"join","r":"103.153.220.21:2840","t":"2026-07-21T14:11:56.0808794+07:00"}
+{"id":"0698eb505e92","l":"127.0.0.1:5173","lvl":"info","msg":"join connections","obj":"join","r":"103.153.220.21:2840","t":"2026-07-21T14:11:56.0859698+07:00"}
+{"id":"74aa7067547f","l":"127.0.0.1:5173","lvl":"info","msg":"join connections","obj":"join","r":"103.153.220.21:2840","t":"2026-07-21T14:11:56.0859698+07:00"}
+{"id":"9c13d834871b","l":"127.0.0.1:5173","lvl":"info","msg":"join connections","obj":"join","r":"103.153.220.21:2840","t":"2026-07-21T14:11:56.2379486+07:00"}
+{"id":"ff2e685abead","l":"127.0.0.1:5173","lvl":"info","msg":"join connections","obj":"join","r":"103.153.220.21:2840","t":"2026-07-21T14:11:56.2414792+07:00"}
+{"id":"7e9997742b73","l":"127.0.0.1:5173","lvl":"info","msg":"join connections","obj":"join","r":"103.153.220.21:2840","t":"2026-07-21T14:11:56.2414792+07:00"}
+{"id":"536f83cbf243","l":"127.0.0.1:5173","lvl":"info","msg":"join connections","obj":"join","r":"103.153.220.21:2840","t":"2026-07-21T14:11:56.2948772+07:00"}
+{"id":"f9b87a3c7aee","l":"127.0.0.1:5173","lvl":"info","msg":"join connections","obj":"join","r":"103.153.220.21:2840","t":"2026-07-21T14:11:56.6621189+07:00"}
+{"id":"426bdd083b87","l":"127.0.0.1:5173","lvl":"info","msg":"join connections","obj":"join","r":"103.153.220.21:2840","t":"2026-07-21T14:11:56.7184657+07:00"}
+{"id":"ad84fe1e8e5f","l":"127.0.0.1:5173","lvl":"info","msg":"join connections","obj":"join","r":"103.153.220.21:2840","t":"2026-07-21T14:11:56.7184657+07:00"}
+{"id":"7e70d9049c05","l":"127.0.0.1:5173","lvl":"info","msg":"join connections","obj":"join","r":"103.153.220.21:2840","t":"2026-07-21T14:11:56.8388368+07:00"}
+{"id":"af8a1441737a","l":"127.0.0.1:5173","lvl":"info","msg":"join connections","obj":"join","r":"103.153.220.21:2842","t":"2026-07-21T14:11:58.3629422+07:00"}
+{"id":"aade41c133f7","l":"127.0.0.1:5173","lvl":"info","msg":"join connections","obj":"join","r":"103.153.220.21:2782","t":"2026-07-22T07:59:18.3054287+07:00"}
+{"id":"263f258903ee","l":"127.0.0.1:5173","lvl":"info","msg":"join connections","obj":"join","r":"103.153.220.21:2782","t":"2026-07-22T07:59:18.5138018+07:00"}
+{"id":"2c6fa47c3586","l":"127.0.0.1:5173","lvl":"info","msg":"join connections","obj":"join","r":"103.153.220.21:2782","t":"2026-07-22T07:59:18.6461032+07:00"}
+{"id":"83989de34723","l":"127.0.0.1:5173","lvl":"info","msg":"join connections","obj":"join","r":"103.153.220.21:2782","t":"2026-07-22T07:59:18.7165671+07:00"}
+{"id":"43d95e3fdfbc","l":"127.0.0.1:5173","lvl":"info","msg":"join connections","obj":"join","r":"103.153.220.21:2782","t":"2026-07-22T07:59:18.7171604+07:00"}
+{"id":"583387fb133a","l":"127.0.0.1:5173","lvl":"info","msg":"join connections","obj":"join","r":"103.153.220.21:2782","t":"2026-07-22T07:59:18.7171604+07:00"}
+{"id":"720108005945","l":"127.0.0.1:5173","lvl":"info","msg":"join connections","obj":"join","r":"103.153.220.21:2782","t":"2026-07-22T07:59:18.8501582+07:00"}
+{"id":"6f628e806095","l":"127.0.0.1:5173","lvl":"info","msg":"join connections","obj":"join","r":"103.153.220.21:2782","t":"2026-07-22T07:59:18.9073686+07:00"}
+{"id":"d3904d2f288d","l":"127.0.0.1:5173","lvl":"info","msg":"join connections","obj":"join","r":"103.153.220.21:2782","t":"2026-07-22T07:59:18.9073686+07:00"}
+{"id":"d72cc3bb0f79","l":"127.0.0.1:5173","lvl":"info","msg":"join connections","obj":"join","r":"103.153.220.21:2782","t":"2026-07-22T07:59:18.9073686+07:00"}
+{"id":"80c6d7b9f4ed","l":"127.0.0.1:5173","lvl":"info","msg":"join connections","obj":"join","r":"103.153.220.21:2782","t":"2026-07-22T07:59:18.9073686+07:00"}
+{"id":"3e638f8189af","l":"127.0.0.1:5173","lvl":"info","msg":"join connections","obj":"join","r":"103.153.220.21:2782","t":"2026-07-22T07:59:18.9073686+07:00"}
+{"id":"5a48dffc811d","l":"127.0.0.1:5173","lvl":"info","msg":"join connections","obj":"join","r":"103.153.220.21:2782","t":"2026-07-22T07:59:18.9080028+07:00"}
+{"id":"c848114dce33","l":"127.0.0.1:5173","lvl":"info","msg":"join connections","obj":"join","r":"103.153.220.21:2782","t":"2026-07-22T07:59:19.0492754+07:00"}
+{"id":"d703f4e10cbd","l":"127.0.0.1:5173","lvl":"info","msg":"join connections","obj":"join","r":"103.153.220.21:2782","t":"2026-07-22T07:59:19.0497039+07:00"}
+{"id":"f83629e6aafa","l":"127.0.0.1:5173","lvl":"info","msg":"join connections","obj":"join","r":"103.153.220.21:2782","t":"2026-07-22T07:59:19.0522153+07:00"}
+{"id":"dc652c4e61c2","l":"127.0.0.1:5173","lvl":"info","msg":"join connections","obj":"join","r":"103.153.220.21:2782","t":"2026-07-22T07:59:19.0918292+07:00"}
+{"id":"ad7152c5a90d","l":"127.0.0.1:5173","lvl":"info","msg":"join connections","obj":"join","r":"103.153.220.21:2782","t":"2026-07-22T07:59:19.46939+07:00"}
+{"id":"f159103857df","l":"127.0.0.1:5173","lvl":"info","msg":"join connections","obj":"join","r":"103.153.220.21:2782","t":"2026-07-22T07:59:19.46939+07:00"}
+{"id":"d41dc2cf59c3","l":"127.0.0.1:5173","lvl":"info","msg":"join connections","obj":"join","r":"103.153.220.21:2782","t":"2026-07-22T07:59:19.46939+07:00"}
+{"id":"7a2cba074f15","l":"127.0.0.1:5173","lvl":"info","msg":"join connections","obj":"join","r":"103.153.220.21:2782","t":"2026-07-22T07:59:19.6526574+07:00"}
+{"id":"29c08c07e5c1","l":"127.0.0.1:5173","lvl":"info","msg":"join connections","obj":"join","r":"103.153.220.21:2783","t":"2026-07-22T07:59:21.179842+07:00"}
+{"id":"55964b6b31fb","l":"127.0.0.1:5173","lvl":"info","msg":"join connections","obj":"join","r":"103.153.220.21:2876","t":"2026-07-22T08:16:47.1825915+07:00"}
+{"id":"63d0901468fe","l":"127.0.0.1:5173","lvl":"info","msg":"join connections","obj":"join","r":"103.153.220.21:2876","t":"2026-07-22T08:17:40.8838729+07:00"}
+{"id":"7d4b09f4f69a","l":"127.0.0.1:5173","lvl":"info","msg":"join connections","obj":"join","r":"103.153.220.21:2876","t":"2026-07-22T08:17:59.2195835+07:00"}
+{"id":"e4b3df3db84d","l":"127.0.0.1:5173","lvl":"info","msg":"join connections","obj":"join","r":"103.153.220.21:2876","t":"2026-07-22T08:18:28.9361624+07:00"}
+{"id":"19f30a363653","l":"127.0.0.1:5173","lvl":"info","msg":"join connections","obj":"join","r":"103.153.220.21:2876","t":"2026-07-22T08:18:59.7057186+07:00"}
+{"id":"c6afa0ecc68b","l":"127.0.0.1:5173","lvl":"info","msg":"join connections","obj":"join","r":"103.153.220.21:2876","t":"2026-07-22T08:20:52.0998515+07:00"}
+{"id":"5ebd953d18cc","l":"127.0.0.1:5173","lvl":"info","msg":"join connections","obj":"join","r":"103.153.220.21:2876","t":"2026-07-22T08:21:14.610667+07:00"}
+{"id":"258d014c3bf7","l":"127.0.0.1:5173","lvl":"info","msg":"join connections","obj":"join","r":"103.153.220.21:2876","t":"2026-07-22T08:21:24.2992598+07:00"}
+{"id":"14fcb19fb7c9","l":"127.0.0.1:5173","lvl":"info","msg":"join connections","obj":"join","r":"203.10.99.42:12382","t":"2026-07-22T09:25:34.1499899+07:00"}
+{"id":"29f810e3b599","l":"127.0.0.1:5173","lvl":"info","msg":"join connections","obj":"join","r":"203.10.99.42:12382","t":"2026-07-22T09:25:34.433623+07:00"}
+{"id":"79033075d4c2","l":"127.0.0.1:5173","lvl":"info","msg":"join connections","obj":"join","r":"203.10.99.42:12382","t":"2026-07-22T09:25:34.758682+07:00"}
+{"id":"afb0ca910365","l":"127.0.0.1:5173","lvl":"info","msg":"join connections","obj":"join","r":"203.10.99.42:12382","t":"2026-07-22T09:25:35.0385177+07:00"}
+{"id":"a3de091b2b54","l":"127.0.0.1:5173","lvl":"info","msg":"join connections","obj":"join","r":"203.10.99.42:12382","t":"2026-07-22T09:25:35.0385177+07:00"}
+{"id":"a6319673168c","l":"127.0.0.1:5173","lvl":"info","msg":"join connections","obj":"join","r":"203.10.99.42:12382","t":"2026-07-22T09:25:35.0385177+07:00"}
+{"id":"1884e87d4eb1","l":"127.0.0.1:5173","lvl":"info","msg":"join connections","obj":"join","r":"203.10.99.42:12382","t":"2026-07-22T09:25:35.1456266+07:00"}
+{"id":"d9a04edff20c","l":"127.0.0.1:5173","lvl":"info","msg":"join connections","obj":"join","r":"203.10.99.42:12382","t":"2026-07-22T09:25:35.1461421+07:00"}
+{"id":"643143fac041","l":"127.0.0.1:5173","lvl":"info","msg":"join connections","obj":"join","r":"203.10.99.42:12382","t":"2026-07-22T09:25:35.146329+07:00"}
+{"id":"b08aeebc83d7","l":"127.0.0.1:5173","lvl":"info","msg":"join connections","obj":"join","r":"203.10.99.42:12382","t":"2026-07-22T09:25:35.146329+07:00"}
+{"id":"cf93cf7a52b8","l":"127.0.0.1:5173","lvl":"info","msg":"join connections","obj":"join","r":"203.10.99.42:42888","t":"2026-07-22T09:25:35.3409355+07:00"}
+{"id":"443058fa9aef","l":"127.0.0.1:5173","lvl":"info","msg":"join connections","obj":"join","r":"203.10.99.42:12382","t":"2026-07-22T09:25:35.3641248+07:00"}
+{"id":"608bd3243052","l":"127.0.0.1:5173","lvl":"info","msg":"join connections","obj":"join","r":"203.10.99.42:12382","t":"2026-07-22T09:25:35.3989869+07:00"}
+{"id":"36f1f18ee5d3","l":"127.0.0.1:5173","lvl":"info","msg":"join connections","obj":"join","r":"203.10.99.42:12382","t":"2026-07-22T09:25:35.3995008+07:00"}
+{"id":"f0aabcfabc45","l":"127.0.0.1:5173","lvl":"info","msg":"join connections","obj":"join","r":"203.10.99.42:12382","t":"2026-07-22T09:25:35.3995654+07:00"}
+{"id":"bf1049d74ded","l":"127.0.0.1:5173","lvl":"info","msg":"join connections","obj":"join","r":"203.10.99.42:12382","t":"2026-07-22T09:25:35.9020072+07:00"}
+{"id":"ca64f4c4972a","l":"127.0.0.1:5173","lvl":"info","msg":"join connections","obj":"join","r":"203.10.99.42:12382","t":"2026-07-22T09:25:40.0633447+07:00"}
+{"id":"e72151a40d80","l":"127.0.0.1:5173","lvl":"info","msg":"join connections","obj":"join","r":"203.10.99.42:30814","t":"2026-07-22T09:26:10.1983424+07:00"}
+{"id":"87449c1c9373","l":"127.0.0.1:5173","lvl":"info","msg":"join connections","obj":"join","r":"203.10.99.42:30814","t":"2026-07-22T09:26:10.6903704+07:00"}
+{"id":"acfefd254950","l":"127.0.0.1:5173","lvl":"info","msg":"join connections","obj":"join","r":"203.10.99.42:30814","t":"2026-07-22T09:26:10.9614408+07:00"}
+{"id":"4408d4b6ab6e","l":"127.0.0.1:5173","lvl":"info","msg":"join connections","obj":"join","r":"203.10.99.42:30814","t":"2026-07-22T09:26:11.0079199+07:00"}
+{"id":"c19dee51e170","l":"127.0.0.1:5173","lvl":"info","msg":"join connections","obj":"join","r":"203.10.99.42:30814","t":"2026-07-22T09:26:11.0079199+07:00"}
+{"id":"bf79e779891d","l":"127.0.0.1:5173","lvl":"info","msg":"join connections","obj":"join","r":"203.10.99.42:30814","t":"2026-07-22T09:26:11.0080401+07:00"}
+{"id":"b88889dc4104","l":"127.0.0.1:5173","lvl":"info","msg":"join connections","obj":"join","r":"203.10.99.42:30814","t":"2026-07-22T09:26:11.2319226+07:00"}
+{"id":"6e08da7b5987","l":"127.0.0.1:5173","lvl":"info","msg":"join connections","obj":"join","r":"203.10.99.42:30814","t":"2026-07-22T09:26:11.2873514+07:00"}
+{"id":"e3d3706ff79f","l":"127.0.0.1:5173","lvl":"info","msg":"join connections","obj":"join","r":"203.10.99.42:30814","t":"2026-07-22T09:26:11.290965+07:00"}
+{"id":"15ee8c85a0a3","l":"127.0.0.1:5173","lvl":"info","msg":"join connections","obj":"join","r":"203.10.99.42:30814","t":"2026-07-22T09:26:11.290965+07:00"}
+{"id":"92f9e58bcf1c","l":"127.0.0.1:5173","lvl":"info","msg":"join connections","obj":"join","r":"203.10.99.42:30814","t":"2026-07-22T09:26:11.290965+07:00"}
+{"id":"03a6f4dc768f","l":"127.0.0.1:5173","lvl":"info","msg":"join connections","obj":"join","r":"203.10.99.42:30814","t":"2026-07-22T09:26:11.2924441+07:00"}
+{"id":"199e992bfaca","l":"127.0.0.1:5173","lvl":"info","msg":"join connections","obj":"join","r":"203.10.99.42:30814","t":"2026-07-22T09:26:11.2924441+07:00"}
+{"id":"c368e0366e33","l":"127.0.0.1:5173","lvl":"info","msg":"join connections","obj":"join","r":"203.10.99.42:32416","t":"2026-07-22T09:26:11.3454855+07:00"}
+{"id":"c7421e3fb9ad","l":"127.0.0.1:5173","lvl":"info","msg":"join connections","obj":"join","r":"203.10.99.42:30814","t":"2026-07-22T09:26:11.5585388+07:00"}
+{"id":"605fde1b458a","l":"127.0.0.1:5173","lvl":"info","msg":"join connections","obj":"join","r":"203.10.99.42:30814","t":"2026-07-22T09:26:11.5585388+07:00"}
+{"id":"5b4ad49e8150","l":"127.0.0.1:5173","lvl":"info","msg":"join connections","obj":"join","r":"203.10.99.42:30814","t":"2026-07-22T09:26:11.6087224+07:00"}
+{"id":"a61fa1f0b299","l":"127.0.0.1:5173","lvl":"info","msg":"join connections","obj":"join","r":"203.10.99.42:30814","t":"2026-07-22T09:26:11.6087224+07:00"}
+{"id":"7bf6a86190b4","l":"127.0.0.1:5173","lvl":"info","msg":"join connections","obj":"join","r":"203.10.99.42:30814","t":"2026-07-22T09:26:12.0974925+07:00"}
+{"id":"a21dcbb0d3ec","l":"127.0.0.1:5173","lvl":"info","msg":"join connections","obj":"join","r":"203.10.99.42:30814","t":"2026-07-22T09:26:12.1559081+07:00"}
+{"id":"4dc6346dac53","l":"127.0.0.1:5173","lvl":"info","msg":"join connections","obj":"join","r":"203.10.99.42:30814","t":"2026-07-22T09:26:12.1559081+07:00"}
+{"id":"aef161dabf6b","l":"127.0.0.1:5173","lvl":"info","msg":"join connections","obj":"join","r":"203.10.99.42:10672","t":"2026-07-22T09:27:10.3352677+07:00"}
+{"id":"42ff7ebd1ebc","l":"127.0.0.1:5173","lvl":"info","msg":"join connections","obj":"join","r":"203.10.99.42:10672","t":"2026-07-22T09:27:10.8871434+07:00"}
+{"id":"089144ab16f9","l":"127.0.0.1:5173","lvl":"info","msg":"join connections","obj":"join","r":"203.10.99.42:10672","t":"2026-07-22T09:27:11.1812341+07:00"}
+{"id":"af9baa077ef0","l":"127.0.0.1:5173","lvl":"info","msg":"join connections","obj":"join","r":"203.10.99.42:10672","t":"2026-07-22T09:27:11.1812341+07:00"}
+{"id":"283eba2f4505","l":"127.0.0.1:5173","lvl":"info","msg":"join connections","obj":"join","r":"203.10.99.42:10672","t":"2026-07-22T09:27:11.1822154+07:00"}
+{"id":"4fa17c416262","l":"127.0.0.1:5173","lvl":"info","msg":"join connections","obj":"join","r":"203.10.99.42:10672","t":"2026-07-22T09:27:11.2308923+07:00"}
+{"id":"e6e646109a0a","l":"127.0.0.1:5173","lvl":"info","msg":"join connections","obj":"join","r":"203.10.99.42:12016","t":"2026-07-22T09:27:11.5923098+07:00"}
+{"id":"ae96398827eb","l":"127.0.0.1:5173","lvl":"info","msg":"join connections","obj":"join","r":"203.10.99.42:10672","t":"2026-07-22T09:27:11.7163977+07:00"}
+{"id":"50007e7c2af8","l":"127.0.0.1:5173","lvl":"info","msg":"join connections","obj":"join","r":"203.10.99.42:10672","t":"2026-07-22T09:27:11.7187319+07:00"}
+{"id":"f8bb413727fc","l":"127.0.0.1:5173","lvl":"info","msg":"join connections","obj":"join","r":"203.10.99.42:10672","t":"2026-07-22T09:27:11.7187319+07:00"}
+{"id":"599ce0261c1a","l":"127.0.0.1:5173","lvl":"info","msg":"join connections","obj":"join","r":"203.10.99.42:10672","t":"2026-07-22T09:27:11.7187319+07:00"}
+{"id":"917d46ca0284","l":"127.0.0.1:5173","lvl":"info","msg":"join connections","obj":"join","r":"203.10.99.42:10672","t":"2026-07-22T09:27:11.7204008+07:00"}
+{"id":"721b88d75596","l":"127.0.0.1:5173","lvl":"info","msg":"join connections","obj":"join","r":"203.10.99.42:10672","t":"2026-07-22T09:27:11.7204008+07:00"}
+{"id":"4da1ad7ddc14","l":"127.0.0.1:5173","lvl":"info","msg":"join connections","obj":"join","r":"203.10.99.42:10672","t":"2026-07-22T09:27:11.7651164+07:00"}
+{"id":"1cf0c1b95854","l":"127.0.0.1:5173","lvl":"info","msg":"join connections","obj":"join","r":"203.10.99.42:10672","t":"2026-07-22T09:27:12.0109748+07:00"}
+{"id":"a020e9f602ea","l":"127.0.0.1:5173","lvl":"info","msg":"join connections","obj":"join","r":"203.10.99.42:10672","t":"2026-07-22T09:27:12.0120519+07:00"}
+{"id":"699a28f5b9e4","l":"127.0.0.1:5173","lvl":"info","msg":"join connections","obj":"join","r":"203.10.99.42:10672","t":"2026-07-22T09:27:12.0120519+07:00"}
+{"id":"7febee3634c7","l":"127.0.0.1:5173","lvl":"info","msg":"join connections","obj":"join","r":"203.10.99.42:10672","t":"2026-07-22T09:27:12.0120519+07:00"}
+{"id":"9e5a07cf458b","l":"127.0.0.1:5173","lvl":"info","msg":"join connections","obj":"join","r":"203.10.99.42:10672","t":"2026-07-22T09:27:12.5503208+07:00"}
+{"id":"19c16f8597e4","l":"127.0.0.1:5173","lvl":"info","msg":"join connections","obj":"join","r":"203.10.99.42:10672","t":"2026-07-22T09:27:12.5503208+07:00"}
+{"id":"8f073620073b","l":"127.0.0.1:5173","lvl":"info","msg":"join connections","obj":"join","r":"203.10.99.42:10672","t":"2026-07-22T09:27:12.5515208+07:00"}
+{"id":"eb833ff0c131","l":"127.0.0.1:5173","lvl":"info","msg":"join connections","obj":"join","r":"203.10.99.42:10672","t":"2026-07-22T09:27:12.8445357+07:00"}
+{"id":"9b5c731b0e30","l":"127.0.0.1:5173","lvl":"info","msg":"join connections","obj":"join","r":"203.10.99.42:30348","t":"2026-07-22T09:29:16.0186358+07:00"}
+{"id":"4941424f1e4e","l":"127.0.0.1:5173","lvl":"info","msg":"join connections","obj":"join","r":"203.10.99.42:30348","t":"2026-07-22T09:29:16.7455365+07:00"}
+{"id":"c1b6b8b620fa","l":"127.0.0.1:5173","lvl":"info","msg":"join connections","obj":"join","r":"203.10.99.42:30348","t":"2026-07-22T09:29:17.0200429+07:00"}
+{"id":"73a500584fd3","l":"127.0.0.1:5173","lvl":"info","msg":"join connections","obj":"join","r":"203.10.99.42:30348","t":"2026-07-22T09:29:17.0733251+07:00"}
+{"id":"b71e30cee426","l":"127.0.0.1:5173","lvl":"info","msg":"join connections","obj":"join","r":"203.10.99.42:30348","t":"2026-07-22T09:29:17.0733251+07:00"}
+{"id":"6446ae81e5fd","l":"127.0.0.1:5173","lvl":"info","msg":"join connections","obj":"join","r":"203.10.99.42:30348","t":"2026-07-22T09:29:17.0743407+07:00"}
+{"id":"dc9727ceb70a","l":"127.0.0.1:5173","lvl":"info","msg":"join connections","obj":"join","r":"203.10.99.42:30348","t":"2026-07-22T09:29:17.3492381+07:00"}
+{"id":"b6161fcab1e0","l":"127.0.0.1:5173","lvl":"info","msg":"join connections","obj":"join","r":"203.10.99.42:30348","t":"2026-07-22T09:29:17.3492381+07:00"}
+{"id":"b34beb285275","l":"127.0.0.1:5173","lvl":"info","msg":"join connections","obj":"join","r":"203.10.99.42:30348","t":"2026-07-22T09:29:17.3492381+07:00"}
+{"id":"8e341e2a1672","l":"127.0.0.1:5173","lvl":"info","msg":"join connections","obj":"join","r":"203.10.99.42:30348","t":"2026-07-22T09:29:17.4078799+07:00"}
+{"id":"84f6af727360","l":"127.0.0.1:5173","lvl":"info","msg":"join connections","obj":"join","r":"203.10.99.42:30348","t":"2026-07-22T09:29:17.4078799+07:00"}
+{"id":"bde5e16ffd4b","l":"127.0.0.1:5173","lvl":"info","msg":"join connections","obj":"join","r":"203.10.99.42:30348","t":"2026-07-22T09:29:17.4078799+07:00"}
+{"id":"223711332857","l":"127.0.0.1:5173","lvl":"info","msg":"join connections","obj":"join","r":"203.10.99.42:30348","t":"2026-07-22T09:29:17.4084313+07:00"}
+{"id":"eb56be71c09c","l":"127.0.0.1:5173","lvl":"info","msg":"join connections","obj":"join","r":"203.10.99.42:5444","t":"2026-07-22T09:29:17.4307871+07:00"}
+{"id":"7cdf045a09dc","l":"127.0.0.1:5173","lvl":"info","msg":"join connections","obj":"join","r":"203.10.99.42:30348","t":"2026-07-22T09:29:17.6835287+07:00"}
+{"id":"a360d2eb07bc","l":"127.0.0.1:5173","lvl":"info","msg":"join connections","obj":"join","r":"203.10.99.42:30348","t":"2026-07-22T09:29:17.687841+07:00"}
+{"id":"8ef55553578c","l":"127.0.0.1:5173","lvl":"info","msg":"join connections","obj":"join","r":"203.10.99.42:30348","t":"2026-07-22T09:29:18.1754081+07:00"}
+{"id":"c74fc0b3c702","l":"127.0.0.1:5173","lvl":"info","msg":"join connections","obj":"join","r":"203.10.99.42:30348","t":"2026-07-22T09:29:18.1774756+07:00"}
+{"id":"289b758d78d2","l":"127.0.0.1:5173","lvl":"info","msg":"join connections","obj":"join","r":"203.10.99.42:30348","t":"2026-07-22T09:29:18.3757617+07:00"}
+{"err":"write tcp 10.105.9.96:9512-\u003e54.169.118.152:443: wsasend: An established connection was aborted by the software in your host machine.","id":"72ee8299c053","lvl":"eror","msg":"session closed, starting reconnect loop","obj":"csess","t":"2026-07-22T12:15:31.6842718+07:00"}
+{"err":"failed to dial ngrok server with address \"connect.ngrok-agent.com:443\": dial tcp: lookup connect.ngrok-agent.com: no such host","lvl":"eror","msg":"failed to reconnect session","obj":"tunnels.session","t":"2026-07-22T12:15:31.7034304+07:00"}
+{"err":"failed to dial ngrok server with address \"connect.ngrok-agent.com:443\": dial tcp: lookup connect.ngrok-agent.com: no such host","lvl":"eror","msg":"failed to reconnect session","obj":"tunnels.session","t":"2026-07-22T12:15:32.204952+07:00"}
+{"err":"failed to dial ngrok server with address \"connect.ngrok-agent.com:443\": dial tcp: lookup connect.ngrok-agent.com: no such host","lvl":"eror","msg":"failed to reconnect session","obj":"tunnels.session","t":"2026-07-22T12:15:33.2071033+07:00"}
+{"err":"failed to dial ngrok server with address \"connect.ngrok-agent.com:443\": dial tcp: lookup connect.ngrok-agent.com: no such host","lvl":"eror","msg":"failed to reconnect session","obj":"tunnels.session","t":"2026-07-22T12:15:35.208269+07:00"}
+{"err":"failed to dial ngrok server with address \"connect.ngrok-agent.com:443\": dial tcp: lookup connect.ngrok-agent.com: no such host","lvl":"eror","msg":"failed to reconnect session","obj":"tunnels.session","t":"2026-07-22T12:15:39.2216784+07:00"}
+{"clientid":"a1e3fcb6dbdc0fea1edb0a179afc55ab","id":"5b6bb7cfca1e","lvl":"eror","msg":"heartbeat timeout, terminating session","obj":"csess","t":"2026-07-22T12:15:46.49327+07:00"}
+{"err":"failed to dial ngrok server with address \"connect.ngrok-agent.com:443\": dial tcp: lookup connect.ngrok-agent.com: no such host","lvl":"eror","msg":"failed to reconnect session","obj":"tunnels.session","t":"2026-07-22T12:15:47.2298935+07:00"}
+{"err":"failed to dial ngrok server with address \"connect.ngrok-agent.com:443\": dial tcp: lookup connect.ngrok-agent.com: no such host","lvl":"eror","msg":"failed to reconnect session","obj":"tunnels.session","t":"2026-07-22T12:16:03.2380324+07:00"}
+{"err":"failed to dial ngrok server with address \"connect.ngrok-agent.com:443\": dial tcp: lookup connect.ngrok-agent.com: no such host","lvl":"eror","msg":"failed to reconnect session","obj":"tunnels.session","t":"2026-07-22T12:16:33.2473831+07:00"}
+{"err":"failed to dial ngrok server with address \"connect.ngrok-agent.com:443\": dial tcp: lookup connect.ngrok-agent.com: no such host","lvl":"eror","msg":"failed to reconnect session","obj":"tunnels.session","t":"2026-07-22T12:17:03.2642443+07:00"}
+{"err":"failed to dial ngrok server with address \"connect.ngrok-agent.com:443\": dial tcp: lookup connect.ngrok-agent.com: no such host","lvl":"eror","msg":"failed to reconnect session","obj":"tunnels.session","t":"2026-07-22T12:17:33.2885364+07:00"}
+{"err":"failed to dial ngrok server with address \"connect.ngrok-agent.com:443\": dial tcp: lookup connect.ngrok-agent.com: no such host","lvl":"eror","msg":"failed to reconnect session","obj":"tunnels.session","t":"2026-07-22T12:18:03.3124366+07:00"}
+{"err":"failed to dial ngrok server with address \"connect.ngrok-agent.com:443\": dial tcp: lookup connect.ngrok-agent.com: no such host","lvl":"eror","msg":"failed to reconnect session","obj":"tunnels.session","t":"2026-07-22T12:18:33.3237978+07:00"}
+{"err":"failed to dial ngrok server with address \"connect.ngrok-agent.com:443\": dial tcp: lookup connect.ngrok-agent.com: no such host","lvl":"eror","msg":"failed to reconnect session","obj":"tunnels.session","t":"2026-07-22T12:19:03.3317323+07:00"}
+{"err":"failed to dial ngrok server with address \"connect.ngrok-agent.com:443\": dial tcp: lookup connect.ngrok-agent.com: no such host","lvl":"eror","msg":"failed to reconnect session","obj":"tunnels.session","t":"2026-07-22T12:19:33.3416585+07:00"}
+{"err":"failed to dial ngrok server with address \"connect.ngrok-agent.com:443\": dial tcp: lookup connect.ngrok-agent.com: no such host","lvl":"eror","msg":"failed to reconnect session","obj":"tunnels.session","t":"2026-07-22T12:20:03.3502736+07:00"}
+{"err":"failed to dial ngrok server with address \"connect.ngrok-agent.com:443\": dial tcp: lookup connect.ngrok-agent.com: no such host","lvl":"eror","msg":"failed to reconnect session","obj":"tunnels.session","t":"2026-07-22T12:20:33.3732689+07:00"}
+{"err":"failed to dial ngrok server with address \"connect.ngrok-agent.com:443\": dial tcp: lookup connect.ngrok-agent.com: no such host","lvl":"eror","msg":"failed to reconnect session","obj":"tunnels.session","t":"2026-07-22T12:21:03.3809481+07:00"}
+{"err":"failed to dial ngrok server with address \"connect.ngrok-agent.com:443\": dial tcp: lookup connect.ngrok-agent.com: no such host","lvl":"eror","msg":"failed to reconnect session","obj":"tunnels.session","t":"2026-07-22T12:21:33.3890877+07:00"}
+{"err":"failed to dial ngrok server with address \"connect.ngrok-agent.com:443\": dial tcp: lookup connect.ngrok-agent.com: no such host","lvl":"eror","msg":"failed to reconnect session","obj":"tunnels.session","t":"2026-07-22T12:22:03.3978372+07:00"}
+{"err":"failed to dial ngrok server with address \"connect.ngrok-agent.com:443\": dial tcp: lookup connect.ngrok-agent.com: no such host","lvl":"eror","msg":"failed to reconnect session","obj":"tunnels.session","t":"2026-07-22T12:22:33.4091246+07:00"}
+{"err":"failed to dial ngrok server with address \"connect.ngrok-agent.com:443\": dial tcp: lookup connect.ngrok-agent.com: no such host","lvl":"eror","msg":"failed to reconnect session","obj":"tunnels.session","t":"2026-07-22T12:23:03.415991+07:00"}
+{"err":"failed to dial ngrok server with address \"connect.ngrok-agent.com:443\": dial tcp: lookup connect.ngrok-agent.com: no such host","lvl":"eror","msg":"failed to reconnect session","obj":"tunnels.session","t":"2026-07-22T12:23:33.4247224+07:00"}
+{"err":"failed to dial ngrok server with address \"connect.ngrok-agent.com:443\": dial tcp: lookup connect.ngrok-agent.com: no such host","lvl":"eror","msg":"failed to reconnect session","obj":"tunnels.session","t":"2026-07-22T12:24:03.4374315+07:00"}
+{"err":"failed to dial ngrok server with address \"connect.ngrok-agent.com:443\": dial tcp: lookup connect.ngrok-agent.com: no such host","lvl":"eror","msg":"failed to reconnect session","obj":"tunnels.session","t":"2026-07-22T12:24:33.4506219+07:00"}
+{"err":"failed to dial ngrok server with address \"connect.ngrok-agent.com:443\": dial tcp: lookup connect.ngrok-agent.com: no such host","lvl":"eror","msg":"failed to reconnect session","obj":"tunnels.session","t":"2026-07-22T12:25:03.4709441+07:00"}
+{"err":"failed to dial ngrok server with address \"connect.ngrok-agent.com:443\": dial tcp: lookup connect.ngrok-agent.com: no such host","lvl":"eror","msg":"failed to reconnect session","obj":"tunnels.session","t":"2026-07-22T12:25:33.4816591+07:00"}
+{"err":"failed to dial ngrok server with address \"connect.ngrok-agent.com:443\": dial tcp: lookup connect.ngrok-agent.com: no such host","lvl":"eror","msg":"failed to reconnect session","obj":"tunnels.session","t":"2026-07-22T12:26:03.4981056+07:00"}
+{"err":"failed to dial ngrok server with address \"connect.ngrok-agent.com:443\": dial tcp: lookup connect.ngrok-agent.com: no such host","lvl":"eror","msg":"failed to reconnect session","obj":"tunnels.session","t":"2026-07-22T12:26:33.5112806+07:00"}
+{"err":"failed to dial ngrok server with address \"connect.ngrok-agent.com:443\": dial tcp: lookup connect.ngrok-agent.com: no such host","lvl":"eror","msg":"failed to reconnect session","obj":"tunnels.session","t":"2026-07-22T12:27:03.5386183+07:00"}
+{"err":"failed to dial ngrok server with address \"connect.ngrok-agent.com:443\": dial tcp: lookup connect.ngrok-agent.com: no such host","lvl":"eror","msg":"failed to reconnect session","obj":"tunnels.session","t":"2026-07-22T12:27:33.5503645+07:00"}
+{"err":"failed to dial ngrok server with address \"connect.ngrok-agent.com:443\": dial tcp: lookup connect.ngrok-agent.com: no such host","lvl":"eror","msg":"failed to reconnect session","obj":"tunnels.session","t":"2026-07-22T12:28:03.5584976+07:00"}
+{"err":"failed to dial ngrok server with address \"connect.ngrok-agent.com:443\": dial tcp: lookup connect.ngrok-agent.com: no such host","lvl":"eror","msg":"failed to reconnect session","obj":"tunnels.session","t":"2026-07-22T12:28:33.5672833+07:00"}
+{"err":"failed to dial ngrok server with address \"connect.ngrok-agent.com:443\": dial tcp: lookup connect.ngrok-agent.com: no such host","lvl":"eror","msg":"failed to reconnect session","obj":"tunnels.session","t":"2026-07-22T12:29:03.5755166+07:00"}
+{"err":"failed to dial ngrok server with address \"connect.ngrok-agent.com:443\": dial tcp: lookup connect.ngrok-agent.com: no such host","lvl":"eror","msg":"failed to reconnect session","obj":"tunnels.session","t":"2026-07-22T12:29:33.5867131+07:00"}
+{"err":"failed to dial ngrok server with address \"connect.ngrok-agent.com:443\": dial tcp: lookup connect.ngrok-agent.com: no such host","lvl":"eror","msg":"failed to reconnect session","obj":"tunnels.session","t":"2026-07-22T12:30:03.5950096+07:00"}
+{"err":"failed to dial ngrok server with address \"connect.ngrok-agent.com:443\": dial tcp: lookup connect.ngrok-agent.com: no such host","lvl":"eror","msg":"failed to reconnect session","obj":"tunnels.session","t":"2026-07-22T12:30:33.6052524+07:00"}
+{"err":"failed to dial ngrok server with address \"connect.ngrok-agent.com:443\": dial tcp: lookup connect.ngrok-agent.com: no such host","lvl":"eror","msg":"failed to reconnect session","obj":"tunnels.session","t":"2026-07-22T12:31:03.6156149+07:00"}
+{"err":"failed to dial ngrok server with address \"connect.ngrok-agent.com:443\": dial tcp: lookup connect.ngrok-agent.com: no such host","lvl":"eror","msg":"failed to reconnect session","obj":"tunnels.session","t":"2026-07-22T12:31:33.6235071+07:00"}
+{"err":"failed to dial ngrok server with address \"connect.ngrok-agent.com:443\": dial tcp: lookup connect.ngrok-agent.com: no such host","lvl":"eror","msg":"failed to reconnect session","obj":"tunnels.session","t":"2026-07-22T12:32:03.6308241+07:00"}
+{"err":"failed to dial ngrok server with address \"connect.ngrok-agent.com:443\": dial tcp: lookup connect.ngrok-agent.com: no such host","lvl":"eror","msg":"failed to reconnect session","obj":"tunnels.session","t":"2026-07-22T12:32:33.646977+07:00"}
+{"err":"failed to dial ngrok server with address \"connect.ngrok-agent.com:443\": dial tcp: lookup connect.ngrok-agent.com: no such host","lvl":"eror","msg":"failed to reconnect session","obj":"tunnels.session","t":"2026-07-22T12:33:03.6534737+07:00"}
+{"err":"failed to dial ngrok server with address \"connect.ngrok-agent.com:443\": dial tcp: lookup connect.ngrok-agent.com: no such host","lvl":"eror","msg":"failed to reconnect session","obj":"tunnels.session","t":"2026-07-22T12:33:33.666555+07:00"}
+{"id":"4c4445fc7fea","lvl":"eror","msg":"heartbeat timeout, terminating session","obj":"csess","t":"2026-07-22T12:34:30.0364586+07:00"}
+{"err":"failed to send authentication request: session closed","lvl":"eror","msg":"failed to reconnect session","obj":"tunnels.session","t":"2026-07-22T12:34:30.2866891+07:00"}
+{"err":"failed to dial ngrok server with address \"connect.ngrok-agent.com:443\": dial tcp 122.248.247.123:443: connectex: A socket operation was attempted to an unreachable network.","lvl":"eror","msg":"failed to reconnect session","obj":"tunnels.session","t":"2026-07-22T12:35:00.2981601+07:00"}
+{"err":"failed to dial ngrok server with address \"connect.ngrok-agent.com:443\": dial tcp: lookup connect.ngrok-agent.com: no such host","lvl":"eror","msg":"failed to reconnect session","obj":"tunnels.session","t":"2026-07-22T12:35:30.3219791+07:00"}
+{"err":"failed to dial ngrok server with address \"connect.ngrok-agent.com:443\": dial tcp: lookup connect.ngrok-agent.com: no such host","lvl":"eror","msg":"failed to reconnect session","obj":"tunnels.session","t":"2026-07-22T12:36:00.3376449+07:00"}
+{"err":"failed to dial ngrok server with address \"connect.ngrok-agent.com:443\": dial tcp: lookup connect.ngrok-agent.com: no such host","lvl":"eror","msg":"failed to reconnect session","obj":"tunnels.session","t":"2026-07-22T12:36:30.3523252+07:00"}
+{"err":"failed to dial ngrok server with address \"connect.ngrok-agent.com:443\": dial tcp: lookup connect.ngrok-agent.com: no such host","lvl":"eror","msg":"failed to reconnect session","obj":"tunnels.session","t":"2026-07-22T12:37:00.3689469+07:00"}
+{"err":"failed to send authentication request: read tcp 10.105.9.96:13087-\u003e54.255.3.198:443: wsarecv: A connection attempt failed because the connected party did not properly respond after a period of time, or established connection failed because connected host has failed to respond.","lvl":"eror","msg":"failed to reconnect session","obj":"tunnels.session","t":"2026-07-22T12:37:51.9968759+07:00"}
+{"err":"failed to dial ngrok server with address \"connect.ngrok-agent.com:443\": dial tcp 54.255.3.198:443: connectex: A socket operation was attempted to an unreachable network.","lvl":"eror","msg":"failed to reconnect session","obj":"tunnels.session","t":"2026-07-22T12:38:22.0102563+07:00"}
+{"err":"failed to dial ngrok server with address \"connect.ngrok-agent.com:443\": dial tcp: lookup connect.ngrok-agent.com: no such host","lvl":"eror","msg":"failed to reconnect session","obj":"tunnels.session","t":"2026-07-22T12:38:52.0222484+07:00"}
+{"err":"failed to dial ngrok server with address \"connect.ngrok-agent.com:443\": dial tcp: lookup connect.ngrok-agent.com: no such host","lvl":"eror","msg":"failed to reconnect session","obj":"tunnels.session","t":"2026-07-22T12:39:22.084262+07:00"}
+{"err":"failed to send authentication request: read tcp 10.105.9.96:4846-\u003e54.169.118.152:443: wsarecv: A connection attempt failed because the connected party did not properly respond after a period of time, or established connection failed because connected host has failed to respond.","lvl":"eror","msg":"failed to reconnect session","obj":"tunnels.session","t":"2026-07-22T12:40:13.7147788+07:00"}
+{"err":"failed to dial ngrok server with address \"connect.ngrok-agent.com:443\": dial tcp 54.169.118.152:443: connectex: A socket operation was attempted to an unreachable network.","lvl":"eror","msg":"failed to reconnect session","obj":"tunnels.session","t":"2026-07-22T12:40:43.7247221+07:00"}
+{"err":"failed to dial ngrok server with address \"connect.ngrok-agent.com:443\": dial tcp: lookup connect.ngrok-agent.com: no such host","lvl":"eror","msg":"failed to reconnect session","obj":"tunnels.session","t":"2026-07-22T12:41:13.7446044+07:00"}
+{"err":"failed to dial ngrok server with address \"connect.ngrok-agent.com:443\": dial tcp: lookup connect.ngrok-agent.com: no such host","lvl":"eror","msg":"failed to reconnect session","obj":"tunnels.session","t":"2026-07-22T12:41:44.0101268+07:00"}
+{"err":"failed to dial ngrok server with address \"connect.ngrok-agent.com:443\": dial tcp: lookup connect.ngrok-agent.com: no such host","lvl":"eror","msg":"failed to reconnect session","obj":"tunnels.session","t":"2026-07-22T12:42:14.0169819+07:00"}
+{"id":"09d9c64c786a","lvl":"eror","msg":"heartbeat timeout, terminating session","obj":"csess","t":"2026-07-22T12:43:09.3067105+07:00"}
+{"err":"failed to send authentication request: session closed","lvl":"eror","msg":"failed to reconnect session","obj":"tunnels.session","t":"2026-07-22T12:43:09.5602667+07:00"}
+{"err":"failed to dial ngrok server with address \"connect.ngrok-agent.com:443\": dial tcp 3.1.215.86:443: connectex: A socket operation was attempted to an unreachable network.","lvl":"eror","msg":"failed to reconnect session","obj":"tunnels.session","t":"2026-07-22T12:43:39.5698934+07:00"}
+{"err":"failed to send authentication request: read tcp 10.105.9.96:9566-\u003e122.248.247.123:443: wsarecv: A connection attempt failed because the connected party did not properly respond after a period of time, or established connection failed because connected host has failed to respond.","lvl":"eror","msg":"failed to reconnect session","obj":"tunnels.session","t":"2026-07-22T12:44:29.2051508+07:00"}
+{"err":"failed to dial ngrok server with address \"connect.ngrok-agent.com:443\": dial tcp 122.248.247.123:443: connectex: A socket operation was attempted to an unreachable network.","lvl":"eror","msg":"failed to reconnect session","obj":"tunnels.session","t":"2026-07-22T12:44:59.307865+07:00"}
+{"err":"failed to dial ngrok server with address \"connect.ngrok-agent.com:443\": dial tcp: lookup connect.ngrok-agent.com: no such host","lvl":"eror","msg":"failed to reconnect session","obj":"tunnels.session","t":"2026-07-22T12:45:29.4166961+07:00"}
+{"err":"failed to dial ngrok server with address \"connect.ngrok-agent.com:443\": dial tcp: lookup connect.ngrok-agent.com: no such host","lvl":"eror","msg":"failed to reconnect session","obj":"tunnels.session","t":"2026-07-22T12:45:59.6891908+07:00"}
+{"id":"31c306243d74","lvl":"eror","msg":"heartbeat timeout, terminating session","obj":"csess","t":"2026-07-22T12:46:55.2158569+07:00"}
+{"err":"failed to send authentication request: session closed","lvl":"eror","msg":"failed to reconnect session","obj":"tunnels.session","t":"2026-07-22T12:46:55.4693852+07:00"}
+{"err":"failed to dial ngrok server with address \"connect.ngrok-agent.com:443\": dial tcp 3.1.215.86:443: connectex: A socket operation was attempted to an unreachable network.","lvl":"eror","msg":"failed to reconnect session","obj":"tunnels.session","t":"2026-07-22T12:47:25.5274011+07:00"}
+{"err":"failed to dial ngrok server with address \"connect.ngrok-agent.com:443\": dial tcp: lookup connect.ngrok-agent.com: no such host","lvl":"eror","msg":"failed to reconnect session","obj":"tunnels.session","t":"2026-07-22T12:47:55.6303947+07:00"}
+{"err":"failed to dial ngrok server with address \"connect.ngrok-agent.com:443\": dial tcp: lookup connect.ngrok-agent.com: no such host","lvl":"eror","msg":"failed to reconnect session","obj":"tunnels.session","t":"2026-07-22T12:48:25.7329478+07:00"}
+{"err":"failed to dial ngrok server with address \"connect.ngrok-agent.com:443\": dial tcp: lookup connect.ngrok-agent.com: no such host","lvl":"eror","msg":"failed to reconnect session","obj":"tunnels.session","t":"2026-07-22T12:48:56.6681446+07:00"}
+{"err":"failed to dial ngrok server with address \"connect.ngrok-agent.com:443\": dial tcp: lookup connect.ngrok-agent.com: no such host","lvl":"eror","msg":"failed to reconnect session","obj":"tunnels.session","t":"2026-07-22T12:49:26.7172132+07:00"}
+{"err":"failed to dial ngrok server with address \"connect.ngrok-agent.com:443\": dial tcp: lookup connect.ngrok-agent.com: no such host","lvl":"eror","msg":"failed to reconnect session","obj":"tunnels.session","t":"2026-07-22T12:49:56.7271129+07:00"}
+{"err":"failed to dial ngrok server with address \"connect.ngrok-agent.com:443\": dial tcp: lookup connect.ngrok-agent.com: no such host","lvl":"eror","msg":"failed to reconnect session","obj":"tunnels.session","t":"2026-07-22T12:50:26.8223861+07:00"}
+{"err":"failed to dial ngrok server with address \"connect.ngrok-agent.com:443\": dial tcp: lookup connect.ngrok-agent.com: no such host","lvl":"eror","msg":"failed to reconnect session","obj":"tunnels.session","t":"2026-07-22T12:50:57.1422978+07:00"}
+{"err":"failed to dial ngrok server with address \"connect.ngrok-agent.com:443\": dial tcp: lookup connect.ngrok-agent.com: no such host","lvl":"eror","msg":"failed to reconnect session","obj":"tunnels.session","t":"2026-07-22T12:51:27.2647623+07:00"}
+{"err":"failed to dial ngrok server with address \"connect.ngrok-agent.com:443\": dial tcp: lookup connect.ngrok-agent.com: no such host","lvl":"eror","msg":"failed to reconnect session","obj":"tunnels.session","t":"2026-07-22T12:51:57.7395967+07:00"}
+{"err":"failed to dial ngrok server with address \"connect.ngrok-agent.com:443\": dial tcp: lookup connect.ngrok-agent.com: no such host","lvl":"eror","msg":"failed to reconnect session","obj":"tunnels.session","t":"2026-07-22T12:52:27.8606469+07:00"}
+{"err":"failed to dial ngrok server with address \"connect.ngrok-agent.com:443\": dial tcp: lookup connect.ngrok-agent.com: no such host","lvl":"eror","msg":"failed to reconnect session","obj":"tunnels.session","t":"2026-07-22T12:52:57.9575448+07:00"}
+{"err":"failed to dial ngrok server with address \"connect.ngrok-agent.com:443\": dial tcp: lookup connect.ngrok-agent.com: no such host","lvl":"eror","msg":"failed to reconnect session","obj":"tunnels.session","t":"2026-07-22T12:53:28.0102053+07:00"}
+{"err":"failed to dial ngrok server with address \"connect.ngrok-agent.com:443\": dial tcp: lookup connect.ngrok-agent.com: no such host","lvl":"eror","msg":"failed to reconnect session","obj":"tunnels.session","t":"2026-07-22T12:53:58.255356+07:00"}
+{"err":"failed to dial ngrok server with address \"connect.ngrok-agent.com:443\": dial tcp: lookup connect.ngrok-agent.com: no such host","lvl":"eror","msg":"failed to reconnect session","obj":"tunnels.session","t":"2026-07-22T12:54:28.3677818+07:00"}
+{"err":"failed to dial ngrok server with address \"connect.ngrok-agent.com:443\": dial tcp: lookup connect.ngrok-agent.com: no such host","lvl":"eror","msg":"failed to reconnect session","obj":"tunnels.session","t":"2026-07-22T12:54:58.4880994+07:00"}
+{"err":"failed to dial ngrok server with address \"connect.ngrok-agent.com:443\": dial tcp: lookup connect.ngrok-agent.com: no such host","lvl":"eror","msg":"failed to reconnect session","obj":"tunnels.session","t":"2026-07-22T12:55:28.5899527+07:00"}
+{"err":"failed to dial ngrok server with address \"connect.ngrok-agent.com:443\": dial tcp: lookup connect.ngrok-agent.com: no such host","lvl":"eror","msg":"failed to reconnect session","obj":"tunnels.session","t":"2026-07-22T12:55:58.6406272+07:00"}
+{"err":"failed to dial ngrok server with address \"connect.ngrok-agent.com:443\": dial tcp: lookup connect.ngrok-agent.com: no such host","lvl":"eror","msg":"failed to reconnect session","obj":"tunnels.session","t":"2026-07-22T12:56:28.7570768+07:00"}
+{"err":"failed to dial ngrok server with address \"connect.ngrok-agent.com:443\": dial tcp: lookup connect.ngrok-agent.com: no such host","lvl":"eror","msg":"failed to reconnect session","obj":"tunnels.session","t":"2026-07-22T12:56:58.8625999+07:00"}
+{"err":"failed to dial ngrok server with address \"connect.ngrok-agent.com:443\": dial tcp: lookup connect.ngrok-agent.com: no such host","lvl":"eror","msg":"failed to reconnect session","obj":"tunnels.session","t":"2026-07-22T12:57:29.2686886+07:00"}
+{"err":"failed to dial ngrok server with address \"connect.ngrok-agent.com:443\": dial tcp: lookup connect.ngrok-agent.com: no such host","lvl":"eror","msg":"failed to reconnect session","obj":"tunnels.session","t":"2026-07-22T12:57:59.382904+07:00"}
+{"err":"failed to dial ngrok server with address \"connect.ngrok-agent.com:443\": dial tcp: lookup connect.ngrok-agent.com: no such host","lvl":"eror","msg":"failed to reconnect session","obj":"tunnels.session","t":"2026-07-22T12:58:29.4835451+07:00"}
+{"err":"failed to dial ngrok server with address \"connect.ngrok-agent.com:443\": dial tcp: lookup connect.ngrok-agent.com: no such host","lvl":"eror","msg":"failed to reconnect session","obj":"tunnels.session","t":"2026-07-22T12:58:59.6034393+07:00"}
+{"err":"failed to dial ngrok server with address \"connect.ngrok-agent.com:443\": dial tcp: lookup connect.ngrok-agent.com: no such host","lvl":"eror","msg":"failed to reconnect session","obj":"tunnels.session","t":"2026-07-22T12:59:29.7156564+07:00"}
+{"err":"failed to send authentication request: EOF","lvl":"eror","msg":"failed to reconnect session","obj":"tunnels.session","t":"2026-07-22T13:00:16.1644815+07:00"}
+{"err":"failed to send authentication request: EOF","lvl":"eror","msg":"failed to reconnect session","obj":"tunnels.session","t":"2026-07-22T13:00:56.3107102+07:00"}
+{"err":"failed to send authentication request: EOF","lvl":"eror","msg":"failed to reconnect session","obj":"tunnels.session","t":"2026-07-22T13:01:36.479439+07:00"}
+{"err":"failed to send authentication request: EOF","lvl":"eror","msg":"failed to reconnect session","obj":"tunnels.session","t":"2026-07-22T13:02:16.6132483+07:00"}
+{"err":"failed to send authentication request: EOF","lvl":"eror","msg":"failed to reconnect session","obj":"tunnels.session","t":"2026-07-22T13:02:56.7751729+07:00"}
+{"err":"failed to send authentication request: EOF","lvl":"eror","msg":"failed to reconnect session","obj":"tunnels.session","t":"2026-07-22T13:03:36.9160211+07:00"}
+{"err":"failed to send authentication request: EOF","lvl":"eror","msg":"failed to reconnect session","obj":"tunnels.session","t":"2026-07-22T13:04:17.084663+07:00"}
+{"err":"failed to send authentication request: EOF","lvl":"eror","msg":"failed to reconnect session","obj":"tunnels.session","t":"2026-07-22T13:04:57.2235778+07:00"}
+{"id":"fe06eea8c4440623","lvl":"info","msg":"start","pg":"/api/tunnels","t":"2026-07-22T13:05:14.5680903+07:00"}
+{"dur":"2.461ms","id":"fe06eea8c4440623","lvl":"info","msg":"end","pg":"/api/tunnels","status":200,"t":"2026-07-22T13:05:14.5705513+07:00"}
+{"id":"ba7705ff74ea575e","lvl":"info","msg":"start","pg":"/api/tunnels","t":"2026-07-22T13:05:23.1663439+07:00"}
+{"dur":"513.1µs","id":"ba7705ff74ea575e","lvl":"info","msg":"end","pg":"/api/tunnels","status":200,"t":"2026-07-22T13:05:23.166857+07:00"}
+{"err":"failed to send authentication request: EOF","lvl":"eror","msg":"failed to reconnect session","obj":"tunnels.session","t":"2026-07-22T13:05:37.4575779+07:00"}

@@ -200,9 +200,7 @@
       <el-form :model="clockInForm" label-width="80px">
         <el-form-item label="上班班组">
           <el-select v-model="clockInForm.team" style="width: 100%">
-            <el-option label="A班" value="A班" />
-            <el-option label="B班" value="B班" />
-            <el-option label="C班" value="C班" />
+            <el-option v-for="team in extrusionSawingTeams" :key="team" :label="team" :value="team" />
           </el-select>
         </el-form-item>
       </el-form>
@@ -501,6 +499,7 @@ import { ElMessage, ElMessageBox } from 'element-plus'
 import { ArrowDown, List, Grid, Search, Box, DataAnalysis } from '@element-plus/icons-vue'
 import ProcessDocumentDialog from '@/components/ProcessDocumentDialog.vue'
 import { useTaskLiteralDomI18n } from '@/composables/useTaskLiteralDomI18n'
+import { extrusionSawingMachines, extrusionSawingTeams, useExtrusionSawingShift } from '@/composables/useExtrusionSawingShift'
 
 useTaskLiteralDomI18n()
 
@@ -545,8 +544,8 @@ interface OperationDefinition {
   fields: OperationField[]
 }
 
-const currentMachine = ref('S001')
-const machineList = ['S001', 'S002', 'S003', 'S004']
+const currentMachine = ref('1')
+const machineList = extrusionSawingMachines
 
 const taskDialogVisible = ref(false)
 const selectedRow = ref<ScheduleRow | null>(null)
@@ -698,9 +697,7 @@ const operationDefinitions: OperationDefinition[] = [
 const operationViews = computed(() => operationDefinitions)
 
 const clockInDialogVisible = ref(false)
-const isClockedIn = ref(false)
-const currentTeam = ref('')
-const clockInTime = ref('')
+const { isClockedIn, currentTeam, clockInTime } = useExtrusionSawingShift()
 const clockInForm = ref({ team: '' })
 
 const handleClockIn = () => {

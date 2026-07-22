@@ -105,9 +105,24 @@ interface TeamItem {
 }
 
 const teams = ref<TeamItem[]>([
-  { id: 1, name: '挤压一班', code: 'EXT-01', workshop: '挤压车间', status: 'active', remark: '白班' },
-  { id: 2, name: '挤压二班', code: 'EXT-02', workshop: '挤压车间', status: 'active', remark: '夜班' },
-  { id: 3, name: '熔铸一班', code: 'CAST-01', workshop: '熔铸车间', status: 'active', remark: '白班' },
+  ...['A', 'B'].flatMap(prefix => Array.from({ length: 8 }, (_, index) => ({
+    id: (prefix === 'A' ? 0 : 8) + index + 1,
+    name: `${prefix}${String(index + 1).padStart(2, '0')}`,
+    code: `EXT-SAW-${prefix}${String(index + 1).padStart(2, '0')}`,
+    workshop: '挤压/锯切车间', status: 'active', remark: `挤压与锯切共用班组，${index + 1}号机`,
+  }))),
+  { id: 17, name: '包装A', code: 'PACK-A', workshop: '包装车间', status: 'active', remark: '包装班组' },
+  { id: 18, name: '包装B', code: 'PACK-B', workshop: '包装车间', status: 'active', remark: '包装班组' },
+  ...['A', 'B'].flatMap(prefix => Array.from({ length: 5 }, (_, index) => ({
+    id: 19 + (prefix === 'A' ? 0 : 5) + index,
+    name: `${prefix}${String(index + 1).padStart(2, '0')}`,
+    code: `CUT-MAN-${prefix}${String(index + 1).padStart(2, '0')}`,
+    workshop: '裁切车间', status: 'active', remark: `裁切人工线 ${index + 1}号锯`,
+  }))),
+  ...['A06', 'A07', 'B06', 'B07'].map((name, index) => ({
+    id: 29 + index, name, code: `CUT-AUTO-${name}`, workshop: '裁切车间', status: 'active',
+    remark: `裁切自动线 ${index % 2 === 0 ? '自动1' : '自动2'}`,
+  })),
 ])
 
 const workshopOptions = [
@@ -115,6 +130,9 @@ const workshopOptions = [
   { label: '熔铸车间', value: '熔铸车间' },
   { label: '表面处理车间', value: '表面处理车间' },
   { label: '深加工车间', value: '深加工车间' },
+  { label: '挤压/锯切车间', value: '挤压/锯切车间' },
+  { label: '包装车间', value: '包装车间' },
+  { label: '裁切车间', value: '裁切车间' },
 ]
 
 const searchQuery = ref('')

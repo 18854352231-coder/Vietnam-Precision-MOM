@@ -11,6 +11,14 @@
               下班
             </el-button>
             <span class="workbench-title">裁切工作台</span>
+            <el-select v-model="currentCuttingMachine" size="small" style="width: 170px; margin-left: 16px">
+              <el-option-group label="裁切人工线">
+                <el-option v-for="machine in manualCuttingMachines" :key="machine" :label="machine" :value="machine" />
+              </el-option-group>
+              <el-option-group label="裁切自动线">
+                <el-option v-for="machine in automaticCuttingMachines" :key="machine" :label="machine" :value="machine" />
+              </el-option-group>
+            </el-select>
           </div>
         </div>
       </template>
@@ -148,8 +156,14 @@
                   <el-form-item label="每箱片数" v-if="printForm.isBoxed" required>
                     <el-input-number v-model="printForm.piecesPerBox" :min="1" @change="calculateBoxes" style="width: 100%" />
                   </el-form-item>
+                  <el-form-item label="预装箱片数" v-if="printForm.isBoxed" required>
+                    <el-input-number v-model="printForm.plannedBoxQty" :min="1" @change="calculateBoxes" style="width: 100%" />
+                  </el-form-item>
                   <el-form-item label="小箱数量" v-if="printForm.isBoxed">
                     <el-input v-model="printForm.boxCount" disabled />
+                  </el-form-item>
+                  <el-form-item v-if="printForm.isBoxed">
+                    <el-button type="primary" plain @click="generateBoxCodes">生成小箱码</el-button>
                   </el-form-item>
                   
                   <div class="print-actions mt-4" style="text-align: right;">
@@ -163,8 +177,24 @@
               <!-- 右侧：物料二维码编号 -->
               <el-col :span="14">
                 <div class="section-title">物料二维码编号</div>
+                <template v-if="printForm.isBoxed">
+                  <div class="box-binding-bar">
+                    <span class="box-binding-label">当前小箱</span>
+                    <el-select v-model="currentBoxCode" placeholder="请先生成并选择小箱" style="width: 260px">
+                      <el-option
+                        v-for="box in generatedBoxes"
+                        :key="box.boxCode"
+                        :label="`${box.boxCode}（${box.branches.length}/${box.plannedQty}片）`"
+                        :value="box.boxCode"
+                      />
+                    </el-select>
+                    <el-tag v-if="currentBox" :type="currentBox.branches.length >= currentBox.plannedQty ? 'success' : 'warning'">
+                      已装 {{ currentBox.branches.length }}/{{ currentBox.plannedQty }} 片
+                    </el-tag>
+                  </div>
+                </template>
                 <div class="mt-2" style="display: flex; gap: 10px; margin-bottom: 10px;">
-                  <el-input v-model="printForm.longBranchCode" placeholder="扫码添加镭雕码" @keyup.enter="handleAddLongBranch" style="flex: 1;" />
+                  <el-input v-model="printForm.longBranchCode" :placeholder="printForm.isBoxed ? '扫码绑定到当前小箱' : '扫码添加镭雕码'" @keyup.enter="handleAddLongBranch" style="flex: 1;" />
                   <el-button type="primary" @click="handleAddLongBranch">添加</el-button>
                 </div>
                 <el-table :data="boundBranches" style="width: 100%" border size="small" height="380">
@@ -260,25 +290,37 @@
       </el-tabs>
     </el-card>
 
-    <el-dialog v-model="packageDetailDialogVisible" title="托盘/小箱明细" width="800px">
-      <div style="display: flex; gap: 10px; margin-bottom: 15px;">
-        <el-input v-model="newPackageBranchCode" placeholder="扫码或手动输入添加镭雕码" @keyup.enter="handleAddPackageBranch" style="flex: 1;" />
-        <el-button type="primary" @click="handleAddPackageBranch">添加</el-button>
-      </div>
+    <el-dialog v-model="packageDetailDialogVisible" title="托盘/小箱明细" width="900px">
+      <el-table v-if="currentPackageBoxes.length" :data="currentPackageBoxes" border size="small" max-height="260" class="mb-4">
+        <el-table-column prop="boxCode" label="小箱码" min-width="220" />
+        <el-table-column prop="plannedQty" label="应装片数" width="110" align="right" />
+        <el-table-column label="已绑片数" width="110" align="right">
+          <template #default="{ row }">{{ row.branches.length }}</template>
+        </el-table-column>
+        <el-table-column label="状态" width="110" align="center">
+          <template #default="{ row }">
+            <el-tag :type="row.branches.length >= row.plannedQty ? 'success' : 'warning'" size="small">{{ row.branches.length >= row.plannedQty ? '已装满' : '待装箱' }}</el-tag>
+          </template>
+        </el-table-column>
+        <el-table-column label="操作" width="110" align="center">
+          <template #default="{ row }">
+            <el-button type="primary" link @click="packageDetailBoxCode = row.boxCode">查看码明细</el-button>
+          </template>
+        </el-table-column>
+      </el-table>
+      <div v-if="currentPackageBoxes.length" class="detail-box-title">{{ packageDetailBoxCode || '请选择小箱' }} 的镭雕码明细</div>
       <el-table
-        :data="currentPackageRecord?.branches || []"
+        :data="currentPackageDetailBranches"
         border
         size="small"
-        height="400"
+        height="300"
         @selection-change="handlePackageBranchSelectionChange"
       >
         <el-table-column type="selection" width="55" align="center" />
         <el-table-column type="index" label="序号" width="60" align="center" />
         <el-table-column prop="laserCode" label="镭雕码" min-width="180" />
         <el-table-column label="操作" width="80" align="center">
-          <template #default="{ $index }">
-            <el-button type="danger" link @click="removePackageBranch($index)">移除</el-button>
-          </template>
+          <template #default="{ $index }"><el-button type="danger" link @click="removePackageBranch($index)">移除</el-button></template>
         </el-table-column>
       </el-table>
       <template #footer>
@@ -318,8 +360,12 @@
         <el-form :inline="true" :model="reportForm">
           <el-form-item label="*报工班组:" required>
             <el-select v-model="reportForm.shiftTeam" placeholder="请选择" style="width: 150px">
-              <el-option label="裁切A06班" value="裁切A06班" />
-              <el-option label="裁切B01班" value="裁切B01班" />
+              <el-option-group label="裁切人工线（1-5号锯）">
+                <el-option v-for="team in manualCuttingTeams" :key="team" :label="team" :value="team" />
+              </el-option-group>
+              <el-option-group label="裁切自动线（自动1、自动2）">
+                <el-option v-for="team in automaticCuttingTeams" :key="team" :label="team" :value="team" />
+              </el-option-group>
             </el-select>
           </el-form-item>
           <el-form-item label="报工时间:">
@@ -370,9 +416,12 @@
       <el-form :model="clockInForm" label-width="80px">
         <el-form-item label="上班班组">
           <el-select v-model="clockInForm.team" style="width: 100%">
-            <el-option label="裁切A06班" value="裁切A06班" />
-            <el-option label="裁切B01班" value="裁切B01班" />
-            <el-option label="裁切C02班" value="裁切C02班" />
+            <el-option-group label="裁切人工线（1-5号锯）">
+              <el-option v-for="team in manualCuttingTeams" :key="team" :label="team" :value="team" />
+            </el-option-group>
+            <el-option-group label="裁切自动线（自动1、自动2）">
+              <el-option v-for="team in automaticCuttingTeams" :key="team" :label="team" :value="team" />
+            </el-option-group>
           </el-select>
         </el-form-item>
       </el-form>
@@ -459,7 +508,7 @@
 
       <div v-else class="label-preview multi-preview">
         <!-- 模拟小箱标识卡 (可能多张) -->
-        <div v-for="i in Math.min(previewData.boxCount || 1, 3)" :key="i" class="mb-4">
+        <div v-for="(box, index) in (previewData.boxes || []).slice(0, 3)" :key="box.boxCode" class="mb-4">
           <table class="label-table">
             <tr>
               <td colspan="6" class="label-title">
@@ -479,7 +528,7 @@
               <td class="header-cell">模具号</td><td colspan="2">{{ previewData.moldNo || '-' }}</td>
             </tr>
             <tr>
-              <td class="header-cell">数量</td><td colspan="2">{{ previewData.piecesPerBox || '10' }}PCS</td>
+              <td class="header-cell">数量</td><td colspan="2">{{ box.plannedQty }}PCS</td>
               <td class="header-cell">框号</td><td colspan="2">{{ previewData.frameNo || '6m-0979' }}</td>
             </tr>
             <tr>
@@ -491,11 +540,11 @@
               <td class="header-cell">牌号</td><td colspan="2">{{ previewData.alloy || '-' }}</td>
             </tr>
             <tr>
-              <td class="header-cell">纸箱号</td><td colspan="5">{{ previewData.frameNo || 'F-260407-001' }}-0{{ i }}</td>
+              <td class="header-cell">纸箱号</td><td colspan="5">{{ box.boxCode || `${previewData.frameNo}-${String(index + 1).padStart(2, '0')}` }}</td>
             </tr>
           </table>
         </div>
-        <div v-if="(previewData.boxCount || 1) > 3" class="text-center text-gray-500">
+        <div v-if="(previewData.boxes || []).length > 3" class="text-center text-gray-500">
           ... 共 {{ previewData.boxCount }} 张标签 ...
         </div>
       </div>
@@ -531,6 +580,14 @@ useTaskLiteralDomI18n()
 
 // 上下班状态
 const isClockedIn = ref(false)
+const manualCuttingMachines = Array.from({ length: 5 }, (_, index) => `${index + 1}号锯`)
+const automaticCuttingMachines = ['自动1', '自动2']
+const currentCuttingMachine = ref('1号锯')
+const manualCuttingTeams = [
+  ...Array.from({ length: 5 }, (_, index) => `A${String(index + 1).padStart(2, '0')}`),
+  ...Array.from({ length: 5 }, (_, index) => `B${String(index + 1).padStart(2, '0')}`),
+]
+const automaticCuttingTeams = ['A06', 'A07', 'B06', 'B07']
 const clockInDialogVisible = ref(false)
 const currentTeam = ref('')
 const clockInTime = ref('')
@@ -993,6 +1050,15 @@ const currentPackageRecord = computed(() => {
   return packageRecords.value.find(item => item.id === currentPackageId.value) || null
 })
 
+const packageDetailBoxCode = ref('')
+const currentPackageBoxes = computed(() => currentPackageRecord.value?.boxes || [])
+const currentPackageDetailBranches = computed(() => {
+  if (currentPackageBoxes.value.length) {
+    return currentPackageBoxes.value.find((box: any) => box.boxCode === packageDetailBoxCode.value)?.branches || []
+  }
+  return currentPackageRecord.value?.branches || []
+})
+
 const generateCuttingPackageNo = () => {
   const now = new Date()
   const datePart = `${now.getFullYear()}${String(now.getMonth() + 1).padStart(2, '0')}${String(now.getDate()).padStart(2, '0')}`
@@ -1043,6 +1109,7 @@ const handlePackageRowClick = (row: any) => {
 
 const openPackageDetail = (row: any) => {
   currentPackageId.value = row.id
+  packageDetailBoxCode.value = row.boxes?.[0]?.boxCode || ''
   packageDetailDialogVisible.value = true
 }
 
@@ -1054,20 +1121,34 @@ const newPackageBranchCode = ref('')
 
 const handleAddPackageBranch = () => {
   if (!newPackageBranchCode.value) return
-  if (currentPackageRecord.value && currentPackageRecord.value.branches) {
-    currentPackageRecord.value.branches.push({
+  const targetBox = currentPackageBoxes.value.find((box: any) => box.boxCode === packageDetailBoxCode.value)
+  if (targetBox) {
+    if (targetBox.branches.length >= targetBox.plannedQty) {
+      ElMessage.warning('当前小箱已装满')
+      return
+    }
+    targetBox.branches.push({
       code: 'LB-' + Math.floor(Math.random() * 90000 + 10000),
       laserCode: newPackageBranchCode.value,
       engraveTime: formatNow(),
-      qty: 1
+      qty: 1,
+      boxCode: targetBox.boxCode
     })
+    newPackageBranchCode.value = ''
+    ElMessage.success('镭雕码录入成功')
+  } else if (currentPackageRecord.value?.branches) {
+    currentPackageRecord.value.branches.push({ code: 'LB-' + Math.floor(Math.random() * 90000 + 10000), laserCode: newPackageBranchCode.value, engraveTime: formatNow(), qty: 1 })
     newPackageBranchCode.value = ''
     ElMessage.success('镭雕码录入成功')
   }
 }
 
 const removePackageBranch = (index: number) => {
-  if (currentPackageRecord.value && currentPackageRecord.value.branches) {
+  const targetBox = currentPackageBoxes.value.find((box: any) => box.boxCode === packageDetailBoxCode.value)
+  if (targetBox) {
+    targetBox.branches.splice(index, 1)
+    ElMessage.success('镭雕码移除成功')
+  } else if (currentPackageRecord.value?.branches) {
     currentPackageRecord.value.branches.splice(index, 1)
     ElMessage.success('镭雕码移除成功')
   }
@@ -1144,10 +1225,42 @@ const printForm = ref({
   singleCodeQty: '',
   isBoxed: false,
   piecesPerBox: 10,
+  plannedBoxQty: 0,
   boxCount: 0
 })
 
 const boundBranches = ref<any[]>([])
+const generatedBoxes = ref<any[]>([])
+const currentBoxCode = ref('')
+const currentBox = computed(() => generatedBoxes.value.find(box => box.boxCode === currentBoxCode.value) || null)
+
+const generateBoxCodes = () => {
+  if (!printForm.value.frameNo) {
+    ElMessage.warning('请先输入或扫描托盘号')
+    return
+  }
+  if (!printForm.value.plannedBoxQty || !printForm.value.piecesPerBox) {
+    ElMessage.warning('请先填写预装箱片数和每箱片数')
+    return
+  }
+  if (boundBranches.value.length > 0) {
+    ElMessage.warning('已有镭雕码绑定，不能重新生成小箱码')
+    return
+  }
+  const boxCount = Math.ceil(printForm.value.plannedBoxQty / printForm.value.piecesPerBox)
+  generatedBoxes.value = Array.from({ length: boxCount }, (_, index) => {
+    const isLastBox = index === boxCount - 1
+    const remainder = printForm.value.plannedBoxQty % printForm.value.piecesPerBox
+    return {
+      boxCode: `${printForm.value.frameNo}-${String(index + 1).padStart(2, '0')}`,
+      plannedQty: isLastBox && remainder ? remainder : printForm.value.piecesPerBox,
+      branches: [] as any[]
+    }
+  })
+  printForm.value.boxCount = boxCount
+  currentBoxCode.value = generatedBoxes.value[0]?.boxCode || ''
+  ElMessage.success(`已生成 ${boxCount} 个小箱码，请选择小箱后扫码绑定`)
+}
 
 const handleAddLongBranch = () => {
   if (!printForm.value.longBranchCode) return
@@ -1155,32 +1268,64 @@ const handleAddLongBranch = () => {
     ElMessage.warning('请先输入或扫描托盘号')
     return
   }
+  if (printForm.value.isBoxed && !currentBox.value) {
+    ElMessage.warning('请先生成并选择小箱码')
+    return
+  }
+  if (printForm.value.isBoxed && currentBox.value!.branches.length >= currentBox.value!.plannedQty) {
+    ElMessage.warning('当前小箱已装满，请切换下一小箱')
+    return
+  }
+  if (boundBranches.value.some(item => item.laserCode === printForm.value.longBranchCode)) {
+    ElMessage.warning('该镭雕码已绑定，不能重复扫描')
+    return
+  }
   // 模拟添加长支
-  boundBranches.value.push({
+  const branch = {
     code: 'LB-' + Math.floor(Math.random() * 90000 + 10000),
     laserCode: printForm.value.longBranchCode,
     engraveTime: formatNow(),
     frameNo: 'CV-A-A-L6000*W1250*H650*0208' + Math.floor(Math.random() * 9000 + 1000),
-    qty: 1
-  })
+    qty: 1,
+    boxCode: currentBoxCode.value || undefined
+  }
+  boundBranches.value.push(branch)
+  if (printForm.value.isBoxed) currentBox.value!.branches.push({ ...branch })
   printForm.value.longBranchCode = ''
   syncMaterialQty()
   if (!ensureWithinTrayCapacity()) {
     boundBranches.value.pop()
+    if (printForm.value.isBoxed) currentBox.value!.branches.pop()
     syncMaterialQty()
     return
   }
-  ElMessage.success('镭雕码绑定成功')
+  if (printForm.value.isBoxed && currentBox.value!.branches.length >= currentBox.value!.plannedQty) {
+    const nextBox = generatedBoxes.value.find(box => box.branches.length < box.plannedQty)
+    if (nextBox && nextBox.boxCode !== currentBoxCode.value) {
+      currentBoxCode.value = nextBox.boxCode
+      ElMessage.success('当前小箱已装满，已切换到下一小箱')
+    } else {
+      ElMessage.success('全部小箱已装满')
+    }
+    return
+  }
+  ElMessage.success(printForm.value.isBoxed ? '镭雕码已绑定到当前小箱' : '镭雕码绑定成功')
 }
 
 const removeBranch = (index: number) => {
-  boundBranches.value.splice(index, 1)
+  const [removed] = boundBranches.value.splice(index, 1)
+  if (removed?.boxCode) {
+    const targetBox = generatedBoxes.value.find(box => box.boxCode === removed.boxCode)
+    const branchIndex = targetBox?.branches.findIndex((item: any) => item.code === removed.code) ?? -1
+    if (targetBox && branchIndex >= 0) targetBox.branches.splice(branchIndex, 1)
+  }
   syncMaterialQty()
 }
 
 const calculateBoxes = () => {
   if (printForm.value.isBoxed && printForm.value.piecesPerBox > 0) {
-    printForm.value.boxCount = Math.ceil(printForm.value.materialQty / printForm.value.piecesPerBox)
+    const qty = printForm.value.plannedBoxQty || printForm.value.materialQty
+    printForm.value.boxCount = Math.ceil(qty / printForm.value.piecesPerBox)
   } else {
     printForm.value.boxCount = 0
   }
@@ -1201,6 +1346,7 @@ const previewData = ref<any>({})
 
 const buildPreviewData = () => ({
   ...printForm.value,
+  boxes: generatedBoxes.value,
   ...buildMaterialTagPreviewData({
     source: {
       ...scheduleInfo.value,
@@ -1238,6 +1384,10 @@ const previewBoxLabels = async () => {
     ElMessage.warning('请先输入托盘号并绑定镭雕码')
     return
   }
+  if (!generatedBoxes.value.length) {
+    ElMessage.warning('请先生成小箱码')
+    return
+  }
   previewType.value = 'box'
   previewData.value = buildPreviewData()
   await buildTeamQr()
@@ -1250,10 +1400,13 @@ const completePallet = () => {
     printForm.value.frameNo = currentTeam.value || ''
     printForm.value.longBranchCode = ''
     printForm.value.materialQty = 0
+    printForm.value.plannedBoxQty = 0
     if (printForm.value.isBoxed) {
       printForm.value.boxCount = 0
     }
     boundBranches.value = []
+    generatedBoxes.value = []
+    currentBoxCode.value = ''
     ElMessage.success('托盘信息已完成，请录入新托盘')
   }).catch(() => {})
 }
@@ -1273,9 +1426,11 @@ const confirmPrint = () => {
       target.isBoxed = printForm.value.isBoxed
       target.piecesPerBox = printForm.value.piecesPerBox
       target.boxCount = printForm.value.boxCount
+      target.plannedBoxQty = printForm.value.plannedBoxQty
       target.status = '已打印'
       target.updateTime = formatNow()
       target.branches = cloneBranches(boundBranches.value)
+      target.boxes = generatedBoxes.value.map(box => ({ ...box, branches: cloneBranches(box.branches) }))
       target.productName = previewData.value.productName
       target.extrusionBatch = previewData.value.extrusionBatch
       target.furnaceNo = previewData.value.furnaceNo
@@ -1313,13 +1468,15 @@ const confirmPrint = () => {
       isBoxed: printForm.value.isBoxed,
       piecesPerBox: printForm.value.piecesPerBox,
       boxCount: printForm.value.boxCount,
+      plannedBoxQty: printForm.value.plannedBoxQty,
       tareWeight: printForm.value.tareWeight,
       shiftTeam: currentTeam.value,
       singleCodeQty: printForm.value.singleCodeQty,
       status: '已打印',
       operator: '当前用户',
       updateTime: formatNow(),
-      branches: cloneBranches(boundBranches.value)
+      branches: cloneBranches(boundBranches.value),
+      boxes: generatedBoxes.value.map(box => ({ ...box, branches: cloneBranches(box.branches) }))
     })
   }
 
@@ -1337,6 +1494,7 @@ const reprintPallet = async (row: any) => {
   printForm.value.materialQty = row.materialQty
   printForm.value.isBoxed = row.isBoxed
   printForm.value.boxCount = row.boxCount
+  printForm.value.plannedBoxQty = row.plannedBoxQty || row.materialQty
   previewType.value = 'pallet'
   previewData.value = buildPreviewData()
   await buildTeamQr()
@@ -1354,7 +1512,16 @@ const reprintBoxes = async (row: any) => {
   printForm.value.materialQty = row.materialQty
   printForm.value.isBoxed = row.isBoxed
   printForm.value.boxCount = row.boxCount
+  printForm.value.plannedBoxQty = row.plannedBoxQty || row.materialQty
   printForm.value.piecesPerBox = Math.ceil(row.materialQty / Math.max(row.boxCount || 1, 1))
+  generatedBoxes.value = (row.boxes || []).map((box: any) => ({ ...box, branches: cloneBranches(box.branches || []) }))
+  if (!generatedBoxes.value.length && row.boxCount) {
+    generatedBoxes.value = Array.from({ length: row.boxCount }, (_, index) => ({
+      boxCode: `${row.frameNo}-${String(index + 1).padStart(2, '0')}`,
+      plannedQty: index === row.boxCount - 1 ? row.materialQty - printForm.value.piecesPerBox * index : printForm.value.piecesPerBox,
+      branches: []
+    }))
+  }
   previewType.value = 'box'
   previewData.value = buildPreviewData()
   await buildTeamQr()
@@ -1438,6 +1605,24 @@ const reprintBoxes = async (row: any) => {
 .package-summary {
   color: #606266;
   font-size: 13px;
+}
+
+.box-binding-bar {
+  display: flex;
+  align-items: center;
+  gap: 10px;
+  margin: 8px 0 10px;
+  min-height: 32px;
+}
+
+.box-binding-label,
+.detail-box-title {
+  color: #303133;
+  font-weight: 500;
+}
+
+.detail-box-title {
+  margin: 12px 0 8px;
 }
 .package-detail-actions {
   display: flex;

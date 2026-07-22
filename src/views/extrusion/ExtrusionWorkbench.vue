@@ -179,9 +179,7 @@
       <el-form :model="clockInForm" label-width="80px">
         <el-form-item label="上班班组">
           <el-select v-model="clockInForm.team" style="width: 100%">
-            <el-option label="A班" value="A班" />
-            <el-option label="B班" value="B班" />
-            <el-option label="C班" value="C班" />
+            <el-option v-for="team in extrusionSawingTeams" :key="team" :label="team" :value="team" />
           </el-select>
         </el-form-item>
       </el-form>
@@ -564,6 +562,7 @@ import ProcessDocumentDialog from '@/components/ProcessDocumentDialog.vue'
 import { useMoldQueueStore } from '@/store/moldQueue'
 import { storeToRefs } from 'pinia'
 import { useTaskLiteralDomI18n } from '@/composables/useTaskLiteralDomI18n'
+import { extrusionSawingMachines, extrusionSawingTeams, useExtrusionSawingShift } from '@/composables/useExtrusionSawingShift'
 
 useTaskLiteralDomI18n()
 
@@ -601,8 +600,8 @@ interface OperationDefinition {
   fields: OperationField[]
 }
 
-const currentMachine = ref('M001')
-const machineList = ['M001', 'M002', 'M003', 'M004', 'M005']
+const currentMachine = ref('1')
+const machineList = extrusionSawingMachines
 const extrusionBatchSeed = ref(2)
 
 const moldQueueStore = useMoldQueueStore()
@@ -1164,9 +1163,7 @@ const moldStatusTag = computed(() => {
 const activeGenericFields = computed(() => currentGenericOperation.value?.fields || [])
 
 const clockInDialogVisible = ref(false)
-const isClockedIn = ref(false)
-const currentTeam = ref('')
-const clockInTime = ref('')
+const { isClockedIn, currentTeam, clockInTime } = useExtrusionSawingShift()
 const clockInForm = ref({ team: '' })
 
 const handleClockIn = () => {
