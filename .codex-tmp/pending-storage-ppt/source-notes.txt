@@ -1,0 +1,9 @@
+Deck claims are based on direct inspection of the local MOM project source code.
+
+Primary internal sources:
+- D:\越南MOM\MOM\src\views\extrusion\PendingStorageList.vue
+- D:\越南MOM\MOM\src\utils\pendingStorageFlow.ts
+- D:\越南MOM\MOM\src\views\extrusion\PackagingWorkbench.vue
+- D:\越南MOM\MOM\src\utils\cuttingPackagingFlow.ts
+
+No external web sources or externally sourced visual assets were used.

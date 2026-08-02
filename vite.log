@@ -2516,3 +2516,2339 @@ More info: https://sass-lang.com/d/legacy-js-api
    |  ^^^^^^^^^^^^^^^^^[39m
   Plugin: [35mvite:vue[39m
   File: [36mD:/越南MOM/MOM/src/views/extrusion/CuttingWorkbench.vue[39m
+[2m16:47:26[22m [36m[1m[vite][22m[39m [32mhmr update [39m[2m/src/views/extrusion/CuttingWorkbench.vue[22m
+[2m16:47:40[22m [36m[1m[vite][22m[39m [32mhmr update [39m[2m/src/views/extrusion/CuttingWorkbench.vue[22m
+[2m07:59:30[22m [33m[1m[vite][22m[39m [33mwarning: <tr> cannot be child of <table>, according to HTML specifications. This can cause hydration errors or potentially disrupt future functionality.
+436|        <div v-if="previewType === 'pallet'" class="label-preview">
+437|          <table class="material-tag-table">
+438|            <tr>
+   |            ^^^^
+439|              <td colspan="3" class="tag-title-cell">
+   |  ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+440|                <div class="tag-title-main">Thẻ nhận dạng vật liệu</div>
+   |  ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+441|                <div class="tag-title-sub">Material tag</div>
+   |  ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+442|                <div class="tag-title-sub">物料标识卡</div>
+   |  ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+443|              </td>
+   |  ^^^^^^^^^^^^^^^^^
+444|              <td colspan="3" class="tag-top-right">
+   |  ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+445|                <div class="tag-top-right-row">
+   |  ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+446|                  <span class="tag-top-right-label">Khách hàng</span>
+   |  ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+447|                  <span class="tag-top-right-value">{{ previewData.customerName || '-' }}</span>
+   |  ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+448|                </div>
+   |  ^^^^^^^^^^^^^^^^^^^^
+449|                <div class="tag-checkbox-grid">
+   |  ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+450|                  <div class="tag-checkbox-item">
+   |  ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+451|                    <span>Phát triển SP</span><span class="tag-checkbox" :class="{ checked: previewData.isPD }"></span>
+   |  ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+452|                    <span class="tag-checkbox-hint">PD</span>
+   |  ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+453|                  </div>
+   |  ^^^^^^^^^^^^^^^^^^^^^^
+454|                  <div class="tag-checkbox-item">
+   |  ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+455|                    <span>Sản lượng</span><span class="tag-checkbox" :class="{ checked: previewData.isMassProduction }"></span>
+   |  ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+456|                    <span class="tag-checkbox-hint">Mass production</span>
+   |  ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+457|                  </div>
+   |  ^^^^^^^^^^^^^^^^^^^^^^
+458|                  <div class="tag-checkbox-item">
+   |  ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+459|                    <span>Công nghiệp nặng</span><span class="tag-checkbox" :class="{ checked: previewData.isHeavyIndustry }"></span>
+   |  ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+460|                    <span class="tag-checkbox-hint">Heavy industry</span>
+   |  ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+461|                  </div>
+   |  ^^^^^^^^^^^^^^^^^^^^^^
+462|                </div>
+   |  ^^^^^^^^^^^^^^^^^^^^
+463|              </td>
+   |  ^^^^^^^^^^^^^^^^^
+464|            </tr>
+   |  ^^^^^^^^^^^^^^^[39m
+  Plugin: [35mvite:vue[39m
+  File: [36mD:/越南MOM/MOM/src/views/extrusion/CuttingWorkbench.vue[39m
+[2m07:59:30[22m [33m[1m[vite][22m[39m [33mwarning: <tr> cannot be child of <table>, according to HTML specifications. This can cause hydration errors or potentially disrupt future functionality.
+464|            </tr>
+465|  
+466|            <tr>
+   |            ^^^^
+467|              <td class="tag-key">Tên vật liệu<br />Material name<br />物料名称</td>
+   |  ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+468|              <td class="tag-value">{{ previewData.productName || '-' }}</td>
+   |  ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+469|              <td class="tag-key">Mã số lô<br />Furnaces No.<br />炉次号</td>
+   |  ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+470|              <td class="tag-value">{{ previewData.furnaceNo || '-' }}</td>
+   |  ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+471|              <td colspan="2" rowspan="5" class="tag-qr-cell">
+   |  ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+472|                <div class="tag-qr-box">
+   |  ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+473|                  <img v-if="teamQrUrl" :src="teamQrUrl" class="tag-qr-img" alt="team-qr" />
+   |  ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+474|                  <div v-else class="tag-qr-placeholder">二维码生成中</div>
+   |  ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+475|                </div>
+   |  ^^^^^^^^^^^^^^^^^^^^
+476|              </td>
+   |  ^^^^^^^^^^^^^^^^^
+477|            </tr>
+   |  ^^^^^^^^^^^^^^^[39m
+  Plugin: [35mvite:vue[39m
+  File: [36mD:/越南MOM/MOM/src/views/extrusion/CuttingWorkbench.vue[39m
+[2m07:59:30[22m [33m[1m[vite][22m[39m [33mwarning: <tr> cannot be child of <table>, according to HTML specifications. This can cause hydration errors or potentially disrupt future functionality.
+477|            </tr>
+478|  
+479|            <tr>
+   |            ^^^^
+480|              <td class="tag-key">Số lô đùn<br />Extrusion batch No.<br />挤压批次号</td>
+   |  ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+481|              <td class="tag-value">{{ previewData.extrusionBatch || '-' }}</td>
+   |  ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+482|              <td class="tag-key">Số khuôn<br />Die No.<br />模号</td>
+   |  ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+483|              <td class="tag-value">{{ previewData.moldNo || '-' }}</td>
+   |  ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+484|            </tr>
+   |  ^^^^^^^^^^^^^^^[39m
+  Plugin: [35mvite:vue[39m
+  File: [36mD:/越南MOM/MOM/src/views/extrusion/CuttingWorkbench.vue[39m
+[2m07:59:30[22m [33m[1m[vite][22m[39m [33mwarning: <tr> cannot be child of <table>, according to HTML specifications. This can cause hydration errors or potentially disrupt future functionality.
+484|            </tr>
+485|  
+486|            <tr>
+   |            ^^^^
+487|              <td class="tag-key">Số lượng - Q’ty<br />数量</td>
+   |  ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+488|              <td class="tag-value">{{ previewData.materialQty ?? '-' }} PCS</td>
+   |  ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+489|              <td class="tag-key">Số kê<br />Frame No.<br />框号</td>
+   |  ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+490|              <td class="tag-value">{{ previewData.frameNo || '-' }}</td>
+   |  ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+491|            </tr>
+   |  ^^^^^^^^^^^^^^^[39m
+  Plugin: [35mvite:vue[39m
+  File: [36mD:/越南MOM/MOM/src/views/extrusion/CuttingWorkbench.vue[39m
+[2m07:59:30[22m [33m[1m[vite][22m[39m [33mwarning: <tr> cannot be child of <table>, according to HTML specifications. This can cause hydration errors or potentially disrupt future functionality.
+491|            </tr>
+492|  
+493|            <tr>
+   |            ^^^^
+494|              <td class="tag-key">Chiều dài cố định<br />Fixed length<br />定长</td>
+   |  ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+495|              <td class="tag-value">{{ previewData.fixedLength ?? '-' }} mm</td>
+   |  ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+496|              <td class="tag-key">Số máy<br />Machine No.<br />机台号</td>
+   |  ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+497|              <td class="tag-value">{{ previewData.extrusionMachine || '-' }}</td>
+   |  ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+498|            </tr>
+   |  ^^^^^^^^^^^^^^^[39m
+  Plugin: [35mvite:vue[39m
+  File: [36mD:/越南MOM/MOM/src/views/extrusion/CuttingWorkbench.vue[39m
+[2m07:59:30[22m [33m[1m[vite][22m[39m [33mwarning: <tr> cannot be child of <table>, according to HTML specifications. This can cause hydration errors or potentially disrupt future functionality.
+498|            </tr>
+499|  
+500|            <tr>
+   |            ^^^^
+501|              <td class="tag-key">Đội cắt/đóng gói<br />Cutting team/Packing team<br />裁切/包装班组</td>
+   |  ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+502|              <td class="tag-value">{{ previewData.shiftTeam || '-' }}</td>
+   |  ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+503|              <td class="tag-key">Nhãn hiệu<br />Material grade<br />牌号</td>
+   |  ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+504|              <td class="tag-value">{{ previewData.alloy || '-' }}</td>
+   |  ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+505|            </tr>
+   |  ^^^^^^^^^^^^^^^[39m
+  Plugin: [35mvite:vue[39m
+  File: [36mD:/越南MOM/MOM/src/views/extrusion/CuttingWorkbench.vue[39m
+[2m07:59:30[22m [33m[1m[vite][22m[39m [33mwarning: <tr> cannot be child of <table>, according to HTML specifications. This can cause hydration errors or potentially disrupt future functionality.
+511|          <div v-for="(box, index) in (previewData.boxes || []).slice(0, 3)" :key="box.boxCode" class="mb-4">
+512|            <table class="label-table">
+513|              <tr>
+   |              ^^^^
+514|                <td colspan="6" class="label-title">
+   |  ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+515|                  <div style="text-align: center; font-weight: bold; font-size: 16px;">山东创新精密科技有限公司（标示卡）</div>
+   |  ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+516|                </td>
+   |  ^^^^^^^^^^^^^^^^^^^
+517|              </tr>
+   |  ^^^^^^^^^^^^^^^^^[39m
+  Plugin: [35mvite:vue[39m
+  File: [36mD:/越南MOM/MOM/src/views/extrusion/CuttingWorkbench.vue[39m
+[2m07:59:30[22m [33m[1m[vite][22m[39m [33mwarning: <tr> cannot be child of <table>, according to HTML specifications. This can cause hydration errors or potentially disrupt future functionality.
+516|                </td>
+517|              </tr>
+518|              <tr>
+   |              ^^^^
+519|                <td class="header-cell">生产类型</td><td colspan="2">{{ previewData.productionType || scheduleInfo.productionType || '试产' }}</td>
+   |  ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+520|                <td class="header-cell">客户代码</td><td colspan="2">{{ previewData.customerCode || scheduleInfo.customerCode || '-' }}</td>
+   |  ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+521|              </tr>
+   |  ^^^^^^^^^^^^^^^^^[39m
+  Plugin: [35mvite:vue[39m
+  File: [36mD:/越南MOM/MOM/src/views/extrusion/CuttingWorkbench.vue[39m
+[2m07:59:30[22m [33m[1m[vite][22m[39m [33mwarning: <tr> cannot be child of <table>, according to HTML specifications. This can cause hydration errors or potentially disrupt future functionality.
+520|                <td class="header-cell">客户代码</td><td colspan="2">{{ previewData.customerCode || scheduleInfo.customerCode || '-' }}</td>
+521|              </tr>
+522|              <tr>
+   |              ^^^^
+523|                <td class="header-cell">产品名称</td><td colspan="2">{{ previewData.productName || 'SR-34' }}</td>
+   |  ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+524|                <td class="header-cell">炉次号</td><td colspan="2">{{ previewData.furnaceNo || '25-412-06-11-03(10PCS)' }}</td>
+   |  ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+525|              </tr>
+   |  ^^^^^^^^^^^^^^^^^[39m
+  Plugin: [35mvite:vue[39m
+  File: [36mD:/越南MOM/MOM/src/views/extrusion/CuttingWorkbench.vue[39m
+[2m07:59:30[22m [33m[1m[vite][22m[39m [33mwarning: <tr> cannot be child of <table>, according to HTML specifications. This can cause hydration errors or potentially disrupt future functionality.
+524|                <td class="header-cell">炉次号</td><td colspan="2">{{ previewData.furnaceNo || '25-412-06-11-03(10PCS)' }}</td>
+525|              </tr>
+526|              <tr>
+   |              ^^^^
+527|                <td class="header-cell">挤压批次号</td><td colspan="2">{{ previewData.extrusionBatch || 'JY2603070002(10PCS)' }}</td>
+   |  ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+528|                <td class="header-cell">模具号</td><td colspan="2">{{ previewData.moldNo || '-' }}</td>
+   |  ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+529|              </tr>
+   |  ^^^^^^^^^^^^^^^^^[39m
+  Plugin: [35mvite:vue[39m
+  File: [36mD:/越南MOM/MOM/src/views/extrusion/CuttingWorkbench.vue[39m
+[2m07:59:30[22m [33m[1m[vite][22m[39m [33mwarning: <tr> cannot be child of <table>, according to HTML specifications. This can cause hydration errors or potentially disrupt future functionality.
+528|                <td class="header-cell">模具号</td><td colspan="2">{{ previewData.moldNo || '-' }}</td>
+529|              </tr>
+530|              <tr>
+   |              ^^^^
+531|                <td class="header-cell">数量</td><td colspan="2">{{ box.plannedQty }}PCS</td>
+   |  ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+532|                <td class="header-cell">框号</td><td colspan="2">{{ previewData.frameNo || '6m-0979' }}</td>
+   |  ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+533|              </tr>
+   |  ^^^^^^^^^^^^^^^^^[39m
+  Plugin: [35mvite:vue[39m
+  File: [36mD:/越南MOM/MOM/src/views/extrusion/CuttingWorkbench.vue[39m
+[2m07:59:30[22m [33m[1m[vite][22m[39m [33mwarning: <tr> cannot be child of <table>, according to HTML specifications. This can cause hydration errors or potentially disrupt future functionality.
+532|                <td class="header-cell">框号</td><td colspan="2">{{ previewData.frameNo || '6m-0979' }}</td>
+533|              </tr>
+534|              <tr>
+   |              ^^^^
+535|                <td class="header-cell">定长</td><td colspan="2">{{ previewData.fixedLength || '-' }}mm</td>
+   |  ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+536|                <td class="header-cell">机台号</td><td colspan="2">{{ previewData.extrusionMachine || '-' }}</td>
+   |  ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+537|              </tr>
+   |  ^^^^^^^^^^^^^^^^^[39m
+  Plugin: [35mvite:vue[39m
+  File: [36mD:/越南MOM/MOM/src/views/extrusion/CuttingWorkbench.vue[39m
+[2m07:59:30[22m [33m[1m[vite][22m[39m [33mwarning: <tr> cannot be child of <table>, according to HTML specifications. This can cause hydration errors or potentially disrupt future functionality.
+536|                <td class="header-cell">机台号</td><td colspan="2">{{ previewData.extrusionMachine || '-' }}</td>
+537|              </tr>
+538|              <tr>
+   |              ^^^^
+539|                <td class="header-cell">裁切/包装班组</td><td colspan="2">{{ previewData.shiftTeam || '1234' }}</td>
+   |  ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+540|                <td class="header-cell">牌号</td><td colspan="2">{{ previewData.alloy || '-' }}</td>
+   |  ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+541|              </tr>
+   |  ^^^^^^^^^^^^^^^^^[39m
+  Plugin: [35mvite:vue[39m
+  File: [36mD:/越南MOM/MOM/src/views/extrusion/CuttingWorkbench.vue[39m
+[2m07:59:30[22m [33m[1m[vite][22m[39m [33mwarning: <tr> cannot be child of <table>, according to HTML specifications. This can cause hydration errors or potentially disrupt future functionality.
+540|                <td class="header-cell">牌号</td><td colspan="2">{{ previewData.alloy || '-' }}</td>
+541|              </tr>
+542|              <tr>
+   |              ^^^^
+543|                <td class="header-cell">纸箱号</td><td colspan="5">{{ box.boxCode || `${previewData.frameNo}-${String(index + 1).padStart(2, '0')}` }}</td>
+   |  ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+544|              </tr>
+   |  ^^^^^^^^^^^^^^^^^[39m
+  Plugin: [35mvite:vue[39m
+  File: [36mD:/越南MOM/MOM/src/views/extrusion/CuttingWorkbench.vue[39m
+[2m13:22:12[22m [36m[1m[vite][22m[39m [32mhmr update [39m[2m/src/views/extrusion/CuttingWorkbench.vue[22m
+[2m13:22:14[22m [33m[1m[vite][22m[39m [33mwarning: <tr> cannot be child of <table>, according to HTML specifications. This can cause hydration errors or potentially disrupt future functionality.
+437|        <div v-if="previewType === 'pallet'" class="label-preview">
+438|          <table class="material-tag-table">
+439|            <tr>
+   |            ^^^^
+440|              <td colspan="3" class="tag-title-cell">
+   |  ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+441|                <div class="tag-title-main">Thẻ nhận dạng vật liệu</div>
+   |  ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+442|                <div class="tag-title-sub">Material tag</div>
+   |  ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+443|                <div class="tag-title-sub">物料标识卡</div>
+   |  ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+444|              </td>
+   |  ^^^^^^^^^^^^^^^^^
+445|              <td colspan="3" class="tag-top-right">
+   |  ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+446|                <div class="tag-top-right-row">
+   |  ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+447|                  <span class="tag-top-right-label">Khách hàng</span>
+   |  ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+448|                  <span class="tag-top-right-value">{{ previewData.customerName || '-' }}</span>
+   |  ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+449|                </div>
+   |  ^^^^^^^^^^^^^^^^^^^^
+450|                <div class="tag-checkbox-grid">
+   |  ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+451|                  <div class="tag-checkbox-item">
+   |  ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+452|                    <span>Phát triển SP</span><span class="tag-checkbox" :class="{ checked: previewData.isPD }"></span>
+   |  ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+453|                    <span class="tag-checkbox-hint">PD</span>
+   |  ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+454|                  </div>
+   |  ^^^^^^^^^^^^^^^^^^^^^^
+455|                  <div class="tag-checkbox-item">
+   |  ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+456|                    <span>Sản lượng</span><span class="tag-checkbox" :class="{ checked: previewData.isMassProduction }"></span>
+   |  ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+457|                    <span class="tag-checkbox-hint">Mass production</span>
+   |  ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+458|                  </div>
+   |  ^^^^^^^^^^^^^^^^^^^^^^
+459|                  <div class="tag-checkbox-item">
+   |  ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+460|                    <span>Công nghiệp nặng</span><span class="tag-checkbox" :class="{ checked: previewData.isHeavyIndustry }"></span>
+   |  ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+461|                    <span class="tag-checkbox-hint">Heavy industry</span>
+   |  ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+462|                  </div>
+   |  ^^^^^^^^^^^^^^^^^^^^^^
+463|                </div>
+   |  ^^^^^^^^^^^^^^^^^^^^
+464|              </td>
+   |  ^^^^^^^^^^^^^^^^^
+465|            </tr>
+   |  ^^^^^^^^^^^^^^^[39m
+  Plugin: [35mvite:vue[39m
+  File: [36mD:/越南MOM/MOM/src/views/extrusion/CuttingWorkbench.vue[39m
+[2m13:22:14[22m [33m[1m[vite][22m[39m [33mwarning: <tr> cannot be child of <table>, according to HTML specifications. This can cause hydration errors or potentially disrupt future functionality.
+465|            </tr>
+466|  
+467|            <tr>
+   |            ^^^^
+468|              <td class="tag-key">Tên vật liệu<br />Material name<br />物料名称</td>
+   |  ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+469|              <td class="tag-value">{{ previewData.productName || '-' }}</td>
+   |  ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+470|              <td class="tag-key">Mã số lô<br />Furnaces No.<br />炉次号</td>
+   |  ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+471|              <td class="tag-value">{{ previewData.furnaceNo || '-' }}</td>
+   |  ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+472|              <td colspan="2" rowspan="5" class="tag-qr-cell">
+   |  ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+473|                <div class="tag-qr-box">
+   |  ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+474|                  <img v-if="teamQrUrl" :src="teamQrUrl" class="tag-qr-img" alt="team-qr" />
+   |  ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+475|                  <div v-else class="tag-qr-placeholder">二维码生成中</div>
+   |  ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+476|                </div>
+   |  ^^^^^^^^^^^^^^^^^^^^
+477|              </td>
+   |  ^^^^^^^^^^^^^^^^^
+478|            </tr>
+   |  ^^^^^^^^^^^^^^^[39m
+  Plugin: [35mvite:vue[39m
+  File: [36mD:/越南MOM/MOM/src/views/extrusion/CuttingWorkbench.vue[39m
+[2m13:22:14[22m [33m[1m[vite][22m[39m [33mwarning: <tr> cannot be child of <table>, according to HTML specifications. This can cause hydration errors or potentially disrupt future functionality.
+478|            </tr>
+479|  
+480|            <tr>
+   |            ^^^^
+481|              <td class="tag-key">Số lô đùn<br />Extrusion batch No.<br />挤压批次号</td>
+   |  ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+482|              <td class="tag-value">{{ previewData.extrusionBatch || '-' }}</td>
+   |  ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+483|              <td class="tag-key">Số khuôn<br />Die No.<br />模号</td>
+   |  ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+484|              <td class="tag-value">{{ previewData.moldNo || '-' }}</td>
+   |  ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+485|            </tr>
+   |  ^^^^^^^^^^^^^^^[39m
+  Plugin: [35mvite:vue[39m
+  File: [36mD:/越南MOM/MOM/src/views/extrusion/CuttingWorkbench.vue[39m
+[2m13:22:14[22m [33m[1m[vite][22m[39m [33mwarning: <tr> cannot be child of <table>, according to HTML specifications. This can cause hydration errors or potentially disrupt future functionality.
+485|            </tr>
+486|  
+487|            <tr>
+   |            ^^^^
+488|              <td class="tag-key">Số lượng - Q’ty<br />数量</td>
+   |  ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+489|              <td class="tag-value">{{ previewData.materialQty ?? '-' }} PCS</td>
+   |  ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+490|              <td class="tag-key">Số kê<br />Frame No.<br />框号</td>
+   |  ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+491|              <td class="tag-value">{{ previewData.frameNo || '-' }}</td>
+   |  ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+492|            </tr>
+   |  ^^^^^^^^^^^^^^^[39m
+  Plugin: [35mvite:vue[39m
+  File: [36mD:/越南MOM/MOM/src/views/extrusion/CuttingWorkbench.vue[39m
+[2m13:22:14[22m [33m[1m[vite][22m[39m [33mwarning: <tr> cannot be child of <table>, according to HTML specifications. This can cause hydration errors or potentially disrupt future functionality.
+492|            </tr>
+493|  
+494|            <tr>
+   |            ^^^^
+495|              <td class="tag-key">Chiều dài cố định<br />Fixed length<br />定长</td>
+   |  ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+496|              <td class="tag-value">{{ previewData.fixedLength ?? '-' }} mm</td>
+   |  ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+497|              <td class="tag-key">Số máy<br />Machine No.<br />机台号</td>
+   |  ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+498|              <td class="tag-value">{{ previewData.extrusionMachine || '-' }}</td>
+   |  ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+499|            </tr>
+   |  ^^^^^^^^^^^^^^^[39m
+  Plugin: [35mvite:vue[39m
+  File: [36mD:/越南MOM/MOM/src/views/extrusion/CuttingWorkbench.vue[39m
+[2m13:22:14[22m [33m[1m[vite][22m[39m [33mwarning: <tr> cannot be child of <table>, according to HTML specifications. This can cause hydration errors or potentially disrupt future functionality.
+499|            </tr>
+500|  
+501|            <tr>
+   |            ^^^^
+502|              <td class="tag-key">Đội cắt/đóng gói<br />Cutting team/Packing team<br />裁切/包装班组</td>
+   |  ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+503|              <td class="tag-value">{{ previewData.shiftTeam || '-' }}</td>
+   |  ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+504|              <td class="tag-key">Nhãn hiệu<br />Material grade<br />牌号</td>
+   |  ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+505|              <td class="tag-value">{{ previewData.alloy || '-' }}</td>
+   |  ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+506|            </tr>
+   |  ^^^^^^^^^^^^^^^[39m
+  Plugin: [35mvite:vue[39m
+  File: [36mD:/越南MOM/MOM/src/views/extrusion/CuttingWorkbench.vue[39m
+[2m13:22:14[22m [33m[1m[vite][22m[39m [33mwarning: <tr> cannot be child of <table>, according to HTML specifications. This can cause hydration errors or potentially disrupt future functionality.
+512|          <div v-for="(box, index) in (previewData.boxes || []).slice(0, 3)" :key="box.boxCode" class="mb-4">
+513|            <table class="label-table">
+514|              <tr>
+   |              ^^^^
+515|                <td colspan="6" class="label-title">
+   |  ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+516|                  <div style="text-align: center; font-weight: bold; font-size: 16px;">山东创新精密科技有限公司（标示卡）</div>
+   |  ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+517|                </td>
+   |  ^^^^^^^^^^^^^^^^^^^
+518|              </tr>
+   |  ^^^^^^^^^^^^^^^^^[39m
+  Plugin: [35mvite:vue[39m
+  File: [36mD:/越南MOM/MOM/src/views/extrusion/CuttingWorkbench.vue[39m
+[2m13:22:14[22m [33m[1m[vite][22m[39m [33mwarning: <tr> cannot be child of <table>, according to HTML specifications. This can cause hydration errors or potentially disrupt future functionality.
+517|                </td>
+518|              </tr>
+519|              <tr>
+   |              ^^^^
+520|                <td class="header-cell">生产类型</td><td colspan="2">{{ previewData.productionType || scheduleInfo.productionType || '试产' }}</td>
+   |  ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+521|                <td class="header-cell">客户代码</td><td colspan="2">{{ previewData.customerCode || scheduleInfo.customerCode || '-' }}</td>
+   |  ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+522|              </tr>
+   |  ^^^^^^^^^^^^^^^^^[39m
+  Plugin: [35mvite:vue[39m
+  File: [36mD:/越南MOM/MOM/src/views/extrusion/CuttingWorkbench.vue[39m
+[2m13:22:14[22m [33m[1m[vite][22m[39m [33mwarning: <tr> cannot be child of <table>, according to HTML specifications. This can cause hydration errors or potentially disrupt future functionality.
+521|                <td class="header-cell">客户代码</td><td colspan="2">{{ previewData.customerCode || scheduleInfo.customerCode || '-' }}</td>
+522|              </tr>
+523|              <tr>
+   |              ^^^^
+524|                <td class="header-cell">产品名称</td><td colspan="2">{{ previewData.productName || 'SR-34' }}</td>
+   |  ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+525|                <td class="header-cell">炉次号</td><td colspan="2">{{ previewData.furnaceNo || '25-412-06-11-03(10PCS)' }}</td>
+   |  ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+526|              </tr>
+   |  ^^^^^^^^^^^^^^^^^[39m
+  Plugin: [35mvite:vue[39m
+  File: [36mD:/越南MOM/MOM/src/views/extrusion/CuttingWorkbench.vue[39m
+[2m13:22:14[22m [33m[1m[vite][22m[39m [33mwarning: <tr> cannot be child of <table>, according to HTML specifications. This can cause hydration errors or potentially disrupt future functionality.
+525|                <td class="header-cell">炉次号</td><td colspan="2">{{ previewData.furnaceNo || '25-412-06-11-03(10PCS)' }}</td>
+526|              </tr>
+527|              <tr>
+   |              ^^^^
+528|                <td class="header-cell">挤压批次号</td><td colspan="2">{{ previewData.extrusionBatch || 'JY2603070002(10PCS)' }}</td>
+   |  ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+529|                <td class="header-cell">模具号</td><td colspan="2">{{ previewData.moldNo || '-' }}</td>
+   |  ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+530|              </tr>
+   |  ^^^^^^^^^^^^^^^^^[39m
+  Plugin: [35mvite:vue[39m
+  File: [36mD:/越南MOM/MOM/src/views/extrusion/CuttingWorkbench.vue[39m
+[2m13:22:14[22m [33m[1m[vite][22m[39m [33mwarning: <tr> cannot be child of <table>, according to HTML specifications. This can cause hydration errors or potentially disrupt future functionality.
+529|                <td class="header-cell">模具号</td><td colspan="2">{{ previewData.moldNo || '-' }}</td>
+530|              </tr>
+531|              <tr>
+   |              ^^^^
+532|                <td class="header-cell">数量</td><td colspan="2">{{ box.plannedQty }}PCS</td>
+   |  ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+533|                <td class="header-cell">框号</td><td colspan="2">{{ previewData.frameNo || '6m-0979' }}</td>
+   |  ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+534|              </tr>
+   |  ^^^^^^^^^^^^^^^^^[39m
+  Plugin: [35mvite:vue[39m
+  File: [36mD:/越南MOM/MOM/src/views/extrusion/CuttingWorkbench.vue[39m
+[2m13:22:14[22m [33m[1m[vite][22m[39m [33mwarning: <tr> cannot be child of <table>, according to HTML specifications. This can cause hydration errors or potentially disrupt future functionality.
+533|                <td class="header-cell">框号</td><td colspan="2">{{ previewData.frameNo || '6m-0979' }}</td>
+534|              </tr>
+535|              <tr>
+   |              ^^^^
+536|                <td class="header-cell">定长</td><td colspan="2">{{ previewData.fixedLength || '-' }}mm</td>
+   |  ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+537|                <td class="header-cell">机台号</td><td colspan="2">{{ previewData.extrusionMachine || '-' }}</td>
+   |  ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+538|              </tr>
+   |  ^^^^^^^^^^^^^^^^^[39m
+  Plugin: [35mvite:vue[39m
+  File: [36mD:/越南MOM/MOM/src/views/extrusion/CuttingWorkbench.vue[39m
+[2m13:22:14[22m [33m[1m[vite][22m[39m [33mwarning: <tr> cannot be child of <table>, according to HTML specifications. This can cause hydration errors or potentially disrupt future functionality.
+537|                <td class="header-cell">机台号</td><td colspan="2">{{ previewData.extrusionMachine || '-' }}</td>
+538|              </tr>
+539|              <tr>
+   |              ^^^^
+540|                <td class="header-cell">裁切/包装班组</td><td colspan="2">{{ previewData.shiftTeam || '1234' }}</td>
+   |  ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+541|                <td class="header-cell">牌号</td><td colspan="2">{{ previewData.alloy || '-' }}</td>
+   |  ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+542|              </tr>
+   |  ^^^^^^^^^^^^^^^^^[39m
+  Plugin: [35mvite:vue[39m
+  File: [36mD:/越南MOM/MOM/src/views/extrusion/CuttingWorkbench.vue[39m
+[2m13:22:14[22m [33m[1m[vite][22m[39m [33mwarning: <tr> cannot be child of <table>, according to HTML specifications. This can cause hydration errors or potentially disrupt future functionality.
+541|                <td class="header-cell">牌号</td><td colspan="2">{{ previewData.alloy || '-' }}</td>
+542|              </tr>
+543|              <tr>
+   |              ^^^^
+544|                <td class="header-cell">纸箱号</td><td colspan="5">{{ box.boxCode || `${previewData.frameNo}-${String(index + 1).padStart(2, '0')}` }}</td>
+   |  ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+545|              </tr>
+   |  ^^^^^^^^^^^^^^^^^[39m
+  Plugin: [35mvite:vue[39m
+  File: [36mD:/越南MOM/MOM/src/views/extrusion/CuttingWorkbench.vue[39m
+[2m13:22:18[22m [36m[1m[vite][22m[39m [32mhmr update [39m[2m/src/views/extrusion/CuttingWorkbench.vue[22m
+[2m13:22:18[22m [33m[1m[vite][22m[39m [33mwarning: <tr> cannot be child of <table>, according to HTML specifications. This can cause hydration errors or potentially disrupt future functionality.
+437|        <div v-if="previewType === 'pallet'" class="label-preview">
+438|          <table class="material-tag-table">
+439|            <tr>
+   |            ^^^^
+440|              <td colspan="3" class="tag-title-cell">
+   |  ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+441|                <div class="tag-title-main">Thẻ nhận dạng vật liệu</div>
+   |  ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+442|                <div class="tag-title-sub">Material tag</div>
+   |  ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+443|                <div class="tag-title-sub">物料标识卡</div>
+   |  ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+444|              </td>
+   |  ^^^^^^^^^^^^^^^^^
+445|              <td colspan="3" class="tag-top-right">
+   |  ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+446|                <div class="tag-top-right-row">
+   |  ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+447|                  <span class="tag-top-right-label">Khách hàng</span>
+   |  ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+448|                  <span class="tag-top-right-value">{{ previewData.customerName || '-' }}</span>
+   |  ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+449|                </div>
+   |  ^^^^^^^^^^^^^^^^^^^^
+450|                <div class="tag-checkbox-grid">
+   |  ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+451|                  <div class="tag-checkbox-item">
+   |  ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+452|                    <span>Phát triển SP</span><span class="tag-checkbox" :class="{ checked: previewData.isPD }"></span>
+   |  ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+453|                    <span class="tag-checkbox-hint">PD</span>
+   |  ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+454|                  </div>
+   |  ^^^^^^^^^^^^^^^^^^^^^^
+455|                  <div class="tag-checkbox-item">
+   |  ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+456|                    <span>Sản lượng</span><span class="tag-checkbox" :class="{ checked: previewData.isMassProduction }"></span>
+   |  ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+457|                    <span class="tag-checkbox-hint">Mass production</span>
+   |  ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+458|                  </div>
+   |  ^^^^^^^^^^^^^^^^^^^^^^
+459|                  <div class="tag-checkbox-item">
+   |  ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+460|                    <span>Công nghiệp nặng</span><span class="tag-checkbox" :class="{ checked: previewData.isHeavyIndustry }"></span>
+   |  ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+461|                    <span class="tag-checkbox-hint">Heavy industry</span>
+   |  ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+462|                  </div>
+   |  ^^^^^^^^^^^^^^^^^^^^^^
+463|                </div>
+   |  ^^^^^^^^^^^^^^^^^^^^
+464|              </td>
+   |  ^^^^^^^^^^^^^^^^^
+465|            </tr>
+   |  ^^^^^^^^^^^^^^^[39m
+  Plugin: [35mvite:vue[39m
+  File: [36mD:/越南MOM/MOM/src/views/extrusion/CuttingWorkbench.vue[39m
+[2m13:22:18[22m [33m[1m[vite][22m[39m [33mwarning: <tr> cannot be child of <table>, according to HTML specifications. This can cause hydration errors or potentially disrupt future functionality.
+465|            </tr>
+466|  
+467|            <tr>
+   |            ^^^^
+468|              <td class="tag-key">Tên vật liệu<br />Material name<br />物料名称</td>
+   |  ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+469|              <td class="tag-value">{{ previewData.productName || '-' }}</td>
+   |  ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+470|              <td class="tag-key">Mã số lô<br />Furnaces No.<br />炉次号</td>
+   |  ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+471|              <td class="tag-value">{{ previewData.furnaceNo || '-' }}</td>
+   |  ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+472|              <td colspan="2" rowspan="5" class="tag-qr-cell">
+   |  ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+473|                <div class="tag-qr-box">
+   |  ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+474|                  <img v-if="teamQrUrl" :src="teamQrUrl" class="tag-qr-img" alt="team-qr" />
+   |  ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+475|                  <div v-else class="tag-qr-placeholder">二维码生成中</div>
+   |  ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+476|                </div>
+   |  ^^^^^^^^^^^^^^^^^^^^
+477|              </td>
+   |  ^^^^^^^^^^^^^^^^^
+478|            </tr>
+   |  ^^^^^^^^^^^^^^^[39m
+  Plugin: [35mvite:vue[39m
+  File: [36mD:/越南MOM/MOM/src/views/extrusion/CuttingWorkbench.vue[39m
+[2m13:22:18[22m [33m[1m[vite][22m[39m [33mwarning: <tr> cannot be child of <table>, according to HTML specifications. This can cause hydration errors or potentially disrupt future functionality.
+478|            </tr>
+479|  
+480|            <tr>
+   |            ^^^^
+481|              <td class="tag-key">Số lô đùn<br />Extrusion batch No.<br />挤压批次号</td>
+   |  ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+482|              <td class="tag-value">{{ previewData.extrusionBatch || '-' }}</td>
+   |  ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+483|              <td class="tag-key">Số khuôn<br />Die No.<br />模号</td>
+   |  ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+484|              <td class="tag-value">{{ previewData.moldNo || '-' }}</td>
+   |  ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+485|            </tr>
+   |  ^^^^^^^^^^^^^^^[39m
+  Plugin: [35mvite:vue[39m
+  File: [36mD:/越南MOM/MOM/src/views/extrusion/CuttingWorkbench.vue[39m
+[2m13:22:18[22m [33m[1m[vite][22m[39m [33mwarning: <tr> cannot be child of <table>, according to HTML specifications. This can cause hydration errors or potentially disrupt future functionality.
+485|            </tr>
+486|  
+487|            <tr>
+   |            ^^^^
+488|              <td class="tag-key">Số lượng - Q’ty<br />数量</td>
+   |  ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+489|              <td class="tag-value">{{ previewData.materialQty ?? '-' }} PCS</td>
+   |  ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+490|              <td class="tag-key">Số kê<br />Frame No.<br />框号</td>
+   |  ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+491|              <td class="tag-value">{{ previewData.frameNo || '-' }}</td>
+   |  ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+492|            </tr>
+   |  ^^^^^^^^^^^^^^^[39m
+  Plugin: [35mvite:vue[39m
+  File: [36mD:/越南MOM/MOM/src/views/extrusion/CuttingWorkbench.vue[39m
+[2m13:22:18[22m [33m[1m[vite][22m[39m [33mwarning: <tr> cannot be child of <table>, according to HTML specifications. This can cause hydration errors or potentially disrupt future functionality.
+492|            </tr>
+493|  
+494|            <tr>
+   |            ^^^^
+495|              <td class="tag-key">Chiều dài cố định<br />Fixed length<br />定长</td>
+   |  ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+496|              <td class="tag-value">{{ previewData.fixedLength ?? '-' }} mm</td>
+   |  ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+497|              <td class="tag-key">Số máy<br />Machine No.<br />机台号</td>
+   |  ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+498|              <td class="tag-value">{{ previewData.extrusionMachine || '-' }}</td>
+   |  ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+499|            </tr>
+   |  ^^^^^^^^^^^^^^^[39m
+  Plugin: [35mvite:vue[39m
+  File: [36mD:/越南MOM/MOM/src/views/extrusion/CuttingWorkbench.vue[39m
+[2m13:22:18[22m [33m[1m[vite][22m[39m [33mwarning: <tr> cannot be child of <table>, according to HTML specifications. This can cause hydration errors or potentially disrupt future functionality.
+499|            </tr>
+500|  
+501|            <tr>
+   |            ^^^^
+502|              <td class="tag-key">Đội cắt/đóng gói<br />Cutting team/Packing team<br />裁切/包装班组</td>
+   |  ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+503|              <td class="tag-value">{{ previewData.shiftTeam || '-' }}</td>
+   |  ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+504|              <td class="tag-key">Nhãn hiệu<br />Material grade<br />牌号</td>
+   |  ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+505|              <td class="tag-value">{{ previewData.alloy || '-' }}</td>
+   |  ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+506|            </tr>
+   |  ^^^^^^^^^^^^^^^[39m
+  Plugin: [35mvite:vue[39m
+  File: [36mD:/越南MOM/MOM/src/views/extrusion/CuttingWorkbench.vue[39m
+[2m13:22:18[22m [33m[1m[vite][22m[39m [33mwarning: <tr> cannot be child of <table>, according to HTML specifications. This can cause hydration errors or potentially disrupt future functionality.
+512|          <div v-for="(box, index) in (previewData.boxes || []).slice(0, 3)" :key="box.boxCode" class="mb-4">
+513|            <table class="label-table">
+514|              <tr>
+   |              ^^^^
+515|                <td colspan="6" class="label-title">
+   |  ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+516|                  <div style="text-align: center; font-weight: bold; font-size: 16px;">山东创新精密科技有限公司（标示卡）</div>
+   |  ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+517|                </td>
+   |  ^^^^^^^^^^^^^^^^^^^
+518|              </tr>
+   |  ^^^^^^^^^^^^^^^^^[39m
+  Plugin: [35mvite:vue[39m
+  File: [36mD:/越南MOM/MOM/src/views/extrusion/CuttingWorkbench.vue[39m
+[2m13:22:18[22m [33m[1m[vite][22m[39m [33mwarning: <tr> cannot be child of <table>, according to HTML specifications. This can cause hydration errors or potentially disrupt future functionality.
+517|                </td>
+518|              </tr>
+519|              <tr>
+   |              ^^^^
+520|                <td class="header-cell">生产类型</td><td colspan="2">{{ previewData.productionType || scheduleInfo.productionType || '试产' }}</td>
+   |  ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+521|                <td class="header-cell">客户代码</td><td colspan="2">{{ previewData.customerCode || scheduleInfo.customerCode || '-' }}</td>
+   |  ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+522|              </tr>
+   |  ^^^^^^^^^^^^^^^^^[39m
+  Plugin: [35mvite:vue[39m
+  File: [36mD:/越南MOM/MOM/src/views/extrusion/CuttingWorkbench.vue[39m
+[2m13:22:18[22m [33m[1m[vite][22m[39m [33mwarning: <tr> cannot be child of <table>, according to HTML specifications. This can cause hydration errors or potentially disrupt future functionality.
+521|                <td class="header-cell">客户代码</td><td colspan="2">{{ previewData.customerCode || scheduleInfo.customerCode || '-' }}</td>
+522|              </tr>
+523|              <tr>
+   |              ^^^^
+524|                <td class="header-cell">产品名称</td><td colspan="2">{{ previewData.productName || 'SR-34' }}</td>
+   |  ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+525|                <td class="header-cell">炉次号</td><td colspan="2">{{ previewData.furnaceNo || '25-412-06-11-03(10PCS)' }}</td>
+   |  ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+526|              </tr>
+   |  ^^^^^^^^^^^^^^^^^[39m
+  Plugin: [35mvite:vue[39m
+  File: [36mD:/越南MOM/MOM/src/views/extrusion/CuttingWorkbench.vue[39m
+[2m13:22:18[22m [33m[1m[vite][22m[39m [33mwarning: <tr> cannot be child of <table>, according to HTML specifications. This can cause hydration errors or potentially disrupt future functionality.
+525|                <td class="header-cell">炉次号</td><td colspan="2">{{ previewData.furnaceNo || '25-412-06-11-03(10PCS)' }}</td>
+526|              </tr>
+527|              <tr>
+   |              ^^^^
+528|                <td class="header-cell">挤压批次号</td><td colspan="2">{{ previewData.extrusionBatch || 'JY2603070002(10PCS)' }}</td>
+   |  ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+529|                <td class="header-cell">模具号</td><td colspan="2">{{ previewData.moldNo || '-' }}</td>
+   |  ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+530|              </tr>
+   |  ^^^^^^^^^^^^^^^^^[39m
+  Plugin: [35mvite:vue[39m
+  File: [36mD:/越南MOM/MOM/src/views/extrusion/CuttingWorkbench.vue[39m
+[2m13:22:18[22m [33m[1m[vite][22m[39m [33mwarning: <tr> cannot be child of <table>, according to HTML specifications. This can cause hydration errors or potentially disrupt future functionality.
+529|                <td class="header-cell">模具号</td><td colspan="2">{{ previewData.moldNo || '-' }}</td>
+530|              </tr>
+531|              <tr>
+   |              ^^^^
+532|                <td class="header-cell">数量</td><td colspan="2">{{ box.plannedQty }}PCS</td>
+   |  ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+533|                <td class="header-cell">框号</td><td colspan="2">{{ previewData.frameNo || '6m-0979' }}</td>
+   |  ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+534|              </tr>
+   |  ^^^^^^^^^^^^^^^^^[39m
+  Plugin: [35mvite:vue[39m
+  File: [36mD:/越南MOM/MOM/src/views/extrusion/CuttingWorkbench.vue[39m
+[2m13:22:18[22m [33m[1m[vite][22m[39m [33mwarning: <tr> cannot be child of <table>, according to HTML specifications. This can cause hydration errors or potentially disrupt future functionality.
+533|                <td class="header-cell">框号</td><td colspan="2">{{ previewData.frameNo || '6m-0979' }}</td>
+534|              </tr>
+535|              <tr>
+   |              ^^^^
+536|                <td class="header-cell">定长</td><td colspan="2">{{ previewData.fixedLength || '-' }}mm</td>
+   |  ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+537|                <td class="header-cell">机台号</td><td colspan="2">{{ previewData.extrusionMachine || '-' }}</td>
+   |  ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+538|              </tr>
+   |  ^^^^^^^^^^^^^^^^^[39m
+  Plugin: [35mvite:vue[39m
+  File: [36mD:/越南MOM/MOM/src/views/extrusion/CuttingWorkbench.vue[39m
+[2m13:22:18[22m [33m[1m[vite][22m[39m [33mwarning: <tr> cannot be child of <table>, according to HTML specifications. This can cause hydration errors or potentially disrupt future functionality.
+537|                <td class="header-cell">机台号</td><td colspan="2">{{ previewData.extrusionMachine || '-' }}</td>
+538|              </tr>
+539|              <tr>
+   |              ^^^^
+540|                <td class="header-cell">裁切/包装班组</td><td colspan="2">{{ previewData.shiftTeam || '1234' }}</td>
+   |  ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+541|                <td class="header-cell">牌号</td><td colspan="2">{{ previewData.alloy || '-' }}</td>
+   |  ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+542|              </tr>
+   |  ^^^^^^^^^^^^^^^^^[39m
+  Plugin: [35mvite:vue[39m
+  File: [36mD:/越南MOM/MOM/src/views/extrusion/CuttingWorkbench.vue[39m
+[2m13:22:18[22m [33m[1m[vite][22m[39m [33mwarning: <tr> cannot be child of <table>, according to HTML specifications. This can cause hydration errors or potentially disrupt future functionality.
+541|                <td class="header-cell">牌号</td><td colspan="2">{{ previewData.alloy || '-' }}</td>
+542|              </tr>
+543|              <tr>
+   |              ^^^^
+544|                <td class="header-cell">纸箱号</td><td colspan="5">{{ box.boxCode || `${previewData.frameNo}-${String(index + 1).padStart(2, '0')}` }}</td>
+   |  ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+545|              </tr>
+   |  ^^^^^^^^^^^^^^^^^[39m
+  Plugin: [35mvite:vue[39m
+  File: [36mD:/越南MOM/MOM/src/views/extrusion/CuttingWorkbench.vue[39m
+[2m13:23:23[22m [36m[1m[vite][22m[39m [32mhmr update [39m[2m/src/views/extrusion/CuttingWorkbench.vue[22m
+[2m13:23:23[22m [33m[1m[vite][22m[39m [33mwarning: <tr> cannot be child of <table>, according to HTML specifications. This can cause hydration errors or potentially disrupt future functionality.
+437|        <div v-if="previewType === 'pallet'" class="label-preview">
+438|          <table class="material-tag-table">
+439|            <tr>
+   |            ^^^^
+440|              <td colspan="3" class="tag-title-cell">
+   |  ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+441|                <div class="tag-title-main">Thẻ nhận dạng vật liệu</div>
+   |  ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+442|                <div class="tag-title-sub">Material tag</div>
+   |  ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+443|                <div class="tag-title-sub">物料标识卡</div>
+   |  ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+444|              </td>
+   |  ^^^^^^^^^^^^^^^^^
+445|              <td colspan="3" class="tag-top-right">
+   |  ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+446|                <div class="tag-top-right-row">
+   |  ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+447|                  <span class="tag-top-right-label">Khách hàng</span>
+   |  ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+448|                  <span class="tag-top-right-value">{{ previewData.customerName || '-' }}</span>
+   |  ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+449|                </div>
+   |  ^^^^^^^^^^^^^^^^^^^^
+450|                <div class="tag-checkbox-grid">
+   |  ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+451|                  <div class="tag-checkbox-item">
+   |  ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+452|                    <span>Phát triển SP</span><span class="tag-checkbox" :class="{ checked: previewData.isPD }"></span>
+   |  ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+453|                    <span class="tag-checkbox-hint">PD</span>
+   |  ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+454|                  </div>
+   |  ^^^^^^^^^^^^^^^^^^^^^^
+455|                  <div class="tag-checkbox-item">
+   |  ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+456|                    <span>Sản lượng</span><span class="tag-checkbox" :class="{ checked: previewData.isMassProduction }"></span>
+   |  ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+457|                    <span class="tag-checkbox-hint">Mass production</span>
+   |  ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+458|                  </div>
+   |  ^^^^^^^^^^^^^^^^^^^^^^
+459|                  <div class="tag-checkbox-item">
+   |  ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+460|                    <span>Công nghiệp nặng</span><span class="tag-checkbox" :class="{ checked: previewData.isHeavyIndustry }"></span>
+   |  ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+461|                    <span class="tag-checkbox-hint">Heavy industry</span>
+   |  ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+462|                  </div>
+   |  ^^^^^^^^^^^^^^^^^^^^^^
+463|                </div>
+   |  ^^^^^^^^^^^^^^^^^^^^
+464|              </td>
+   |  ^^^^^^^^^^^^^^^^^
+465|            </tr>
+   |  ^^^^^^^^^^^^^^^[39m
+  Plugin: [35mvite:vue[39m
+  File: [36mD:/越南MOM/MOM/src/views/extrusion/CuttingWorkbench.vue[39m
+[2m13:23:23[22m [33m[1m[vite][22m[39m [33mwarning: <tr> cannot be child of <table>, according to HTML specifications. This can cause hydration errors or potentially disrupt future functionality.
+465|            </tr>
+466|  
+467|            <tr>
+   |            ^^^^
+468|              <td class="tag-key">Tên vật liệu<br />Material name<br />物料名称</td>
+   |  ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+469|              <td class="tag-value">{{ previewData.productName || '-' }}</td>
+   |  ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+470|              <td class="tag-key">Mã số lô<br />Furnaces No.<br />炉次号</td>
+   |  ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+471|              <td class="tag-value">{{ previewData.furnaceNo || '-' }}</td>
+   |  ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+472|              <td colspan="2" rowspan="5" class="tag-qr-cell">
+   |  ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+473|                <div class="tag-qr-box">
+   |  ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+474|                  <img v-if="teamQrUrl" :src="teamQrUrl" class="tag-qr-img" alt="team-qr" />
+   |  ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+475|                  <div v-else class="tag-qr-placeholder">二维码生成中</div>
+   |  ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+476|                </div>
+   |  ^^^^^^^^^^^^^^^^^^^^
+477|              </td>
+   |  ^^^^^^^^^^^^^^^^^
+478|            </tr>
+   |  ^^^^^^^^^^^^^^^[39m
+  Plugin: [35mvite:vue[39m
+  File: [36mD:/越南MOM/MOM/src/views/extrusion/CuttingWorkbench.vue[39m
+[2m13:23:23[22m [33m[1m[vite][22m[39m [33mwarning: <tr> cannot be child of <table>, according to HTML specifications. This can cause hydration errors or potentially disrupt future functionality.
+478|            </tr>
+479|  
+480|            <tr>
+   |            ^^^^
+481|              <td class="tag-key">Số lô đùn<br />Extrusion batch No.<br />挤压批次号</td>
+   |  ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+482|              <td class="tag-value">{{ previewData.extrusionBatch || '-' }}</td>
+   |  ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+483|              <td class="tag-key">Số khuôn<br />Die No.<br />模号</td>
+   |  ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+484|              <td class="tag-value">{{ previewData.moldNo || '-' }}</td>
+   |  ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+485|            </tr>
+   |  ^^^^^^^^^^^^^^^[39m
+  Plugin: [35mvite:vue[39m
+  File: [36mD:/越南MOM/MOM/src/views/extrusion/CuttingWorkbench.vue[39m
+[2m13:23:23[22m [33m[1m[vite][22m[39m [33mwarning: <tr> cannot be child of <table>, according to HTML specifications. This can cause hydration errors or potentially disrupt future functionality.
+485|            </tr>
+486|  
+487|            <tr>
+   |            ^^^^
+488|              <td class="tag-key">Số lượng - Q’ty<br />数量</td>
+   |  ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+489|              <td class="tag-value">{{ previewData.materialQty ?? '-' }} PCS</td>
+   |  ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+490|              <td class="tag-key">Số kê<br />Frame No.<br />框号</td>
+   |  ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+491|              <td class="tag-value">{{ previewData.frameNo || '-' }}</td>
+   |  ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+492|            </tr>
+   |  ^^^^^^^^^^^^^^^[39m
+  Plugin: [35mvite:vue[39m
+  File: [36mD:/越南MOM/MOM/src/views/extrusion/CuttingWorkbench.vue[39m
+[2m13:23:23[22m [33m[1m[vite][22m[39m [33mwarning: <tr> cannot be child of <table>, according to HTML specifications. This can cause hydration errors or potentially disrupt future functionality.
+492|            </tr>
+493|  
+494|            <tr>
+   |            ^^^^
+495|              <td class="tag-key">Chiều dài cố định<br />Fixed length<br />定长</td>
+   |  ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+496|              <td class="tag-value">{{ previewData.fixedLength ?? '-' }} mm</td>
+   |  ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+497|              <td class="tag-key">Số máy<br />Machine No.<br />机台号</td>
+   |  ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+498|              <td class="tag-value">{{ previewData.extrusionMachine || '-' }}</td>
+   |  ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+499|            </tr>
+   |  ^^^^^^^^^^^^^^^[39m
+  Plugin: [35mvite:vue[39m
+  File: [36mD:/越南MOM/MOM/src/views/extrusion/CuttingWorkbench.vue[39m
+[2m13:23:23[22m [33m[1m[vite][22m[39m [33mwarning: <tr> cannot be child of <table>, according to HTML specifications. This can cause hydration errors or potentially disrupt future functionality.
+499|            </tr>
+500|  
+501|            <tr>
+   |            ^^^^
+502|              <td class="tag-key">Đội cắt/đóng gói<br />Cutting team/Packing team<br />裁切/包装班组</td>
+   |  ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+503|              <td class="tag-value">{{ previewData.shiftTeam || '-' }}</td>
+   |  ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+504|              <td class="tag-key">Nhãn hiệu<br />Material grade<br />牌号</td>
+   |  ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+505|              <td class="tag-value">{{ previewData.alloy || '-' }}</td>
+   |  ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+506|            </tr>
+   |  ^^^^^^^^^^^^^^^[39m
+  Plugin: [35mvite:vue[39m
+  File: [36mD:/越南MOM/MOM/src/views/extrusion/CuttingWorkbench.vue[39m
+[2m13:23:23[22m [33m[1m[vite][22m[39m [33mwarning: <tr> cannot be child of <table>, according to HTML specifications. This can cause hydration errors or potentially disrupt future functionality.
+512|          <div v-for="(box, index) in (previewData.boxes || []).slice(0, 3)" :key="box.boxCode" class="mb-4">
+513|            <table class="label-table">
+514|              <tr>
+   |              ^^^^
+515|                <td colspan="6" class="label-title">
+   |  ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+516|                  <div style="text-align: center; font-weight: bold; font-size: 16px;">山东创新精密科技有限公司（标示卡）</div>
+   |  ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+517|                </td>
+   |  ^^^^^^^^^^^^^^^^^^^
+518|              </tr>
+   |  ^^^^^^^^^^^^^^^^^[39m
+  Plugin: [35mvite:vue[39m
+  File: [36mD:/越南MOM/MOM/src/views/extrusion/CuttingWorkbench.vue[39m
+[2m13:23:23[22m [33m[1m[vite][22m[39m [33mwarning: <tr> cannot be child of <table>, according to HTML specifications. This can cause hydration errors or potentially disrupt future functionality.
+517|                </td>
+518|              </tr>
+519|              <tr>
+   |              ^^^^
+520|                <td class="header-cell">生产类型</td><td colspan="2">{{ previewData.productionType || scheduleInfo.productionType || '试产' }}</td>
+   |  ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+521|                <td class="header-cell">客户代码</td><td colspan="2">{{ previewData.customerCode || scheduleInfo.customerCode || '-' }}</td>
+   |  ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+522|              </tr>
+   |  ^^^^^^^^^^^^^^^^^[39m
+  Plugin: [35mvite:vue[39m
+  File: [36mD:/越南MOM/MOM/src/views/extrusion/CuttingWorkbench.vue[39m
+[2m13:23:23[22m [33m[1m[vite][22m[39m [33mwarning: <tr> cannot be child of <table>, according to HTML specifications. This can cause hydration errors or potentially disrupt future functionality.
+521|                <td class="header-cell">客户代码</td><td colspan="2">{{ previewData.customerCode || scheduleInfo.customerCode || '-' }}</td>
+522|              </tr>
+523|              <tr>
+   |              ^^^^
+524|                <td class="header-cell">产品名称</td><td colspan="2">{{ previewData.productName || 'SR-34' }}</td>
+   |  ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+525|                <td class="header-cell">炉次号</td><td colspan="2">{{ previewData.furnaceNo || '25-412-06-11-03(10PCS)' }}</td>
+   |  ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+526|              </tr>
+   |  ^^^^^^^^^^^^^^^^^[39m
+  Plugin: [35mvite:vue[39m
+  File: [36mD:/越南MOM/MOM/src/views/extrusion/CuttingWorkbench.vue[39m
+[2m13:23:23[22m [33m[1m[vite][22m[39m [33mwarning: <tr> cannot be child of <table>, according to HTML specifications. This can cause hydration errors or potentially disrupt future functionality.
+525|                <td class="header-cell">炉次号</td><td colspan="2">{{ previewData.furnaceNo || '25-412-06-11-03(10PCS)' }}</td>
+526|              </tr>
+527|              <tr>
+   |              ^^^^
+528|                <td class="header-cell">挤压批次号</td><td colspan="2">{{ previewData.extrusionBatch || 'JY2603070002(10PCS)' }}</td>
+   |  ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+529|                <td class="header-cell">模具号</td><td colspan="2">{{ previewData.moldNo || '-' }}</td>
+   |  ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+530|              </tr>
+   |  ^^^^^^^^^^^^^^^^^[39m
+  Plugin: [35mvite:vue[39m
+  File: [36mD:/越南MOM/MOM/src/views/extrusion/CuttingWorkbench.vue[39m
+[2m13:23:23[22m [33m[1m[vite][22m[39m [33mwarning: <tr> cannot be child of <table>, according to HTML specifications. This can cause hydration errors or potentially disrupt future functionality.
+529|                <td class="header-cell">模具号</td><td colspan="2">{{ previewData.moldNo || '-' }}</td>
+530|              </tr>
+531|              <tr>
+   |              ^^^^
+532|                <td class="header-cell">数量</td><td colspan="2">{{ box.plannedQty }}PCS</td>
+   |  ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+533|                <td class="header-cell">框号</td><td colspan="2">{{ previewData.frameNo || '6m-0979' }}</td>
+   |  ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+534|              </tr>
+   |  ^^^^^^^^^^^^^^^^^[39m
+  Plugin: [35mvite:vue[39m
+  File: [36mD:/越南MOM/MOM/src/views/extrusion/CuttingWorkbench.vue[39m
+[2m13:23:23[22m [33m[1m[vite][22m[39m [33mwarning: <tr> cannot be child of <table>, according to HTML specifications. This can cause hydration errors or potentially disrupt future functionality.
+533|                <td class="header-cell">框号</td><td colspan="2">{{ previewData.frameNo || '6m-0979' }}</td>
+534|              </tr>
+535|              <tr>
+   |              ^^^^
+536|                <td class="header-cell">定长</td><td colspan="2">{{ previewData.fixedLength || '-' }}mm</td>
+   |  ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+537|                <td class="header-cell">机台号</td><td colspan="2">{{ previewData.extrusionMachine || '-' }}</td>
+   |  ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+538|              </tr>
+   |  ^^^^^^^^^^^^^^^^^[39m
+  Plugin: [35mvite:vue[39m
+  File: [36mD:/越南MOM/MOM/src/views/extrusion/CuttingWorkbench.vue[39m
+[2m13:23:23[22m [33m[1m[vite][22m[39m [33mwarning: <tr> cannot be child of <table>, according to HTML specifications. This can cause hydration errors or potentially disrupt future functionality.
+537|                <td class="header-cell">机台号</td><td colspan="2">{{ previewData.extrusionMachine || '-' }}</td>
+538|              </tr>
+539|              <tr>
+   |              ^^^^
+540|                <td class="header-cell">裁切/包装班组</td><td colspan="2">{{ previewData.shiftTeam || '1234' }}</td>
+   |  ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+541|                <td class="header-cell">牌号</td><td colspan="2">{{ previewData.alloy || '-' }}</td>
+   |  ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+542|              </tr>
+   |  ^^^^^^^^^^^^^^^^^[39m
+  Plugin: [35mvite:vue[39m
+  File: [36mD:/越南MOM/MOM/src/views/extrusion/CuttingWorkbench.vue[39m
+[2m13:23:23[22m [33m[1m[vite][22m[39m [33mwarning: <tr> cannot be child of <table>, according to HTML specifications. This can cause hydration errors or potentially disrupt future functionality.
+541|                <td class="header-cell">牌号</td><td colspan="2">{{ previewData.alloy || '-' }}</td>
+542|              </tr>
+543|              <tr>
+   |              ^^^^
+544|                <td class="header-cell">纸箱号</td><td colspan="5">{{ box.boxCode || `${previewData.frameNo}-${String(index + 1).padStart(2, '0')}` }}</td>
+   |  ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+545|              </tr>
+   |  ^^^^^^^^^^^^^^^^^[39m
+  Plugin: [35mvite:vue[39m
+  File: [36mD:/越南MOM/MOM/src/views/extrusion/CuttingWorkbench.vue[39m
+[2m13:24:33[22m [36m[1m[vite][22m[39m [32mhmr update [39m[2m/src/views/extrusion/CuttingWorkbench.vue[22m
+[2m13:24:33[22m [33m[1m[vite][22m[39m [33mwarning: <tr> cannot be child of <table>, according to HTML specifications. This can cause hydration errors or potentially disrupt future functionality.
+437|        <div v-if="previewType === 'pallet'" class="label-preview">
+438|          <table class="material-tag-table">
+439|            <tr>
+   |            ^^^^
+440|              <td colspan="3" class="tag-title-cell">
+   |  ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+441|                <div class="tag-title-main">Thẻ nhận dạng vật liệu</div>
+   |  ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+442|                <div class="tag-title-sub">Material tag</div>
+   |  ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+443|                <div class="tag-title-sub">物料标识卡</div>
+   |  ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+444|              </td>
+   |  ^^^^^^^^^^^^^^^^^
+445|              <td colspan="3" class="tag-top-right">
+   |  ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+446|                <div class="tag-top-right-row">
+   |  ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+447|                  <span class="tag-top-right-label">Khách hàng</span>
+   |  ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+448|                  <span class="tag-top-right-value">{{ previewData.customerName || '-' }}</span>
+   |  ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+449|                </div>
+   |  ^^^^^^^^^^^^^^^^^^^^
+450|                <div class="tag-checkbox-grid">
+   |  ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+451|                  <div class="tag-checkbox-item">
+   |  ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+452|                    <span>Phát triển SP</span><span class="tag-checkbox" :class="{ checked: previewData.isPD }"></span>
+   |  ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+453|                    <span class="tag-checkbox-hint">PD</span>
+   |  ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+454|                  </div>
+   |  ^^^^^^^^^^^^^^^^^^^^^^
+455|                  <div class="tag-checkbox-item">
+   |  ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+456|                    <span>Sản lượng</span><span class="tag-checkbox" :class="{ checked: previewData.isMassProduction }"></span>
+   |  ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+457|                    <span class="tag-checkbox-hint">Mass production</span>
+   |  ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+458|                  </div>
+   |  ^^^^^^^^^^^^^^^^^^^^^^
+459|                  <div class="tag-checkbox-item">
+   |  ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+460|                    <span>Công nghiệp nặng</span><span class="tag-checkbox" :class="{ checked: previewData.isHeavyIndustry }"></span>
+   |  ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+461|                    <span class="tag-checkbox-hint">Heavy industry</span>
+   |  ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+462|                  </div>
+   |  ^^^^^^^^^^^^^^^^^^^^^^
+463|                </div>
+   |  ^^^^^^^^^^^^^^^^^^^^
+464|              </td>
+   |  ^^^^^^^^^^^^^^^^^
+465|            </tr>
+   |  ^^^^^^^^^^^^^^^[39m
+  Plugin: [35mvite:vue[39m
+  File: [36mD:/越南MOM/MOM/src/views/extrusion/CuttingWorkbench.vue[39m
+[2m13:24:33[22m [33m[1m[vite][22m[39m [33mwarning: <tr> cannot be child of <table>, according to HTML specifications. This can cause hydration errors or potentially disrupt future functionality.
+465|            </tr>
+466|  
+467|            <tr>
+   |            ^^^^
+468|              <td class="tag-key">Tên vật liệu<br />Material name<br />物料名称</td>
+   |  ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+469|              <td class="tag-value">{{ previewData.productName || '-' }}</td>
+   |  ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+470|              <td class="tag-key">Mã số lô<br />Furnaces No.<br />炉次号</td>
+   |  ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+471|              <td class="tag-value">{{ previewData.furnaceNo || '-' }}</td>
+   |  ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+472|              <td colspan="2" rowspan="5" class="tag-qr-cell">
+   |  ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+473|                <div class="tag-qr-box">
+   |  ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+474|                  <img v-if="teamQrUrl" :src="teamQrUrl" class="tag-qr-img" alt="team-qr" />
+   |  ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+475|                  <div v-else class="tag-qr-placeholder">二维码生成中</div>
+   |  ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+476|                </div>
+   |  ^^^^^^^^^^^^^^^^^^^^
+477|              </td>
+   |  ^^^^^^^^^^^^^^^^^
+478|            </tr>
+   |  ^^^^^^^^^^^^^^^[39m
+  Plugin: [35mvite:vue[39m
+  File: [36mD:/越南MOM/MOM/src/views/extrusion/CuttingWorkbench.vue[39m
+[2m13:24:33[22m [33m[1m[vite][22m[39m [33mwarning: <tr> cannot be child of <table>, according to HTML specifications. This can cause hydration errors or potentially disrupt future functionality.
+478|            </tr>
+479|  
+480|            <tr>
+   |            ^^^^
+481|              <td class="tag-key">Số lô đùn<br />Extrusion batch No.<br />挤压批次号</td>
+   |  ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+482|              <td class="tag-value">{{ previewData.extrusionBatch || '-' }}</td>
+   |  ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+483|              <td class="tag-key">Số khuôn<br />Die No.<br />模号</td>
+   |  ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+484|              <td class="tag-value">{{ previewData.moldNo || '-' }}</td>
+   |  ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+485|            </tr>
+   |  ^^^^^^^^^^^^^^^[39m
+  Plugin: [35mvite:vue[39m
+  File: [36mD:/越南MOM/MOM/src/views/extrusion/CuttingWorkbench.vue[39m
+[2m13:24:33[22m [33m[1m[vite][22m[39m [33mwarning: <tr> cannot be child of <table>, according to HTML specifications. This can cause hydration errors or potentially disrupt future functionality.
+485|            </tr>
+486|  
+487|            <tr>
+   |            ^^^^
+488|              <td class="tag-key">Số lượng - Q’ty<br />数量</td>
+   |  ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+489|              <td class="tag-value">{{ previewData.materialQty ?? '-' }} PCS</td>
+   |  ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+490|              <td class="tag-key">Số kê<br />Frame No.<br />框号</td>
+   |  ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+491|              <td class="tag-value">{{ previewData.frameNo || '-' }}</td>
+   |  ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+492|            </tr>
+   |  ^^^^^^^^^^^^^^^[39m
+  Plugin: [35mvite:vue[39m
+  File: [36mD:/越南MOM/MOM/src/views/extrusion/CuttingWorkbench.vue[39m
+[2m13:24:33[22m [33m[1m[vite][22m[39m [33mwarning: <tr> cannot be child of <table>, according to HTML specifications. This can cause hydration errors or potentially disrupt future functionality.
+492|            </tr>
+493|  
+494|            <tr>
+   |            ^^^^
+495|              <td class="tag-key">Chiều dài cố định<br />Fixed length<br />定长</td>
+   |  ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+496|              <td class="tag-value">{{ previewData.fixedLength ?? '-' }} mm</td>
+   |  ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+497|              <td class="tag-key">Số máy<br />Machine No.<br />机台号</td>
+   |  ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+498|              <td class="tag-value">{{ previewData.extrusionMachine || '-' }}</td>
+   |  ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+499|            </tr>
+   |  ^^^^^^^^^^^^^^^[39m
+  Plugin: [35mvite:vue[39m
+  File: [36mD:/越南MOM/MOM/src/views/extrusion/CuttingWorkbench.vue[39m
+[2m13:24:33[22m [33m[1m[vite][22m[39m [33mwarning: <tr> cannot be child of <table>, according to HTML specifications. This can cause hydration errors or potentially disrupt future functionality.
+499|            </tr>
+500|  
+501|            <tr>
+   |            ^^^^
+502|              <td class="tag-key">Đội cắt/đóng gói<br />Cutting team/Packing team<br />裁切/包装班组</td>
+   |  ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+503|              <td class="tag-value">{{ previewData.shiftTeam || '-' }}</td>
+   |  ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+504|              <td class="tag-key">Nhãn hiệu<br />Material grade<br />牌号</td>
+   |  ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+505|              <td class="tag-value">{{ previewData.alloy || '-' }}</td>
+   |  ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+506|            </tr>
+   |  ^^^^^^^^^^^^^^^[39m
+  Plugin: [35mvite:vue[39m
+  File: [36mD:/越南MOM/MOM/src/views/extrusion/CuttingWorkbench.vue[39m
+[2m13:24:33[22m [33m[1m[vite][22m[39m [33mwarning: <tr> cannot be child of <table>, according to HTML specifications. This can cause hydration errors or potentially disrupt future functionality.
+512|          <div v-for="(box, index) in (previewData.boxes || []).slice(0, 3)" :key="box.boxCode" class="mb-4">
+513|            <table class="label-table">
+514|              <tr>
+   |              ^^^^
+515|                <td colspan="6" class="label-title">
+   |  ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+516|                  <div style="text-align: center; font-weight: bold; font-size: 16px;">山东创新精密科技有限公司（标示卡）</div>
+   |  ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+517|                </td>
+   |  ^^^^^^^^^^^^^^^^^^^
+518|              </tr>
+   |  ^^^^^^^^^^^^^^^^^[39m
+  Plugin: [35mvite:vue[39m
+  File: [36mD:/越南MOM/MOM/src/views/extrusion/CuttingWorkbench.vue[39m
+[2m13:24:33[22m [33m[1m[vite][22m[39m [33mwarning: <tr> cannot be child of <table>, according to HTML specifications. This can cause hydration errors or potentially disrupt future functionality.
+517|                </td>
+518|              </tr>
+519|              <tr>
+   |              ^^^^
+520|                <td class="header-cell">生产类型</td><td colspan="2">{{ previewData.productionType || scheduleInfo.productionType || '试产' }}</td>
+   |  ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+521|                <td class="header-cell">客户代码</td><td colspan="2">{{ previewData.customerCode || scheduleInfo.customerCode || '-' }}</td>
+   |  ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+522|              </tr>
+   |  ^^^^^^^^^^^^^^^^^[39m
+  Plugin: [35mvite:vue[39m
+  File: [36mD:/越南MOM/MOM/src/views/extrusion/CuttingWorkbench.vue[39m
+[2m13:24:33[22m [33m[1m[vite][22m[39m [33mwarning: <tr> cannot be child of <table>, according to HTML specifications. This can cause hydration errors or potentially disrupt future functionality.
+521|                <td class="header-cell">客户代码</td><td colspan="2">{{ previewData.customerCode || scheduleInfo.customerCode || '-' }}</td>
+522|              </tr>
+523|              <tr>
+   |              ^^^^
+524|                <td class="header-cell">产品名称</td><td colspan="2">{{ previewData.productName || 'SR-34' }}</td>
+   |  ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+525|                <td class="header-cell">炉次号</td><td colspan="2">{{ previewData.furnaceNo || '25-412-06-11-03(10PCS)' }}</td>
+   |  ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+526|              </tr>
+   |  ^^^^^^^^^^^^^^^^^[39m
+  Plugin: [35mvite:vue[39m
+  File: [36mD:/越南MOM/MOM/src/views/extrusion/CuttingWorkbench.vue[39m
+[2m13:24:33[22m [33m[1m[vite][22m[39m [33mwarning: <tr> cannot be child of <table>, according to HTML specifications. This can cause hydration errors or potentially disrupt future functionality.
+525|                <td class="header-cell">炉次号</td><td colspan="2">{{ previewData.furnaceNo || '25-412-06-11-03(10PCS)' }}</td>
+526|              </tr>
+527|              <tr>
+   |              ^^^^
+528|                <td class="header-cell">挤压批次号</td><td colspan="2">{{ previewData.extrusionBatch || 'JY2603070002(10PCS)' }}</td>
+   |  ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+529|                <td class="header-cell">模具号</td><td colspan="2">{{ previewData.moldNo || '-' }}</td>
+   |  ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+530|              </tr>
+   |  ^^^^^^^^^^^^^^^^^[39m
+  Plugin: [35mvite:vue[39m
+  File: [36mD:/越南MOM/MOM/src/views/extrusion/CuttingWorkbench.vue[39m
+[2m13:24:33[22m [33m[1m[vite][22m[39m [33mwarning: <tr> cannot be child of <table>, according to HTML specifications. This can cause hydration errors or potentially disrupt future functionality.
+529|                <td class="header-cell">模具号</td><td colspan="2">{{ previewData.moldNo || '-' }}</td>
+530|              </tr>
+531|              <tr>
+   |              ^^^^
+532|                <td class="header-cell">数量</td><td colspan="2">{{ box.plannedQty }}PCS</td>
+   |  ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+533|                <td class="header-cell">框号</td><td colspan="2">{{ previewData.frameNo || '6m-0979' }}</td>
+   |  ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+534|              </tr>
+   |  ^^^^^^^^^^^^^^^^^[39m
+  Plugin: [35mvite:vue[39m
+  File: [36mD:/越南MOM/MOM/src/views/extrusion/CuttingWorkbench.vue[39m
+[2m13:24:33[22m [33m[1m[vite][22m[39m [33mwarning: <tr> cannot be child of <table>, according to HTML specifications. This can cause hydration errors or potentially disrupt future functionality.
+533|                <td class="header-cell">框号</td><td colspan="2">{{ previewData.frameNo || '6m-0979' }}</td>
+534|              </tr>
+535|              <tr>
+   |              ^^^^
+536|                <td class="header-cell">定长</td><td colspan="2">{{ previewData.fixedLength || '-' }}mm</td>
+   |  ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+537|                <td class="header-cell">机台号</td><td colspan="2">{{ previewData.extrusionMachine || '-' }}</td>
+   |  ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+538|              </tr>
+   |  ^^^^^^^^^^^^^^^^^[39m
+  Plugin: [35mvite:vue[39m
+  File: [36mD:/越南MOM/MOM/src/views/extrusion/CuttingWorkbench.vue[39m
+[2m13:24:33[22m [33m[1m[vite][22m[39m [33mwarning: <tr> cannot be child of <table>, according to HTML specifications. This can cause hydration errors or potentially disrupt future functionality.
+537|                <td class="header-cell">机台号</td><td colspan="2">{{ previewData.extrusionMachine || '-' }}</td>
+538|              </tr>
+539|              <tr>
+   |              ^^^^
+540|                <td class="header-cell">裁切/包装班组</td><td colspan="2">{{ previewData.shiftTeam || '1234' }}</td>
+   |  ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+541|                <td class="header-cell">牌号</td><td colspan="2">{{ previewData.alloy || '-' }}</td>
+   |  ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+542|              </tr>
+   |  ^^^^^^^^^^^^^^^^^[39m
+  Plugin: [35mvite:vue[39m
+  File: [36mD:/越南MOM/MOM/src/views/extrusion/CuttingWorkbench.vue[39m
+[2m13:24:33[22m [33m[1m[vite][22m[39m [33mwarning: <tr> cannot be child of <table>, according to HTML specifications. This can cause hydration errors or potentially disrupt future functionality.
+541|                <td class="header-cell">牌号</td><td colspan="2">{{ previewData.alloy || '-' }}</td>
+542|              </tr>
+543|              <tr>
+   |              ^^^^
+544|                <td class="header-cell">纸箱号</td><td colspan="5">{{ box.boxCode || `${previewData.frameNo}-${String(index + 1).padStart(2, '0')}` }}</td>
+   |  ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+545|              </tr>
+   |  ^^^^^^^^^^^^^^^^^[39m
+  Plugin: [35mvite:vue[39m
+  File: [36mD:/越南MOM/MOM/src/views/extrusion/CuttingWorkbench.vue[39m
+[2m16:23:05[22m [33m[1m[vite][22m[39m [33mwarning: <tr> cannot be child of <table>, according to HTML specifications. This can cause hydration errors or potentially disrupt future functionality.
+516|            <div class="info-section">
+517|              <table class="info-table">
+518|                <tr>
+   |                ^^^^
+519|                  <td class="label">名称</td>
+   |  ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+520|                  <td class="value">{{ currentPrintRow?.productName || '-' }}</td>
+   |  ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+521|                  <td class="label">挤压机台</td>
+   |  ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+522|                  <td class="value">{{ currentPrintRow?.extrusionMachine || '-' }}</td>
+   |  ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+523|                </tr>
+   |  ^^^^^^^^^^^^^^^^^^^[39m
+  Plugin: [35mvite:vue[39m
+  File: [36mD:/越南MOM/MOM/src/views/quality/CNCSamplePreparation.vue[39m
+[2m16:23:05[22m [33m[1m[vite][22m[39m [33mwarning: <tr> cannot be child of <table>, according to HTML specifications. This can cause hydration errors or potentially disrupt future functionality.
+522|                  <td class="value">{{ currentPrintRow?.extrusionMachine || '-' }}</td>
+523|                </tr>
+524|                <tr>
+   |                ^^^^
+525|                  <td class="label">收样时间</td>
+   |  ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+526|                  <td class="value">{{ currentPrintRow?.cncReceiveTime || '-' }}</td>
+   |  ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+527|                  <td class="label">棒号</td>
+   |  ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+528|                  <td class="value">{{ currentPrintRow?.billetPosition || '-' }}</td>
+   |  ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+529|                </tr>
+   |  ^^^^^^^^^^^^^^^^^^^[39m
+  Plugin: [35mvite:vue[39m
+  File: [36mD:/越南MOM/MOM/src/views/quality/CNCSamplePreparation.vue[39m
+[2m16:23:05[22m [33m[1m[vite][22m[39m [33mwarning: <tr> cannot be child of <table>, according to HTML specifications. This can cause hydration errors or potentially disrupt future functionality.
+528|                  <td class="value">{{ currentPrintRow?.billetPosition || '-' }}</td>
+529|                </tr>
+530|                <tr>
+   |                ^^^^
+531|                  <td class="label">加工项目</td>
+   |  ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+532|                  <td class="value">{{ currentPrintRow?.preparationItems || '-' }}</td>
+   |  ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+533|                  <td class="label">模具号</td>
+   |  ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+534|                  <td class="value">{{ currentPrintRow?.moldNo || '-' }}</td>
+   |  ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+535|                </tr>
+   |  ^^^^^^^^^^^^^^^^^^^[39m
+  Plugin: [35mvite:vue[39m
+  File: [36mD:/越南MOM/MOM/src/views/quality/CNCSamplePreparation.vue[39m
+[2m16:23:05[22m [33m[1m[vite][22m[39m [33mwarning: <tr> cannot be child of <table>, according to HTML specifications. This can cause hydration errors or potentially disrupt future functionality.
+534|                  <td class="value">{{ currentPrintRow?.moldNo || '-' }}</td>
+535|                </tr>
+536|                <tr>
+   |                ^^^^
+537|                  <td class="label">制样数量</td>
+   |  ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+538|                  <td class="value">{{ currentPrintRow?.preparationQty || '1' }}</td>
+   |  ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+539|                  <td class="label">材质</td>
+   |  ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+540|                  <td class="value">{{ getAlloyFromSampleNo(currentPrintRow?.longSampleNo) }}</td>
+   |  ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+541|                </tr>
+   |  ^^^^^^^^^^^^^^^^^^^[39m
+  Plugin: [35mvite:vue[39m
+  File: [36mD:/越南MOM/MOM/src/views/quality/CNCSamplePreparation.vue[39m
+[2m16:23:05[22m [33m[1m[vite][22m[39m [33mwarning: <tr> cannot be child of <table>, according to HTML specifications. This can cause hydration errors or potentially disrupt future functionality.
+540|                  <td class="value">{{ getAlloyFromSampleNo(currentPrintRow?.longSampleNo) }}</td>
+541|                </tr>
+542|                <tr>
+   |                ^^^^
+543|                  <td class="label">炉次号</td>
+   |  ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+544|                  <td class="value">{{ getFurnaceNoFromSampleNo(currentPrintRow?.longSampleNo) }}</td>
+   |  ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+545|                  <td class="label" colspan="2"></td>
+   |  ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+546|                </tr>
+   |  ^^^^^^^^^^^^^^^^^^^[39m
+  Plugin: [35mvite:vue[39m
+  File: [36mD:/越南MOM/MOM/src/views/quality/CNCSamplePreparation.vue[39m
+[2m16:43:51[22m [36m[1m[vite][22m[39m [32mhmr update [39m[2m/src/views/extrusion/PendingStorageList.vue[22m
+[2m16:43:51[22m [36m[1m[vite][22m[39m [32mhmr update [39m[2m/src/views/extrusion/CuttingWorkbench.vue[22m
+[2m16:43:51[22m [36m[1m[vite][22m[39m [32mhmr update [39m[2m/src/views/extrusion/PackagingWorkbench.vue[22m
+[2m16:43:51[22m [33m[1m[vite][22m[39m [33mwarning: <tr> cannot be child of <table>, according to HTML specifications. This can cause hydration errors or potentially disrupt future functionality.
+437|        <div v-if="previewType === 'pallet'" class="label-preview">
+438|          <table class="material-tag-table">
+439|            <tr>
+   |            ^^^^
+440|              <td colspan="3" class="tag-title-cell">
+   |  ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+441|                <div class="tag-title-main">Thẻ nhận dạng vật liệu</div>
+   |  ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+442|                <div class="tag-title-sub">Material tag</div>
+   |  ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+443|                <div class="tag-title-sub">物料标识卡</div>
+   |  ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+444|              </td>
+   |  ^^^^^^^^^^^^^^^^^
+445|              <td colspan="3" class="tag-top-right">
+   |  ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+446|                <div class="tag-top-right-row">
+   |  ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+447|                  <span class="tag-top-right-label">Khách hàng</span>
+   |  ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+448|                  <span class="tag-top-right-value">{{ previewData.customerName || '-' }}</span>
+   |  ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+449|                </div>
+   |  ^^^^^^^^^^^^^^^^^^^^
+450|                <div class="tag-checkbox-grid">
+   |  ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+451|                  <div class="tag-checkbox-item">
+   |  ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+452|                    <span>Phát triển SP</span><span class="tag-checkbox" :class="{ checked: previewData.isPD }"></span>
+   |  ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+453|                    <span class="tag-checkbox-hint">PD</span>
+   |  ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+454|                  </div>
+   |  ^^^^^^^^^^^^^^^^^^^^^^
+455|                  <div class="tag-checkbox-item">
+   |  ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+456|                    <span>Sản lượng</span><span class="tag-checkbox" :class="{ checked: previewData.isMassProduction }"></span>
+   |  ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+457|                    <span class="tag-checkbox-hint">Mass production</span>
+   |  ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+458|                  </div>
+   |  ^^^^^^^^^^^^^^^^^^^^^^
+459|                  <div class="tag-checkbox-item">
+   |  ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+460|                    <span>Công nghiệp nặng</span><span class="tag-checkbox" :class="{ checked: previewData.isHeavyIndustry }"></span>
+   |  ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+461|                    <span class="tag-checkbox-hint">Heavy industry</span>
+   |  ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+462|                  </div>
+   |  ^^^^^^^^^^^^^^^^^^^^^^
+463|                </div>
+   |  ^^^^^^^^^^^^^^^^^^^^
+464|              </td>
+   |  ^^^^^^^^^^^^^^^^^
+465|            </tr>
+   |  ^^^^^^^^^^^^^^^[39m
+  Plugin: [35mvite:vue[39m
+  File: [36mD:/越南MOM/MOM/src/views/extrusion/CuttingWorkbench.vue[39m
+[2m16:43:51[22m [33m[1m[vite][22m[39m [33mwarning: <tr> cannot be child of <table>, according to HTML specifications. This can cause hydration errors or potentially disrupt future functionality.
+465|            </tr>
+466|  
+467|            <tr>
+   |            ^^^^
+468|              <td class="tag-key">Tên vật liệu<br />Material name<br />物料名称</td>
+   |  ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+469|              <td class="tag-value">{{ previewData.productName || '-' }}</td>
+   |  ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+470|              <td class="tag-key">Mã số lô<br />Furnaces No.<br />炉次号</td>
+   |  ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+471|              <td class="tag-value">{{ previewData.furnaceNo || '-' }}</td>
+   |  ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+472|              <td colspan="2" rowspan="5" class="tag-qr-cell">
+   |  ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+473|                <div class="tag-qr-box">
+   |  ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+474|                  <img v-if="teamQrUrl" :src="teamQrUrl" class="tag-qr-img" alt="team-qr" />
+   |  ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+475|                  <div v-else class="tag-qr-placeholder">二维码生成中</div>
+   |  ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+476|                </div>
+   |  ^^^^^^^^^^^^^^^^^^^^
+477|              </td>
+   |  ^^^^^^^^^^^^^^^^^
+478|            </tr>
+   |  ^^^^^^^^^^^^^^^[39m
+  Plugin: [35mvite:vue[39m
+  File: [36mD:/越南MOM/MOM/src/views/extrusion/CuttingWorkbench.vue[39m
+[2m16:43:51[22m [33m[1m[vite][22m[39m [33mwarning: <tr> cannot be child of <table>, according to HTML specifications. This can cause hydration errors or potentially disrupt future functionality.
+478|            </tr>
+479|  
+480|            <tr>
+   |            ^^^^
+481|              <td class="tag-key">Số lô đùn<br />Extrusion batch No.<br />挤压批次号</td>
+   |  ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+482|              <td class="tag-value">{{ previewData.extrusionBatch || '-' }}</td>
+   |  ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+483|              <td class="tag-key">Số khuôn<br />Die No.<br />模号</td>
+   |  ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+484|              <td class="tag-value">{{ previewData.moldNo || '-' }}</td>
+   |  ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+485|            </tr>
+   |  ^^^^^^^^^^^^^^^[39m
+  Plugin: [35mvite:vue[39m
+  File: [36mD:/越南MOM/MOM/src/views/extrusion/CuttingWorkbench.vue[39m
+[2m16:43:51[22m [33m[1m[vite][22m[39m [33mwarning: <tr> cannot be child of <table>, according to HTML specifications. This can cause hydration errors or potentially disrupt future functionality.
+485|            </tr>
+486|  
+487|            <tr>
+   |            ^^^^
+488|              <td class="tag-key">Số lượng - Q’ty<br />数量</td>
+   |  ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+489|              <td class="tag-value">{{ previewData.materialQty ?? '-' }} PCS</td>
+   |  ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+490|              <td class="tag-key">Số kê<br />Frame No.<br />框号</td>
+   |  ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+491|              <td class="tag-value">{{ previewData.frameNo || '-' }}</td>
+   |  ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+492|            </tr>
+   |  ^^^^^^^^^^^^^^^[39m
+  Plugin: [35mvite:vue[39m
+  File: [36mD:/越南MOM/MOM/src/views/extrusion/CuttingWorkbench.vue[39m
+[2m16:43:51[22m [33m[1m[vite][22m[39m [33mwarning: <tr> cannot be child of <table>, according to HTML specifications. This can cause hydration errors or potentially disrupt future functionality.
+492|            </tr>
+493|  
+494|            <tr>
+   |            ^^^^
+495|              <td class="tag-key">Chiều dài cố định<br />Fixed length<br />定长</td>
+   |  ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+496|              <td class="tag-value">{{ previewData.fixedLength ?? '-' }} mm</td>
+   |  ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+497|              <td class="tag-key">Số máy<br />Machine No.<br />机台号</td>
+   |  ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+498|              <td class="tag-value">{{ previewData.extrusionMachine || '-' }}</td>
+   |  ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+499|            </tr>
+   |  ^^^^^^^^^^^^^^^[39m
+  Plugin: [35mvite:vue[39m
+  File: [36mD:/越南MOM/MOM/src/views/extrusion/CuttingWorkbench.vue[39m
+[2m16:43:51[22m [33m[1m[vite][22m[39m [33mwarning: <tr> cannot be child of <table>, according to HTML specifications. This can cause hydration errors or potentially disrupt future functionality.
+499|            </tr>
+500|  
+501|            <tr>
+   |            ^^^^
+502|              <td class="tag-key">Đội cắt/đóng gói<br />Cutting team/Packing team<br />裁切/包装班组</td>
+   |  ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+503|              <td class="tag-value">{{ previewData.shiftTeam || '-' }}</td>
+   |  ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+504|              <td class="tag-key">Nhãn hiệu<br />Material grade<br />牌号</td>
+   |  ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+505|              <td class="tag-value">{{ previewData.alloy || '-' }}</td>
+   |  ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+506|            </tr>
+   |  ^^^^^^^^^^^^^^^[39m
+  Plugin: [35mvite:vue[39m
+  File: [36mD:/越南MOM/MOM/src/views/extrusion/CuttingWorkbench.vue[39m
+[2m16:43:51[22m [33m[1m[vite][22m[39m [33mwarning: <tr> cannot be child of <table>, according to HTML specifications. This can cause hydration errors or potentially disrupt future functionality.
+512|          <div v-for="(box, index) in (previewData.boxes || []).slice(0, 3)" :key="box.boxCode" class="mb-4">
+513|            <table class="label-table">
+514|              <tr>
+   |              ^^^^
+515|                <td colspan="6" class="label-title">
+   |  ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+516|                  <div style="text-align: center; font-weight: bold; font-size: 16px;">山东创新精密科技有限公司（标示卡）</div>
+   |  ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+517|                </td>
+   |  ^^^^^^^^^^^^^^^^^^^
+518|              </tr>
+   |  ^^^^^^^^^^^^^^^^^[39m
+  Plugin: [35mvite:vue[39m
+  File: [36mD:/越南MOM/MOM/src/views/extrusion/CuttingWorkbench.vue[39m
+[2m16:43:51[22m [33m[1m[vite][22m[39m [33mwarning: <tr> cannot be child of <table>, according to HTML specifications. This can cause hydration errors or potentially disrupt future functionality.
+517|                </td>
+518|              </tr>
+519|              <tr>
+   |              ^^^^
+520|                <td class="header-cell">生产类型</td><td colspan="2">{{ previewData.productionType || scheduleInfo.productionType || '试产' }}</td>
+   |  ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+521|                <td class="header-cell">客户代码</td><td colspan="2">{{ previewData.customerCode || scheduleInfo.customerCode || '-' }}</td>
+   |  ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+522|              </tr>
+   |  ^^^^^^^^^^^^^^^^^[39m
+  Plugin: [35mvite:vue[39m
+  File: [36mD:/越南MOM/MOM/src/views/extrusion/CuttingWorkbench.vue[39m
+[2m16:43:51[22m [33m[1m[vite][22m[39m [33mwarning: <tr> cannot be child of <table>, according to HTML specifications. This can cause hydration errors or potentially disrupt future functionality.
+521|                <td class="header-cell">客户代码</td><td colspan="2">{{ previewData.customerCode || scheduleInfo.customerCode || '-' }}</td>
+522|              </tr>
+523|              <tr>
+   |              ^^^^
+524|                <td class="header-cell">产品名称</td><td colspan="2">{{ previewData.productName || 'SR-34' }}</td>
+   |  ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+525|                <td class="header-cell">炉次号</td><td colspan="2">{{ previewData.furnaceNo || '25-412-06-11-03(10PCS)' }}</td>
+   |  ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+526|              </tr>
+   |  ^^^^^^^^^^^^^^^^^[39m
+  Plugin: [35mvite:vue[39m
+  File: [36mD:/越南MOM/MOM/src/views/extrusion/CuttingWorkbench.vue[39m
+[2m16:43:51[22m [33m[1m[vite][22m[39m [33mwarning: <tr> cannot be child of <table>, according to HTML specifications. This can cause hydration errors or potentially disrupt future functionality.
+525|                <td class="header-cell">炉次号</td><td colspan="2">{{ previewData.furnaceNo || '25-412-06-11-03(10PCS)' }}</td>
+526|              </tr>
+527|              <tr>
+   |              ^^^^
+528|                <td class="header-cell">挤压批次号</td><td colspan="2">{{ previewData.extrusionBatch || 'JY2603070002(10PCS)' }}</td>
+   |  ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+529|                <td class="header-cell">模具号</td><td colspan="2">{{ previewData.moldNo || '-' }}</td>
+   |  ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+530|              </tr>
+   |  ^^^^^^^^^^^^^^^^^[39m
+  Plugin: [35mvite:vue[39m
+  File: [36mD:/越南MOM/MOM/src/views/extrusion/CuttingWorkbench.vue[39m
+[2m16:43:51[22m [33m[1m[vite][22m[39m [33mwarning: <tr> cannot be child of <table>, according to HTML specifications. This can cause hydration errors or potentially disrupt future functionality.
+529|                <td class="header-cell">模具号</td><td colspan="2">{{ previewData.moldNo || '-' }}</td>
+530|              </tr>
+531|              <tr>
+   |              ^^^^
+532|                <td class="header-cell">数量</td><td colspan="2">{{ box.plannedQty }}PCS</td>
+   |  ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+533|                <td class="header-cell">框号</td><td colspan="2">{{ previewData.frameNo || '6m-0979' }}</td>
+   |  ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+534|              </tr>
+   |  ^^^^^^^^^^^^^^^^^[39m
+  Plugin: [35mvite:vue[39m
+  File: [36mD:/越南MOM/MOM/src/views/extrusion/CuttingWorkbench.vue[39m
+[2m16:43:51[22m [33m[1m[vite][22m[39m [33mwarning: <tr> cannot be child of <table>, according to HTML specifications. This can cause hydration errors or potentially disrupt future functionality.
+533|                <td class="header-cell">框号</td><td colspan="2">{{ previewData.frameNo || '6m-0979' }}</td>
+534|              </tr>
+535|              <tr>
+   |              ^^^^
+536|                <td class="header-cell">定长</td><td colspan="2">{{ previewData.fixedLength || '-' }}mm</td>
+   |  ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+537|                <td class="header-cell">机台号</td><td colspan="2">{{ previewData.extrusionMachine || '-' }}</td>
+   |  ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+538|              </tr>
+   |  ^^^^^^^^^^^^^^^^^[39m
+  Plugin: [35mvite:vue[39m
+  File: [36mD:/越南MOM/MOM/src/views/extrusion/CuttingWorkbench.vue[39m
+[2m16:43:51[22m [33m[1m[vite][22m[39m [33mwarning: <tr> cannot be child of <table>, according to HTML specifications. This can cause hydration errors or potentially disrupt future functionality.
+537|                <td class="header-cell">机台号</td><td colspan="2">{{ previewData.extrusionMachine || '-' }}</td>
+538|              </tr>
+539|              <tr>
+   |              ^^^^
+540|                <td class="header-cell">裁切/包装班组</td><td colspan="2">{{ previewData.shiftTeam || '1234' }}</td>
+   |  ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+541|                <td class="header-cell">牌号</td><td colspan="2">{{ previewData.alloy || '-' }}</td>
+   |  ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+542|              </tr>
+   |  ^^^^^^^^^^^^^^^^^[39m
+  Plugin: [35mvite:vue[39m
+  File: [36mD:/越南MOM/MOM/src/views/extrusion/CuttingWorkbench.vue[39m
+[2m16:43:51[22m [33m[1m[vite][22m[39m [33mwarning: <tr> cannot be child of <table>, according to HTML specifications. This can cause hydration errors or potentially disrupt future functionality.
+541|                <td class="header-cell">牌号</td><td colspan="2">{{ previewData.alloy || '-' }}</td>
+542|              </tr>
+543|              <tr>
+   |              ^^^^
+544|                <td class="header-cell">纸箱号</td><td colspan="5">{{ box.boxCode || `${previewData.frameNo}-${String(index + 1).padStart(2, '0')}` }}</td>
+   |  ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+545|              </tr>
+   |  ^^^^^^^^^^^^^^^^^[39m
+  Plugin: [35mvite:vue[39m
+  File: [36mD:/越南MOM/MOM/src/views/extrusion/CuttingWorkbench.vue[39m
+[2m16:43:51[22m [33m[1m[vite][22m[39m [33mwarning: <tr> cannot be child of <table>, according to HTML specifications. This can cause hydration errors or potentially disrupt future functionality.
+437|        <div class="label-preview">
+438|          <table class="material-tag-table">
+439|            <tr>
+   |            ^^^^
+440|              <td colspan="3" class="tag-title-cell">
+   |  ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+441|                <div class="tag-title-main">Thẻ nhận dạng vật liệu</div>
+   |  ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+442|                <div class="tag-title-sub">Material tag</div>
+   |  ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+443|                <div class="tag-title-sub">物料标识卡</div>
+   |  ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+444|              </td>
+   |  ^^^^^^^^^^^^^^^^^
+445|              <td colspan="3" class="tag-top-right">
+   |  ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+446|                <div class="tag-top-right-row">
+   |  ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+447|                  <span class="tag-top-right-label">Khách hàng</span>
+   |  ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+448|                  <span class="tag-top-right-value">{{ previewData.customerName || '-' }}</span>
+   |  ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+449|                </div>
+   |  ^^^^^^^^^^^^^^^^^^^^
+450|                <div class="tag-checkbox-grid">
+   |  ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+451|                  <div class="tag-checkbox-item">
+   |  ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+452|                    <span>Phát triển SP</span><span class="tag-checkbox" :class="{ checked: previewData.isPD }"></span>
+   |  ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+453|                    <span class="tag-checkbox-hint">PD</span>
+   |  ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+454|                  </div>
+   |  ^^^^^^^^^^^^^^^^^^^^^^
+455|                  <div class="tag-checkbox-item">
+   |  ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+456|                    <span>Sản lượng</span><span class="tag-checkbox" :class="{ checked: previewData.isMassProduction }"></span>
+   |  ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+457|                    <span class="tag-checkbox-hint">Mass production</span>
+   |  ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+458|                  </div>
+   |  ^^^^^^^^^^^^^^^^^^^^^^
+459|                  <div class="tag-checkbox-item">
+   |  ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+460|                    <span>Công nghiệp nặng</span><span class="tag-checkbox" :class="{ checked: previewData.isHeavyIndustry }"></span>
+   |  ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+461|                    <span class="tag-checkbox-hint">Heavy industry</span>
+   |  ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+462|                  </div>
+   |  ^^^^^^^^^^^^^^^^^^^^^^
+463|                </div>
+   |  ^^^^^^^^^^^^^^^^^^^^
+464|              </td>
+   |  ^^^^^^^^^^^^^^^^^
+465|            </tr>
+   |  ^^^^^^^^^^^^^^^[39m
+  Plugin: [35mvite:vue[39m
+  File: [36mD:/越南MOM/MOM/src/views/extrusion/PackagingWorkbench.vue[39m
+[2m16:43:51[22m [33m[1m[vite][22m[39m [33mwarning: <tr> cannot be child of <table>, according to HTML specifications. This can cause hydration errors or potentially disrupt future functionality.
+465|            </tr>
+466|  
+467|            <tr>
+   |            ^^^^
+468|              <td class="tag-key">Tên vật liệu<br />Material name<br />物料名称</td>
+   |  ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+469|              <td class="tag-value">{{ previewData.productName || '-' }}</td>
+   |  ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+470|              <td class="tag-key">Mã số lô<br />Furnaces No.<br />炉次号</td>
+   |  ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+471|              <td class="tag-value">{{ previewData.furnaceNo || '-' }}</td>
+   |  ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+472|              <td colspan="2" rowspan="5" class="tag-qr-cell">
+   |  ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+473|                <div class="tag-qr-box">
+   |  ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+474|                  <img v-if="teamQrUrl" :src="teamQrUrl" class="tag-qr-img" alt="team-qr" />
+   |  ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+475|                  <div v-else class="tag-qr-placeholder">二维码生成中</div>
+   |  ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+476|                </div>
+   |  ^^^^^^^^^^^^^^^^^^^^
+477|              </td>
+   |  ^^^^^^^^^^^^^^^^^
+478|            </tr>
+   |  ^^^^^^^^^^^^^^^[39m
+  Plugin: [35mvite:vue[39m
+  File: [36mD:/越南MOM/MOM/src/views/extrusion/PackagingWorkbench.vue[39m
+[2m16:43:51[22m [33m[1m[vite][22m[39m [33mwarning: <tr> cannot be child of <table>, according to HTML specifications. This can cause hydration errors or potentially disrupt future functionality.
+478|            </tr>
+479|  
+480|            <tr>
+   |            ^^^^
+481|              <td class="tag-key">Số lô đùn<br />Extrusion batch No.<br />挤压批次号</td>
+   |  ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+482|              <td class="tag-value">{{ previewData.extrusionBatch || '-' }}</td>
+   |  ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+483|              <td class="tag-key">Số khuôn<br />Die No.<br />模号</td>
+   |  ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+484|              <td class="tag-value">{{ previewData.moldNo || '-' }}</td>
+   |  ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+485|            </tr>
+   |  ^^^^^^^^^^^^^^^[39m
+  Plugin: [35mvite:vue[39m
+  File: [36mD:/越南MOM/MOM/src/views/extrusion/PackagingWorkbench.vue[39m
+[2m16:43:51[22m [33m[1m[vite][22m[39m [33mwarning: <tr> cannot be child of <table>, according to HTML specifications. This can cause hydration errors or potentially disrupt future functionality.
+485|            </tr>
+486|  
+487|            <tr>
+   |            ^^^^
+488|              <td class="tag-key">Số lượng - Q’ty<br />数量</td>
+   |  ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+489|              <td class="tag-value">{{ previewData.materialQty ?? '-' }} PCS</td>
+   |  ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+490|              <td class="tag-key">Số kê<br />Frame No.<br />框号</td>
+   |  ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+491|              <td class="tag-value">{{ previewData.frameNo || '-' }}</td>
+   |  ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+492|            </tr>
+   |  ^^^^^^^^^^^^^^^[39m
+  Plugin: [35mvite:vue[39m
+  File: [36mD:/越南MOM/MOM/src/views/extrusion/PackagingWorkbench.vue[39m
+[2m16:43:51[22m [33m[1m[vite][22m[39m [33mwarning: <tr> cannot be child of <table>, according to HTML specifications. This can cause hydration errors or potentially disrupt future functionality.
+492|            </tr>
+493|  
+494|            <tr>
+   |            ^^^^
+495|              <td class="tag-key">Chiều dài cố định<br />Fixed length<br />定长</td>
+   |  ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+496|              <td class="tag-value">{{ previewData.fixedLength ?? '-' }} mm</td>
+   |  ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+497|              <td class="tag-key">Số máy<br />Machine No.<br />机台号</td>
+   |  ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+498|              <td class="tag-value">{{ previewData.extrusionMachine || '-' }}</td>
+   |  ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+499|            </tr>
+   |  ^^^^^^^^^^^^^^^[39m
+  Plugin: [35mvite:vue[39m
+  File: [36mD:/越南MOM/MOM/src/views/extrusion/PackagingWorkbench.vue[39m
+[2m16:43:51[22m [33m[1m[vite][22m[39m [33mwarning: <tr> cannot be child of <table>, according to HTML specifications. This can cause hydration errors or potentially disrupt future functionality.
+499|            </tr>
+500|  
+501|            <tr>
+   |            ^^^^
+502|              <td class="tag-key">Đội cắt/đóng gói<br />Cutting team/Packing team<br />裁切/包装班组</td>
+   |  ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+503|              <td class="tag-value">{{ previewData.shiftTeam || '-' }}</td>
+   |  ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+504|              <td class="tag-key">Nhãn hiệu<br />Material grade<br />牌号</td>
+   |  ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+505|              <td class="tag-value">{{ previewData.alloy || '-' }}</td>
+   |  ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+506|            </tr>
+   |  ^^^^^^^^^^^^^^^[39m
+  Plugin: [35mvite:vue[39m
+  File: [36mD:/越南MOM/MOM/src/views/extrusion/PackagingWorkbench.vue[39m
+[2m16:45:30[22m [36m[1m[vite][22m[39m [32mhmr update [39m[2m/src/views/extrusion/CuttingWorkbench.vue[22m
+[2m16:45:30[22m [33m[1m[vite][22m[39m [33mwarning: <tr> cannot be child of <table>, according to HTML specifications. This can cause hydration errors or potentially disrupt future functionality.
+437|        <div v-if="previewType === 'pallet'" class="label-preview">
+438|          <table class="material-tag-table">
+439|            <tr>
+   |            ^^^^
+440|              <td colspan="3" class="tag-title-cell">
+   |  ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+441|                <div class="tag-title-main">Thẻ nhận dạng vật liệu</div>
+   |  ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+442|                <div class="tag-title-sub">Material tag</div>
+   |  ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+443|                <div class="tag-title-sub">物料标识卡</div>
+   |  ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+444|              </td>
+   |  ^^^^^^^^^^^^^^^^^
+445|              <td colspan="3" class="tag-top-right">
+   |  ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+446|                <div class="tag-top-right-row">
+   |  ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+447|                  <span class="tag-top-right-label">Khách hàng</span>
+   |  ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+448|                  <span class="tag-top-right-value">{{ previewData.customerName || '-' }}</span>
+   |  ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+449|                </div>
+   |  ^^^^^^^^^^^^^^^^^^^^
+450|                <div class="tag-checkbox-grid">
+   |  ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+451|                  <div class="tag-checkbox-item">
+   |  ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+452|                    <span>Phát triển SP</span><span class="tag-checkbox" :class="{ checked: previewData.isPD }"></span>
+   |  ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+453|                    <span class="tag-checkbox-hint">PD</span>
+   |  ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+454|                  </div>
+   |  ^^^^^^^^^^^^^^^^^^^^^^
+455|                  <div class="tag-checkbox-item">
+   |  ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+456|                    <span>Sản lượng</span><span class="tag-checkbox" :class="{ checked: previewData.isMassProduction }"></span>
+   |  ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+457|                    <span class="tag-checkbox-hint">Mass production</span>
+   |  ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+458|                  </div>
+   |  ^^^^^^^^^^^^^^^^^^^^^^
+459|                  <div class="tag-checkbox-item">
+   |  ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+460|                    <span>Công nghiệp nặng</span><span class="tag-checkbox" :class="{ checked: previewData.isHeavyIndustry }"></span>
+   |  ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+461|                    <span class="tag-checkbox-hint">Heavy industry</span>
+   |  ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+462|                  </div>
+   |  ^^^^^^^^^^^^^^^^^^^^^^
+463|                </div>
+   |  ^^^^^^^^^^^^^^^^^^^^
+464|              </td>
+   |  ^^^^^^^^^^^^^^^^^
+465|            </tr>
+   |  ^^^^^^^^^^^^^^^[39m
+  Plugin: [35mvite:vue[39m
+  File: [36mD:/越南MOM/MOM/src/views/extrusion/CuttingWorkbench.vue[39m
+[2m16:45:30[22m [33m[1m[vite][22m[39m [33mwarning: <tr> cannot be child of <table>, according to HTML specifications. This can cause hydration errors or potentially disrupt future functionality.
+465|            </tr>
+466|  
+467|            <tr>
+   |            ^^^^
+468|              <td class="tag-key">Tên vật liệu<br />Material name<br />物料名称</td>
+   |  ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+469|              <td class="tag-value">{{ previewData.productName || '-' }}</td>
+   |  ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+470|              <td class="tag-key">Mã số lô<br />Furnaces No.<br />炉次号</td>
+   |  ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+471|              <td class="tag-value">{{ previewData.furnaceNo || '-' }}</td>
+   |  ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+472|              <td colspan="2" rowspan="5" class="tag-qr-cell">
+   |  ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+473|                <div class="tag-qr-box">
+   |  ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+474|                  <img v-if="teamQrUrl" :src="teamQrUrl" class="tag-qr-img" alt="team-qr" />
+   |  ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+475|                  <div v-else class="tag-qr-placeholder">二维码生成中</div>
+   |  ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+476|                </div>
+   |  ^^^^^^^^^^^^^^^^^^^^
+477|              </td>
+   |  ^^^^^^^^^^^^^^^^^
+478|            </tr>
+   |  ^^^^^^^^^^^^^^^[39m
+  Plugin: [35mvite:vue[39m
+  File: [36mD:/越南MOM/MOM/src/views/extrusion/CuttingWorkbench.vue[39m
+[2m16:45:30[22m [33m[1m[vite][22m[39m [33mwarning: <tr> cannot be child of <table>, according to HTML specifications. This can cause hydration errors or potentially disrupt future functionality.
+478|            </tr>
+479|  
+480|            <tr>
+   |            ^^^^
+481|              <td class="tag-key">Số lô đùn<br />Extrusion batch No.<br />挤压批次号</td>
+   |  ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+482|              <td class="tag-value">{{ previewData.extrusionBatch || '-' }}</td>
+   |  ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+483|              <td class="tag-key">Số khuôn<br />Die No.<br />模号</td>
+   |  ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+484|              <td class="tag-value">{{ previewData.moldNo || '-' }}</td>
+   |  ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+485|            </tr>
+   |  ^^^^^^^^^^^^^^^[39m
+  Plugin: [35mvite:vue[39m
+  File: [36mD:/越南MOM/MOM/src/views/extrusion/CuttingWorkbench.vue[39m
+[2m16:45:30[22m [33m[1m[vite][22m[39m [33mwarning: <tr> cannot be child of <table>, according to HTML specifications. This can cause hydration errors or potentially disrupt future functionality.
+485|            </tr>
+486|  
+487|            <tr>
+   |            ^^^^
+488|              <td class="tag-key">Số lượng - Q’ty<br />数量</td>
+   |  ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+489|              <td class="tag-value">{{ previewData.materialQty ?? '-' }} PCS</td>
+   |  ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+490|              <td class="tag-key">Số kê<br />Frame No.<br />框号</td>
+   |  ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+491|              <td class="tag-value">{{ previewData.frameNo || '-' }}</td>
+   |  ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+492|            </tr>
+   |  ^^^^^^^^^^^^^^^[39m
+  Plugin: [35mvite:vue[39m
+  File: [36mD:/越南MOM/MOM/src/views/extrusion/CuttingWorkbench.vue[39m
+[2m16:45:30[22m [33m[1m[vite][22m[39m [33mwarning: <tr> cannot be child of <table>, according to HTML specifications. This can cause hydration errors or potentially disrupt future functionality.
+492|            </tr>
+493|  
+494|            <tr>
+   |            ^^^^
+495|              <td class="tag-key">Chiều dài cố định<br />Fixed length<br />定长</td>
+   |  ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+496|              <td class="tag-value">{{ previewData.fixedLength ?? '-' }} mm</td>
+   |  ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+497|              <td class="tag-key">Số máy<br />Machine No.<br />机台号</td>
+   |  ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+498|              <td class="tag-value">{{ previewData.extrusionMachine || '-' }}</td>
+   |  ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+499|            </tr>
+   |  ^^^^^^^^^^^^^^^[39m
+  Plugin: [35mvite:vue[39m
+  File: [36mD:/越南MOM/MOM/src/views/extrusion/CuttingWorkbench.vue[39m
+[2m16:45:30[22m [33m[1m[vite][22m[39m [33mwarning: <tr> cannot be child of <table>, according to HTML specifications. This can cause hydration errors or potentially disrupt future functionality.
+499|            </tr>
+500|  
+501|            <tr>
+   |            ^^^^
+502|              <td class="tag-key">Đội cắt/đóng gói<br />Cutting team/Packing team<br />裁切/包装班组</td>
+   |  ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+503|              <td class="tag-value">{{ previewData.shiftTeam || '-' }}</td>
+   |  ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+504|              <td class="tag-key">Nhãn hiệu<br />Material grade<br />牌号</td>
+   |  ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+505|              <td class="tag-value">{{ previewData.alloy || '-' }}</td>
+   |  ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+506|            </tr>
+   |  ^^^^^^^^^^^^^^^[39m
+  Plugin: [35mvite:vue[39m
+  File: [36mD:/越南MOM/MOM/src/views/extrusion/CuttingWorkbench.vue[39m
+[2m16:45:30[22m [33m[1m[vite][22m[39m [33mwarning: <tr> cannot be child of <table>, according to HTML specifications. This can cause hydration errors or potentially disrupt future functionality.
+512|          <div v-for="(box, index) in (previewData.boxes || []).slice(0, 3)" :key="box.boxCode" class="mb-4">
+513|            <table class="label-table">
+514|              <tr>
+   |              ^^^^
+515|                <td colspan="6" class="label-title">
+   |  ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+516|                  <div style="text-align: center; font-weight: bold; font-size: 16px;">山东创新精密科技有限公司（标示卡）</div>
+   |  ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+517|                </td>
+   |  ^^^^^^^^^^^^^^^^^^^
+518|              </tr>
+   |  ^^^^^^^^^^^^^^^^^[39m
+  Plugin: [35mvite:vue[39m
+  File: [36mD:/越南MOM/MOM/src/views/extrusion/CuttingWorkbench.vue[39m
+[2m16:45:30[22m [33m[1m[vite][22m[39m [33mwarning: <tr> cannot be child of <table>, according to HTML specifications. This can cause hydration errors or potentially disrupt future functionality.
+517|                </td>
+518|              </tr>
+519|              <tr>
+   |              ^^^^
+520|                <td class="header-cell">生产类型</td><td colspan="2">{{ previewData.productionType || scheduleInfo.productionType || '试产' }}</td>
+   |  ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+521|                <td class="header-cell">客户代码</td><td colspan="2">{{ previewData.customerCode || scheduleInfo.customerCode || '-' }}</td>
+   |  ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+522|              </tr>
+   |  ^^^^^^^^^^^^^^^^^[39m
+  Plugin: [35mvite:vue[39m
+  File: [36mD:/越南MOM/MOM/src/views/extrusion/CuttingWorkbench.vue[39m
+[2m16:45:30[22m [33m[1m[vite][22m[39m [33mwarning: <tr> cannot be child of <table>, according to HTML specifications. This can cause hydration errors or potentially disrupt future functionality.
+521|                <td class="header-cell">客户代码</td><td colspan="2">{{ previewData.customerCode || scheduleInfo.customerCode || '-' }}</td>
+522|              </tr>
+523|              <tr>
+   |              ^^^^
+524|                <td class="header-cell">产品名称</td><td colspan="2">{{ previewData.productName || 'SR-34' }}</td>
+   |  ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+525|                <td class="header-cell">炉次号</td><td colspan="2">{{ previewData.furnaceNo || '25-412-06-11-03(10PCS)' }}</td>
+   |  ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+526|              </tr>
+   |  ^^^^^^^^^^^^^^^^^[39m
+  Plugin: [35mvite:vue[39m
+  File: [36mD:/越南MOM/MOM/src/views/extrusion/CuttingWorkbench.vue[39m
+[2m16:45:30[22m [33m[1m[vite][22m[39m [33mwarning: <tr> cannot be child of <table>, according to HTML specifications. This can cause hydration errors or potentially disrupt future functionality.
+525|                <td class="header-cell">炉次号</td><td colspan="2">{{ previewData.furnaceNo || '25-412-06-11-03(10PCS)' }}</td>
+526|              </tr>
+527|              <tr>
+   |              ^^^^
+528|                <td class="header-cell">挤压批次号</td><td colspan="2">{{ previewData.extrusionBatch || 'JY2603070002(10PCS)' }}</td>
+   |  ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+529|                <td class="header-cell">模具号</td><td colspan="2">{{ previewData.moldNo || '-' }}</td>
+   |  ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+530|              </tr>
+   |  ^^^^^^^^^^^^^^^^^[39m
+  Plugin: [35mvite:vue[39m
+  File: [36mD:/越南MOM/MOM/src/views/extrusion/CuttingWorkbench.vue[39m
+[2m16:45:30[22m [33m[1m[vite][22m[39m [33mwarning: <tr> cannot be child of <table>, according to HTML specifications. This can cause hydration errors or potentially disrupt future functionality.
+529|                <td class="header-cell">模具号</td><td colspan="2">{{ previewData.moldNo || '-' }}</td>
+530|              </tr>
+531|              <tr>
+   |              ^^^^
+532|                <td class="header-cell">数量</td><td colspan="2">{{ box.plannedQty }}PCS</td>
+   |  ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+533|                <td class="header-cell">框号</td><td colspan="2">{{ previewData.frameNo || '6m-0979' }}</td>
+   |  ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+534|              </tr>
+   |  ^^^^^^^^^^^^^^^^^[39m
+  Plugin: [35mvite:vue[39m
+  File: [36mD:/越南MOM/MOM/src/views/extrusion/CuttingWorkbench.vue[39m
+[2m16:45:30[22m [33m[1m[vite][22m[39m [33mwarning: <tr> cannot be child of <table>, according to HTML specifications. This can cause hydration errors or potentially disrupt future functionality.
+533|                <td class="header-cell">框号</td><td colspan="2">{{ previewData.frameNo || '6m-0979' }}</td>
+534|              </tr>
+535|              <tr>
+   |              ^^^^
+536|                <td class="header-cell">定长</td><td colspan="2">{{ previewData.fixedLength || '-' }}mm</td>
+   |  ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+537|                <td class="header-cell">机台号</td><td colspan="2">{{ previewData.extrusionMachine || '-' }}</td>
+   |  ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+538|              </tr>
+   |  ^^^^^^^^^^^^^^^^^[39m
+  Plugin: [35mvite:vue[39m
+  File: [36mD:/越南MOM/MOM/src/views/extrusion/CuttingWorkbench.vue[39m
+[2m16:45:30[22m [33m[1m[vite][22m[39m [33mwarning: <tr> cannot be child of <table>, according to HTML specifications. This can cause hydration errors or potentially disrupt future functionality.
+537|                <td class="header-cell">机台号</td><td colspan="2">{{ previewData.extrusionMachine || '-' }}</td>
+538|              </tr>
+539|              <tr>
+   |              ^^^^
+540|                <td class="header-cell">裁切/包装班组</td><td colspan="2">{{ previewData.shiftTeam || '1234' }}</td>
+   |  ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+541|                <td class="header-cell">牌号</td><td colspan="2">{{ previewData.alloy || '-' }}</td>
+   |  ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+542|              </tr>
+   |  ^^^^^^^^^^^^^^^^^[39m
+  Plugin: [35mvite:vue[39m
+  File: [36mD:/越南MOM/MOM/src/views/extrusion/CuttingWorkbench.vue[39m
+[2m16:45:30[22m [33m[1m[vite][22m[39m [33mwarning: <tr> cannot be child of <table>, according to HTML specifications. This can cause hydration errors or potentially disrupt future functionality.
+541|                <td class="header-cell">牌号</td><td colspan="2">{{ previewData.alloy || '-' }}</td>
+542|              </tr>
+543|              <tr>
+   |              ^^^^
+544|                <td class="header-cell">纸箱号</td><td colspan="5">{{ box.boxCode || `${previewData.frameNo}-${String(index + 1).padStart(2, '0')}` }}</td>
+   |  ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+545|              </tr>
+   |  ^^^^^^^^^^^^^^^^^[39m
+  Plugin: [35mvite:vue[39m
+  File: [36mD:/越南MOM/MOM/src/views/extrusion/CuttingWorkbench.vue[39m
+[2m16:48:25[22m [36m[1m[vite][22m[39m [32mhmr update [39m[2m/src/views/extrusion/CuttingWorkbench.vue[22m
+[2m16:48:25[22m [33m[1m[vite][22m[39m [33mwarning: <tr> cannot be child of <table>, according to HTML specifications. This can cause hydration errors or potentially disrupt future functionality.
+437|        <div v-if="previewType === 'pallet'" class="label-preview">
+438|          <table class="material-tag-table">
+439|            <tr>
+   |            ^^^^
+440|              <td colspan="3" class="tag-title-cell">
+   |  ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+441|                <div class="tag-title-main">Thẻ nhận dạng vật liệu</div>
+   |  ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+442|                <div class="tag-title-sub">Material tag</div>
+   |  ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+443|                <div class="tag-title-sub">物料标识卡</div>
+   |  ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+444|              </td>
+   |  ^^^^^^^^^^^^^^^^^
+445|              <td colspan="3" class="tag-top-right">
+   |  ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+446|                <div class="tag-top-right-row">
+   |  ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+447|                  <span class="tag-top-right-label">Khách hàng</span>
+   |  ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+448|                  <span class="tag-top-right-value">{{ previewData.customerName || '-' }}</span>
+   |  ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+449|                </div>
+   |  ^^^^^^^^^^^^^^^^^^^^
+450|                <div class="tag-checkbox-grid">
+   |  ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+451|                  <div class="tag-checkbox-item">
+   |  ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+452|                    <span>Phát triển SP</span><span class="tag-checkbox" :class="{ checked: previewData.isPD }"></span>
+   |  ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+453|                    <span class="tag-checkbox-hint">PD</span>
+   |  ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+454|                  </div>
+   |  ^^^^^^^^^^^^^^^^^^^^^^
+455|                  <div class="tag-checkbox-item">
+   |  ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+456|                    <span>Sản lượng</span><span class="tag-checkbox" :class="{ checked: previewData.isMassProduction }"></span>
+   |  ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+457|                    <span class="tag-checkbox-hint">Mass production</span>
+   |  ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+458|                  </div>
+   |  ^^^^^^^^^^^^^^^^^^^^^^
+459|                  <div class="tag-checkbox-item">
+   |  ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+460|                    <span>Công nghiệp nặng</span><span class="tag-checkbox" :class="{ checked: previewData.isHeavyIndustry }"></span>
+   |  ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+461|                    <span class="tag-checkbox-hint">Heavy industry</span>
+   |  ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+462|                  </div>
+   |  ^^^^^^^^^^^^^^^^^^^^^^
+463|                </div>
+   |  ^^^^^^^^^^^^^^^^^^^^
+464|              </td>
+   |  ^^^^^^^^^^^^^^^^^
+465|            </tr>
+   |  ^^^^^^^^^^^^^^^[39m
+  Plugin: [35mvite:vue[39m
+  File: [36mD:/越南MOM/MOM/src/views/extrusion/CuttingWorkbench.vue[39m
+[2m16:48:25[22m [33m[1m[vite][22m[39m [33mwarning: <tr> cannot be child of <table>, according to HTML specifications. This can cause hydration errors or potentially disrupt future functionality.
+465|            </tr>
+466|  
+467|            <tr>
+   |            ^^^^
+468|              <td class="tag-key">Tên vật liệu<br />Material name<br />物料名称</td>
+   |  ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+469|              <td class="tag-value">{{ previewData.productName || '-' }}</td>
+   |  ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+470|              <td class="tag-key">Mã số lô<br />Furnaces No.<br />炉次号</td>
+   |  ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+471|              <td class="tag-value">{{ previewData.furnaceNo || '-' }}</td>
+   |  ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+472|              <td colspan="2" rowspan="5" class="tag-qr-cell">
+   |  ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+473|                <div class="tag-qr-box">
+   |  ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+474|                  <img v-if="teamQrUrl" :src="teamQrUrl" class="tag-qr-img" alt="team-qr" />
+   |  ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+475|                  <div v-else class="tag-qr-placeholder">二维码生成中</div>
+   |  ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+476|                </div>
+   |  ^^^^^^^^^^^^^^^^^^^^
+477|              </td>
+   |  ^^^^^^^^^^^^^^^^^
+478|            </tr>
+   |  ^^^^^^^^^^^^^^^[39m
+  Plugin: [35mvite:vue[39m
+  File: [36mD:/越南MOM/MOM/src/views/extrusion/CuttingWorkbench.vue[39m
+[2m16:48:25[22m [33m[1m[vite][22m[39m [33mwarning: <tr> cannot be child of <table>, according to HTML specifications. This can cause hydration errors or potentially disrupt future functionality.
+478|            </tr>
+479|  
+480|            <tr>
+   |            ^^^^
+481|              <td class="tag-key">Số lô đùn<br />Extrusion batch No.<br />挤压批次号</td>
+   |  ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+482|              <td class="tag-value">{{ previewData.extrusionBatch || '-' }}</td>
+   |  ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+483|              <td class="tag-key">Số khuôn<br />Die No.<br />模号</td>
+   |  ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+484|              <td class="tag-value">{{ previewData.moldNo || '-' }}</td>
+   |  ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+485|            </tr>
+   |  ^^^^^^^^^^^^^^^[39m
+  Plugin: [35mvite:vue[39m
+  File: [36mD:/越南MOM/MOM/src/views/extrusion/CuttingWorkbench.vue[39m
+[2m16:48:25[22m [33m[1m[vite][22m[39m [33mwarning: <tr> cannot be child of <table>, according to HTML specifications. This can cause hydration errors or potentially disrupt future functionality.
+485|            </tr>
+486|  
+487|            <tr>
+   |            ^^^^
+488|              <td class="tag-key">Số lượng - Q’ty<br />数量</td>
+   |  ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+489|              <td class="tag-value">{{ previewData.materialQty ?? '-' }} PCS</td>
+   |  ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+490|              <td class="tag-key">Số kê<br />Frame No.<br />框号</td>
+   |  ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+491|              <td class="tag-value">{{ previewData.frameNo || '-' }}</td>
+   |  ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+492|            </tr>
+   |  ^^^^^^^^^^^^^^^[39m
+  Plugin: [35mvite:vue[39m
+  File: [36mD:/越南MOM/MOM/src/views/extrusion/CuttingWorkbench.vue[39m
+[2m16:48:25[22m [33m[1m[vite][22m[39m [33mwarning: <tr> cannot be child of <table>, according to HTML specifications. This can cause hydration errors or potentially disrupt future functionality.
+492|            </tr>
+493|  
+494|            <tr>
+   |            ^^^^
+495|              <td class="tag-key">Chiều dài cố định<br />Fixed length<br />定长</td>
+   |  ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+496|              <td class="tag-value">{{ previewData.fixedLength ?? '-' }} mm</td>
+   |  ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+497|              <td class="tag-key">Số máy<br />Machine No.<br />机台号</td>
+   |  ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+498|              <td class="tag-value">{{ previewData.extrusionMachine || '-' }}</td>
+   |  ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+499|            </tr>
+   |  ^^^^^^^^^^^^^^^[39m
+  Plugin: [35mvite:vue[39m
+  File: [36mD:/越南MOM/MOM/src/views/extrusion/CuttingWorkbench.vue[39m
+[2m16:48:25[22m [33m[1m[vite][22m[39m [33mwarning: <tr> cannot be child of <table>, according to HTML specifications. This can cause hydration errors or potentially disrupt future functionality.
+499|            </tr>
+500|  
+501|            <tr>
+   |            ^^^^
+502|              <td class="tag-key">Đội cắt/đóng gói<br />Cutting team/Packing team<br />裁切/包装班组</td>
+   |  ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+503|              <td class="tag-value">{{ previewData.shiftTeam || '-' }}</td>
+   |  ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+504|              <td class="tag-key">Nhãn hiệu<br />Material grade<br />牌号</td>
+   |  ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+505|              <td class="tag-value">{{ previewData.alloy || '-' }}</td>
+   |  ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+506|            </tr>
+   |  ^^^^^^^^^^^^^^^[39m
+  Plugin: [35mvite:vue[39m
+  File: [36mD:/越南MOM/MOM/src/views/extrusion/CuttingWorkbench.vue[39m
+[2m16:48:25[22m [33m[1m[vite][22m[39m [33mwarning: <tr> cannot be child of <table>, according to HTML specifications. This can cause hydration errors or potentially disrupt future functionality.
+512|          <div v-for="(box, index) in (previewData.boxes || []).slice(0, 3)" :key="box.boxCode" class="mb-4">
+513|            <table class="label-table">
+514|              <tr>
+   |              ^^^^
+515|                <td colspan="6" class="label-title">
+   |  ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+516|                  <div style="text-align: center; font-weight: bold; font-size: 16px;">山东创新精密科技有限公司（标示卡）</div>
+   |  ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+517|                </td>
+   |  ^^^^^^^^^^^^^^^^^^^
+518|              </tr>
+   |  ^^^^^^^^^^^^^^^^^[39m
+  Plugin: [35mvite:vue[39m
+  File: [36mD:/越南MOM/MOM/src/views/extrusion/CuttingWorkbench.vue[39m
+[2m16:48:25[22m [33m[1m[vite][22m[39m [33mwarning: <tr> cannot be child of <table>, according to HTML specifications. This can cause hydration errors or potentially disrupt future functionality.
+517|                </td>
+518|              </tr>
+519|              <tr>
+   |              ^^^^
+520|                <td class="header-cell">生产类型</td><td colspan="2">{{ previewData.productionType || scheduleInfo.productionType || '试产' }}</td>
+   |  ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+521|                <td class="header-cell">客户代码</td><td colspan="2">{{ previewData.customerCode || scheduleInfo.customerCode || '-' }}</td>
+   |  ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+522|              </tr>
+   |  ^^^^^^^^^^^^^^^^^[39m
+  Plugin: [35mvite:vue[39m
+  File: [36mD:/越南MOM/MOM/src/views/extrusion/CuttingWorkbench.vue[39m
+[2m16:48:25[22m [33m[1m[vite][22m[39m [33mwarning: <tr> cannot be child of <table>, according to HTML specifications. This can cause hydration errors or potentially disrupt future functionality.
+521|                <td class="header-cell">客户代码</td><td colspan="2">{{ previewData.customerCode || scheduleInfo.customerCode || '-' }}</td>
+522|              </tr>
+523|              <tr>
+   |              ^^^^
+524|                <td class="header-cell">产品名称</td><td colspan="2">{{ previewData.productName || 'SR-34' }}</td>
+   |  ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+525|                <td class="header-cell">炉次号</td><td colspan="2">{{ previewData.furnaceNo || '25-412-06-11-03(10PCS)' }}</td>
+   |  ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+526|              </tr>
+   |  ^^^^^^^^^^^^^^^^^[39m
+  Plugin: [35mvite:vue[39m
+  File: [36mD:/越南MOM/MOM/src/views/extrusion/CuttingWorkbench.vue[39m
+[2m16:48:25[22m [33m[1m[vite][22m[39m [33mwarning: <tr> cannot be child of <table>, according to HTML specifications. This can cause hydration errors or potentially disrupt future functionality.
+525|                <td class="header-cell">炉次号</td><td colspan="2">{{ previewData.furnaceNo || '25-412-06-11-03(10PCS)' }}</td>
+526|              </tr>
+527|              <tr>
+   |              ^^^^
+528|                <td class="header-cell">挤压批次号</td><td colspan="2">{{ previewData.extrusionBatch || 'JY2603070002(10PCS)' }}</td>
+   |  ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+529|                <td class="header-cell">模具号</td><td colspan="2">{{ previewData.moldNo || '-' }}</td>
+   |  ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+530|              </tr>
+   |  ^^^^^^^^^^^^^^^^^[39m
+  Plugin: [35mvite:vue[39m
+  File: [36mD:/越南MOM/MOM/src/views/extrusion/CuttingWorkbench.vue[39m
+[2m16:48:25[22m [33m[1m[vite][22m[39m [33mwarning: <tr> cannot be child of <table>, according to HTML specifications. This can cause hydration errors or potentially disrupt future functionality.
+529|                <td class="header-cell">模具号</td><td colspan="2">{{ previewData.moldNo || '-' }}</td>
+530|              </tr>
+531|              <tr>
+   |              ^^^^
+532|                <td class="header-cell">数量</td><td colspan="2">{{ box.plannedQty }}PCS</td>
+   |  ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+533|                <td class="header-cell">框号</td><td colspan="2">{{ previewData.frameNo || '6m-0979' }}</td>
+   |  ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+534|              </tr>
+   |  ^^^^^^^^^^^^^^^^^[39m
+  Plugin: [35mvite:vue[39m
+  File: [36mD:/越南MOM/MOM/src/views/extrusion/CuttingWorkbench.vue[39m
+[2m16:48:25[22m [33m[1m[vite][22m[39m [33mwarning: <tr> cannot be child of <table>, according to HTML specifications. This can cause hydration errors or potentially disrupt future functionality.
+533|                <td class="header-cell">框号</td><td colspan="2">{{ previewData.frameNo || '6m-0979' }}</td>
+534|              </tr>
+535|              <tr>
+   |              ^^^^
+536|                <td class="header-cell">定长</td><td colspan="2">{{ previewData.fixedLength || '-' }}mm</td>
+   |  ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+537|                <td class="header-cell">机台号</td><td colspan="2">{{ previewData.extrusionMachine || '-' }}</td>
+   |  ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+538|              </tr>
+   |  ^^^^^^^^^^^^^^^^^[39m
+  Plugin: [35mvite:vue[39m
+  File: [36mD:/越南MOM/MOM/src/views/extrusion/CuttingWorkbench.vue[39m
+[2m16:48:25[22m [33m[1m[vite][22m[39m [33mwarning: <tr> cannot be child of <table>, according to HTML specifications. This can cause hydration errors or potentially disrupt future functionality.
+537|                <td class="header-cell">机台号</td><td colspan="2">{{ previewData.extrusionMachine || '-' }}</td>
+538|              </tr>
+539|              <tr>
+   |              ^^^^
+540|                <td class="header-cell">裁切/包装班组</td><td colspan="2">{{ previewData.shiftTeam || '1234' }}</td>
+   |  ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+541|                <td class="header-cell">牌号</td><td colspan="2">{{ previewData.alloy || '-' }}</td>
+   |  ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+542|              </tr>
+   |  ^^^^^^^^^^^^^^^^^[39m
+  Plugin: [35mvite:vue[39m
+  File: [36mD:/越南MOM/MOM/src/views/extrusion/CuttingWorkbench.vue[39m
+[2m16:48:25[22m [33m[1m[vite][22m[39m [33mwarning: <tr> cannot be child of <table>, according to HTML specifications. This can cause hydration errors or potentially disrupt future functionality.
+541|                <td class="header-cell">牌号</td><td colspan="2">{{ previewData.alloy || '-' }}</td>
+542|              </tr>
+543|              <tr>
+   |              ^^^^
+544|                <td class="header-cell">纸箱号</td><td colspan="5">{{ box.boxCode || `${previewData.frameNo}-${String(index + 1).padStart(2, '0')}` }}</td>
+   |  ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+545|              </tr>
+   |  ^^^^^^^^^^^^^^^^^[39m
+  Plugin: [35mvite:vue[39m
+  File: [36mD:/越南MOM/MOM/src/views/extrusion/CuttingWorkbench.vue[39m
+[2m17:00:05[22m [36m[1m[vite][22m[39m [32mpage reload [39m[2msrc/router/index.ts[22m
+[2m17:00:05[22m [36m[1m[vite][22m[39m [32mpage reload [39m[2msrc/i18n/locales/zh-CN.ts[22m
+[2m17:00:05[22m [36m[1m[vite][22m[39m [32mpage reload [39m[2msrc/i18n/locales/en-US.ts[22m
+[2m17:00:05[22m [36m[1m[vite][22m[39m [32mpage reload [39m[2msrc/i18n/locales/vi-VN.ts[22m
+[2m17:01:09[22m [36m[1m[vite][22m[39m [32mhmr update [39m[2m/src/views/extrusion/AgingWorkbench.vue, /src/views/extrusion/AgingWorkbench.vue?vue&type=style&index=0&scoped=f9d33747&lang.css[22m
+[2m15:47:26[22m [36m[1m[vite][22m[39m [32mhmr update [39m[2m/src/views/extrusion/ExtrusionWorkbench.vue[22m

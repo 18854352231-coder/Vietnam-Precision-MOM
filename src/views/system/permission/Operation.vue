@@ -79,10 +79,11 @@ const operationTree = [
     { id: 'mold:scrapped:view', title: '查看报废模具' }
   ]},
   { id: 'quality', title: '质量管理', children: [
-    { id: 'quality:ipqc:add', title: '新增检验记录' },
-    { id: 'quality:ipqc:edit', title: '编辑检验记录' },
+    { id: 'quality:ipqc:execute', title: '执行IPQC检验' },
+    { id: 'quality:ipqc:dispose', title: '处置质量异常' },
+    { id: 'quality:ipqc:release', title: '质量放行' },
     { id: 'quality:lab:add', title: '录入检测结果' },
-    { id: 'quality:config:manage', title: '产品检验配置管理' }
+    { id: 'quality:config:manage', title: '检验方案管理' }
   ]},
   { id: 'extrusion', title: '挤压生产', children: [
     { id: 'extrusion:schedule:add', title: '新建排程' },
@@ -202,4 +203,3 @@ const save = () => {
   color: #666;
 }
 </style>
-

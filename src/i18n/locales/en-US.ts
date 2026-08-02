@@ -48,6 +48,7 @@ export default {
       cuttingWorkbench: 'Cutting Workbench',
       packagingWorkbench: 'Packaging Workbench',
       pendingStorage: 'Pending Storage List',
+      traceability: 'Full Traceability',
       defectiveControl: 'Defective Control'
     },
     mold: {
@@ -59,6 +60,12 @@ export default {
       root: 'Quality Management',
       ipqc: {
         root: 'IPQC',
+        workbench: 'IPQC Workbench',
+        tasks: 'Inspection Tasks',
+        records: 'Inspection Records',
+        exceptions: 'Quality Exceptions',
+        plans: 'Inspection Plans',
+        spc: 'SPC Trend Analysis',
         processInspection: 'Process Inspection',
         extrusion: 'Extrusion IPQC',
         aging: 'Aging IPQC',

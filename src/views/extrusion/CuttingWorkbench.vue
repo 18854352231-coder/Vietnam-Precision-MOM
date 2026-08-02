@@ -84,6 +84,7 @@
             </el-table-column>
             <el-table-column prop="moldNo" label="模具号" width="140" show-overflow-tooltip />
             <el-table-column prop="scheduleNo" label="排程编号" width="160" show-overflow-tooltip />
+            <el-table-column prop="scheduleType" label="排程类型" width="110" align="center" />
             <el-table-column prop="quantity" label="数量" width="90" align="right" />
             <el-table-column prop="fixedLength" label="定长(mm)" width="100" align="right" />
             <el-table-column prop="netWeight" label="净重(kg)" width="100" align="right" />
@@ -135,13 +136,10 @@
                       />
                     </el-select>
                   </el-form-item>
-                  <el-form-item label="托盘号" required>
-                    <el-input v-model="printForm.frameNo" placeholder="请输入或扫描托盘号" />
-                  </el-form-item>
                   <el-form-item label="装托数量">
                     <el-input v-model="printForm.materialQty" disabled placeholder="根据物料码自动生成" />
                   </el-form-item>
-                  <el-form-item label="托盘最大载量" required>
+                  <el-form-item label="栈板最大载量" required>
                     <el-input-number v-model="printForm.trayMaxLoad" :min="1" controls-position="right" style="width: 100%" @change="handleTrayMaxLoadChange" />
                   </el-form-item>
                   <el-form-item label="栈板皮重(KG)" required>
@@ -193,9 +191,18 @@
                     </el-tag>
                   </div>
                 </template>
-                <div class="mt-2" style="display: flex; gap: 10px; margin-bottom: 10px;">
-                  <el-input v-model="printForm.longBranchCode" :placeholder="printForm.isBoxed ? '扫码绑定到当前小箱' : '扫码添加镭雕码'" @keyup.enter="handleAddLongBranch" style="flex: 1;" />
-                  <el-button type="primary" @click="handleAddLongBranch">添加</el-button>
+                <div class="mt-2" style="margin-bottom: 10px;">
+                  <el-input
+                    v-model="printForm.longBranchCode"
+                    :disabled="!hasActiveSchedule || !printForm.sourceFrameNo"
+                    :placeholder="!hasActiveSchedule
+                      ? '请先选择排程'
+                      : !printForm.sourceFrameNo
+                        ? '请先选择料框'
+                        : printForm.isBoxed
+                          ? '扫码绑定到当前小箱，停止输入1.5秒后自动添加'
+                          : '输入二维码编号，停止输入1.5秒后自动添加'"
+                  />
                 </div>
                 <el-table :data="boundBranches" style="width: 100%" border size="small" height="380">
                   <el-table-column type="index" label="序号" width="60" align="center" />
@@ -215,8 +222,8 @@
         <el-tab-pane label="装托记录" name="packageManage">
           <div class="toolbar" style="display: flex; justify-content: space-between; align-items: flex-start;">
             <el-form :inline="true" :model="packageSearchForm" class="search-form">
-              <el-form-item label="托盘号">
-                <el-input v-model="packageSearchForm.frameNo" placeholder="请输入托盘号" clearable />
+              <el-form-item label="栈板编号">
+                <el-input v-model="packageSearchForm.frameNo" placeholder="请输入栈板编号" clearable />
               </el-form-item>
               <el-form-item label="排程编号">
                 <el-input v-model="packageSearchForm.scheduleNo" placeholder="请输入排程编号" clearable />
@@ -239,7 +246,7 @@
           <div class="package-panel">
             <div class="package-panel-header" style="display: flex; justify-content: space-between; align-items: center; margin-bottom: 10px;">
               <div>
-                <span class="section-title section-title-compact">托盘/小箱清单</span>
+                <span class="section-title section-title-compact">栈板/小箱清单</span>
                 <span class="package-summary">共 {{ filteredPackageList.length }} 包</span>
               </div>
               <div>
@@ -256,9 +263,13 @@
               @row-click="handlePackageRowClick"
             >
               <el-table-column type="selection" width="55" align="center" />
-              <el-table-column prop="frameNo" label="托盘号" width="140" />
+              <el-table-column prop="sourceFrameNo" label="料框" width="180" />
+              <el-table-column label="栈板编号" width="140">
+                <template #default="{ row }">{{ row.palletNo || row.frameNo }}</template>
+              </el-table-column>
               <el-table-column prop="productName" label="产品名称" width="120" />
               <el-table-column prop="scheduleNo" label="排程编号" width="160" />
+              <el-table-column prop="scheduleType" label="排程类型" width="110" align="center" />
               <el-table-column prop="customerCode" label="客户代码" width="100" />
               <el-table-column prop="customerName" label="客户名称" width="140" />
               <el-table-column prop="furnaceNo" label="炉次号" width="140" />
@@ -266,7 +277,7 @@
               <el-table-column prop="fixedLength" label="长度(mm)" width="100" align="right" />
               <el-table-column prop="alloy" label="合金牌号" width="100" />
               <el-table-column prop="materialQty" label="装托数量" width="100" align="right" />
-              <el-table-column prop="trayMaxLoad" label="托盘最大载量" width="120" align="right" />
+              <el-table-column prop="trayMaxLoad" label="栈板最大载量" width="120" align="right" />
               <el-table-column prop="tareWeight" label="栈板皮重(KG)" width="120" align="right" />
               <el-table-column prop="shiftTeam" label="班组信息" width="120" />
               <el-table-column prop="singleCodeQty" label="单支裁切数量" width="120" align="right" />
@@ -338,6 +349,7 @@
       >
         <el-table-column type="index" label="序号" width="60" align="center" />
         <el-table-column prop="scheduleNo" label="排程编号" width="160" />
+        <el-table-column prop="scheduleType" label="排程类型" width="110" align="center" />
         <el-table-column prop="customerCode" label="客户代码" width="120" />
         <el-table-column prop="customerName" label="客户名称" width="160" />
         <el-table-column prop="planQty" label="计划量" width="100" align="right" />
@@ -448,16 +460,16 @@
               </div>
               <div class="tag-checkbox-grid">
                 <div class="tag-checkbox-item">
-                  <span>Phát triển SP</span><span class="tag-checkbox" :class="{ checked: previewData.isPD }"></span>
+                  <span>Vật liệu phát triển SP</span><span class="tag-checkbox" :class="{ checked: previewData.isPD }"></span>
                   <span class="tag-checkbox-hint">PD</span>
                 </div>
                 <div class="tag-checkbox-item">
-                  <span>Sản lượng</span><span class="tag-checkbox" :class="{ checked: previewData.isMassProduction }"></span>
+                  <span>Vật liệu sản xuất hàng loạt</span><span class="tag-checkbox" :class="{ checked: previewData.isMassProduction }"></span>
                   <span class="tag-checkbox-hint">Mass production</span>
                 </div>
                 <div class="tag-checkbox-item">
-                  <span>Công nghiệp nặng</span><span class="tag-checkbox" :class="{ checked: previewData.isHeavyIndustry }"></span>
-                  <span class="tag-checkbox-hint">Heavy industry</span>
+                  <span>Vật liệu gia công lại</span><span class="tag-checkbox" :class="{ checked: previewData.isHeavyIndustry }"></span>
+                  <span class="tag-checkbox-hint">Rework</span>
                 </div>
               </div>
             </td>
@@ -486,7 +498,7 @@
           <tr>
             <td class="tag-key">Số lượng - Q’ty<br />数量</td>
             <td class="tag-value">{{ previewData.materialQty ?? '-' }} PCS</td>
-            <td class="tag-key">Số kê<br />Frame No.<br />框号</td>
+            <td class="tag-key">Số pallet<br />Pallet No.<br />栈板编号</td>
             <td class="tag-value">{{ previewData.frameNo || '-' }}</td>
           </tr>
 
@@ -529,7 +541,7 @@
             </tr>
             <tr>
               <td class="header-cell">数量</td><td colspan="2">{{ box.plannedQty }}PCS</td>
-              <td class="header-cell">框号</td><td colspan="2">{{ previewData.frameNo || '6m-0979' }}</td>
+              <td class="header-cell">栈板编号</td><td colspan="2">{{ previewData.frameNo || '-' }}</td>
             </tr>
             <tr>
               <td class="header-cell">定长</td><td colspan="2">{{ previewData.fixedLength || '-' }}mm</td>
@@ -569,12 +581,15 @@
 </template>
 
 <script setup lang="ts">
-import { ref, computed, onUnmounted } from 'vue'
+import { ref, computed, onUnmounted, watch } from 'vue'
 import { ElMessage, ElMessageBox } from 'element-plus'
 import QRCode from 'qrcode'
 import ProcessDocumentDialog from '@/components/ProcessDocumentDialog.vue'
 import { useTaskLiteralDomI18n } from '@/composables/useTaskLiteralDomI18n'
 import { buildMaterialTagPreviewData } from '@/utils/materialTagPreviewData'
+import { upsertCuttingPackagingRecord } from '@/utils/cuttingPackagingFlow'
+import { loadIssuedCuttingSchedules } from '@/utils/cuttingScheduleFlow'
+import { generatePalletNo as generatePalletNumber } from '@/utils/palletNo'
 
 useTaskLiteralDomI18n()
 
@@ -611,7 +626,6 @@ const submitClockIn = () => {
   }).then(() => {
     isClockedIn.value = true
     currentTeam.value = clockInForm.value.team
-    printForm.value.frameNo = clockInForm.value.team // 托盘号默认为上班班组的名称
     const now = new Date()
     clockInTime.value = `${String(now.getHours()).padStart(2, '0')}:${String(now.getMinutes()).padStart(2, '0')}`
     clockInDialogVisible.value = false
@@ -646,7 +660,7 @@ const syncMaterialQty = () => {
 const ensureWithinTrayCapacity = () => {
   if (!printForm.value.trayMaxLoad) return true
   if (printForm.value.materialQty > printForm.value.trayMaxLoad) {
-    ElMessage.error(`装托数量 ${printForm.value.materialQty} 超过托盘最大载量 ${printForm.value.trayMaxLoad}`)
+    ElMessage.error(`装托数量 ${printForm.value.materialQty} 超过栈板最大载量 ${printForm.value.trayMaxLoad}`)
     return false
   }
   return true
@@ -671,10 +685,10 @@ const handleTrayMaxLoadChange = () => {
 }
 
 const scheduleDialogVisible = ref(false)
-const scheduleList = ref<any[]>([
+const defaultScheduleList: any[] = [
   {
     scheduleNo: 'PC-20260424-001',
-    scheduleType: '正常',
+    scheduleType: '量产物料',
     customerCode: 'C009887',
     customerName: '客户A',
     furnaceNo: '26-423-02-24-02',
@@ -693,7 +707,7 @@ const scheduleList = ref<any[]>([
   },
   {
     scheduleNo: 'PC-20260424-002',
-    scheduleType: '加急',
+    scheduleType: '产发物料',
     customerCode: 'C009887',
     customerName: '客户A',
     furnaceNo: '25-412-06-11-03',
@@ -709,8 +723,37 @@ const scheduleList = ref<any[]>([
     singleWeight: 1.8,
     fixedLength: 130.0,
     extrusionMachine: 'JY-07'
+  },
+  {
+    scheduleNo: 'PC-20260424-003',
+    scheduleType: '重工物料',
+    customerCode: 'C009887',
+    customerName: '客户A',
+    furnaceNo: '25-412-06-11-03',
+    extrusionBatchNo: 'JY2603070002',
+    moldNo: '999#',
+    alloy: '6R02',
+    productName: 'FC49',
+    componentMaterialNo: 'CM-003',
+    customerMaterialNo: 'C-MAT-003',
+    customerProductName: 'Customer Rework FC49',
+    productionType: '重工',
+    planQty: 20,
+    singleWeight: 2.1,
+    fixedLength: 130.0,
+    extrusionMachine: 'JY-07'
   }
-])
+]
+const scheduleList = ref<any[]>([])
+const refreshScheduleList = () => {
+  const issuedSchedules = loadIssuedCuttingSchedules()
+  const issuedScheduleNos = new Set(issuedSchedules.map(item => item.scheduleNo))
+  scheduleList.value = [
+    ...issuedSchedules,
+    ...defaultScheduleList.filter(item => !issuedScheduleNos.has(item.scheduleNo))
+  ]
+}
+refreshScheduleList()
 const selectedSchedule = ref<any | null>(null)
 const processDocDialogVisible = ref(false)
 const processDocContext = ref({
@@ -733,6 +776,7 @@ const labelContext = ref<any>({
 })
 
 const openScheduleDialog = () => {
+  refreshScheduleList()
   selectedSchedule.value = { ...scheduleInfo.value }
   scheduleDialogVisible.value = true
 }
@@ -753,6 +797,7 @@ const resetPrintForSchedule = (row: any) => {
     fixedLength: row.fixedLength || '',
     extrusionMachine: row.extrusionMachine || '',
     customerCode: row.customerCode || '',
+    scheduleType: row.scheduleType || '',
     productionType: row.productionType || '',
     alloy: row.alloy || ''
   }
@@ -777,7 +822,7 @@ const resetPrintForSchedule = (row: any) => {
 
   printForm.value = {
     sourceFrameNo: '',
-    frameNo: currentTeam.value || '',
+    frameNo: '',
     longBranchCode: '',
     materialQty: 0,
     palletCount: 1,
@@ -786,6 +831,7 @@ const resetPrintForSchedule = (row: any) => {
     singleCodeQty: '',
     isBoxed: false,
     piecesPerBox: 10,
+    plannedBoxQty: 0,
     boxCount: 0
   }
   boundBranches.value = []
@@ -824,12 +870,12 @@ const searchForm = ref({
 })
 
 const materialList = ref<any[]>([
-  { id: 1, frameNo: 'CV-A-A-L6000*W1250*H650*0196', locationNo: 'A1-01', isCPK: '否', productName: 'FC140', furnaceNo: '26-423-02-24-02', extrusionBatch: 'JY2602260001', extrusionMachine: 'JY-35', status: '待收料', moldNo: '049#', productType: '量产', scheduleType: '正常', scheduleNo: 'PC-20260424-001', isCoded: '是', cuttingSchedule: '是', quantity: 10, fixedLength: 341.79, netWeight: 50.5, feedingTime: '-', completionTime: '-', goodQty: 0, defectiveQty: 0 },
-  { id: 2, frameNo: 'CV-A-A-L6000*W1250*H650*0197', locationNo: 'B2-05', isCPK: '是', productName: 'FC49', furnaceNo: '25-412-06-11-03', extrusionBatch: 'JY2603070002', extrusionMachine: 'JY-07', status: '已收料', moldNo: '999#', productType: '试产', scheduleType: '加急', scheduleNo: 'PC-20260424-003', isCoded: '否', cuttingSchedule: '否', quantity: 20, fixedLength: 130.0, netWeight: 42.0, feedingTime: '2026-04-24 08:30:00', completionTime: '-', goodQty: 0, defectiveQty: 0 },
-  { id: 3, frameNo: 'CV-A-A-L6000*W1250*H650*0198', locationNo: 'C3-12', isCPK: '否', productName: 'FC104', furnaceNo: '26-423-02-24-02', extrusionBatch: 'JY2602260001', extrusionMachine: 'JY-35', status: '已完工', moldNo: '049#', productType: '量产', scheduleType: '正常', scheduleNo: 'PC-20260424-001', isCoded: '是', cuttingSchedule: '是', quantity: 15, fixedLength: 341.79, netWeight: 75.2, feedingTime: '2026-04-24 09:00:00', completionTime: '2026-04-24 11:30:00', goodQty: 14, defectiveQty: 1 },
-  { id: 4, frameNo: 'CV-A-A-L6000*W1250*H650*0199', locationNo: 'B2-06', isCPK: '否', productName: 'FC113', furnaceNo: '25-412-06-11-03', extrusionBatch: 'JY2603070002', extrusionMachine: 'JY-07', status: '待收料', moldNo: '999#', productType: '试产', scheduleType: '加急', scheduleNo: 'PC-20260424-002', isCoded: '否', cuttingSchedule: '是', quantity: 24, fixedLength: 130.0, netWeight: 43.2, feedingTime: '-', completionTime: '-', goodQty: 0, defectiveQty: 0 },
-  { id: 5, frameNo: 'CV-A-A-L6000*W1250*H650*0200', locationNo: 'B2-07', isCPK: '是', productName: 'FC113', furnaceNo: '25-412-06-11-03', extrusionBatch: 'JY2603070002', extrusionMachine: 'JY-07', status: '待收料', moldNo: '999#', productType: '试产', scheduleType: '加急', scheduleNo: 'PC-20260424-002', isCoded: '否', cuttingSchedule: '是', quantity: 18, fixedLength: 130.0, netWeight: 32.4, feedingTime: '-', completionTime: '-', goodQty: 0, defectiveQty: 0 },
-  { id: 6, frameNo: 'CV-A-A-L6000*W1250*H650*0201', locationNo: 'B2-08', isCPK: '否', productName: 'FC113', furnaceNo: '25-412-06-11-03', extrusionBatch: 'JY2603070002', extrusionMachine: 'JY-07', status: '待收料', moldNo: '999#', productType: '试产', scheduleType: '加急', scheduleNo: 'PC-20260424-002', isCoded: '否', cuttingSchedule: '是', quantity: 30, fixedLength: 130.0, netWeight: 54.0, feedingTime: '-', completionTime: '-', goodQty: 0, defectiveQty: 0 }
+  { id: 1, frameNo: 'CV-A-A-L6000*W1250*H650*0196', locationNo: 'A1-01', isCPK: '否', productName: 'FC140', furnaceNo: '26-423-02-24-02', extrusionBatch: 'JY2602260001', extrusionMachine: 'JY-35', status: '待收料', moldNo: '049#', productType: '量产', scheduleType: '量产物料', scheduleNo: 'PC-20260424-001', isCoded: '是', cuttingSchedule: '是', quantity: 10, fixedLength: 341.79, netWeight: 50.5, feedingTime: '-', completionTime: '-', goodQty: 0, defectiveQty: 0 },
+  { id: 2, frameNo: 'CV-A-A-L6000*W1250*H650*0197', locationNo: 'B2-05', isCPK: '是', productName: 'FC49', furnaceNo: '25-412-06-11-03', extrusionBatch: 'JY2603070002', extrusionMachine: 'JY-07', status: '已收料', moldNo: '999#', productType: '试产', scheduleType: '重工物料', scheduleNo: 'PC-20260424-003', isCoded: '否', cuttingSchedule: '否', quantity: 20, fixedLength: 130.0, netWeight: 42.0, feedingTime: '2026-04-24 08:30:00', completionTime: '-', goodQty: 0, defectiveQty: 0 },
+  { id: 3, frameNo: 'CV-A-A-L6000*W1250*H650*0198', locationNo: 'C3-12', isCPK: '否', productName: 'FC104', furnaceNo: '26-423-02-24-02', extrusionBatch: 'JY2602260001', extrusionMachine: 'JY-35', status: '已完工', moldNo: '049#', productType: '量产', scheduleType: '量产物料', scheduleNo: 'PC-20260424-001', isCoded: '是', cuttingSchedule: '是', quantity: 15, fixedLength: 341.79, netWeight: 75.2, feedingTime: '2026-04-24 09:00:00', completionTime: '2026-04-24 11:30:00', goodQty: 14, defectiveQty: 1 },
+  { id: 4, frameNo: 'CV-A-A-L6000*W1250*H650*0199', locationNo: 'B2-06', isCPK: '否', productName: 'FC113', furnaceNo: '25-412-06-11-03', extrusionBatch: 'JY2603070002', extrusionMachine: 'JY-07', status: '待收料', moldNo: '999#', productType: '试产', scheduleType: '产发物料', scheduleNo: 'PC-20260424-002', isCoded: '否', cuttingSchedule: '是', quantity: 24, fixedLength: 130.0, netWeight: 43.2, feedingTime: '-', completionTime: '-', goodQty: 0, defectiveQty: 0 },
+  { id: 5, frameNo: 'CV-A-A-L6000*W1250*H650*0200', locationNo: 'B2-07', isCPK: '是', productName: 'FC113', furnaceNo: '25-412-06-11-03', extrusionBatch: 'JY2603070002', extrusionMachine: 'JY-07', status: '待收料', moldNo: '999#', productType: '试产', scheduleType: '产发物料', scheduleNo: 'PC-20260424-002', isCoded: '否', cuttingSchedule: '是', quantity: 18, fixedLength: 130.0, netWeight: 32.4, feedingTime: '-', completionTime: '-', goodQty: 0, defectiveQty: 0 },
+  { id: 6, frameNo: 'CV-A-A-L6000*W1250*H650*0201', locationNo: 'B2-08', isCPK: '否', productName: 'FC113', furnaceNo: '25-412-06-11-03', extrusionBatch: 'JY2603070002', extrusionMachine: 'JY-07', status: '待收料', moldNo: '999#', productType: '试产', scheduleType: '产发物料', scheduleNo: 'PC-20260424-002', isCoded: '否', cuttingSchedule: '是', quantity: 30, fixedLength: 130.0, netWeight: 54.0, feedingTime: '-', completionTime: '-', goodQty: 0, defectiveQty: 0 }
 ])
 
 const filteredMaterialList = computed(() => {
@@ -965,7 +1011,9 @@ const packageRecords = ref<any[]>([
   {
     id: 1,
     packageNo: 'CTPK-20260424-001',
-    frameNo: 'CV-A-A-L6000*W1250*H650*0199',
+    sourceFrameNo: 'CV-A-A-L6000*W1250*H650*0196',
+    frameNo: '20260424-01',
+    palletNo: '20260424-01',
     productName: 'FC94',
     extrusionBatch: 'JY2602260001',
     furnaceNo: '26-423-02-24-02',
@@ -975,7 +1023,7 @@ const packageRecords = ref<any[]>([
     customerCode: 'C009887',
     customerName: '客户A',
     scheduleNo: 'PC-20260424-001',
-    scheduleType: '正常',
+    scheduleType: '量产物料',
     productionType: '量产',
     alloy: '6R02',
     materialQty: 3,
@@ -998,7 +1046,9 @@ const packageRecords = ref<any[]>([
   {
     id: 2,
     packageNo: 'CTPK-20260424-002',
-    frameNo: 'CV-A-A-L6000*W1250*H650*0203',
+    sourceFrameNo: 'CV-A-A-L6000*W1250*H650*0202',
+    frameNo: '20260424-02',
+    palletNo: '20260424-02',
     productName: 'FC32',
     extrusionBatch: 'JY2603070002',
     furnaceNo: '25-412-06-11-03',
@@ -1008,7 +1058,7 @@ const packageRecords = ref<any[]>([
     customerCode: 'C009887',
     customerName: '客户A',
     scheduleNo: 'PC-20260424-002',
-    scheduleType: '加急',
+    scheduleType: '产发物料',
     productionType: '试产',
     alloy: '6R02',
     materialQty: 4,
@@ -1039,7 +1089,8 @@ const packageDetailDialogVisible = ref(false)
 const filteredPackageList = computed(() => {
   return packageRecords.value.filter(item => {
     const matchScheduleNo = !packageSearchForm.value.scheduleNo || (item.scheduleNo && item.scheduleNo.includes(packageSearchForm.value.scheduleNo))
-    const matchFrameNo = !packageSearchForm.value.frameNo || item.frameNo.includes(packageSearchForm.value.frameNo)
+    const palletNo = String(item.palletNo || item.frameNo || '')
+    const matchFrameNo = !packageSearchForm.value.frameNo || palletNo.includes(packageSearchForm.value.frameNo)
     const matchBatch = !packageSearchForm.value.extrusionBatch || item.extrusionBatch.includes(packageSearchForm.value.extrusionBatch)
     const matchCustomerName = !packageSearchForm.value.customerName || (item.customerName && item.customerName.includes(packageSearchForm.value.customerName))
     return matchScheduleNo && matchFrameNo && matchBatch && matchCustomerName
@@ -1229,16 +1280,23 @@ const printForm = ref({
   boxCount: 0
 })
 
+const generatePalletNo = (date = new Date()) => generatePalletNumber(
+  packageRecords.value.map(item => item.palletNo || item.frameNo),
+  date
+)
+
+const ensurePalletNo = () => {
+  if (!printForm.value.frameNo) printForm.value.frameNo = generatePalletNo()
+  return printForm.value.frameNo
+}
+
 const boundBranches = ref<any[]>([])
 const generatedBoxes = ref<any[]>([])
 const currentBoxCode = ref('')
 const currentBox = computed(() => generatedBoxes.value.find(box => box.boxCode === currentBoxCode.value) || null)
 
 const generateBoxCodes = () => {
-  if (!printForm.value.frameNo) {
-    ElMessage.warning('请先输入或扫描托盘号')
-    return
-  }
+  ensurePalletNo()
   if (!printForm.value.plannedBoxQty || !printForm.value.piecesPerBox) {
     ElMessage.warning('请先填写预装箱片数和每箱片数')
     return
@@ -1263,11 +1321,22 @@ const generateBoxCodes = () => {
 }
 
 const handleAddLongBranch = () => {
-  if (!printForm.value.longBranchCode) return
-  if (!printForm.value.frameNo) {
-    ElMessage.warning('请先输入或扫描托盘号')
+  const qrCode = printForm.value.longBranchCode.trim()
+  if (!qrCode) return
+  if (!hasActiveSchedule.value || !scheduleInfo.value.scheduleNo) {
+    clearLongBranchAutoAddTimer()
+    printForm.value.longBranchCode = ''
+    ElMessage.warning('请先选择排程')
     return
   }
+  if (!printForm.value.sourceFrameNo) {
+    clearLongBranchAutoAddTimer()
+    printForm.value.longBranchCode = ''
+    ElMessage.warning('请先选择料框')
+    return
+  }
+  printForm.value.longBranchCode = qrCode
+  ensurePalletNo()
   if (printForm.value.isBoxed && !currentBox.value) {
     ElMessage.warning('请先生成并选择小箱码')
     return
@@ -1312,6 +1381,38 @@ const handleAddLongBranch = () => {
   ElMessage.success(printForm.value.isBoxed ? '镭雕码已绑定到当前小箱' : '镭雕码绑定成功')
 }
 
+let longBranchAutoAddTimer: ReturnType<typeof setTimeout> | null = null
+
+const clearLongBranchAutoAddTimer = () => {
+  if (longBranchAutoAddTimer) {
+    clearTimeout(longBranchAutoAddTimer)
+    longBranchAutoAddTimer = null
+  }
+}
+
+watch(
+  [
+    () => printForm.value.longBranchCode,
+    () => hasActiveSchedule.value,
+    () => printForm.value.sourceFrameNo
+  ],
+  ([qrCode, scheduleSelected, sourceFrameNo]) => {
+    clearLongBranchAutoAddTimer()
+    if (!qrCode.trim()) return
+    if (!scheduleSelected || !sourceFrameNo) {
+      printForm.value.longBranchCode = ''
+      return
+    }
+
+    longBranchAutoAddTimer = setTimeout(() => {
+      longBranchAutoAddTimer = null
+      handleAddLongBranch()
+    }, 1500)
+  }
+)
+
+onUnmounted(clearLongBranchAutoAddTimer)
+
 const removeBranch = (index: number) => {
   const [removed] = boundBranches.value.splice(index, 1)
   if (removed?.boxCode) {
@@ -1351,7 +1452,8 @@ const buildPreviewData = () => ({
     source: {
       ...scheduleInfo.value,
       ...labelContext.value,
-      frameNo: boundBranches.value.length > 0 ? boundBranches.value[0].frameNo : labelContext.value.frameNo || '',
+      // 栈板编号由系统按包装工作台规则生成，不能取镭雕码模拟数据中的料框号。
+      frameNo: printForm.value.frameNo,
       materialQty: printForm.value.materialQty
     },
     shiftTeam: currentTeam.value || ''
@@ -1363,10 +1465,7 @@ const previewPalletLabel = async () => {
     ElMessage.warning('请先选择料框')
     return
   }
-  if (!printForm.value.frameNo) {
-    ElMessage.warning('请先输入托盘号并绑定镭雕码')
-    return
-  }
+  ensurePalletNo()
   if (!ensureWithinTrayCapacity()) return
   previewType.value = 'pallet'
   previewData.value = buildPreviewData()
@@ -1380,10 +1479,7 @@ const previewBoxLabels = async () => {
     ElMessage.warning('请先选择料框')
     return
   }
-  if (!printForm.value.frameNo) {
-    ElMessage.warning('请先输入托盘号并绑定镭雕码')
-    return
-  }
+  ensurePalletNo()
   if (!generatedBoxes.value.length) {
     ElMessage.warning('请先生成小箱码')
     return
@@ -1395,9 +1491,16 @@ const previewBoxLabels = async () => {
 }
 
 const completePallet = () => {
-  ElMessageBox.confirm('确认当前托盘信息已录入完成吗？完成后将清空当前绑定的长支及托盘号，以便录入新托盘。', '完成确认', { type: 'info' }).then(() => {
+  ElMessageBox.confirm('确认当前栈板信息已录入完成吗？完成后将清空当前绑定的长支及栈板编号，以便录入新栈板。', '完成确认', { type: 'info' }).then(() => {
+    if (!printForm.value.sourceFrameNo) {
+      ElMessage.warning('请先选择料框')
+      return
+    }
+    ensurePalletNo()
+    if (!ensureWithinTrayCapacity()) return
+    syncPackageRecord()
     printForm.value.sourceFrameNo = ''
-    printForm.value.frameNo = currentTeam.value || ''
+    printForm.value.frameNo = ''
     printForm.value.longBranchCode = ''
     printForm.value.materialQty = 0
     printForm.value.plannedBoxQty = 0
@@ -1407,17 +1510,19 @@ const completePallet = () => {
     boundBranches.value = []
     generatedBoxes.value = []
     currentBoxCode.value = ''
-    ElMessage.success('托盘信息已完成，请录入新托盘')
+    ElMessage.success('栈板信息已完成，数据已流转至装托记录')
   }).catch(() => {})
 }
 
-const confirmPrint = () => {
-  ElMessage.success(`${previewType.value === 'pallet' ? '物料' : '小箱'}标识卡打印指令已发送`)
-
+const syncPackageRecord = () => {
+  const recordData = buildPreviewData()
+  let completedRecord: any = null
   if (labelContext.value.sourcePackageId) {
     const target = packageRecords.value.find(item => item.id === labelContext.value.sourcePackageId)
     if (target) {
+      target.sourceFrameNo = printForm.value.sourceFrameNo
       target.frameNo = printForm.value.frameNo
+      target.palletNo = printForm.value.frameNo
       target.materialQty = printForm.value.materialQty
       target.trayMaxLoad = printForm.value.trayMaxLoad
       target.tareWeight = printForm.value.tareWeight
@@ -1431,26 +1536,31 @@ const confirmPrint = () => {
       target.updateTime = formatNow()
       target.branches = cloneBranches(boundBranches.value)
       target.boxes = generatedBoxes.value.map(box => ({ ...box, branches: cloneBranches(box.branches) }))
-      target.productName = previewData.value.productName
-      target.extrusionBatch = previewData.value.extrusionBatch
-      target.furnaceNo = previewData.value.furnaceNo
-      target.moldNo = previewData.value.moldNo
-      target.fixedLength = previewData.value.fixedLength
-      target.extrusionMachine = previewData.value.extrusionMachine
-      target.customerCode = previewData.value.customerCode
-      target.customerName = previewData.value.customerName
-      target.scheduleNo = previewData.value.scheduleNo
-      target.scheduleType = previewData.value.scheduleType
-      target.productionType = previewData.value.productionType
-      target.alloy = previewData.value.alloy
+      target.productName = recordData.productName
+      target.extrusionBatch = recordData.extrusionBatch
+      target.furnaceNo = recordData.furnaceNo
+      target.moldNo = recordData.moldNo
+      target.fixedLength = recordData.fixedLength
+      target.extrusionMachine = recordData.extrusionMachine
+      target.customerCode = recordData.customerCode
+      target.customerName = recordData.customerName
+      target.scheduleNo = recordData.scheduleNo
+      target.scheduleType = recordData.scheduleType
+      target.productionType = recordData.productionType
+      target.alloy = recordData.alloy
+      target.componentMaterialNo = scheduleInfo.value.componentMaterialNo
+      target.customerMaterialNo = scheduleInfo.value.customerMaterialNo
       currentPackageId.value = target.id
+      completedRecord = target
     }
     labelContext.value.sourcePackageId = null
   } else {
-    packageRecords.value.unshift({
+    const newRecord = {
       id: Date.now(),
       packageNo: generateCuttingPackageNo(),
+      sourceFrameNo: printForm.value.sourceFrameNo,
       frameNo: printForm.value.frameNo,
+      palletNo: printForm.value.frameNo,
       productName: scheduleInfo.value.productName,
       extrusionBatch: scheduleInfo.value.extrusionBatchNo,
       furnaceNo: scheduleInfo.value.furnaceNo,
@@ -1463,6 +1573,8 @@ const confirmPrint = () => {
       scheduleType: scheduleInfo.value.scheduleType,
       productionType: scheduleInfo.value.productionType,
       alloy: scheduleInfo.value.alloy,
+      componentMaterialNo: scheduleInfo.value.componentMaterialNo,
+      customerMaterialNo: scheduleInfo.value.customerMaterialNo,
       materialQty: printForm.value.materialQty,
       trayMaxLoad: printForm.value.trayMaxLoad,
       isBoxed: printForm.value.isBoxed,
@@ -1477,20 +1589,29 @@ const confirmPrint = () => {
       updateTime: formatNow(),
       branches: cloneBranches(boundBranches.value),
       boxes: generatedBoxes.value.map(box => ({ ...box, branches: cloneBranches(box.branches) }))
-    })
+    }
+    packageRecords.value.unshift(newRecord)
+    completedRecord = newRecord
   }
 
+  if (completedRecord) upsertCuttingPackagingRecord(completedRecord)
+}
+
+const confirmPrint = () => {
+  ElMessage.success(`${previewType.value === 'pallet' ? '物料' : '小箱'}标识卡打印指令已发送`)
   printPreviewVisible.value = false
 }
 
 const reprintPallet = async (row: any) => {
   labelContext.value = {
     ...labelContext.value,
-    sourcePackageId: null,
+    sourcePackageId: row.id,
     productName: row.productName,
-    extrusionBatch: row.extrusionBatch
+    extrusionBatch: row.extrusionBatch,
+    scheduleType: row.scheduleType
   }
-  printForm.value.frameNo = row.frameNo
+  printForm.value.sourceFrameNo = row.sourceFrameNo || ''
+  printForm.value.frameNo = row.palletNo || row.frameNo
   printForm.value.materialQty = row.materialQty
   printForm.value.isBoxed = row.isBoxed
   printForm.value.boxCount = row.boxCount
@@ -1506,9 +1627,11 @@ const reprintBoxes = async (row: any) => {
     ...labelContext.value,
     sourcePackageId: null,
     productName: row.productName,
-    extrusionBatch: row.extrusionBatch
+    extrusionBatch: row.extrusionBatch,
+    scheduleType: row.scheduleType
   }
-  printForm.value.frameNo = row.frameNo
+  printForm.value.sourceFrameNo = row.sourceFrameNo || ''
+  printForm.value.frameNo = row.palletNo || row.frameNo
   printForm.value.materialQty = row.materialQty
   printForm.value.isBoxed = row.isBoxed
   printForm.value.boxCount = row.boxCount

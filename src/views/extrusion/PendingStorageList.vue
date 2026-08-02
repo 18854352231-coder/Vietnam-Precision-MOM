@@ -117,7 +117,7 @@
           <el-input-number v-model="storageForm.tareWeight" :min="0" :precision="2" :step="0.1" style="width: 100%" @change="calculateNetWeight" />
         </el-form-item>
         <el-form-item label="净重(KG)">
-          <el-input-number v-model="storageForm.netWeight" :min="0" :precision="2" :step="0.1" style="width: 100%" />
+          <el-input-number v-model="storageForm.netWeight" :min="0" :precision="2" :step="0.1" disabled style="width: 100%" />
         </el-form-item>
       </el-form>
       <template #footer>
@@ -161,17 +161,7 @@
       <div id="printArea" class="print-label-wrapper">
         <div class="print-header">
           <div class="logo-area">
-            <div class="logo-icon">
-              <svg viewBox="0 0 100 100" width="40" height="40">
-                <path d="M20 80 L50 20 L80 80 Z" fill="#d32f2f" />
-                <path d="M35 80 L50 50 L65 80 Z" fill="#fff" />
-                <rect x="20" y="20" width="20" height="20" fill="#757575" />
-              </svg>
-            </div>
-            <div class="logo-text">
-              <div class="logo-cn">创新精密</div>
-              <div class="logo-en">Innovation Precision</div>
-            </div>
+            <img :src="brandLogo" alt="Innovation Precision" class="label-logo" />
           </div>
           <div class="company-info">
             <div class="company-name-vn">CÔNG TY TNHH INNOVATION PRECISION VIỆT NAM</div>
@@ -290,6 +280,7 @@ import { ref, computed } from 'vue'
 import { ElMessage, ElMessageBox } from 'element-plus'
 import { useTaskLiteralDomI18n } from '@/composables/useTaskLiteralDomI18n'
 import { loadPendingStorageRecords, savePendingStorageRecords } from '@/utils/pendingStorageFlow'
+import brandLogo from '@/assets/logo-wide.png'
 
 useTaskLiteralDomI18n()
 
@@ -492,6 +483,7 @@ const openWeighDialog = (row: any) => {
 }
 
 const submitWeigh = () => {
+  calculateNetWeight()
   if (!storageForm.value.palletNo) {
     ElMessage.warning('请输入栈板编号')
     return
@@ -500,8 +492,12 @@ const submitWeigh = () => {
     ElMessage.warning('请输入有效的总重')
     return
   }
-  if (storageForm.value.grossWeight < storageForm.value.tareWeight) {
-    ElMessage.warning('总重不能小于皮重')
+  if (storageForm.value.grossWeight <= storageForm.value.tareWeight) {
+    ElMessage.warning('总重必须大于皮重')
+    return
+  }
+  if (storageForm.value.netWeight <= 0) {
+    ElMessage.warning('净重必须大于 0')
     return
   }
 
@@ -539,6 +535,10 @@ const openStorageDialog = (row: any) => {
 const submitStorage = () => {
   if (!storageForm.value.location) {
     ElMessage.warning('请选择入库库位')
+    return
+  }
+  if (Number(storageForm.value.netWeight || 0) <= 0) {
+    ElMessage.warning('净重必须大于 0，请重新称重')
     return
   }
 
@@ -592,11 +592,8 @@ const handlePrint = () => {
           body { font-family: "Helvetica Neue", Helvetica, Arial, sans-serif; margin: 0; padding: 20px; }
           .print-label-wrapper { width: 100%; max-width: 800px; margin: 0 auto; border: 1px solid #000; padding: 10px; box-sizing: border-box; }
           .print-header { text-align: center; position: relative; margin-bottom: 10px; display: flex; align-items: center; justify-content: center; }
-          .logo-area { position: absolute; left: 10px; top: 10px; display: flex; align-items: center; }
-          .logo-icon { margin-right: 5px; }
-          .logo-text { text-align: left; }
-          .logo-cn { font-size: 16px; font-weight: bold; color: #d32f2f; letter-spacing: 2px; }
-          .logo-en { font-size: 10px; color: #d32f2f; }
+          .logo-area { position: absolute; left: 10px; top: 10px; }
+          .label-logo { display: block; width: 150px; height: auto; }
           .company-info { text-align: center; flex: 1; }
           .company-name-vn { font-size: 14px; font-weight: bold; }
           .company-name-en { font-size: 14px; font-weight: bold; }
@@ -623,15 +620,24 @@ const handlePrint = () => {
   `)
   windowP.document.close()
   windowP.focus()
-  // 等待图片/SVG加载完成
-  setTimeout(() => {
+
+  const startPrint = () => setTimeout(() => {
     windowP.print()
     windowP.close()
 
     // 打印完成后不改变状态，因为已与入库合并
     printDialogVisible.value = false
     ElMessage.success('打印完成')
-  }, 300)
+  }, 100)
+
+  const images = Array.from(windowP.document.images)
+  Promise.all(images.map(image => image.complete
+    ? Promise.resolve()
+    : new Promise<void>(resolve => {
+      image.onload = () => resolve()
+      image.onerror = () => resolve()
+    })
+  )).then(startPrint)
 }
 </script>
 
@@ -671,11 +677,8 @@ const handlePrint = () => {
 /* 打印标示单样式 */
 .print-label-wrapper { width: 100%; max-width: 800px; margin: 0 auto; border: 1px solid #000; padding: 10px; box-sizing: border-box; background: #fff; color: #000; }
 .print-header { text-align: center; position: relative; margin-bottom: 10px; display: flex; align-items: center; justify-content: center; }
-.logo-area { position: absolute; left: 10px; top: 10px; display: flex; align-items: center; }
-.logo-icon { margin-right: 5px; }
-.logo-text { text-align: left; }
-.logo-cn { font-size: 16px; font-weight: bold; color: #d32f2f; letter-spacing: 2px; line-height: 1.2; }
-.logo-en { font-size: 10px; color: #d32f2f; line-height: 1.2; }
+.logo-area { position: absolute; left: 10px; top: 10px; }
+.label-logo { display: block; width: 150px; height: auto; }
 .company-info { text-align: center; flex: 1; }
 .company-name-vn { font-size: 14px; font-weight: bold; line-height: 1.2; }
 .company-name-en { font-size: 14px; font-weight: bold; line-height: 1.2; }

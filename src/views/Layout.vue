@@ -132,9 +132,19 @@ const getRouteTitle = (meta?: { title?: string; titleKey?: string }) => {
   return meta?.title ?? ''
 }
 
+const filterVisibleRoutes = (routes: any[]): any[] =>
+  routes
+    .filter(routeRecord => !routeRecord.meta?.hidden)
+    .map(routeRecord => ({
+      ...routeRecord,
+      children: routeRecord.children
+        ? filterVisibleRoutes(routeRecord.children)
+        : undefined
+    }))
+
 const systemRoutes = computed(() => {
   const root = router.options.routes.find(r => r.path === '/')
-  return root?.children || []
+  return filterVisibleRoutes(root?.children || [])
 })
 
 const activeMenu = computed(() => route.path)

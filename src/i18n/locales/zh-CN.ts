@@ -48,6 +48,7 @@ export default {
       cuttingWorkbench: '裁切工作台',
       packagingWorkbench: '包装工作台',
       pendingStorage: '待入库清单',
+      traceability: '全过程追溯',
       defectiveControl: '不良品管控'
     },
     mold: {
@@ -59,6 +60,12 @@ export default {
       root: '质量管理',
       ipqc: {
         root: 'IPQC',
+        workbench: 'IPQC工作台',
+        tasks: '检验任务',
+        records: '检验记录',
+        exceptions: '质量异常',
+        plans: '检验方案',
+        spc: 'SPC趋势分析',
         processInspection: '制程检验',
         extrusion: '挤压IPQC',
         aging: '时效IPQC',

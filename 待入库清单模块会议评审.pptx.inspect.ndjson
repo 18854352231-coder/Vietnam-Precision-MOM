@@ -1,0 +1,81 @@
+{"kind":"deck","id":"pr/9izfzd","name":"Deck"}
+{"kind":"layout","layoutId":"b0b34669-925d-455d-a39d-ef457b7f1f9a","name":"Master","type":"master"}
+{"kind":"layout","layoutId":"549b97c3-4d80-4aaf-89b9-8054bd8468ca","name":"Title Slide","type":"title"}
+{"kind":"slide","id":"sl/4cb14k","slide":1,"title":"待入库清单模块","textShapes":3}
+{"kind":"textbox","id":"sh/10vytkja","slide":1,"name":"Title-3-1","text":"待入库清单模块\n现状评审与优化决策","textPreview":"待入库清单模块 | 现状评审与优化决策","textChars":17,"textLines":2,"bbox":[41.33,270.86,992,380.5]}
+{"kind":"textbox","id":"sh/exkzipkj","slide":1,"name":"Subtitle-4-2","text":"MOM 系统","textPreview":"MOM 系统","textChars":6,"textLines":1,"bbox":[41.33,41.18,646.49,68.15]}
+{"kind":"textbox","id":"sh/zytgra14","slide":1,"name":"Subtitle-4-3","text":"会议评审材料","textPreview":"会议评审材料","textChars":6,"textLines":1,"bbox":[828,41.18,410.67,68.15]}
+{"kind":"notes","id":"nt/4cb14k","slide":1,"text":""}
+{"kind":"slide","id":"sl/el2dx8","slide":2,"title":"02","textShapes":5}
+{"kind":"textbox","id":"sh/fq9o7ylg","slide":2,"name":"Google-Shape-532-p58-2","text":"02","textPreview":"02","textChars":2,"textLines":1,"bbox":[1184.18,659.24,54.48,25.33]}
+{"kind":"textbox","id":"sh/gbi5g321","slide":2,"name":"Google-Shape-533-p58-3","text":"流程已经连通，但尚未形成正式库存闭环","textPreview":"流程已经连通，但尚未形成正式库存闭环","textChars":18,"textLines":1,"bbox":[41.33,36.12,1197.33,109.97]}
+{"kind":"textbox","id":"sh/1cr69o3m","slide":2,"name":"Google-Shape-534-p58-4","text":"能走通\n\n包装打印后进入待称重，称重完成后进入待入库。","textPreview":"能走通 |  | 包装打印后进入待称重，称重完成后进入待入库。","textChars":27,"textLines":3,"bbox":[41.33,353.33,374.67,276]}
+{"kind":"textbox","id":"sh/2d0nitk7","slide":2,"name":"Content-Placeholder-1-5","text":"再补底座\n\n需要后端库存事务、操作审计和多用户一致性。","textPreview":"再补底座 |  | 需要后端库存事务、操作审计和多用户一致性。","textChars":27,"textLines":3,"bbox":[864,353.33,374.67,276]}
+{"kind":"textbox","id":"sh/3e9obyls","slide":2,"name":"Content-Placeholder-2-6","text":"先拦风险\n\n质量未放行或重量不准确时，仍可能被允许入库。","textPreview":"先拦风险 |  | 质量未放行或重量不准确时，仍可能被允许入库。","textChars":28,"textLines":3,"bbox":[452.67,353.33,374.67,276]}
+{"kind":"notes","id":"nt/el2dx8","slide":2,"text":""}
+{"kind":"slide","id":"sl/cpnaui","slide":3,"title":"03","textShapes":8}
+{"kind":"textbox","id":"sh/e90fq5gf","slide":3,"name":"Slide-Number-Placeholder-3-2","text":"03","textPreview":"03","textChars":2,"textLines":1,"bbox":[1184.18,659.24,54.48,25.33]}
+{"kind":"textbox","id":"sh/1cbelkfq","slide":3,"name":"Title-10-3","text":"当前主流程由三个状态动作串联","textPreview":"当前主流程由三个状态动作串联","textChars":14,"textLines":1,"bbox":[41.33,36.12,1197.33,109.97]}
+{"kind":"shape","id":"sh/0b2xsfyl","slide":3,"name":"Google-Shape-2259-p159-4","bbox":[35.46,354.2,1285.61,0.03]}
+{"kind":"shape","id":"sh/r69wfaho","slide":3,"name":"Google-Shape-2260-p159-5","bbox":[35.46,348.58,11.24,11.24]}
+{"kind":"shape","id":"sh/q50fm5g3","slide":3,"name":"Google-Shape-2261-p159-6","bbox":[446.38,348.58,11.24,11.24]}
+{"kind":"shape","id":"sh/d8reh0fu","slide":3,"name":"Google-Shape-2262-p159-7","bbox":[858.38,348.58,11.24,11.24]}
+{"kind":"textbox","id":"sh/c7ixovy9","slide":3,"name":"Content-Placeholder-15-8","text":"包装输出","textPreview":"包装输出","textChars":4,"textLines":1,"bbox":[41.33,298.51,169.33,27.55]}
+{"kind":"textbox","id":"sh/329wbqhs","slide":3,"name":"Content-Placeholder-15-9","text":"称重校验","textPreview":"称重校验","textChars":4,"textLines":1,"bbox":[450.83,298.51,169.33,27.55]}
+{"kind":"textbox","id":"sh/2hgfilg7","slide":3,"name":"Content-Placeholder-15-10","text":"入库确认","textPreview":"入库确认","textChars":4,"textLines":1,"bbox":[863.33,298.51,169.33,27.55]}
+{"kind":"textbox","id":"sh/cfy9cryx","slide":3,"name":"Text-Placeholder-16-11","text":"重量计算\n\n录入总重与皮重，计算净重后转为待入库。","textPreview":"重量计算 |  | 录入总重与皮重，计算净重后转为待入库。","textChars":25,"textLines":3,"bbox":[453.24,401.33,331.35,166.54]}
+{"kind":"textbox","id":"sh/dg7alczi","slide":3,"name":"Text-Placeholder-16-12","text":"打印触发\n\n打印确认后生成待称重记录。","textPreview":"打印触发 |  | 打印确认后生成待称重记录。","textChars":19,"textLines":3,"bbox":[41.98,401.33,331.35,166.54]}
+{"kind":"textbox","id":"sh/qdwrahgr","slide":3,"name":"Text-Placeholder-16-13","text":"库位落点\n\n选择成品库位后，记录状态变为已入库。","textPreview":"库位落点 |  | 选择成品库位后，记录状态变为已入库。","textChars":24,"textLines":3,"bbox":[858.57,401.33,331.35,166.54]}
+{"kind":"notes","id":"nt/cpnaui","slide":3,"text":""}
+{"kind":"slide","id":"sl/qki1ox","slide":4,"title":"04","textShapes":7}
+{"kind":"textbox","id":"sh/10v6h0ra","slide":4,"name":"Google-Shape-532-p58-2","text":"04","textPreview":"04","textChars":2,"textLines":1,"bbox":[1184.18,659.24,54.48,25.33]}
+{"kind":"textbox","id":"sh/ex4nml8j","slide":4,"name":"Google-Shape-533-p58-3","text":"页面完成了操作闭环，系统边界仍停留在浏览器内","textPreview":"页面完成了操作闭环，系统边界仍停留在浏览器内","textChars":22,"textLines":1,"bbox":[41.33,36.17,1197.33,67.64]}
+{"kind":"shape","id":"sh/fydofq94","slide":4,"name":"Rounded-Rectangle-1-4","bbox":[41.68,350.56,580.99,138.67]}
+{"kind":"textbox","id":"sh/sb25kvqt","slide":4,"name":"Content-Placeholder-10-5","text":"页面状态可操作","textPreview":"页面状态可操作","textChars":7,"textLines":1,"bbox":[72.89,376.69,523.56,92.16]}
+{"kind":"textbox","id":"sh/tcb6d0re","slide":4,"name":"Content-Placeholder-15-6","text":"待称重 → 待入库\n\n称重规则有基础校验\n\n查询维度较完整","textPreview":"待称重 → 待入库 |  | 称重规则有基础校验 |  | 查询维度较完整","textChars":29,"textLines":5,"bbox":[72.89,506.94,549.78,102.67]}
+{"kind":"shape","id":"sh/69knil8n","slide":4,"name":"Rounded-Rectangle-7-7","bbox":[657.3,350.56,580.99,138.67]}
+{"kind":"textbox","id":"sh/rat4bq98","slide":4,"name":"Content-Placeholder-10-8","text":"库存事实未落账","textPreview":"库存事实未落账","textChars":7,"textLines":1,"bbox":[688.51,376.69,523.56,92.16]}
+{"kind":"textbox","id":"sh/c765wfqx","slide":4,"name":"Content-Placeholder-15-9","text":"数据仅保存在 localStorage\n\n没有入库单与库存台账\n\n已入库记录无页面入口","textPreview":"数据仅保存在 localStorage |  | 没有入库单与库存台账 |  | 已入库记录无页面入口","textChars":43,"textLines":5,"bbox":[688.51,506.94,549.78,102.67]}
+{"kind":"textbox","id":"sh/dsf6pkri","slide":4,"name":"Content-Placeholder-15-10","text":"当前能力\n\n查询、称重、净重计算、库位选择、标识卡打印均已具备。\n\n重复打印采用栈板编号覆盖更新，避免简单重复记录。","textPreview":"当前能力 |  | 查询、称重、净重计算、库位选择、标识卡打印均已具备。 |  | 重复打印采用栈板编号覆盖更新，避免简单重复记录。","textChars":58,"textLines":5,"bbox":[42.09,121.52,1197.33,171.05]}
+{"kind":"notes","id":"nt/qki1ox","slide":4,"text":""}
+{"kind":"slide","id":"sl/ggca9p","slide":5,"title":"05","textShapes":6}
+{"kind":"textbox","id":"sh/b6l43iho","slide":5,"name":"Slide-Number-Placeholder-1-2","text":"05","textPreview":"05","textChars":2,"textLines":1,"bbox":[1184.17,659.17,54.5,25.33]}
+{"kind":"textbox","id":"sh/c7ulcny9","slide":5,"name":"Title-2-3","text":"四个问题决定模块能否用于正式入库","textPreview":"四个问题决定模块能否用于正式入库","textChars":16,"textLines":1,"bbox":[41.33,36.12,1197.33,109.97]}
+{"kind":"textbox","id":"sh/d8nm5sze","slide":5,"name":"Content-Placeholder-9-4","text":"P0｜质量未拦截\n\nNG 或未判定数据仍可能进入成品库。","textPreview":"P0｜质量未拦截 |  | NG 或未判定数据仍可能进入成品库。","textChars":28,"textLines":3,"bbox":[41.33,213.33,581.33,172.5]}
+{"kind":"textbox","id":"sh/21c36dgr","slide":5,"name":"Content-Placeholder-10-5","text":"P0｜重量不准确\n\n皮重默认 1.5kg，未继承实际栈板皮重。","textPreview":"P0｜重量不准确 |  | 皮重默认 1.5kg，未继承实际栈板皮重。","textChars":31,"textLines":3,"bbox":[656.86,213.33,581.33,172.5]}
+{"kind":"textbox","id":"sh/32l4zihc","slide":5,"name":"Content-Placeholder-9-6","text":"P1｜关键字段断链\n\n排程类型、客户料号等数据未完整传递。","textPreview":"P1｜关键字段断链 |  | 排程类型、客户料号等数据未完整传递。","textChars":29,"textLines":3,"bbox":[41.33,421.73,581.33,172.51]}
+{"kind":"textbox","id":"sh/o3ul8nyx","slide":5,"name":"Content-Placeholder-10-7","text":"P1｜库存没有落账\n\n入库只改变页面状态，没有库存事务与审计。","textPreview":"P1｜库存没有落账 |  | 入库只改变页面状态，没有库存事务与审计。","textChars":31,"textLines":3,"bbox":[656.86,421.73,581.33,172.51]}
+{"kind":"notes","id":"nt/ggca9p","slide":5,"text":""}
+{"kind":"slide","id":"sl/ca9in9","slide":6,"title":"06","textShapes":7}
+{"kind":"textbox","id":"sh/nixojito","slide":6,"name":"Google-Shape-532-p58-2","text":"06","textPreview":"06","textChars":2,"textLines":1,"bbox":[1184.18,659.24,54.48,25.33]}
+{"kind":"textbox","id":"sh/oj6pcnu9","slide":6,"name":"Google-Shape-533-p58-3","text":"数据准确性要从“默认值”改为“来源可追溯”","textPreview":"数据准确性要从“默认值”改为“来源可追溯”","textChars":21,"textLines":1,"bbox":[41.33,36.17,1197.33,67.64]}
+{"kind":"shape","id":"sh/pkf6l8bu","slide":6,"name":"Rounded-Rectangle-1-4","bbox":[41.68,350.56,580.99,138.67]}
+{"kind":"textbox","id":"sh/et476tc7","slide":6,"name":"Content-Placeholder-10-5","text":"当前断点","textPreview":"当前断点","textChars":4,"textLines":1,"bbox":[72.89,376.69,523.56,92.16]}
+{"kind":"textbox","id":"sh/fudofyts","slide":6,"name":"Content-Placeholder-15-6","text":"皮重固定默认值\n\n客户料号映射内部料号\n\n排程类型在入库前丢失","textPreview":"皮重固定默认值 |  | 客户料号映射内部料号 |  | 排程类型在入库前丢失","textChars":31,"textLines":5,"bbox":[72.89,506.94,549.78,102.67]}
+{"kind":"shape","id":"sh/gvmp83ud","slide":6,"name":"Rounded-Rectangle-7-7","bbox":[657.3,350.56,580.99,138.67]}
+{"kind":"textbox","id":"sh/1gv6h8by","slide":6,"name":"Content-Placeholder-10-8","text":"目标规则","textPreview":"目标规则","textChars":4,"textLines":1,"bbox":[688.51,376.69,523.56,92.16]}
+{"kind":"textbox","id":"sh/6pkn2tcb","slide":6,"name":"Content-Placeholder-15-9","text":"继承实际皮重并校验偏差\n\n客户料号与内部料号分开\n\n三类排程类型贯穿到仓库","textPreview":"继承实际皮重并校验偏差 |  | 客户料号与内部料号分开 |  | 三类排程类型贯穿到仓库","textChars":37,"textLines":5,"bbox":[688.51,506.94,549.78,102.67]}
+{"kind":"textbox","id":"sh/rqdobytw","slide":6,"name":"Content-Placeholder-15-10","text":"重点不是增加更多输入框，而是明确每个字段的唯一来源。\n\n栈板编号作为全流程关联键；重量、质量、排程类型和客户料号必须沿业务链持续保留。\n\n人工修改需要记录原因、操作人和时间。","textPreview":"重点不是增加更多输入框，而是明确每个字段的唯一来源。 |  | 栈板编号作为全流程关联键；重量、质量、排程类型和客户料号必须沿业务链持续保留。 |  | 人工修改需要记录原因、操作人和时间。","textChars":87,"textLines":5,"bbox":[42.09,121.52,1197.33,171.05]}
+{"kind":"notes","id":"nt/ca9in9","slide":6,"text":""}
+{"kind":"slide","id":"sl/ueru9z","slide":7,"title":"07","textShapes":8}
+{"kind":"textbox","id":"sh/a98zqlcn","slide":7,"name":"Slide-Number-Placeholder-3-2","text":"07","textPreview":"07","textChars":2,"textLines":1,"bbox":[1184.18,659.24,54.48,25.33]}
+{"kind":"textbox","id":"sh/xczilgby","slide":7,"name":"Title-10-3","text":"建议分三阶段完成：先正确，再可靠，最后集成","textPreview":"建议分三阶段完成：先正确，再可靠，最后集成","textChars":21,"textLines":1,"bbox":[41.33,36.12,1197.33,109.97]}
+{"kind":"shape","id":"sh/wbq1svud","slide":7,"name":"Google-Shape-2259-p159-4","bbox":[35.46,560.8,1285.61,0.03]}
+{"kind":"shape","id":"sh/n6x0f6dw","slide":7,"name":"Google-Shape-2260-p159-5","bbox":[35.46,555.18,11.24,11.24]}
+{"kind":"shape","id":"sh/m5ozm1cb","slide":7,"name":"Google-Shape-2261-p159-6","bbox":[446.38,555.18,11.24,11.24]}
+{"kind":"shape","id":"sh/98fihgb2","slide":7,"name":"Google-Shape-2262-p159-7","bbox":[858.38,555.18,11.24,11.24]}
+{"kind":"shape","id":"sh/876hobuh","slide":7,"name":"Rounded-Rectangle-19-8","bbox":[41.33,147.17,374.67,380]}
+{"kind":"textbox","id":"sh/7210rat0","slide":7,"name":"Content-Placeholder-8-9","text":"业务正确性\n\n增加质量放行门槛；修复皮重、客户料号和排程类型；补充已入库记录。","textPreview":"业务正确性 |  | 增加质量放行门槛；修复皮重、客户料号和排程类型；补充已入库记录。","textChars":39,"textLines":3,"bbox":[73.85,189.69,309.64,269.48]}
+{"kind":"shape","id":"sh/61sjy5cf","slide":7,"name":"Rounded-Rectangle-21-10","bbox":[452.33,147.17,374.67,380]}
+{"kind":"textbox","id":"sh/0jyxgfi9","slide":7,"name":"Content-Placeholder-8-11","text":"系统可靠性\n\n改为后端接口；生成入库单和库存台账；记录操作人、时间与变更日志。","textPreview":"系统可靠性 |  | 改为后端接口；生成入库单和库存台账；记录操作人、时间与变更日志。","textChars":39,"textLines":3,"bbox":[484.85,189.69,309.64,269.48]}
+{"kind":"shape","id":"sh/lk7epkzu","slide":7,"name":"Rounded-Rectangle-23-12","bbox":[864.83,147.17,374.67,380]}
+{"kind":"textbox","id":"sh/yhwfep03","slide":7,"name":"Content-Placeholder-8-13","text":"设备与系统集成\n\n接电子秤及偏差规则；对接WMS/ERP；补齐批量操作与权限。","textPreview":"设备与系统集成 |  | 接电子秤及偏差规则；对接WMS/ERP；补齐批量操作与权限。","textChars":39,"textLines":3,"bbox":[897.35,189.69,309.64,269.48]}
+{"kind":"textbox","id":"sh/zi5wnuho","slide":7,"name":"Text-Placeholder-16-14","text":"第二阶段","textPreview":"第二阶段","textChars":4,"textLines":1,"bbox":[446.38,588.18,272.54,41.15]}
+{"kind":"textbox","id":"sh/cvedcfix","slide":7,"name":"Text-Placeholder-16-15","text":"第一阶段","textPreview":"第一阶段","textChars":4,"textLines":1,"bbox":[41.04,588.18,272.54,41.15]}
+{"kind":"textbox","id":"sh/dgnelkzi","slide":7,"name":"Text-Placeholder-16-16","text":"第三阶段","textPreview":"第三阶段","textChars":4,"textLines":1,"bbox":[863.56,588.18,272.54,41.15]}
+{"kind":"notes","id":"nt/ueru9z","slide":7,"text":""}
+{"kind":"slide","id":"sl/zzo4z8","slide":8,"title":"本次会议需要确认","textShapes":3}
+{"kind":"textbox","id":"sh/l0bax4n6","slide":8,"name":"Title-3-1","text":"本次会议需要确认","textPreview":"本次会议需要确认","textChars":8,"textLines":1,"bbox":[41.33,182.55,992,261.57]}
+{"kind":"textbox","id":"sh/yxkrmpov","slide":8,"name":"Subtitle-4-2","text":"质量放行门槛\n重量取数与偏差规则\n后端库存及 WMS 对接范围","textPreview":"质量放行门槛 | 重量取数与偏差规则 | 后端库存及 WMS 对接范围","textChars":31,"textLines":3,"bbox":[41.33,522.13,374.67,113.41]}
+{"kind":"textbox","id":"sh/zytsvu5g","slide":8,"name":"Subtitle-4-3","text":"会议决策","textPreview":"会议决策","textChars":4,"textLines":1,"bbox":[41.33,41.18,169.33,68.15]}
+{"kind":"notes","id":"nt/zzo4z8","slide":8,"text":""}

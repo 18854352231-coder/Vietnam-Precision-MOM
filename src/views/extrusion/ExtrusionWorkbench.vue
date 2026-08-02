@@ -304,14 +304,14 @@
       <el-form :model="heatingForm" label-width="100px">
         <el-row :gutter="20">
           <el-col :span="8">
-            <el-form-item label="模具编号">
+            <el-form-item label="模具编号" required>
               <el-select v-model="heatingForm.moldNo" placeholder="请选择">
                 <el-option v-for="m in receivedMolds" :key="m" :label="m" :value="m" />
               </el-select>
             </el-form-item>
           </el-col>
           <el-col :span="8">
-            <el-form-item label="加热炉号">
+            <el-form-item label="加热炉号" required>
               <el-select v-model="heatingForm.furnaceNo" placeholder="请选择">
                 <el-option label="1#加热炉" value="1#加热炉" />
                 <el-option label="2#加热炉" value="2#加热炉" />
@@ -319,7 +319,7 @@
             </el-form-item>
           </el-col>
           <el-col :span="8">
-            <el-form-item label="炉内方位">
+            <el-form-item label="炉内方位" required>
               <el-select v-model="heatingForm.furnacePosition" placeholder="请选择">
                 <el-option label="左" value="左" />
                 <el-option label="右" value="右" />
@@ -329,7 +329,7 @@
         </el-row>
         <el-row :gutter="20">
           <el-col :span="8">
-            <el-form-item label="入炉时间">
+            <el-form-item label="入炉时间" required>
               <el-date-picker
                 v-model="heatingForm.inTime"
                 type="datetime"
@@ -1272,6 +1272,8 @@ const handleOperationClick = (operation: OperationDefinition) => {
     return
   }
   if (operation.key === 'dieHeat') {
+    const now = new Date()
+    heatingForm.value.inTime = `${now.getFullYear()}-${String(now.getMonth() + 1).padStart(2, '0')}-${String(now.getDate()).padStart(2, '0')} ${String(now.getHours()).padStart(2, '0')}:${String(now.getMinutes()).padStart(2, '0')}`
     heatingDialogVisible.value = true
     return
   }
@@ -1431,9 +1433,66 @@ const submitReceiving = () => {
 }
 
 const submitHeating = () => {
+  const moldNo = heatingForm.value.moldNo.trim()
+  if (!moldNo) {
+    ElMessage.warning('请选择模具编号')
+    return
+  }
+  if (!heatingForm.value.furnaceNo) {
+    ElMessage.warning('请选择加热炉号')
+    return
+  }
+  if (!heatingForm.value.furnacePosition) {
+    ElMessage.warning('请选择炉内方位')
+    return
+  }
+  if (!heatingForm.value.inTime) {
+    ElMessage.warning('请选择入炉时间')
+    return
+  }
+
+  const existingMold = heatingQueue.value.find(item => item.moldNo === moldNo)
+  if (existingMold) {
+    ElMessage.warning(`模具 ${moldNo} 已在加热队列中，当前状态：${existingMold.status}`)
+    return
+  }
+
+  const newHeatingMold = {
+    moldNo,
+    furnaceNo: heatingForm.value.furnaceNo,
+    furnacePosition: heatingForm.value.furnacePosition,
+    productName: currentTask.value?.productName || '-',
+    status: '加热中',
+    extrudedCount: 0,
+    extrusionLimit: currentTask.value?.issueQty || 0,
+    currentTemp: 25,
+    targetTemp: 480,
+    progress: 5,
+    extrusionBatchNo: '',
+    machineNo: '',
+    remainingTime: '待计算',
+    scheduleNo: currentTask.value?.scheduleNo || ''
+  }
+
+  heatingQueue.value.unshift(newHeatingMold)
+  heatingRecords.value.unshift({
+    moldNo,
+    furnaceNo: heatingForm.value.furnaceNo,
+    furnacePosition: heatingForm.value.furnacePosition,
+    inTime: heatingForm.value.inTime,
+    reachTime: '',
+    outTime: ''
+  })
+  saveCurrentScheduleQueues()
   operationState.value.dieHeat = true
   heatingDialogVisible.value = false
-  ElMessage.success('模具加热已登记')
+  heatingForm.value = {
+    moldNo: '',
+    furnaceNo: heatingForm.value.furnaceNo,
+    furnacePosition: '',
+    inTime: ''
+  }
+  ElMessage.success(`模具 ${moldNo} 已加入加热队列，状态：加热中`)
 }
 
 const appendCodedFeedingQueue = () => {

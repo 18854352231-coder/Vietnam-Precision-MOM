@@ -48,6 +48,7 @@ export default {
       cuttingWorkbench: 'Ban van hanh cat',
       packagingWorkbench: 'Ban van hanh dong goi',
       pendingStorage: 'Danh sach cho nhap kho',
+      traceability: 'Truy xuat toan bo quy trinh',
       defectiveControl: 'Kiem soat hang loi'
     },
     mold: {
@@ -59,6 +60,12 @@ export default {
       root: 'Quan ly chat luong',
       ipqc: {
         root: 'IPQC',
+        workbench: 'Ban lam viec IPQC',
+        tasks: 'Nhiem vu kiem tra',
+        records: 'Ho so kiem tra',
+        exceptions: 'Bat thuong chat luong',
+        plans: 'Phuong an kiem tra',
+        spc: 'Phan tich xu huong SPC',
         processInspection: 'Kiem tra quy trinh',
         extrusion: 'IPQC ep de',
         aging: 'IPQC hoa gia',

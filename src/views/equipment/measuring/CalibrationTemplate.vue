@@ -5,10 +5,10 @@
         <div class="card-header">
           <div class="search-bar">
             <span class="title">校验模板列表</span>
-            <el-input placeholder="模板编号/名称" style="width: 220px" clearable />
-            <el-button type="primary">查询</el-button>
-            <el-button @click="toggleAdvancedSearch">高级搜索/{{ isAdvancedSearch ? '收起' : '展开' }}</el-button>
-            <el-button>重置</el-button>
+            <el-input v-model="searchForm.keyword" placeholder="模板编号/名称" style="width: 220px" clearable @keyup.enter="handleSearch" />
+            <el-button type="primary" @click="handleSearch">查询</el-button>
+            <el-button @click="handleReset">重置</el-button>
+            <el-button @click="toggleAdvancedSearch">{{ isAdvancedSearch ? '收起查询' : '高级查询' }}</el-button>
           </div>
           <div class="header-right">
             <el-button type="primary">新增</el-button>
@@ -38,8 +38,8 @@
             </el-row>
             <el-row style="margin-top: 10px;">
               <el-col :span="24" style="display: flex; gap: 10px;">
-                <el-button type="primary">查询</el-button>
-                <el-button>重置</el-button>
+                <el-button type="primary" @click="handleSearch">查询</el-button>
+                <el-button @click="handleReset">重置</el-button>
               </el-col>
             </el-row>
           </el-form>
@@ -47,80 +47,91 @@
       </template>
 
       <div class="table-wrapper">
-        <el-table :data="templateData" border height="100%" highlight-current-row>
+        <el-table
+          :data="filteredTemplateData"
+          border
+          height="100%"
+          highlight-current-row
+          row-key="templateCode"
+          :current-row-key="selectedTemplateCode"
+          empty-text="暂无符合条件的数据"
+          @current-change="handleTemplateChange"
+        >
           <el-table-column prop="seq" label="序号" width="80" align="center" />
           <el-table-column prop="templateCode" label="模板编号" width="120" />
           <el-table-column prop="templateName" label="模板名称" min-width="180" />
-          <el-table-column prop="status" label="状态" width="100" align="center" />
+          <el-table-column prop="status" label="状态" width="100" align="center">
+            <template #default="{ row }">
+              <span :class="row.status === '确认' ? 'status-confirmed' : 'status-draft'">{{ row.status }}</span>
+            </template>
+          </el-table-column>
           <el-table-column prop="basis" label="校准依据" min-width="150" />
           <el-table-column prop="remark" label="备注" min-width="150" />
           <el-table-column label="操作" width="180" align="center" fixed="right">
-            <template #default>
+            <template #default="{ row }">
               <el-button link type="primary" size="small">编辑</el-button>
-              <el-button link type="primary" size="small">删除</el-button>
-              <el-button link type="primary" size="small">确认</el-button>
+              <el-button link type="danger" size="small">删除</el-button>
+              <el-button v-if="row.status === '草稿'" link type="primary" size="small">确认</el-button>
             </template>
           </el-table-column>
         </el-table>
       </div>
 
-      <div class="split-bottom">
-        <div class="split-half">
-          <div class="sub-title">
-            <span>校验项目</span>
+      <el-tabs v-model="detailTab" class="detail-tabs">
+        <el-tab-pane name="projects">
+          <template #label>校验项目（{{ projectData.length }}）</template>
+          <div class="detail-toolbar">
+            <span>{{ selectedTemplate.templateName }}</span>
             <div class="sub-actions">
               <el-button size="small">新增</el-button>
               <el-button size="small">批量删除</el-button>
             </div>
           </div>
-          <el-table :data="projectData" border size="small" height="200">
-            <el-table-column type="selection" width="40" align="center" />
-            <el-table-column type="index" label="序号" width="50" align="center" />
-            <el-table-column prop="projectCode" label="项目编号" width="80" />
-            <el-table-column prop="projectName" label="项目名称" min-width="140" show-overflow-tooltip />
-            <el-table-column prop="dataType" label="数据类型" width="80" />
-            <el-table-column prop="standardValue" label="标准值" width="80" />
-            <el-table-column prop="measuredValue" label="测量值" width="80" />
-            <el-table-column prop="allow" label="允..." width="60" />
-            <el-table-column label="操作" width="60" align="center" fixed="right">
+          <el-table :data="projectData" border size="small" height="190">
+            <el-table-column type="selection" width="45" align="center" />
+            <el-table-column type="index" label="序号" width="55" align="center" />
+            <el-table-column prop="projectCode" label="项目编号" width="100" />
+            <el-table-column prop="projectName" label="项目名称" min-width="160" show-overflow-tooltip />
+            <el-table-column prop="dataType" label="数据类型" width="90" align="center" />
+            <el-table-column prop="standardValue" label="标准值" min-width="130" show-overflow-tooltip />
+            <el-table-column prop="allow" label="允许误差" width="120" />
+            <el-table-column label="操作" width="70" align="center" fixed="right">
               <template #default>
-                <el-button link type="primary" size="small">删除</el-button>
+                <el-button link type="danger" size="small">删除</el-button>
               </template>
             </el-table-column>
           </el-table>
-        </div>
-        <div class="split-half">
-          <div class="sub-title">
-            <span>标准器具</span>
-            <div style="flex: 1; text-align: right; margin-right: 20px;">
-              <span style="font-size: 13px; color: #606266;">&lt; 1 &gt; &nbsp;&nbsp; 20条/页 &nbsp;&nbsp; 共 19 条</span>
-            </div>
+        </el-tab-pane>
+        <el-tab-pane name="instruments">
+          <template #label>标准器具（{{ instrumentData.length }}）</template>
+          <div class="detail-toolbar">
+            <span>{{ selectedTemplate.templateName }}</span>
             <div class="sub-actions">
               <el-button size="small">新增</el-button>
               <el-button size="small">批量删除</el-button>
             </div>
           </div>
-          <el-table :data="instrumentData" border size="small" height="200">
-            <el-table-column type="selection" width="40" align="center" />
-            <el-table-column type="index" label="序号" width="50" align="center" />
-            <el-table-column prop="name" label="名称" min-width="100" />
-            <el-table-column prop="spec" label="型号/规格" min-width="100" />
-            <el-table-column prop="manageCode" label="管理编号" width="100" />
-            <el-table-column prop="to" label="至" width="60" />
-            <el-table-column label="操作" width="60" align="center" fixed="right">
+          <el-table :data="instrumentData" border size="small" height="190">
+            <el-table-column type="selection" width="45" align="center" />
+            <el-table-column type="index" label="序号" width="55" align="center" />
+            <el-table-column prop="name" label="名称" min-width="160" />
+            <el-table-column prop="spec" label="型号/规格" min-width="180" />
+            <el-table-column prop="manageCode" label="管理编号" width="130" />
+            <el-table-column prop="to" label="有效期至" width="130" />
+            <el-table-column label="操作" width="70" align="center" fixed="right">
               <template #default>
-                <el-button link type="primary" size="small">删除</el-button>
+                <el-button link type="danger" size="small">删除</el-button>
               </template>
             </el-table-column>
           </el-table>
-        </div>
-      </div>
+        </el-tab-pane>
+      </el-tabs>
     </el-card>
   </div>
 </template>
 
 <script setup lang="ts">
-import { ref } from 'vue'
+import { computed, ref } from 'vue'
 import { useTaskLiteralDomI18n } from '@/composables/useTaskLiteralDomI18n'
 useTaskLiteralDomI18n()
 
@@ -130,30 +141,77 @@ const toggleAdvancedSearch = () => {
 }
 
 const searchForm = ref({
+  keyword: '',
   templateCode: '',
   templateName: '',
   status: ''
 })
 
+const filters = ref({ ...searchForm.value })
+
+const handleSearch = () => {
+  filters.value = { ...searchForm.value }
+}
+
+const handleReset = () => {
+  searchForm.value = { keyword: '', templateCode: '', templateName: '', status: '' }
+  handleSearch()
+}
+
 const templateData = ref([
-  { seq: '1', templateCode: '0502', templateName: '垂直度检具', status: '确认', basis: 'XC-QSQ-052', remark: '缺直角尺' },
-  { seq: '2', templateCode: '0501', templateName: '平面度/直线度检具', status: '确认', basis: 'XC-QSQ-052', remark: '-' },
-  { seq: '3', templateCode: '0602', templateName: '电子秤6/0.002kg', status: '确认', basis: 'XC-QSQ-063', remark: '-' },
-  { seq: '4', templateCode: '0601', templateName: '电子秤30/0.01kg', status: '确认', basis: 'XC-QSQ-063', remark: '-' },
-  { seq: '5', templateCode: '0404', templateName: '数显百分表0-50mm', status: '确认', basis: 'XC-QSQ-061', remark: '-' },
-  { seq: '6', templateCode: '0403', templateName: '数显百分表0-10mm', status: '确认', basis: 'XC-QSQ-061', remark: '-' }
+  { seq: '1', templateCode: 'MB-001', templateName: '游标卡尺校验模板', status: '确认', basis: 'JJG 30-2012', remark: '适用0-150mm卡尺' },
+  { seq: '2', templateCode: 'MB-002', templateName: '电子秤校验模板', status: '确认', basis: 'JJG 539-2016', remark: '适用30kg电子秤' },
+  { seq: '3', templateCode: 'MB-003', templateName: '温湿度计校验模板', status: '草稿', basis: 'JJF 1076-2020', remark: '待审批' }
 ])
 
-const projectData = ref([
-  { projectCode: '1001', projectName: '外观检查', dataType: '文字', standardValue: '无影响质量的磕碰、划伤', measuredValue: '-', allow: '-' },
-  { projectCode: '0502', projectName: 'A/B面垂直度/mm (A-底面; B-前竖面; C-侧面)', dataType: '数值', standardValue: '0.00', measuredValue: '-', allow: '0.0...' },
-  { projectCode: '0503', projectName: 'A/C面垂直度/mm (A-底面; B-前竖面; C-侧面)', dataType: '数值', standardValue: '0.00', measuredValue: '-', allow: '0.0...' },
-  { projectCode: '0504', projectName: 'B/C面垂直度/mm (A-底面; B-前竖面; C-侧面)', dataType: '数值', standardValue: '0.00', measuredValue: '-', allow: '0.0...' }
-])
+const templateDetails = {
+  'MB-001': {
+    projects: [
+      { projectCode: 'PJ-001', projectName: '外观检查', dataType: '文字', standardValue: '无破损、锈蚀', measuredValue: '-', allow: '-' },
+      { projectCode: 'PJ-002', projectName: '示值误差', dataType: '数值', standardValue: '0.00', measuredValue: '-', allow: '±0.02mm' },
+      { projectCode: 'PJ-003', projectName: '重复性', dataType: '数值', standardValue: '0.00', measuredValue: '-', allow: '≤0.01mm' }
+    ],
+    instruments: [{ name: '量块', spec: '0.5-100mm', manageCode: 'BZ-001', to: '2027-05-31' }]
+  },
+  'MB-002': {
+    projects: [
+      { projectCode: 'PJ-001', projectName: '外观检查', dataType: '文字', standardValue: '无破损、锈蚀', measuredValue: '-', allow: '-' },
+      { projectCode: 'PJ-004', projectName: '称量误差', dataType: '数值', standardValue: '10.00', measuredValue: '-', allow: '±0.01kg' }
+    ],
+    instruments: [{ name: '标准砝码', spec: 'M1级 1-10kg', manageCode: 'BZ-003', to: '2027-02-28' }]
+  },
+  'MB-003': {
+    projects: [
+      { projectCode: 'PJ-001', projectName: '外观检查', dataType: '文字', standardValue: '无破损、锈蚀', measuredValue: '-', allow: '-' },
+      { projectCode: 'PJ-005', projectName: '温度示值误差', dataType: '数值', standardValue: '25.0', measuredValue: '-', allow: '±0.5℃' }
+    ],
+    instruments: [{ name: '标准温度计', spec: '-20-100℃', manageCode: 'BZ-005', to: '2026-12-31' }]
+  }
+}
 
-const instrumentData = ref([
-  { name: '塞尺', spec: '150A', manageCode: '30123', to: '20...' }
-])
+const selectedTemplateCode = ref<keyof typeof templateDetails>('MB-001')
+const detailTab = ref('projects')
+
+const selectedTemplate = computed(() => templateData.value.find(item => item.templateCode === selectedTemplateCode.value) || templateData.value[0])
+const projectData = computed(() => templateDetails[selectedTemplateCode.value].projects)
+const instrumentData = computed(() => templateDetails[selectedTemplateCode.value].instruments)
+
+const filteredTemplateData = computed(() => {
+  const query = filters.value.keyword.trim().toLowerCase()
+  return templateData.value.filter(item => {
+    const matchesKeyword = !query || `${item.templateCode} ${item.templateName}`.toLowerCase().includes(query)
+    const matchesCode = !filters.value.templateCode || item.templateCode.toLowerCase().includes(filters.value.templateCode.trim().toLowerCase())
+    const matchesName = !filters.value.templateName || item.templateName.toLowerCase().includes(filters.value.templateName.trim().toLowerCase())
+    const matchesStatus = !filters.value.status || item.status === filters.value.status
+    return matchesKeyword && matchesCode && matchesName && matchesStatus
+  })
+})
+
+const handleTemplateChange = (row: { templateCode: string } | null) => {
+  if (row && row.templateCode in templateDetails) {
+    selectedTemplateCode.value = row.templateCode as keyof typeof templateDetails
+  }
+}
 </script>
 
 <style scoped>
@@ -173,11 +231,14 @@ const instrumentData = ref([
   display: flex;
   justify-content: space-between;
   align-items: center;
+  gap: 16px;
+  flex-wrap: wrap;
 }
 .search-bar {
   display: flex;
   align-items: center;
   gap: 12px;
+  flex-wrap: wrap;
 }
 .title {
   font-weight: 600;
@@ -188,6 +249,7 @@ const instrumentData = ref([
   display: flex;
   align-items: center;
   gap: 10px;
+  flex-wrap: wrap;
 }
 .advanced-search-panel {
   margin-top: 16px;
@@ -212,21 +274,14 @@ const instrumentData = ref([
   background-color: #e6f7ff !important;
 }
 
-.split-bottom {
-  display: flex;
-  gap: 16px;
-  height: 250px;
+.detail-tabs {
+  flex: 0 0 255px;
+  min-height: 0;
 }
-.split-half {
-  flex: 1;
-  display: flex;
-  flex-direction: column;
-  min-width: 0;
-}
-.sub-title {
+.detail-toolbar {
   display: flex;
   align-items: center;
-  font-weight: bold;
+  justify-content: space-between;
   font-size: 14px;
   margin-bottom: 8px;
   color: #303133;
@@ -234,5 +289,11 @@ const instrumentData = ref([
 .sub-actions {
   display: flex;
   gap: 8px;
+}
+.status-confirmed {
+  color: #409eff;
+}
+.status-draft {
+  color: #909399;
 }
 </style>

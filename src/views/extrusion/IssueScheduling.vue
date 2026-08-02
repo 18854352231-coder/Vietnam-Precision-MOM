@@ -71,6 +71,11 @@
         </template>
         <template v-else>
           <el-table-column prop="scheduleNo" label="排程编号" width="170" show-overflow-tooltip />
+          <el-table-column prop="scheduleType" label="排程类型" width="110" align="center">
+            <template #default="scope">
+              <el-tag size="small" effect="plain">{{ scope.row.scheduleType }}</el-tag>
+            </template>
+          </el-table-column>
           <el-table-column prop="orderNo" label="订单编号" width="140" show-overflow-tooltip />
           <el-table-column prop="customerCode" label="客户代码" width="100" show-overflow-tooltip />
           <el-table-column prop="productName" label="产品名称" min-width="180" show-overflow-tooltip />
@@ -230,6 +235,13 @@
       >
         <el-row :gutter="18">
           <el-col :span="6">
+            <el-form-item label="排程类型" prop="scheduleType">
+              <el-select v-model="cuttingAddForm.scheduleType" placeholder="请选择排程类型" style="width: 100%">
+                <el-option v-for="item in cuttingScheduleTypeOptions" :key="item" :label="item" :value="item" />
+              </el-select>
+            </el-form-item>
+          </el-col>
+          <el-col :span="6">
             <el-form-item label="订单编号" prop="orderNo">
               <el-select v-model="cuttingAddForm.orderNo" placeholder="请选择订单" filterable style="width: 100%" @change="handleSelectCuttingOrder">
                 <el-option v-for="m in masterPlanData" :key="m.orderNo" :label="m.orderNo" :value="m.orderNo" />
@@ -314,16 +326,27 @@
           </el-col>
         </el-row>
 
-        <div v-if="cuttingAddForm.extrusionBatchNo" style="margin-top: 15px;">
-          <el-divider content-position="left">挤压批次关联料框与检验结果</el-divider>
-          <el-table :data="relatedFrames" border size="small" style="width: 100%">
-            <el-table-column prop="frameNo" label="料框编号" width="120" align="center" />
-            <el-table-column prop="location" label="所在位置" width="140" show-overflow-tooltip />
-            <el-table-column prop="furnaceBatch" label="铝棒炉次号" width="140" show-overflow-tooltip />
-            <el-table-column prop="qty" label="数量" width="80" align="right" />
-            <el-table-column prop="agingInTime" label="时效入炉时间" width="160" align="center" />
-            <el-table-column prop="agingOutTime" label="时效出炉时间" width="160" align="center" />
-            <el-table-column prop="qcResult" label="检验结果" width="100" align="center">
+        <div v-if="cuttingAddForm.extrusionBatchNo" class="related-frames-section">
+          <div class="related-frames-header">
+            <div class="related-frames-title">
+              <span>挤压批次关联料框与检验结果</span>
+              <span class="related-frames-subtitle">当前批次可用于裁切排程的料框明细</span>
+            </div>
+            <div class="related-frames-summary">
+              <span>料框数 <strong>{{ relatedFrames.length }}</strong></span>
+              <el-divider direction="vertical" />
+              <span>数量合计 <strong>{{ relatedFrameTotalQty }}</strong></span>
+            </div>
+          </div>
+
+          <el-table :data="relatedFrames" border size="small" class="related-frames-table" empty-text="暂无关联料框">
+            <el-table-column prop="frameNo" label="料框编号" min-width="180" show-overflow-tooltip />
+            <el-table-column prop="location" label="所在位置" min-width="150" show-overflow-tooltip />
+            <el-table-column prop="furnaceBatch" label="铝棒炉次号" min-width="160" show-overflow-tooltip />
+            <el-table-column prop="qty" label="数量" min-width="90" align="right" />
+            <el-table-column prop="agingInTime" label="时效入炉时间" min-width="180" align="center" />
+            <el-table-column prop="agingOutTime" label="时效出炉时间" min-width="180" align="center" />
+            <el-table-column prop="qcResult" label="检验结果" min-width="100" align="center">
               <template #default="scope">
                 <el-tag :type="scope.row.qcResult === 'OK' ? 'success' : 'danger'" size="small">
                   {{ scope.row.qcResult }}
@@ -333,7 +356,7 @@
           </el-table>
         </div>
 
-        <el-form-item label="备注" style="margin-top: 15px;">
+        <el-form-item label="备注" class="cutting-remark-item">
           <el-input v-model="cuttingAddForm.remark" type="textarea" :rows="3" />
         </el-form-item>
       </el-form>
@@ -350,11 +373,17 @@
 import { computed, ref } from 'vue'
 import { ElMessage, ElMessageBox } from 'element-plus'
 import { useTaskLiteralDomI18n } from '@/composables/useTaskLiteralDomI18n'
+import {
+  removeIssuedCuttingSchedule,
+  upsertIssuedCuttingSchedule,
+  type CuttingScheduleMaterialType
+} from '@/utils/cuttingScheduleFlow'
 
 useTaskLiteralDomI18n()
 
 type IssueTab = 'extrusion' | 'cutting'
 type IssueStatus = '草稿' | '已下发' | '已撤回'
+type CuttingScheduleType = CuttingScheduleMaterialType
 
 interface MasterPlanRow {
   orderNo: string
@@ -407,6 +436,7 @@ interface ExtrusionScheduleRow {
 interface CuttingScheduleRow {
   id: string
   type: 'cutting'
+  scheduleType: CuttingScheduleType
   scheduleNo: string
   orderNo: string
   productName: string
@@ -539,6 +569,7 @@ const schedules = ref<Array<ExtrusionScheduleRow | CuttingScheduleRow>>([
   {
     id: 'C-001',
     type: 'cutting',
+    scheduleType: '量产物料',
     scheduleNo: 'CQ-20260416-0001',
     orderNo: 'ORD-2026-001',
     productName: 'FC47',
@@ -643,6 +674,8 @@ const cuttingLineOptions = [
   { label: '锯台3', value: 'S003' }
 ]
 
+const cuttingScheduleTypeOptions: CuttingScheduleType[] = ['产发物料', '量产物料', '重工物料']
+
 const extrusionAddFormRef = ref()
 const cuttingAddFormRef = ref()
 
@@ -671,6 +704,7 @@ const extrusionAddForm = ref({
 
 const cuttingAddForm = ref({
   scheduleNo: '',
+  scheduleType: '' as CuttingScheduleType | '',
   orderNo: '',
   productName: '',
   lineNo: '',
@@ -704,6 +738,7 @@ const extrusionAddRules = {
 }
 
 const cuttingAddRules = {
+  scheduleType: [{ required: true, message: '请选择排程类型', trigger: 'change' }],
   orderNo: [{ required: true, message: '请选择订单编号', trigger: 'change' }],
   lineNo: [{ required: true, message: '请选择锯台', trigger: 'change' }],
   extrusionBatchNo: [{ required: true, message: '请选择挤压批次号', trigger: 'change' }],
@@ -775,6 +810,9 @@ const extrusionScheduleOptions = computed(() => {
 })
 
 const relatedFrames = ref<any[]>([])
+const relatedFrameTotalQty = computed(() =>
+  relatedFrames.value.reduce((total, frame) => total + Number(frame.qty || 0), 0)
+)
 
 const handleSelectExtrusionSchedule = (scheduleNo: string) => {
   const row = schedules.value.find((s): s is ExtrusionScheduleRow => s.type === 'extrusion' && s.scheduleNo === scheduleNo)
@@ -831,6 +869,7 @@ const handleAdd = () => {
   } else {
     cuttingAddForm.value = {
       scheduleNo: createScheduleNo('CQ'),
+      scheduleType: '',
       orderNo: '',
       productName: '',
       lineNo: '',
@@ -909,6 +948,7 @@ const confirmAdd = async () => {
     schedules.value.unshift({
       id: `CQ-${Date.now()}`,
       type: 'cutting',
+      scheduleType: cuttingAddForm.value.scheduleType as CuttingScheduleType,
       scheduleNo: cuttingAddForm.value.scheduleNo,
       orderNo: cuttingAddForm.value.orderNo,
       productName: cuttingAddForm.value.productName,
@@ -950,15 +990,39 @@ const handleEdit = (row: ExtrusionScheduleRow | CuttingScheduleRow) => {
   }
 }
 
+const syncCuttingScheduleToWorkbench = (row: CuttingScheduleRow) => {
+  upsertIssuedCuttingSchedule({
+    scheduleNo: row.scheduleNo,
+    scheduleType: row.scheduleType,
+    customerCode: row.customerCode,
+    customerName: row.customerName,
+    furnaceNo: row.furnaceNo,
+    extrusionBatchNo: row.extrusionBatchNo,
+    moldNo: row.moldNo,
+    alloy: '',
+    productName: row.productName,
+    componentMaterialNo: '',
+    customerMaterialNo: '',
+    customerProductName: '',
+    productionType: row.scheduleType,
+    planQty: row.planQty,
+    singleWeight: Number(row.unitWeight || 0),
+    fixedLength: row.length,
+    extrusionMachine: row.lineNo
+  })
+}
+
 const handleIssue = (row: ExtrusionScheduleRow | CuttingScheduleRow) => {
   if (row.status === '已下发') return
   row.status = '已下发'
+  if (row.type === 'cutting') syncCuttingScheduleToWorkbench(row)
   ElMessage.success('下发成功')
 }
 
 const handleRevoke = (row: ExtrusionScheduleRow | CuttingScheduleRow) => {
   if (row.status !== '已下发') return
   row.status = '已撤回'
+  if (row.type === 'cutting') removeIssuedCuttingSchedule(row.scheduleNo)
   ElMessage.success('撤回成功')
 }
 
@@ -970,6 +1034,7 @@ const handleDelete = (row: ExtrusionScheduleRow | CuttingScheduleRow) => {
   }).then(() => {
     const idx = schedules.value.findIndex(s => s.id === row.id)
     if (idx > -1) {
+      if (row.type === 'cutting') removeIssuedCuttingSchedule(row.scheduleNo)
       schedules.value.splice(idx, 1)
       ElMessage.success('删除成功')
       selectedRows.value = []
@@ -984,7 +1049,10 @@ const handleBatchIssue = () => {
     ElMessage.info('所选排程均已下发')
     return
   }
-  targets.forEach(r => (r.status = '已下发'))
+  targets.forEach(r => {
+    r.status = '已下发'
+    if (r.type === 'cutting') syncCuttingScheduleToWorkbench(r)
+  })
   ElMessage.success(`成功下发 ${targets.length} 条排程`)
 }
 
@@ -995,7 +1063,10 @@ const handleBatchRevoke = () => {
     ElMessage.info('所选排程无可撤回项')
     return
   }
-  targets.forEach(r => (r.status = '已撤回'))
+  targets.forEach(r => {
+    r.status = '已撤回'
+    if (r.type === 'cutting') removeIssuedCuttingSchedule(r.scheduleNo)
+  })
   ElMessage.success(`成功撤回 ${targets.length} 条排程`)
 }
 
@@ -1043,6 +1114,67 @@ const handleBatchDelete = () => {
 }
 .issue-tabs {
   margin-bottom: 10px;
+}
+
+.related-frames-section {
+  margin: 10px 0 18px;
+  overflow: hidden;
+  border: 1px solid var(--el-border-color-lighter);
+  border-radius: 4px;
+  background: var(--el-bg-color);
+}
+
+.related-frames-header {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  min-height: 48px;
+  padding: 0 14px;
+  border-bottom: 1px solid var(--el-border-color-lighter);
+  background: var(--el-fill-color-light);
+}
+
+.related-frames-title {
+  display: flex;
+  align-items: baseline;
+  gap: 12px;
+  color: var(--el-text-color-primary);
+  font-size: 14px;
+  font-weight: 600;
+}
+
+.related-frames-subtitle {
+  color: var(--el-text-color-secondary);
+  font-size: 12px;
+  font-weight: 400;
+}
+
+.related-frames-summary {
+  display: flex;
+  align-items: center;
+  flex-shrink: 0;
+  color: var(--el-text-color-regular);
+  font-size: 13px;
+}
+
+.related-frames-summary strong {
+  margin-left: 4px;
+  color: var(--el-color-primary);
+  font-weight: 600;
+}
+
+.related-frames-table {
+  width: 100%;
+}
+
+.related-frames-table :deep(.el-table__header th.el-table__cell) {
+  background: var(--el-fill-color-lighter);
+  color: var(--el-text-color-regular);
+  font-weight: 500;
+}
+
+.cutting-remark-item {
+  margin-top: 0;
 }
 
 :deep(.el-table__fixed-right),

@@ -97,6 +97,76 @@
             <el-table-column prop="storageBin" label="库位号" width="120" show-overflow-tooltip />
           </el-table>
         </el-tab-pane>
+
+        <el-tab-pane label="AGV流转追踪" name="agv">
+          <el-alert
+            title="数据由 AGV/WCS 自动同步，本页面仅展示流转状态，不提供人工入库操作。"
+            type="info"
+            :closable="false"
+            show-icon
+            class="agv-alert"
+          />
+
+          <div class="agv-summary">
+            <div v-for="item in agvSummary" :key="item.label" class="summary-item">
+              <div class="summary-label">{{ item.label }}</div>
+              <div class="summary-value" :class="item.className">{{ item.value }}</div>
+            </div>
+          </div>
+
+          <div class="agv-search-wrapper">
+            <el-form :inline="true" :model="agvSearchForm">
+              <el-form-item label="料框码">
+                <el-input v-model="agvSearchForm.frameNo" placeholder="请输入或扫描料框码" clearable style="width: 250px" />
+              </el-form-item>
+              <el-form-item label="挤压批次">
+                <el-input v-model="agvSearchForm.batchNo" placeholder="请输入挤压批次" clearable style="width: 180px" />
+              </el-form-item>
+              <el-form-item label="流转状态">
+                <el-select v-model="agvSearchForm.status" placeholder="全部状态" clearable style="width: 140px">
+                  <el-option v-for="status in agvStatusOptions" :key="status" :label="status" :value="status" />
+                </el-select>
+              </el-form-item>
+              <el-form-item>
+                <el-button type="primary" icon="Search" @click="handleAgvSearch">查询</el-button>
+                <el-button icon="Refresh" @click="resetAgvSearch">重置</el-button>
+              </el-form-item>
+            </el-form>
+          </div>
+
+          <el-table :data="filteredAgvRecords" border stripe height="calc(100vh - 430px)" style="width: 100%">
+            <el-table-column type="index" label="序号" width="60" align="center" />
+            <el-table-column prop="taskNo" label="AGV任务号" width="170" show-overflow-tooltip />
+            <el-table-column prop="frameNo" label="料框码" min-width="220" show-overflow-tooltip />
+            <el-table-column prop="batchNo" label="挤压批次" width="150" show-overflow-tooltip />
+            <el-table-column prop="agvNo" label="AGV编号" width="100" align="center" />
+            <el-table-column label="流转状态" width="110" align="center">
+              <template #default="{ row }">
+                <el-tag :type="getAgvStatusType(row.status)" size="small">{{ row.status }}</el-tag>
+              </template>
+            </el-table-column>
+            <el-table-column prop="route" label="搬运路线" min-width="210" show-overflow-tooltip />
+            <el-table-column prop="currentPosition" label="当前位置" width="150" show-overflow-tooltip />
+            <el-table-column prop="lastSyncTime" label="最后同步时间" width="170" align="center" />
+            <el-table-column label="同步结果" width="110" align="center">
+              <template #default="{ row }">
+                <el-tag :type="row.syncResult === '正常' ? 'success' : 'danger'" effect="plain" size="small">
+                  {{ row.syncResult }}
+                </el-tag>
+              </template>
+            </el-table-column>
+            <el-table-column prop="exceptionMessage" label="异常信息" min-width="180" show-overflow-tooltip>
+              <template #default="{ row }">
+                <span :class="{ 'error-text': row.syncResult === '异常' }">{{ row.exceptionMessage || '-' }}</span>
+              </template>
+            </el-table-column>
+            <el-table-column label="操作" width="100" align="center" fixed="right">
+              <template #default="{ row }">
+                <el-button link type="primary" size="small" @click="openTraceability(row)">查看追溯</el-button>
+              </template>
+            </el-table-column>
+          </el-table>
+        </el-tab-pane>
       </el-tabs>
     </el-card>
 
@@ -105,10 +175,13 @@
 
 <script setup lang="ts">
 import { computed, ref, provide } from 'vue'
+import { useRouter } from 'vue-router'
 import AgingTemperatureDashboard from './AgingTemperatureDashboard.vue'
 import { useTaskLiteralDomI18n } from '@/composables/useTaskLiteralDomI18n'
 
 useTaskLiteralDomI18n()
+
+const router = useRouter()
 
 const activeTab = ref('dashboard')
 
@@ -174,6 +247,126 @@ const outFurnaceData = ref([
   }
 ])
 
+const agvSearchForm = ref({
+  frameNo: '',
+  batchNo: '',
+  status: ''
+})
+
+const agvStatusOptions = ['待接收', '已接收', '运输中', '已到炉', '已入炉', '已出炉', '同步异常']
+
+const agvRecords = ref([
+  {
+    taskNo: 'AGV-20260724-001',
+    frameNo: 'CV-A-A-L6000*W1250*H650*0199',
+    batchNo: 'JY2603070002',
+    agvNo: 'AGV-03',
+    status: '已入炉',
+    route: '锯切缓存区 → 2号时效炉',
+    currentPosition: '2号时效炉',
+    lastSyncTime: '2026-07-24 09:40:16',
+    syncResult: '正常',
+    exceptionMessage: ''
+  },
+  {
+    taskNo: 'AGV-20260724-002',
+    frameNo: 'CV-A-A-L6000*W1250*H650*0200',
+    batchNo: 'JY2603070002',
+    agvNo: 'AGV-05',
+    status: '运输中',
+    route: '锯切缓存区 → 1号时效炉',
+    currentPosition: '主通道 M2',
+    lastSyncTime: '2026-07-24 16:48:32',
+    syncResult: '正常',
+    exceptionMessage: ''
+  },
+  {
+    taskNo: 'AGV-20260724-003',
+    frameNo: 'CV-A-A-L6000*W1250*H650*0201',
+    batchNo: 'JY2603070002',
+    agvNo: '-',
+    status: '待接收',
+    route: '锯切缓存区 → 待分配',
+    currentPosition: '锯切缓存区',
+    lastSyncTime: '2026-07-24 16:46:05',
+    syncResult: '正常',
+    exceptionMessage: ''
+  },
+  {
+    taskNo: 'AGV-20260724-004',
+    frameNo: 'CV-A-A-L6000*W1250*H650*0193',
+    batchNo: 'JY-260511-006',
+    agvNo: 'AGV-02',
+    status: '已出炉',
+    route: '1号时效炉 → 出炉缓存位',
+    currentPosition: '出炉缓存位',
+    lastSyncTime: '2026-07-24 15:42:10',
+    syncResult: '正常',
+    exceptionMessage: ''
+  },
+  {
+    taskNo: 'AGV-20260724-005',
+    frameNo: 'CV-A-A-L6000*W1250*H650*0194',
+    batchNo: 'JY-260511-007',
+    agvNo: 'AGV-06',
+    status: '同步异常',
+    route: '2号时效炉 → 出炉缓存位',
+    currentPosition: '2号时效炉出口',
+    lastSyncTime: '2026-07-24 16:43:27',
+    syncResult: '异常',
+    exceptionMessage: 'WCS 状态回传超时，请检查设备连接'
+  },
+  {
+    taskNo: 'AGV-20260724-006',
+    frameNo: 'CV-A-A-L6000*W1250*H650*0190',
+    batchNo: 'JY-260511-003',
+    agvNo: 'AGV-01',
+    status: '已到炉',
+    route: '锯切缓存区 → 2号时效炉',
+    currentPosition: '2号时效炉入口',
+    lastSyncTime: '2026-07-24 16:39:11',
+    syncResult: '正常',
+    exceptionMessage: ''
+  }
+])
+
+const filteredAgvRecords = computed(() => {
+  const frameKeyword = agvSearchForm.value.frameNo.trim().toLowerCase()
+  const batchKeyword = agvSearchForm.value.batchNo.trim().toLowerCase()
+  return agvRecords.value.filter(item => {
+    if (frameKeyword && !item.frameNo.toLowerCase().includes(frameKeyword)) return false
+    if (batchKeyword && !item.batchNo.toLowerCase().includes(batchKeyword)) return false
+    if (agvSearchForm.value.status && item.status !== agvSearchForm.value.status) return false
+    return true
+  })
+})
+
+const agvSummary = computed(() => [
+  { label: '任务总数', value: agvRecords.value.length, className: '' },
+  { label: '运输中', value: agvRecords.value.filter(item => ['已接收', '运输中', '已到炉'].includes(item.status)).length, className: 'primary-value' },
+  { label: '已入炉/出炉', value: agvRecords.value.filter(item => ['已入炉', '已出炉'].includes(item.status)).length, className: 'success-value' },
+  { label: '同步异常', value: agvRecords.value.filter(item => item.syncResult === '异常').length, className: 'danger-value' }
+])
+
+const getAgvStatusType = (status: string) => {
+  if (['已入炉', '已出炉'].includes(status)) return 'success'
+  if (['已接收', '运输中', '已到炉'].includes(status)) return 'primary'
+  if (status === '同步异常') return 'danger'
+  return 'info'
+}
+
+const handleAgvSearch = () => {
+  // 筛选条件由计算属性实时应用，此处保留按钮以匹配系统统一查询交互。
+}
+
+const resetAgvSearch = () => {
+  agvSearchForm.value = { frameNo: '', batchNo: '', status: '' }
+}
+
+const openTraceability = (row: any) => {
+  router.push({ name: 'ProductionTraceability', query: { code: row.frameNo } })
+}
+
 const furnaceSummary = computed(() => {
   const list = furnaceBoards.value
   return {
@@ -190,6 +383,32 @@ const furnaceSummary = computed(() => {
 .workbench-tabs {
   margin-top: 8px;
 }
+
+.agv-alert { margin-bottom: 16px; }
+.agv-summary {
+  display: grid;
+  grid-template-columns: repeat(4, minmax(150px, 1fr));
+  gap: 12px;
+  margin-bottom: 16px;
+}
+.summary-item {
+  padding: 14px 16px;
+  background: var(--bg-tertiary);
+  border: 1px solid var(--border-subtle);
+  border-radius: 6px;
+}
+.summary-label { font-size: 13px; color: var(--text-secondary); }
+.summary-value { margin-top: 6px; font-size: 24px; font-weight: 600; color: var(--text-primary); }
+.summary-value.primary-value { color: var(--el-color-primary); }
+.summary-value.success-value { color: var(--el-color-success); }
+.summary-value.danger-value { color: var(--el-color-danger); }
+.agv-search-wrapper {
+  padding: 16px 16px 0;
+  margin-bottom: 16px;
+  background: var(--bg-tertiary);
+  border-radius: 6px;
+}
+.error-text { color: var(--el-color-danger); }
 
 .furnace-detail-container {
   display: flex;
@@ -232,5 +451,9 @@ const furnaceSummary = computed(() => {
 :deep(.el-descriptions__label) {
   width: 120px;
   justify-content: flex-end;
+}
+
+@media (max-width: 900px) {
+  .agv-summary { grid-template-columns: repeat(2, minmax(150px, 1fr)); }
 }
 </style>

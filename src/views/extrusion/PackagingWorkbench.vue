@@ -449,16 +449,16 @@
               </div>
               <div class="tag-checkbox-grid">
                 <div class="tag-checkbox-item">
-                  <span>Phát triển SP</span><span class="tag-checkbox" :class="{ checked: previewData.isPD }"></span>
+                  <span>Vật liệu phát triển SP</span><span class="tag-checkbox" :class="{ checked: previewData.isPD }"></span>
                   <span class="tag-checkbox-hint">PD</span>
                 </div>
                 <div class="tag-checkbox-item">
-                  <span>Sản lượng</span><span class="tag-checkbox" :class="{ checked: previewData.isMassProduction }"></span>
+                  <span>Vật liệu sản xuất hàng loạt</span><span class="tag-checkbox" :class="{ checked: previewData.isMassProduction }"></span>
                   <span class="tag-checkbox-hint">Mass production</span>
                 </div>
                 <div class="tag-checkbox-item">
-                  <span>Công nghiệp nặng</span><span class="tag-checkbox" :class="{ checked: previewData.isHeavyIndustry }"></span>
-                  <span class="tag-checkbox-hint">Heavy industry</span>
+                  <span>Vật liệu gia công lại</span><span class="tag-checkbox" :class="{ checked: previewData.isHeavyIndustry }"></span>
+                  <span class="tag-checkbox-hint">Rework</span>
                 </div>
               </div>
             </td>
@@ -532,6 +532,8 @@ import ProcessDocumentDialog from '@/components/ProcessDocumentDialog.vue'
 import { useTaskLiteralDomI18n } from '@/composables/useTaskLiteralDomI18n'
 import { buildMaterialTagPreviewData } from '@/utils/materialTagPreviewData'
 import { buildPendingStorageRecordFromPackaging, upsertPendingStorageRecord } from '@/utils/pendingStorageFlow'
+import { loadCuttingPackagingRecords, syncCuttingPackagingQueueRecord } from '@/utils/cuttingPackagingFlow'
+import { generatePalletNo as generatePalletNumber } from '@/utils/palletNo'
 
 useTaskLiteralDomI18n()
 
@@ -648,7 +650,7 @@ const currentTimeField = computed(() => {
 })
 
 // 设计思路：不进行裁切的产品，在时效完成后，自动进入包装数据队列
-const tableData = ref([
+const defaultTableData = [
   {
     id: 13,
     frameNo: 'CV-A-A-L6000*W1250*H650*0012',
@@ -996,7 +998,9 @@ const tableData = ref([
       { id: 281, code: 'CV-6061RS-260713V282EE028G-03E010506-A01-0101-00000000-000FC282-JY2607132G0A028001XXX2-H1-282A-SX03G01260761', productName: 'FC282-A', productNo: 'P-2828', length: '5.5', qty: 1, status: '已报废', fixedLength: 5500 }
     ]
   }
-])
+]
+
+const tableData = ref(loadCuttingPackagingRecords(defaultTableData))
 
 const filteredTableData = computed(() => {
   const keywordMatch = (source: unknown, keyword: string) =>
@@ -1097,18 +1101,7 @@ const currentPackTotalQty = computed(() =>
 )
 
 const generatePalletNo = (date = new Date()) => {
-  const year = date.getFullYear()
-  const month = String(date.getMonth() + 1).padStart(2, '0')
-  const day = String(date.getDate()).padStart(2, '0')
-  const dateStr = `${year}${month}${day}`
-
-  const maxSeq = tableData.value.reduce((max, item) => {
-    const match = String(item.palletNo || '').match(/^(\d{8})-(\d{2})$/)
-    if (!match || match[1] !== dateStr) return max
-    return Math.max(max, Number(match[2]))
-  }, 0)
-
-  return `${dateStr}-${String(maxSeq + 1).padStart(2, '0')}`
+  return generatePalletNumber(tableData.value.map(item => item.palletNo), date)
 }
 
 const getSourceFrameSummary = (row: any) => {
@@ -1524,6 +1517,7 @@ const submitPackage = () => {
     const row = currentPackRows.value.find(current => current.id === item.id)
     if (!row) return
     row.qty = Math.max(0, Number(row.qty || 0) - Number(item.packQty || 0))
+    syncCuttingPackagingQueueRecord(row)
     if (row.qty <= 0) {
       const index = tableData.value.findIndex(tableRow => tableRow.id === row.id)
       if (index > -1) {
@@ -1642,6 +1636,7 @@ const confirmShortBarPack = () => {
 
   const rowsToSync = isCoded ? selectedPackRows.value : [selectedPackRow.value]
   rowsToSync.forEach(row => {
+    syncCuttingPackagingQueueRecord(row)
     if (Number(row?.qty || 0) <= 0) {
       const index = tableData.value.findIndex(item => item.id === row.id)
       if (index > -1) {

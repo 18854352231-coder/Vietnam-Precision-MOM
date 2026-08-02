@@ -83,6 +83,12 @@ const routes: Array<RouteRecordRaw> = [
             meta: { title: '待入库清单', titleKey: 'routes.extrusion.pendingStorage' }
           },
           {
+            path: 'traceability',
+            name: 'ProductionTraceability',
+            component: () => import('@/views/extrusion/ProductionTraceability.vue'),
+            meta: { title: '全过程追溯', titleKey: 'routes.extrusion.traceability', hidden: true }
+          },
+          {
             path: 'defective-control',
             name: 'DefectiveControl',
             component: () => import('@/views/quality/ipqc/DefectiveControl.vue'),
@@ -123,54 +129,46 @@ const routes: Array<RouteRecordRaw> = [
             component: RouterViewContainer,
             children: [
               {
-                path: 'process-inspection',
-                name: 'ProcessInspection',
-                meta: { title: '制程检验', titleKey: 'routes.quality.ipqc.processInspection' },
-                component: RouterViewContainer,
-                children: [
-                  {
-                    path: 'extrusion',
-                    name: 'ExtrusionIPQC',
-                    component: () => import('@/views/quality/ipqc/ProcessInspection.vue'),
-                    meta: { title: '挤压IPQC', titleKey: 'routes.quality.ipqc.extrusion', processName: '挤压' }
-                  },
-                  {
-                    path: 'aging',
-                    name: 'AgingIPQC',
-                    component: () => import('@/views/quality/ipqc/ProcessInspection.vue'),
-                    meta: { title: '时效IPQC', titleKey: 'routes.quality.ipqc.aging', processName: '时效' }
-                  },
-                  {
-                    path: 'cutting-feed',
-                    name: 'CuttingFeedIPQC',
-                    component: () => import('@/views/quality/ipqc/ProcessInspection.vue'),
-                    meta: { title: '裁切上料IPQC', titleKey: 'routes.quality.ipqc.cuttingFeed', processName: '裁切上料' }
-                  },
-                  {
-                    path: 'cutting',
-                    name: 'CuttingIPQC',
-                    component: () => import('@/views/quality/ipqc/ProcessInspection.vue'),
-                    meta: { title: '裁切IPQC', titleKey: 'routes.quality.ipqc.cutting', processName: '裁切' }
-                  },
-                  {
-                    path: 'pre-packaging',
-                    name: 'PrePackagingIPQC',
-                    component: () => import('@/views/quality/ipqc/ProcessInspection.vue'),
-                    meta: { title: '预包装IPQC', titleKey: 'routes.quality.ipqc.prePackaging', processName: '预包装' }
-                  }
-                ]
+                path: 'workbench',
+                name: 'IPQCWorkbench',
+                component: () => import('@/views/quality/ipqc/IPQCWorkbench.vue'),
+                meta: { title: 'IPQC工作台', titleKey: 'routes.quality.ipqc.workbench', ipqcView: 'workbench' }
               },
               {
-                path: 'process-quality-inspection',
-                name: 'ProcessQualityInspection',
-                component: () => import('@/views/quality/ipqc/ProcessQualityInspection.vue'),
-                meta: { title: '工序质检', titleKey: 'routes.quality.ipqc.processQualityInspection' }
+                path: 'tasks',
+                name: 'IPQCTasks',
+                component: () => import('@/views/quality/ipqc/IPQCWorkbench.vue'),
+                meta: { title: '检验任务', titleKey: 'routes.quality.ipqc.tasks', ipqcView: 'tasks' }
+              },
+              {
+                path: 'leader-review',
+                name: 'IPQCLeaderReview',
+                component: () => import('@/views/quality/ipqc/IPQCWorkbench.vue'),
+                meta: { title: '班长审核', titleKey: 'routes.quality.ipqc.leaderReview', ipqcView: 'reviews' }
+              },
+              {
+                path: 'records',
+                name: 'IPQCRecords',
+                component: () => import('@/views/quality/ipqc/IPQCWorkbench.vue'),
+                meta: { title: '检验记录', titleKey: 'routes.quality.ipqc.records', ipqcView: 'records' }
+              },
+              {
+                path: 'exceptions',
+                name: 'IPQCExceptions',
+                component: () => import('@/views/quality/ipqc/IPQCWorkbench.vue'),
+                meta: { title: '质量异常', titleKey: 'routes.quality.ipqc.exceptions', ipqcView: 'exceptions' }
               },
               {
                 path: 'inspection-config',
                 name: 'InspectionConfig',
                 component: () => import('@/views/quality/InspectionConfig.vue'),
-                meta: { title: '产品检验配置', titleKey: 'routes.quality.ipqc.inspectionConfig' }
+                meta: { title: '检验方案', titleKey: 'routes.quality.ipqc.plans' }
+              },
+              {
+                path: 'spc',
+                name: 'IPQCSpc',
+                component: () => import('@/views/quality/ipqc/IPQCSpc.vue'),
+                meta: { title: 'SPC趋势分析', titleKey: 'routes.quality.ipqc.spc' }
               }
             ]
           },

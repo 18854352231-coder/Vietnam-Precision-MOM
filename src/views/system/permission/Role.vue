@@ -110,7 +110,8 @@ const menuData = [
     { id: 44, title: '时效工作台' },
     { id: 45, title: '裁切工作台' },
     { id: 46, title: '包装工作台' },
-    { id: 47, title: '待入库清单' }
+    { id: 47, title: '待入库清单' },
+    { id: 48, title: '全过程追溯' }
   ]}
 ]
 

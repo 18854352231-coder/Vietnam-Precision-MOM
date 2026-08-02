@@ -28,9 +28,8 @@ export const buildMaterialTagPreviewData = ({
   source: MaterialTagSource
   shiftTeam?: string
 }) => {
-  const productionType = String(
-    pickFirst(source, ['productionType']) || ''
-  )
+  const scheduleType = String(pickFirst(source, ['scheduleType']) || '')
+  const productionType = String(pickFirst(source, ['productionType']) || '')
 
   return {
     customerCode: String(pickFirst(source, ['customerCode']) || ''),
@@ -46,10 +45,10 @@ export const buildMaterialTagPreviewData = ({
     shiftTeam: shiftTeam || String(pickFirst(source, ['shiftTeam']) || ''),
     alloy: String(pickFirst(source, ['alloy']) || ''),
     scheduleNo: String(pickFirst(source, ['scheduleNo']) || ''),
-    scheduleType: String(pickFirst(source, ['scheduleType']) || ''),
+    scheduleType,
     productionType,
-    isPD: productionType !== '量产',
-    isMassProduction: productionType === '量产',
-    isHeavyIndustry: false
+    isPD: scheduleType === '产发物料',
+    isMassProduction: scheduleType === '量产物料',
+    isHeavyIndustry: scheduleType === '重工物料'
   }
 }

@@ -5,5 +5,6 @@ declare module 'vue-router' {
     title?: string
     titleKey?: string
     icon?: string
+    ipqcView?: 'workbench' | 'tasks' | 'reviews' | 'records' | 'exceptions'
   }
 }

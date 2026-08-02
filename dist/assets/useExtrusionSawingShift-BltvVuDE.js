@@ -1,1 +1,0 @@
-import{r as t}from"./index-DsOBeZST.js";const i=Array.from({length:8},(n,r)=>String(r+1)),c=[...Array.from({length:8},(n,r)=>`A${String(r+1).padStart(2,"0")}`),...Array.from({length:8},(n,r)=>`B${String(r+1).padStart(2,"0")}`)],a=t(!1),s=t(""),o=t(""),g=()=>({isClockedIn:a,currentTeam:s,clockInTime:o});export{c as a,i as e,g as u};

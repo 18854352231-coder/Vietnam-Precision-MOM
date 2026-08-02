@@ -74,15 +74,12 @@ const menuTree = [
     ]},
     { id: 'quality', title: '质量管理', children: [
       { id: 'ipqcModule', title: 'IPQC', children: [
-        { id: 'ipqc', title: '制程检验', children: [
-          { id: 'extrusionIPQC', title: '挤压IPQC' },
-          { id: 'agingIPQC', title: '时效IPQC' },
-          { id: 'cuttingFeedIPQC', title: '裁切上料IPQC' },
-          { id: 'cuttingIPQC', title: '裁切IPQC' },
-          { id: 'prePackagingIPQC', title: '预包装IPQC' }
-        ]},
-        { id: 'processQualityInspection', title: '工序质检' },
-        { id: 'inspectionConfig', title: '产品检验配置' }
+        { id: 'ipqcWorkbench', title: 'IPQC工作台' },
+        { id: 'ipqcTasks', title: '检验任务' },
+        { id: 'ipqcRecords', title: '检验记录' },
+        { id: 'ipqcExceptions', title: '质量异常' },
+        { id: 'inspectionPlans', title: '检验方案' },
+        { id: 'ipqcSpc', title: 'SPC趋势分析' }
       ]},
       { id: 'sampleTestingModule', title: '样品检测', children: [
         { id: 'cncSample', title: 'CNC制样&收样' },
@@ -97,7 +94,8 @@ const menuTree = [
       { id: 'extrusionCutting', title: '裁切工作台' },
       { id: 'extrusionPackaging', title: '包装工作台' },
       { id: 'defectiveControl', title: '不良品管控' },
-      { id: 'extrusionPendingStorage', title: '待入库清单' }
+      { id: 'extrusionPendingStorage', title: '待入库清单' },
+      { id: 'extrusionTraceability', title: '全过程追溯' }
     ]},
     { id: 'equipment', title: '设备管理', children: [
       { id: 'tooling', title: '工装管理' },
@@ -220,4 +218,3 @@ const save = () => {
   background: #fff;
 }
 </style>
-

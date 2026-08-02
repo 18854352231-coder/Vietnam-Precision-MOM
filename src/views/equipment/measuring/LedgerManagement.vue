@@ -5,15 +5,15 @@
         <div class="card-header">
           <div class="search-bar">
             <span class="title">台账管理</span>
-            <el-input placeholder="设备名称/管理编号" style="width: 220px" clearable />
-            <el-button type="primary">查询</el-button>
-            <el-button @click="toggleAdvancedSearch">高级搜索/{{ isAdvancedSearch ? '收起' : '展开' }}</el-button>
-            <el-button>重置</el-button>
+            <el-input v-model="searchForm.keyword" placeholder="设备名称/管理编号" style="width: 220px" clearable @keyup.enter="handleSearch" />
+            <el-button type="primary" @click="handleSearch">查询</el-button>
+            <el-button @click="handleReset">重置</el-button>
+            <el-button @click="toggleAdvancedSearch">{{ isAdvancedSearch ? '收起查询' : '高级查询' }}</el-button>
           </div>
           <div class="header-right">
             <el-button type="primary" @click="openAddDialog">新增</el-button>
-            <el-button type="success" @click="openImportDialog">批量导入</el-button>
-            <el-button type="warning" @click="handleExport">导出excel</el-button>
+            <el-button @click="openImportDialog">批量导入</el-button>
+            <el-button @click="handleExport">导出Excel</el-button>
             <el-button>生成校验任务</el-button>
             <el-button>批量修改</el-button>
             <el-button type="danger">报废/封存</el-button>
@@ -96,8 +96,8 @@
             </el-row>
             <el-row style="margin-top: 10px;">
               <el-col :span="24" style="display: flex; gap: 10px;">
-                <el-button type="primary">查询</el-button>
-                <el-button>重置</el-button>
+                <el-button type="primary" @click="handleSearch">查询</el-button>
+                <el-button @click="handleReset">重置</el-button>
               </el-col>
             </el-row>
           </el-form>
@@ -105,36 +105,51 @@
       </template>
 
       <div class="table-wrapper">
-        <el-table :data="tableData" border height="100%">
+        <el-table :data="filteredData" border height="100%" empty-text="暂无符合条件的数据">
           <el-table-column type="selection" width="55" align="center" />
           <el-table-column type="index" label="序号" width="60" align="center" />
           <el-table-column prop="category" label="量具类型" width="90" />
           <el-table-column prop="usage" label="用途" width="80" />
           <el-table-column prop="manageClass" label="管理类别" width="90" align="center" />
-          <el-table-column prop="template" label="校验模板" width="100" />
+          <el-table-column prop="template" label="校验模板" width="120" show-overflow-tooltip />
           <el-table-column prop="manageCode" label="管理编号" width="110" />
-          <el-table-column prop="factoryCode" label="出厂编号" width="100" />
+          <el-table-column prop="factoryCode" label="出厂编号" width="110" />
           <el-table-column prop="inDate" label="入厂日期" width="110" />
-          <el-table-column prop="name" label="名称" width="120" show-overflow-tooltip />
-          <el-table-column prop="spec" label="规格型号" width="100" />
-          <el-table-column prop="range" label="量程" width="90" />
+          <el-table-column prop="name" label="名称" width="130" show-overflow-tooltip />
+          <el-table-column prop="spec" label="规格型号" width="110" show-overflow-tooltip />
+          <el-table-column prop="range" label="量程" width="100" />
           <el-table-column prop="divValue" label="分度值" width="90" />
-          <el-table-column prop="material" label="材质" width="80" align="center" />
+          <el-table-column prop="material" label="材质" width="90" align="center" />
           <el-table-column prop="manufacturer" label="生产厂家" width="120" show-overflow-tooltip />
-          <el-table-column prop="cycle" label="计量周期" width="90" align="center" />
+          <el-table-column prop="cycle" label="计量周期/月" width="110" align="center" />
           <el-table-column prop="calibDate" label="校验日期" width="110" />
           <el-table-column prop="validDate" label="有效日期" width="110" />
-          <el-table-column prop="calibOrg" label="校验单位" width="100" />
-          <el-table-column prop="certNo" label="证书编号" width="120" show-overflow-tooltip />
-          <el-table-column prop="method" label="计量方式" width="90" />
-          <el-table-column prop="status" label="状态" width="80" align="center" />
-          <el-table-column prop="department" label="使用部门" width="120" />
-          <el-table-column prop="workshop" label="使用车间" width="100" />
-          <el-table-column prop="team" label="班组" width="80" />
-          <el-table-column prop="location" label="具体位置" width="100" />
+          <el-table-column prop="calibOrg" label="校验单位" width="110" show-overflow-tooltip />
+          <el-table-column prop="certNo" label="证书编号" width="130" show-overflow-tooltip />
+          <el-table-column prop="method" label="计量方式" width="90" align="center">
+            <template #default="{ row }">
+              {{ row.method }}
+            </template>
+          </el-table-column>
+          <el-table-column prop="status" label="状态" width="90" align="center">
+            <template #default="{ row }">
+              <el-tag :type="row.status === '正常' ? 'success' : row.status === '校验中' ? 'warning' : 'info'" effect="plain">{{ row.status }}</el-tag>
+            </template>
+          </el-table-column>
+          <el-table-column prop="department" label="使用部门" width="110" show-overflow-tooltip />
+          <el-table-column prop="workshop" label="使用车间" width="100" show-overflow-tooltip />
+          <el-table-column prop="team" label="班组" width="90" />
+          <el-table-column prop="location" label="具体位置" width="110" show-overflow-tooltip />
           <el-table-column prop="owner" label="责任人" width="100" />
-          <el-table-column prop="warnDays" label="预警天数" width="90" align="center" />
-          <el-table-column prop="remark" label="备注" width="120" show-overflow-tooltip />
+          <el-table-column prop="warnDays" label="预警天数" width="100" align="center">
+            <template #default="{ row }">
+              <el-tag v-if="row.warnDays !== '-' && Number(row.warnDays) <= 30" :type="Number(row.warnDays) <= 0 ? 'danger' : 'warning'" effect="plain">
+                {{ row.warnDays }}天
+              </el-tag>
+              <span v-else>{{ row.warnDays === '-' ? '-' : `${row.warnDays}天` }}</span>
+            </template>
+          </el-table-column>
+          <el-table-column prop="remark" label="备注" width="130" show-overflow-tooltip />
           <el-table-column label="操作" width="150" align="center" fixed="right">
             <template #default>
               <el-button link type="primary" size="small">详情</el-button>
@@ -147,8 +162,8 @@
       <div class="pagination-container">
         <el-pagination
           layout="total, sizes, prev, pager, next"
-          :total="20104"
-          :page-sizes="[50, 100]"
+          :total="filteredData.length"
+          :page-sizes="[10, 20, 50]"
         />
       </div>
     </el-card>
@@ -363,7 +378,7 @@
 </template>
 
 <script setup lang="ts">
-import { ref } from 'vue'
+import { computed, ref } from 'vue'
 import { ElMessage } from 'element-plus'
 import { UploadFilled } from '@element-plus/icons-vue'
 import { useTaskLiteralDomI18n } from '@/composables/useTaskLiteralDomI18n'
@@ -439,41 +454,76 @@ const handleExport = () => {
   ElMessage.success('导出任务已提交，请稍后在下载中心查看')
 }
 
-const searchForm = ref({
-  usage: '', manageCode: '', factoryCode: '', name: '', calibDate: [], cycle: '',
+const searchForm = ref<Record<string, any>>({
+  keyword: '', usage: '', manageCode: '', factoryCode: '', name: '', calibDate: [], cycle: '',
   method: '', status: '', department: '', workshop: '', warnDays: ''
 })
 
+const filters = ref({ ...searchForm.value })
+
+const handleSearch = () => {
+  filters.value = { ...searchForm.value }
+}
+
+const handleReset = () => {
+  searchForm.value = {
+    keyword: '', usage: '', manageCode: '', factoryCode: '', name: '', calibDate: [], cycle: '',
+    method: '', status: '', department: '', workshop: '', warnDays: ''
+  }
+  handleSearch()
+}
+
 const tableData = ref([
   {
-    category: '长度', usage: '量具', manageClass: 'C', template: '卷尺', manageCode: '12897',
-    factoryCode: '/', inDate: '2026-07-15', name: '钢卷尺', spec: '/', range: '0-10m', divValue: '1mm',
-    material: '/', manufacturer: 'Deli', cycle: '12', calibDate: '2026-07-15', validDate: '2027-07-14',
-    calibOrg: '创新', certNo: '-', method: '内校', status: '校验中', department: '生产部...',
-    workshop: '挤压', team: 'B15', location: '-', owner: '高明...', warnDays: '364', remark: '-'
+    category: '长度', usage: '量具', manageClass: 'B', template: '游标卡尺', manageCode: 'LJ-001',
+    factoryCode: 'YC240315', inDate: '2024-03-20', name: '数显游标卡尺', spec: '0-150mm', range: '0-150mm', divValue: '0.01mm',
+    material: '不锈钢', manufacturer: '桂林广陆', cycle: '12', calibDate: '2026-03-18', validDate: '2027-03-17',
+    calibOrg: '品保部', certNo: 'NJ26031801', method: '内校', status: '正常', department: '生产部',
+    workshop: '机加工', team: 'A班', location: '检验台1', owner: '阮文安', warnDays: '227', remark: '-'
   },
   {
-    category: '检具', usage: '检具', manageClass: 'B', template: '-', manageCode: 'NK-42...',
-    factoryCode: '/', inDate: '2026-07-14', name: '二维码检具', spec: 'NK-42', range: 'Q', divValue: '/',
-    material: '钢', manufacturer: '创新', cycle: '6', calibDate: '2026-07-14', validDate: '-',
-    calibOrg: '创新', certNo: '线下记录.docx', method: '内校', status: '封存', department: '品保部',
-    workshop: '计量室', team: '4-2', location: '9-2', owner: '王若瑾', warnDays: '-', remark: '-'
+    category: '质量', usage: '量具', manageClass: 'A', template: '电子秤30kg', manageCode: 'ZL-003',
+    factoryCode: 'ES250108', inDate: '2025-01-12', name: '电子秤', spec: '30kg/10g', range: '0-30kg', divValue: '10g',
+    material: '不锈钢', manufacturer: '英展', cycle: '6', calibDate: '2026-02-10', validDate: '2026-08-09',
+    calibOrg: '越南计量院', certNo: 'VMI-260210-36', method: '外校', status: '正常', department: '仓储部',
+    workshop: '成品仓', team: '白班', location: '收货区', owner: '陈氏兰', warnDays: '7', remark: '即将到期'
   },
   {
-    category: '量具', usage: '量具', manageClass: 'C', template: '-', manageCode: '30897',
-    factoryCode: '/', inDate: '2026-07-13', name: '针规', spec: '3.18mm', range: '/', divValue: '/',
-    material: '钢', manufacturer: '上量精工', cycle: '12', calibDate: '2026-07-13', validDate: '-',
-    calibOrg: '创新', certNo: '30897.pdf', method: '内校', status: '封存', department: '品保部',
-    workshop: '计量室', team: '4号柜', location: '10-1', owner: '王若瑾', warnDays: '-', remark: '-'
+    category: '温度', usage: '量具', manageClass: 'A', template: '数字温湿度计', manageCode: 'WD-002',
+    factoryCode: 'TH230921', inDate: '2023-09-25', name: '数字温湿度计', spec: 'TH-101B', range: '-20-60℃', divValue: '0.1℃',
+    material: '塑料', manufacturer: '德图', cycle: '12', calibDate: '2025-08-01', validDate: '2026-07-31',
+    calibOrg: '越南计量院', certNo: 'VMI-250801-12', method: '外校', status: '校验中', department: '品保部',
+    workshop: '实验室', team: '检测组', location: '环境监测点', owner: '黎明俊', warnDays: '0', remark: '已送外校'
   },
   {
-    category: '直...', usage: '量具', manageClass: 'C', template: '刀...', manageCode: '21825',
-    factoryCode: '260047', inDate: '2026-07-13', name: '刀口直尺', spec: '100mm', range: '/', divValue: '/',
-    material: '/', manufacturer: '万量', cycle: '12', calibDate: '2026-07-13', validDate: '2027-07-12',
-    calibOrg: '创新', certNo: '-', method: '内校', status: '校验中', department: '生产部二...',
-    workshop: '挤压', team: 'A39', location: '/', owner: '李龙/...', warnDays: '362', remark: '-'
+    category: '专用检具', usage: '检具', manageClass: 'C', template: '垂直度检具', manageCode: 'JY-006',
+    factoryCode: 'XC-JY-006', inDate: '2024-06-08', name: '垂直度检具', spec: '200×150mm', range: '-', divValue: '-',
+    material: '工具钢', manufacturer: '创新精密', cycle: '12', calibDate: '2025-06-15', validDate: '2026-06-14',
+    calibOrg: '品保部', certNo: 'NJ25061506', method: '内校', status: '封存', department: '品保部',
+    workshop: '计量室', team: '检测组', location: '检具柜2', owner: '王若瑾', warnDays: '-', remark: '待维修确认'
   }
 ])
+
+const filteredData = computed(() => {
+  const query = String(filters.value.keyword || '').trim().toLowerCase()
+  return tableData.value.filter(item => {
+    const matchesKeyword = !query || `${item.manageCode} ${item.name}`.toLowerCase().includes(query)
+    const matchesUsage = !filters.value.usage || item.usage === filters.value.usage
+    const matchesManageCode = !filters.value.manageCode || item.manageCode.toLowerCase().includes(String(filters.value.manageCode).trim().toLowerCase())
+    const matchesFactoryCode = !filters.value.factoryCode || item.factoryCode.toLowerCase().includes(String(filters.value.factoryCode).trim().toLowerCase())
+    const matchesName = !filters.value.name || item.name.toLowerCase().includes(String(filters.value.name).trim().toLowerCase())
+    const matchesCycle = !filters.value.cycle || item.cycle === filters.value.cycle
+    const matchesMethod = !filters.value.method || item.method === filters.value.method
+    const matchesStatus = !filters.value.status || item.status === filters.value.status
+    const matchesDepartment = !filters.value.department || item.department.includes(String(filters.value.department).trim())
+    const matchesWorkshop = !filters.value.workshop || item.workshop.includes(String(filters.value.workshop).trim())
+    const matchesWarnDays = !filters.value.warnDays || item.warnDays === String(filters.value.warnDays).trim()
+    const dateRange = Array.isArray(filters.value.calibDate) ? filters.value.calibDate : []
+    const calibrationTime = new Date(item.calibDate).getTime()
+    const matchesDate = dateRange.length !== 2 || (calibrationTime >= new Date(dateRange[0]).getTime() && calibrationTime <= new Date(dateRange[1]).getTime())
+    return matchesKeyword && matchesUsage && matchesManageCode && matchesFactoryCode && matchesName && matchesCycle && matchesMethod && matchesStatus && matchesDepartment && matchesWorkshop && matchesWarnDays && matchesDate
+  })
+})
 </script>
 
 <style scoped>
@@ -493,11 +543,14 @@ const tableData = ref([
   display: flex;
   justify-content: space-between;
   align-items: center;
+  gap: 16px;
+  flex-wrap: wrap;
 }
 .search-bar {
   display: flex;
   align-items: center;
   gap: 12px;
+  flex-wrap: wrap;
 }
 .title {
   font-weight: 600;
@@ -508,6 +561,7 @@ const tableData = ref([
   display: flex;
   align-items: center;
   gap: 10px;
+  flex-wrap: wrap;
 }
 .advanced-search-panel {
   margin-top: 16px;

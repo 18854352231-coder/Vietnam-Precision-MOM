@@ -5,14 +5,14 @@
         <div class="card-header">
           <div class="search-bar">
             <span class="title">校验项目管理</span>
-            <el-input placeholder="项目编号/名称" style="width: 220px" clearable />
-            <el-button type="primary">查询</el-button>
-            <el-button @click="toggleAdvancedSearch">高级搜索/{{ isAdvancedSearch ? '收起' : '展开' }}</el-button>
-            <el-button>重置</el-button>
+            <el-input v-model="searchForm.keyword" placeholder="项目编号/名称" style="width: 220px" clearable @keyup.enter="handleSearch" />
+            <el-button type="primary" @click="handleSearch">查询</el-button>
+            <el-button @click="handleReset">重置</el-button>
+            <el-button @click="toggleAdvancedSearch">{{ isAdvancedSearch ? '收起查询' : '高级查询' }}</el-button>
           </div>
           <div class="header-right">
             <el-button type="primary">新增</el-button>
-            <el-button type="success">确认</el-button>
+            <el-button>确认</el-button>
             <el-button>批量导入</el-button>
             <el-button>导出excel</el-button>
           </div>
@@ -49,8 +49,8 @@
             </el-row>
             <el-row style="margin-top: 10px;">
               <el-col :span="24" style="display: flex; gap: 10px;">
-                <el-button type="primary">查询</el-button>
-                <el-button>重置</el-button>
+                <el-button type="primary" @click="handleSearch">查询</el-button>
+                <el-button @click="handleReset">重置</el-button>
               </el-col>
             </el-row>
           </el-form>
@@ -58,24 +58,26 @@
       </template>
 
       <div class="table-wrapper">
-        <el-table :data="tableData" border height="100%">
+        <el-table :data="filteredData" border height="100%" empty-text="暂无符合条件的数据">
           <el-table-column type="selection" width="55" align="center" />
           <el-table-column type="index" label="序号" width="60" align="center" />
           <el-table-column prop="projectCode" label="项目编号" width="100" align="center" />
           <el-table-column prop="projectName" label="项目名称" min-width="180" show-overflow-tooltip />
           <el-table-column prop="dataType" label="数据类型" width="100" align="center" />
-          <el-table-column prop="standardValue" label="标准值" width="100" align="center" />
-          <el-table-column prop="measuredValue" label="测量值" width="100" align="center" />
+          <el-table-column prop="standardValue" label="标准值" width="120" align="center" />
           <el-table-column prop="lowerLimit" label="允许误差下限" width="120" align="center" />
           <el-table-column prop="upperLimit" label="允许误差上限" width="120" align="center" />
-          <el-table-column prop="result" label="测量结果" width="100" align="center" />
           <el-table-column prop="decimals" label="小数位数" width="100" align="center" />
-          <el-table-column prop="status" label="状态" width="80" align="center" />
+          <el-table-column prop="status" label="状态" width="90" align="center">
+            <template #default="{ row }">
+              <span :class="row.status === '确认' ? 'status-confirmed' : 'status-draft'">{{ row.status }}</span>
+            </template>
+          </el-table-column>
           <el-table-column prop="remark" label="备注" min-width="150" show-overflow-tooltip />
           <el-table-column label="操作" width="120" align="center" fixed="right">
             <template #default>
               <el-button link type="primary" size="small">编辑</el-button>
-              <el-button link type="primary" size="small">删除</el-button>
+              <el-button link type="danger" size="small">删除</el-button>
             </template>
           </el-table-column>
         </el-table>
@@ -84,8 +86,8 @@
       <div class="pagination-container">
         <el-pagination
           layout="total, sizes, prev, pager, next"
-          :total="77"
-          :page-sizes="[20, 50, 100]"
+          :total="filteredData.length"
+          :page-sizes="[10, 20, 50]"
         />
       </div>
     </el-card>
@@ -93,7 +95,7 @@
 </template>
 
 <script setup lang="ts">
-import { ref } from 'vue'
+import { computed, ref } from 'vue'
 import { useTaskLiteralDomI18n } from '@/composables/useTaskLiteralDomI18n'
 useTaskLiteralDomI18n()
 
@@ -103,26 +105,43 @@ const toggleAdvancedSearch = () => {
 }
 
 const searchForm = ref({
+  keyword: '',
   projectCode: '',
   projectName: '',
   type: '',
   status: ''
 })
 
+const filters = ref({ ...searchForm.value })
+
+const handleSearch = () => {
+  filters.value = { ...searchForm.value }
+}
+
+const handleReset = () => {
+  searchForm.value = { keyword: '', projectCode: '', projectName: '', type: '', status: '' }
+  handleSearch()
+}
+
 const tableData = ref([
-  { projectCode: '0504', projectName: 'B/C面垂直度/mm (A-底面; B-前竖面; C-侧面)', dataType: '数值', standardValue: '0.00', measuredValue: '-', lowerLimit: '0.00', upperLimit: '0.03', result: '误差', decimals: '2', status: '确认', remark: '垂直度检具' },
-  { projectCode: '0503', projectName: 'A/C面垂直度/mm (A-底面; B-前竖面; C-侧面)', dataType: '数值', standardValue: '0.00', measuredValue: '-', lowerLimit: '0.00', upperLimit: '0.03', result: '误差', decimals: '2', status: '确认', remark: '垂直度检具' },
-  { projectCode: '0502', projectName: 'A/B面垂直度/mm (A-底面; B-前竖面; C-侧面)', dataType: '数值', standardValue: '0.00', measuredValue: '-', lowerLimit: '0.00', upperLimit: '0.03', result: '误差', decimals: '2', status: '确认', remark: '垂直度检具' },
-  { projectCode: '0501', projectName: '直线度/mm', dataType: '数值', standardValue: '0.00', measuredValue: '-', lowerLimit: '0.00', upperLimit: '0.03', result: '误差', decimals: '2', status: '确认', remark: '平面度/直线度...' },
-  { projectCode: '0605', projectName: '称量误差/kg', dataType: '数值', standardValue: '10', measuredValue: '-', lowerLimit: '-0.01', upperLimit: '0.01', result: '误差', decimals: '2', status: '确认', remark: '30/0.02kg' },
-  { projectCode: '0606', projectName: '称量误差/kg', dataType: '数值', standardValue: '5', measuredValue: '-', lowerLimit: '-0.003', upperLimit: '0.003', result: '误差', decimals: '3', status: '确认', remark: '6/0.002kg' },
-  { projectCode: '0604', projectName: '称量误差/kg', dataType: '数值', standardValue: '1', measuredValue: '-', lowerLimit: '-0.001', upperLimit: '0.001', result: '误差', decimals: '3', status: '确认', remark: '6/0.002kg' },
-  { projectCode: '0601', projectName: '偏载/kg', dataType: '数值', standardValue: '0', measuredValue: '-', lowerLimit: '-0.01', upperLimit: '0.01', result: '误差', decimals: '2', status: '确认', remark: '30/0.02kg' },
-  { projectCode: '0602', projectName: '称量误差/kg', dataType: '数值', standardValue: '0.4', measuredValue: '-', lowerLimit: '-0.01', upperLimit: '0.01', result: '误差', decimals: '2', status: '确认', remark: '30/0.02kg' },
-  { projectCode: '0603', projectName: '称量误差/kg', dataType: '数值', standardValue: '1', measuredValue: '-', lowerLimit: '-0.01', upperLimit: '0.01', result: '误差', decimals: '2', status: '确认', remark: '30/0.02kg' },
-  { projectCode: '0605', projectName: '称量误差/kg', dataType: '数值', standardValue: '4', measuredValue: '-', lowerLimit: '-0.002', upperLimit: '0.002', result: '误差', decimals: '3', status: '确认', remark: '6/0.002kg' },
-  { projectCode: '0601', projectName: '偏载/kg', dataType: '数值', standardValue: '0', measuredValue: '-', lowerLimit: '-0.002', upperLimit: '0.002', result: '误差', decimals: '3', status: '确认', remark: '6/0.002kg' }
+  { projectCode: 'PJ-001', projectName: '外观检查', dataType: '文字', standardValue: '无破损、锈蚀', measuredValue: '-', lowerLimit: '-', upperLimit: '-', result: '判定', decimals: '-', status: '确认', remark: '通用项目' },
+  { projectCode: 'PJ-002', projectName: '示值误差', dataType: '数值', standardValue: '0.00', measuredValue: '-', lowerLimit: '-0.02', upperLimit: '0.02', result: '误差', decimals: '2', status: '确认', remark: '游标卡尺' },
+  { projectCode: 'PJ-003', projectName: '重复性', dataType: '数值', standardValue: '0.00', measuredValue: '-', lowerLimit: '0.00', upperLimit: '0.01', result: '误差', decimals: '2', status: '确认', remark: '游标卡尺' },
+  { projectCode: 'PJ-004', projectName: '称量误差', dataType: '数值', standardValue: '10.00', measuredValue: '-', lowerLimit: '-0.01', upperLimit: '0.01', result: '误差', decimals: '2', status: '确认', remark: '30kg电子秤' },
+  { projectCode: 'PJ-005', projectName: '温度示值误差', dataType: '数值', standardValue: '25.0', measuredValue: '-', lowerLimit: '-0.5', upperLimit: '0.5', result: '误差', decimals: '1', status: '确认', remark: '温湿度计' }
 ])
+
+const filteredData = computed(() => {
+  const query = filters.value.keyword.trim().toLowerCase()
+  return tableData.value.filter(item => {
+    const matchesKeyword = !query || `${item.projectCode} ${item.projectName}`.toLowerCase().includes(query)
+    const matchesCode = !filters.value.projectCode || item.projectCode.toLowerCase().includes(filters.value.projectCode.trim().toLowerCase())
+    const matchesName = !filters.value.projectName || item.projectName.toLowerCase().includes(filters.value.projectName.trim().toLowerCase())
+    const matchesType = !filters.value.type || item.dataType === filters.value.type
+    const matchesStatus = !filters.value.status || item.status === filters.value.status
+    return matchesKeyword && matchesCode && matchesName && matchesType && matchesStatus
+  })
+})
 </script>
 
 <style scoped>
@@ -142,11 +161,14 @@ const tableData = ref([
   display: flex;
   justify-content: space-between;
   align-items: center;
+  gap: 16px;
+  flex-wrap: wrap;
 }
 .search-bar {
   display: flex;
   align-items: center;
   gap: 12px;
+  flex-wrap: wrap;
 }
 .title {
   font-weight: 600;
@@ -157,6 +179,7 @@ const tableData = ref([
   display: flex;
   align-items: center;
   gap: 10px;
+  flex-wrap: wrap;
 }
 .advanced-search-panel {
   margin-top: 16px;
@@ -180,5 +203,11 @@ const tableData = ref([
   margin-top: 16px;
   display: flex;
   justify-content: flex-end;
+}
+.status-confirmed {
+  color: #409eff;
+}
+.status-draft {
+  color: #909399;
 }
 </style>

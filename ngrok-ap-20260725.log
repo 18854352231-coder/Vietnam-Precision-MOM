@@ -1,0 +1,125 @@
+{"lvl":"info","msg":"Flag --region has been deprecated, ngrok automatically chooses the region with lowest latency","t":"2026-07-25T14:58:12.1333811+07:00"}
+{"lvl":"info","msg":"no configuration paths supplied","t":"2026-07-25T14:58:12.2194134+07:00"}
+{"lvl":"info","msg":"using configuration at default config path","path":"C:\\Users\\ptn_z\\AppData\\Local\\ngrok\\ngrok.yml","t":"2026-07-25T14:58:12.2195053+07:00"}
+{"err":"\u003cnil\u003e","lvl":"info","msg":"open config file","path":"C:\\Users\\ptn_z\\AppData\\Local\\ngrok\\ngrok.yml","t":"2026-07-25T14:58:12.2195053+07:00"}
+{"enabled":false,"lvl":"info","msg":"FIPS 140 mode","t":"2026-07-25T14:58:12.2200217+07:00"}
+{"addr":"127.0.0.1:4040","allow_hosts":null,"lvl":"info","msg":"starting web service","obj":"web","t":"2026-07-25T14:58:12.3958942+07:00"}
+{"err":"failed to send authentication request: EOF","lvl":"eror","msg":"failed to reconnect session","obj":"tunnels.session","t":"2026-07-25T14:58:22.7161706+07:00"}
+{"id":"20235014087feb78","lvl":"info","msg":"start","pg":"/api/tunnels","t":"2026-07-25T14:58:22.9801512+07:00"}
+{"dur":"0s","id":"20235014087feb78","lvl":"info","msg":"end","pg":"/api/tunnels","status":200,"t":"2026-07-25T14:58:22.9801512+07:00"}
+{"id":"4a0cae7c01043280","lvl":"info","msg":"start","pg":"/api/tunnels","t":"2026-07-25T14:58:23.8252643+07:00"}
+{"dur":"0s","id":"4a0cae7c01043280","lvl":"info","msg":"end","pg":"/api/tunnels","status":200,"t":"2026-07-25T14:58:23.8252643+07:00"}
+{"id":"7ff11352846932c6","lvl":"info","msg":"start","pg":"/api/tunnels","t":"2026-07-25T14:58:24.3311957+07:00"}
+{"dur":"0s","id":"7ff11352846932c6","lvl":"info","msg":"end","pg":"/api/tunnels","status":200,"t":"2026-07-25T14:58:24.3311957+07:00"}
+{"id":"d938cd9ac01640e0","lvl":"info","msg":"start","pg":"/api/tunnels","t":"2026-07-25T14:58:24.8462639+07:00"}
+{"dur":"0s","id":"d938cd9ac01640e0","lvl":"info","msg":"end","pg":"/api/tunnels","status":200,"t":"2026-07-25T14:58:24.8462639+07:00"}
+{"id":"0a3a5a17d9ecbf42","lvl":"info","msg":"start","pg":"/api/tunnels","t":"2026-07-25T14:58:25.3548781+07:00"}
+{"dur":"0s","id":"0a3a5a17d9ecbf42","lvl":"info","msg":"end","pg":"/api/tunnels","status":200,"t":"2026-07-25T14:58:25.3548781+07:00"}
+{"id":"61abf05a944bce1a","lvl":"info","msg":"start","pg":"/api/tunnels","t":"2026-07-25T14:58:25.8654718+07:00"}
+{"dur":"0s","id":"61abf05a944bce1a","lvl":"info","msg":"end","pg":"/api/tunnels","status":200,"t":"2026-07-25T14:58:25.8654718+07:00"}
+{"id":"0d07a5e434d52e3c","lvl":"info","msg":"start","pg":"/api/tunnels","t":"2026-07-25T14:58:26.3760055+07:00"}
+{"dur":"0s","id":"0d07a5e434d52e3c","lvl":"info","msg":"end","pg":"/api/tunnels","status":200,"t":"2026-07-25T14:58:26.3760055+07:00"}
+{"id":"fe6e71d5acc0bf4d","lvl":"info","msg":"start","pg":"/api/tunnels","t":"2026-07-25T14:58:26.8914917+07:00"}
+{"dur":"0s","id":"fe6e71d5acc0bf4d","lvl":"info","msg":"end","pg":"/api/tunnels","status":200,"t":"2026-07-25T14:58:26.8914917+07:00"}
+{"id":"6ae6f2c9ed994f25","lvl":"info","msg":"start","pg":"/api/tunnels","t":"2026-07-25T14:58:27.4038791+07:00"}
+{"dur":"0s","id":"6ae6f2c9ed994f25","lvl":"info","msg":"end","pg":"/api/tunnels","status":200,"t":"2026-07-25T14:58:27.4038791+07:00"}
+{"id":"f5192149908155cb","lvl":"info","msg":"start","pg":"/api/tunnels","t":"2026-07-25T14:58:27.9151695+07:00"}
+{"dur":"0s","id":"f5192149908155cb","lvl":"info","msg":"end","pg":"/api/tunnels","status":200,"t":"2026-07-25T14:58:27.9151695+07:00"}
+{"id":"26866cd19c57aee2","lvl":"info","msg":"start","pg":"/api/tunnels","t":"2026-07-25T14:58:28.4268906+07:00"}
+{"dur":"0s","id":"26866cd19c57aee2","lvl":"info","msg":"end","pg":"/api/tunnels","status":200,"t":"2026-07-25T14:58:28.4268906+07:00"}
+{"id":"dcb8a44e16e1962c","lvl":"info","msg":"start","pg":"/api/tunnels","t":"2026-07-25T14:58:28.9376211+07:00"}
+{"dur":"0s","id":"dcb8a44e16e1962c","lvl":"info","msg":"end","pg":"/api/tunnels","status":200,"t":"2026-07-25T14:58:28.9376211+07:00"}
+{"id":"ffbf8387aa8c39b7","lvl":"info","msg":"start","pg":"/api/tunnels","t":"2026-07-25T14:58:29.4538674+07:00"}
+{"dur":"0s","id":"ffbf8387aa8c39b7","lvl":"info","msg":"end","pg":"/api/tunnels","status":200,"t":"2026-07-25T14:58:29.4538674+07:00"}
+{"id":"33fc3bbfded8e32a","lvl":"info","msg":"start","pg":"/api/tunnels","t":"2026-07-25T14:58:29.964209+07:00"}
+{"dur":"0s","id":"33fc3bbfded8e32a","lvl":"info","msg":"end","pg":"/api/tunnels","status":200,"t":"2026-07-25T14:58:29.964209+07:00"}
+{"id":"1e2ab9a432d6c102","lvl":"info","msg":"start","pg":"/api/tunnels","t":"2026-07-25T14:58:30.4778069+07:00"}
+{"dur":"0s","id":"1e2ab9a432d6c102","lvl":"info","msg":"end","pg":"/api/tunnels","status":200,"t":"2026-07-25T14:58:30.4778069+07:00"}
+{"id":"0b7e66ab36bf02a1","lvl":"info","msg":"start","pg":"/api/tunnels","t":"2026-07-25T14:58:30.9881384+07:00"}
+{"dur":"0s","id":"0b7e66ab36bf02a1","lvl":"info","msg":"end","pg":"/api/tunnels","status":200,"t":"2026-07-25T14:58:30.9881384+07:00"}
+{"id":"203854d34608f7b6","lvl":"info","msg":"start","pg":"/api/tunnels","t":"2026-07-25T14:58:31.5024591+07:00"}
+{"dur":"0s","id":"203854d34608f7b6","lvl":"info","msg":"end","pg":"/api/tunnels","status":200,"t":"2026-07-25T14:58:31.5024591+07:00"}
+{"id":"a7b3900477429833","lvl":"info","msg":"start","pg":"/api/tunnels","t":"2026-07-25T14:58:32.0173273+07:00"}
+{"dur":"0s","id":"a7b3900477429833","lvl":"info","msg":"end","pg":"/api/tunnels","status":200,"t":"2026-07-25T14:58:32.0173273+07:00"}
+{"id":"094c31a0c925cc5d","lvl":"info","msg":"start","pg":"/api/tunnels","t":"2026-07-25T14:58:32.5323103+07:00"}
+{"dur":"511.4µs","id":"094c31a0c925cc5d","lvl":"info","msg":"end","pg":"/api/tunnels","status":200,"t":"2026-07-25T14:58:32.5328217+07:00"}
+{"id":"173351be7be0a9bb","lvl":"info","msg":"start","pg":"/api/tunnels","t":"2026-07-25T14:58:33.0439785+07:00"}
+{"dur":"0s","id":"173351be7be0a9bb","lvl":"info","msg":"end","pg":"/api/tunnels","status":200,"t":"2026-07-25T14:58:33.0439785+07:00"}
+{"err":"failed to send authentication request: EOF","lvl":"eror","msg":"failed to reconnect session","obj":"tunnels.session","t":"2026-07-25T14:58:33.3448967+07:00"}
+{"id":"46ec4a3f98b5cd7f","lvl":"info","msg":"start","pg":"/api/tunnels","t":"2026-07-25T14:58:33.5571232+07:00"}
+{"dur":"0s","id":"46ec4a3f98b5cd7f","lvl":"info","msg":"end","pg":"/api/tunnels","status":200,"t":"2026-07-25T14:58:33.5571232+07:00"}
+{"id":"61e8ecfc15fc5694","lvl":"info","msg":"start","pg":"/api/tunnels","t":"2026-07-25T14:58:34.0727123+07:00"}
+{"dur":"0s","id":"61e8ecfc15fc5694","lvl":"info","msg":"end","pg":"/api/tunnels","status":200,"t":"2026-07-25T14:58:34.0727123+07:00"}
+{"id":"e6b5a5fbb2ccf0dc","lvl":"info","msg":"start","pg":"/api/tunnels","t":"2026-07-25T14:58:34.5867088+07:00"}
+{"dur":"0s","id":"e6b5a5fbb2ccf0dc","lvl":"info","msg":"end","pg":"/api/tunnels","status":200,"t":"2026-07-25T14:58:34.5867088+07:00"}
+{"id":"e1843bbcae462199","lvl":"info","msg":"start","pg":"/api/tunnels","t":"2026-07-25T14:58:35.1029919+07:00"}
+{"dur":"0s","id":"e1843bbcae462199","lvl":"info","msg":"end","pg":"/api/tunnels","status":200,"t":"2026-07-25T14:58:35.1029919+07:00"}
+{"id":"d7b0168f89a769ae","lvl":"info","msg":"start","pg":"/api/tunnels","t":"2026-07-25T14:58:35.6178816+07:00"}
+{"dur":"0s","id":"d7b0168f89a769ae","lvl":"info","msg":"end","pg":"/api/tunnels","status":200,"t":"2026-07-25T14:58:35.6178816+07:00"}
+{"id":"9bb8146fa5b768ec","lvl":"info","msg":"start","pg":"/api/tunnels","t":"2026-07-25T14:58:36.1293781+07:00"}
+{"dur":"0s","id":"9bb8146fa5b768ec","lvl":"info","msg":"end","pg":"/api/tunnels","status":200,"t":"2026-07-25T14:58:36.1293781+07:00"}
+{"id":"ffec182cbcf69209","lvl":"info","msg":"start","pg":"/api/tunnels","t":"2026-07-25T14:58:36.644264+07:00"}
+{"dur":"0s","id":"ffec182cbcf69209","lvl":"info","msg":"end","pg":"/api/tunnels","status":200,"t":"2026-07-25T14:58:36.644264+07:00"}
+{"id":"2e7a0780e56efb0d","lvl":"info","msg":"start","pg":"/api/tunnels","t":"2026-07-25T14:58:37.157656+07:00"}
+{"dur":"0s","id":"2e7a0780e56efb0d","lvl":"info","msg":"end","pg":"/api/tunnels","status":200,"t":"2026-07-25T14:58:37.157656+07:00"}
+{"id":"f712138f29dde8d7","lvl":"info","msg":"start","pg":"/api/tunnels","t":"2026-07-25T14:58:37.6710201+07:00"}
+{"dur":"0s","id":"f712138f29dde8d7","lvl":"info","msg":"end","pg":"/api/tunnels","status":200,"t":"2026-07-25T14:58:37.6710201+07:00"}
+{"id":"2afb2835c825ff99","lvl":"info","msg":"start","pg":"/api/tunnels","t":"2026-07-25T14:58:38.1855744+07:00"}
+{"dur":"0s","id":"2afb2835c825ff99","lvl":"info","msg":"end","pg":"/api/tunnels","status":200,"t":"2026-07-25T14:58:38.1855744+07:00"}
+{"id":"af528c52ac3b329e","lvl":"info","msg":"start","pg":"/api/tunnels","t":"2026-07-25T14:58:38.7011282+07:00"}
+{"dur":"0s","id":"af528c52ac3b329e","lvl":"info","msg":"end","pg":"/api/tunnels","status":200,"t":"2026-07-25T14:58:38.7011282+07:00"}
+{"id":"dcb5883b0a170898","lvl":"info","msg":"start","pg":"/api/tunnels","t":"2026-07-25T14:58:39.2144026+07:00"}
+{"dur":"0s","id":"dcb5883b0a170898","lvl":"info","msg":"end","pg":"/api/tunnels","status":200,"t":"2026-07-25T14:58:39.2144026+07:00"}
+{"id":"a984edf8d062ee96","lvl":"info","msg":"start","pg":"/api/tunnels","t":"2026-07-25T14:58:39.7253201+07:00"}
+{"dur":"0s","id":"a984edf8d062ee96","lvl":"info","msg":"end","pg":"/api/tunnels","status":200,"t":"2026-07-25T14:58:39.7253201+07:00"}
+{"id":"94926e1ebfda8f27","lvl":"info","msg":"start","pg":"/api/tunnels","t":"2026-07-25T14:58:40.2383836+07:00"}
+{"dur":"0s","id":"94926e1ebfda8f27","lvl":"info","msg":"end","pg":"/api/tunnels","status":200,"t":"2026-07-25T14:58:40.2383836+07:00"}
+{"id":"83a6a6df642d5abd","lvl":"info","msg":"start","pg":"/api/tunnels","t":"2026-07-25T14:58:40.7401689+07:00"}
+{"dur":"0s","id":"83a6a6df642d5abd","lvl":"info","msg":"end","pg":"/api/tunnels","status":200,"t":"2026-07-25T14:58:40.7401689+07:00"}
+{"id":"51d9cbd3c922f98b","lvl":"info","msg":"start","pg":"/api/tunnels","t":"2026-07-25T14:58:41.2540877+07:00"}
+{"dur":"0s","id":"51d9cbd3c922f98b","lvl":"info","msg":"end","pg":"/api/tunnels","status":200,"t":"2026-07-25T14:58:41.2540877+07:00"}
+{"id":"471c0ef2a802579b","lvl":"info","msg":"start","pg":"/api/tunnels","t":"2026-07-25T14:58:41.7699446+07:00"}
+{"dur":"0s","id":"471c0ef2a802579b","lvl":"info","msg":"end","pg":"/api/tunnels","status":200,"t":"2026-07-25T14:58:41.7699446+07:00"}
+{"id":"3d461d187c2e24f9","lvl":"info","msg":"start","pg":"/api/tunnels","t":"2026-07-25T14:58:42.2865902+07:00"}
+{"dur":"0s","id":"3d461d187c2e24f9","lvl":"info","msg":"end","pg":"/api/tunnels","status":200,"t":"2026-07-25T14:58:42.2865902+07:00"}
+{"id":"d24dac47b8db1684","lvl":"info","msg":"start","pg":"/api/tunnels","t":"2026-07-25T14:58:42.8020114+07:00"}
+{"dur":"145µs","id":"d24dac47b8db1684","lvl":"info","msg":"end","pg":"/api/tunnels","status":200,"t":"2026-07-25T14:58:42.8021564+07:00"}
+{"id":"30c559373781d25b","lvl":"info","msg":"start","pg":"/api/tunnels","t":"2026-07-25T14:58:43.3166203+07:00"}
+{"dur":"0s","id":"30c559373781d25b","lvl":"info","msg":"end","pg":"/api/tunnels","status":200,"t":"2026-07-25T14:58:43.3166203+07:00"}
+{"id":"2eaec4b0415a227f","lvl":"info","msg":"start","pg":"/api/tunnels","t":"2026-07-25T14:58:43.8314473+07:00"}
+{"dur":"0s","id":"2eaec4b0415a227f","lvl":"info","msg":"end","pg":"/api/tunnels","status":200,"t":"2026-07-25T14:58:43.8314473+07:00"}
+{"id":"9abec86c1d96d577","lvl":"info","msg":"start","pg":"/api/tunnels","t":"2026-07-25T14:58:44.3427092+07:00"}
+{"dur":"0s","id":"9abec86c1d96d577","lvl":"info","msg":"end","pg":"/api/tunnels","status":200,"t":"2026-07-25T14:58:44.3427092+07:00"}
+{"err":"failed to send authentication request: EOF","lvl":"eror","msg":"failed to reconnect session","obj":"tunnels.session","t":"2026-07-25T14:58:44.4761976+07:00"}
+{"id":"eba18c61f2bb27ea","lvl":"info","msg":"start","pg":"/api/tunnels","t":"2026-07-25T14:58:44.8447299+07:00"}
+{"dur":"559.1µs","id":"eba18c61f2bb27ea","lvl":"info","msg":"end","pg":"/api/tunnels","status":200,"t":"2026-07-25T14:58:44.845289+07:00"}
+{"id":"f5db1a97a13d5181","lvl":"info","msg":"start","pg":"/api/tunnels","t":"2026-07-25T14:58:45.3612418+07:00"}
+{"dur":"0s","id":"f5db1a97a13d5181","lvl":"info","msg":"end","pg":"/api/tunnels","status":200,"t":"2026-07-25T14:58:45.3612418+07:00"}
+{"id":"3c8246545ee113b8","lvl":"info","msg":"start","pg":"/api/tunnels","t":"2026-07-25T14:58:45.8765888+07:00"}
+{"dur":"0s","id":"3c8246545ee113b8","lvl":"info","msg":"end","pg":"/api/tunnels","status":200,"t":"2026-07-25T14:58:45.8765888+07:00"}
+{"id":"d31cc432bd497e91","lvl":"info","msg":"start","pg":"/api/tunnels","t":"2026-07-25T14:58:46.377496+07:00"}
+{"dur":"542µs","id":"d31cc432bd497e91","lvl":"info","msg":"end","pg":"/api/tunnels","status":200,"t":"2026-07-25T14:58:46.378038+07:00"}
+{"id":"76b30f4f76f8bb40","lvl":"info","msg":"start","pg":"/api/tunnels","t":"2026-07-25T14:58:46.8915495+07:00"}
+{"dur":"0s","id":"76b30f4f76f8bb40","lvl":"info","msg":"end","pg":"/api/tunnels","status":200,"t":"2026-07-25T14:58:46.8915495+07:00"}
+{"id":"0d3a8d86dd437ae4","lvl":"info","msg":"start","pg":"/api/tunnels","t":"2026-07-25T14:58:47.4047049+07:00"}
+{"dur":"516.8µs","id":"0d3a8d86dd437ae4","lvl":"info","msg":"end","pg":"/api/tunnels","status":200,"t":"2026-07-25T14:58:47.4052217+07:00"}
+{"id":"d6bbb8b61ab00463","lvl":"info","msg":"start","pg":"/api/tunnels","t":"2026-07-25T14:58:47.9176623+07:00"}
+{"dur":"0s","id":"d6bbb8b61ab00463","lvl":"info","msg":"end","pg":"/api/tunnels","status":200,"t":"2026-07-25T14:58:47.9176623+07:00"}
+{"id":"36439286749cefdd","lvl":"info","msg":"start","pg":"/api/tunnels","t":"2026-07-25T14:58:48.4310278+07:00"}
+{"dur":"0s","id":"36439286749cefdd","lvl":"info","msg":"end","pg":"/api/tunnels","status":200,"t":"2026-07-25T14:58:48.4310278+07:00"}
+{"id":"a8f39d5f55c14cf5","lvl":"info","msg":"start","pg":"/api/tunnels","t":"2026-07-25T14:58:48.9330628+07:00"}
+{"dur":"0s","id":"a8f39d5f55c14cf5","lvl":"info","msg":"end","pg":"/api/tunnels","status":200,"t":"2026-07-25T14:58:48.9330628+07:00"}
+{"id":"7028102cec8f8417","lvl":"info","msg":"start","pg":"/api/tunnels","t":"2026-07-25T14:58:49.4465014+07:00"}
+{"dur":"510.6µs","id":"7028102cec8f8417","lvl":"info","msg":"end","pg":"/api/tunnels","status":200,"t":"2026-07-25T14:58:49.447012+07:00"}
+{"id":"602d78d6aca4f9b1","lvl":"info","msg":"start","pg":"/api/tunnels","t":"2026-07-25T14:58:49.9607932+07:00"}
+{"dur":"0s","id":"602d78d6aca4f9b1","lvl":"info","msg":"end","pg":"/api/tunnels","status":200,"t":"2026-07-25T14:58:49.9607932+07:00"}
+{"id":"c8d9e7056eb402f8","lvl":"info","msg":"start","pg":"/api/tunnels","t":"2026-07-25T14:58:50.4722832+07:00"}
+{"dur":"93.9µs","id":"c8d9e7056eb402f8","lvl":"info","msg":"end","pg":"/api/tunnels","status":200,"t":"2026-07-25T14:58:50.4723771+07:00"}
+{"id":"d0d0e76a7c3fd08a","lvl":"info","msg":"start","pg":"/api/tunnels","t":"2026-07-25T14:58:50.9862193+07:00"}
+{"dur":"0s","id":"d0d0e76a7c3fd08a","lvl":"info","msg":"end","pg":"/api/tunnels","status":200,"t":"2026-07-25T14:58:50.9862193+07:00"}
+{"id":"db98d342ef8fb26f","lvl":"info","msg":"start","pg":"/api/tunnels","t":"2026-07-25T14:58:51.4995701+07:00"}
+{"dur":"0s","id":"db98d342ef8fb26f","lvl":"info","msg":"end","pg":"/api/tunnels","status":200,"t":"2026-07-25T14:58:51.4995701+07:00"}
+{"err":"failed to send authentication request: EOF","lvl":"eror","msg":"failed to reconnect session","obj":"tunnels.session","t":"2026-07-25T14:58:56.5992655+07:00"}
+{"lvl":"info","msg":"client session established","obj":"tunnels.session","t":"2026-07-25T14:59:03.8203507+07:00"}
+{"lvl":"info","msg":"tunnel session started","obj":"tunnels.session","t":"2026-07-25T14:59:03.8203507+07:00"}
+{"addr":"http://localhost:5173","lvl":"info","msg":"started tunnel","name":"command_line","obj":"tunnels","t":"2026-07-25T14:59:04.7519602+07:00","url":"https://appointee-zigzagged-arena.ngrok-free.dev"}

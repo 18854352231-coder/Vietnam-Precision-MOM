@@ -1,0 +1,91 @@
+{"lvl":"info","msg":"no configuration paths supplied","t":"2026-07-25T15:00:46.4000346+07:00"}
+{"lvl":"info","msg":"using configuration at default config path","path":"C:\\Users\\ptn_z\\AppData\\Local\\ngrok\\ngrok.yml","t":"2026-07-25T15:00:46.4694279+07:00"}
+{"err":"\u003cnil\u003e","lvl":"info","msg":"open config file","path":"C:\\Users\\ptn_z\\AppData\\Local\\ngrok\\ngrok.yml","t":"2026-07-25T15:00:46.4694279+07:00"}
+{"enabled":false,"lvl":"info","msg":"FIPS 140 mode","t":"2026-07-25T15:00:46.4700311+07:00"}
+{"addr":"127.0.0.1:4040","allow_hosts":null,"lvl":"info","msg":"starting web service","obj":"web","t":"2026-07-25T15:00:46.6130188+07:00"}
+{"err":"failed to send authentication request: tls: failed to verify certificate: x509: cannot validate certificate for 3.1.87.213 because it doesn't contain any IP SANs","lvl":"eror","msg":"failed to reconnect session","obj":"tunnels.session","t":"2026-07-25T15:00:49.0060642+07:00"}
+{"err":"failed to send authentication request: tls: failed to verify certificate: x509: cannot validate certificate for 3.1.87.213 because it doesn't contain any IP SANs","lvl":"eror","msg":"failed to reconnect session","obj":"tunnels.session","t":"2026-07-25T15:00:51.9134296+07:00"}
+{"id":"508127f686a8a69e","lvl":"info","msg":"start","pg":"/api/tunnels","t":"2026-07-25T15:00:54.5421111+07:00"}
+{"dur":"802.8µs","id":"508127f686a8a69e","lvl":"info","msg":"end","pg":"/api/tunnels","status":200,"t":"2026-07-25T15:00:54.5429139+07:00"}
+{"id":"1fa5f7f3bdf02024","lvl":"info","msg":"start","pg":"/api/tunnels","t":"2026-07-25T15:00:55.1972122+07:00"}
+{"dur":"991.8µs","id":"1fa5f7f3bdf02024","lvl":"info","msg":"end","pg":"/api/tunnels","status":200,"t":"2026-07-25T15:00:55.198204+07:00"}
+{"err":"failed to send authentication request: tls: failed to verify certificate: x509: cannot validate certificate for 3.1.87.213 because it doesn't contain any IP SANs","lvl":"eror","msg":"failed to reconnect session","obj":"tunnels.session","t":"2026-07-25T15:00:55.3213067+07:00"}
+{"id":"e01e35e23f4b2ab2","lvl":"info","msg":"start","pg":"/api/tunnels","t":"2026-07-25T15:00:55.7046976+07:00"}
+{"dur":"0s","id":"e01e35e23f4b2ab2","lvl":"info","msg":"end","pg":"/api/tunnels","status":200,"t":"2026-07-25T15:00:55.7046976+07:00"}
+{"id":"90e6c6dfaaee75e5","lvl":"info","msg":"start","pg":"/api/tunnels","t":"2026-07-25T15:00:56.2189708+07:00"}
+{"dur":"0s","id":"90e6c6dfaaee75e5","lvl":"info","msg":"end","pg":"/api/tunnels","status":200,"t":"2026-07-25T15:00:56.2189708+07:00"}
+{"id":"25440d10c4e5cc78","lvl":"info","msg":"start","pg":"/api/tunnels","t":"2026-07-25T15:00:56.7355156+07:00"}
+{"dur":"0s","id":"25440d10c4e5cc78","lvl":"info","msg":"end","pg":"/api/tunnels","status":200,"t":"2026-07-25T15:00:56.7355156+07:00"}
+{"id":"3fefff534a92b4a7","lvl":"info","msg":"start","pg":"/api/tunnels","t":"2026-07-25T15:00:57.2503553+07:00"}
+{"dur":"0s","id":"3fefff534a92b4a7","lvl":"info","msg":"end","pg":"/api/tunnels","status":200,"t":"2026-07-25T15:00:57.2503553+07:00"}
+{"id":"e12ca5f7a1dd315f","lvl":"info","msg":"start","pg":"/api/tunnels","t":"2026-07-25T15:00:57.7679754+07:00"}
+{"dur":"0s","id":"e12ca5f7a1dd315f","lvl":"info","msg":"end","pg":"/api/tunnels","status":200,"t":"2026-07-25T15:00:57.7679754+07:00"}
+{"id":"9e02580403913cc6","lvl":"info","msg":"start","pg":"/api/tunnels","t":"2026-07-25T15:00:58.2829794+07:00"}
+{"dur":"0s","id":"9e02580403913cc6","lvl":"info","msg":"end","pg":"/api/tunnels","status":200,"t":"2026-07-25T15:00:58.2829794+07:00"}
+{"id":"8941b0f2431a8a5a","lvl":"info","msg":"start","pg":"/api/tunnels","t":"2026-07-25T15:00:58.7965421+07:00"}
+{"dur":"0s","id":"8941b0f2431a8a5a","lvl":"info","msg":"end","pg":"/api/tunnels","status":200,"t":"2026-07-25T15:00:58.7965421+07:00"}
+{"id":"33304ecd99f34177","lvl":"info","msg":"start","pg":"/api/tunnels","t":"2026-07-25T15:00:59.3112832+07:00"}
+{"dur":"0s","id":"33304ecd99f34177","lvl":"info","msg":"end","pg":"/api/tunnels","status":200,"t":"2026-07-25T15:00:59.3112832+07:00"}
+{"err":"failed to send authentication request: tls: failed to verify certificate: x509: cannot validate certificate for 3.1.87.213 because it doesn't contain any IP SANs","lvl":"eror","msg":"failed to reconnect session","obj":"tunnels.session","t":"2026-07-25T15:00:59.7124251+07:00"}
+{"id":"75a88b8242c98bfe","lvl":"info","msg":"start","pg":"/api/tunnels","t":"2026-07-25T15:00:59.8276909+07:00"}
+{"dur":"0s","id":"75a88b8242c98bfe","lvl":"info","msg":"end","pg":"/api/tunnels","status":200,"t":"2026-07-25T15:00:59.8276909+07:00"}
+{"id":"69db60d1bb132995","lvl":"info","msg":"start","pg":"/api/tunnels","t":"2026-07-25T15:01:00.3445736+07:00"}
+{"dur":"0s","id":"69db60d1bb132995","lvl":"info","msg":"end","pg":"/api/tunnels","status":200,"t":"2026-07-25T15:01:00.3445736+07:00"}
+{"id":"0f0b6130bcc59736","lvl":"info","msg":"start","pg":"/api/tunnels","t":"2026-07-25T15:01:00.8595498+07:00"}
+{"dur":"0s","id":"0f0b6130bcc59736","lvl":"info","msg":"end","pg":"/api/tunnels","status":200,"t":"2026-07-25T15:01:00.8595498+07:00"}
+{"id":"b001b1c027d05180","lvl":"info","msg":"start","pg":"/api/tunnels","t":"2026-07-25T15:01:01.3751213+07:00"}
+{"dur":"0s","id":"b001b1c027d05180","lvl":"info","msg":"end","pg":"/api/tunnels","status":200,"t":"2026-07-25T15:01:01.3751213+07:00"}
+{"id":"f046c9f4901a7987","lvl":"info","msg":"start","pg":"/api/tunnels","t":"2026-07-25T15:01:01.8877977+07:00"}
+{"dur":"0s","id":"f046c9f4901a7987","lvl":"info","msg":"end","pg":"/api/tunnels","status":200,"t":"2026-07-25T15:01:01.8877977+07:00"}
+{"id":"a015a15556d126f5","lvl":"info","msg":"start","pg":"/api/tunnels","t":"2026-07-25T15:01:02.4040851+07:00"}
+{"dur":"0s","id":"a015a15556d126f5","lvl":"info","msg":"end","pg":"/api/tunnels","status":200,"t":"2026-07-25T15:01:02.4040851+07:00"}
+{"id":"3786a273cf7e446c","lvl":"info","msg":"start","pg":"/api/tunnels","t":"2026-07-25T15:01:02.9201728+07:00"}
+{"dur":"579.8µs","id":"3786a273cf7e446c","lvl":"info","msg":"end","pg":"/api/tunnels","status":200,"t":"2026-07-25T15:01:02.9207526+07:00"}
+{"id":"0fe9f385341d198f","lvl":"info","msg":"start","pg":"/api/tunnels","t":"2026-07-25T15:01:03.427049+07:00"}
+{"dur":"0s","id":"0fe9f385341d198f","lvl":"info","msg":"end","pg":"/api/tunnels","status":200,"t":"2026-07-25T15:01:03.427049+07:00"}
+{"id":"50503795cb40da22","lvl":"info","msg":"start","pg":"/api/tunnels","t":"2026-07-25T15:01:03.9418475+07:00"}
+{"dur":"0s","id":"50503795cb40da22","lvl":"info","msg":"end","pg":"/api/tunnels","status":200,"t":"2026-07-25T15:01:03.9418475+07:00"}
+{"id":"dbf37cf3781bd6d2","lvl":"info","msg":"start","pg":"/api/tunnels","t":"2026-07-25T15:01:04.4556756+07:00"}
+{"dur":"0s","id":"dbf37cf3781bd6d2","lvl":"info","msg":"end","pg":"/api/tunnels","status":200,"t":"2026-07-25T15:01:04.4556756+07:00"}
+{"id":"6d4b406297eb3d02","lvl":"info","msg":"start","pg":"/api/tunnels","t":"2026-07-25T15:01:04.9707529+07:00"}
+{"dur":"0s","id":"6d4b406297eb3d02","lvl":"info","msg":"end","pg":"/api/tunnels","status":200,"t":"2026-07-25T15:01:04.9707529+07:00"}
+{"id":"3a1e5f3edab94b33","lvl":"info","msg":"start","pg":"/api/tunnels","t":"2026-07-25T15:01:05.4763789+07:00"}
+{"dur":"0s","id":"3a1e5f3edab94b33","lvl":"info","msg":"end","pg":"/api/tunnels","status":200,"t":"2026-07-25T15:01:05.4763789+07:00"}
+{"id":"8228ad19f1cee8e9","lvl":"info","msg":"start","pg":"/api/tunnels","t":"2026-07-25T15:01:05.9921025+07:00"}
+{"dur":"0s","id":"8228ad19f1cee8e9","lvl":"info","msg":"end","pg":"/api/tunnels","status":200,"t":"2026-07-25T15:01:05.9921025+07:00"}
+{"err":"failed to send authentication request: tls: failed to verify certificate: x509: cannot validate certificate for 3.1.87.213 because it doesn't contain any IP SANs","lvl":"eror","msg":"failed to reconnect session","obj":"tunnels.session","t":"2026-07-25T15:01:06.0929286+07:00"}
+{"id":"5828a8c9b5ac46d3","lvl":"info","msg":"start","pg":"/api/tunnels","t":"2026-07-25T15:01:06.5081034+07:00"}
+{"dur":"0s","id":"5828a8c9b5ac46d3","lvl":"info","msg":"end","pg":"/api/tunnels","status":200,"t":"2026-07-25T15:01:06.5081034+07:00"}
+{"id":"a9642ea8df4c2cd9","lvl":"info","msg":"start","pg":"/api/tunnels","t":"2026-07-25T15:01:07.0114245+07:00"}
+{"dur":"0s","id":"a9642ea8df4c2cd9","lvl":"info","msg":"end","pg":"/api/tunnels","status":200,"t":"2026-07-25T15:01:07.0114245+07:00"}
+{"id":"0bd4878538a86446","lvl":"info","msg":"start","pg":"/api/tunnels","t":"2026-07-25T15:01:07.5129718+07:00"}
+{"dur":"0s","id":"0bd4878538a86446","lvl":"info","msg":"end","pg":"/api/tunnels","status":200,"t":"2026-07-25T15:01:07.5129718+07:00"}
+{"id":"0b48daeca52a1b8f","lvl":"info","msg":"start","pg":"/api/tunnels","t":"2026-07-25T15:01:08.0286698+07:00"}
+{"dur":"0s","id":"0b48daeca52a1b8f","lvl":"info","msg":"end","pg":"/api/tunnels","status":200,"t":"2026-07-25T15:01:08.0286698+07:00"}
+{"id":"8e8e87cc2f077833","lvl":"info","msg":"start","pg":"/api/tunnels","t":"2026-07-25T15:01:08.5460939+07:00"}
+{"dur":"0s","id":"8e8e87cc2f077833","lvl":"info","msg":"end","pg":"/api/tunnels","status":200,"t":"2026-07-25T15:01:08.5460939+07:00"}
+{"id":"bd3792ff56168a38","lvl":"info","msg":"start","pg":"/api/tunnels","t":"2026-07-25T15:01:09.0647795+07:00"}
+{"dur":"0s","id":"bd3792ff56168a38","lvl":"info","msg":"end","pg":"/api/tunnels","status":200,"t":"2026-07-25T15:01:09.0647795+07:00"}
+{"id":"6d34089f243dafec","lvl":"info","msg":"start","pg":"/api/tunnels","t":"2026-07-25T15:01:09.5809505+07:00"}
+{"dur":"0s","id":"6d34089f243dafec","lvl":"info","msg":"end","pg":"/api/tunnels","status":200,"t":"2026-07-25T15:01:09.5809505+07:00"}
+{"id":"c7cc1f2bec3a52b5","lvl":"info","msg":"start","pg":"/api/tunnels","t":"2026-07-25T15:01:10.0982018+07:00"}
+{"dur":"0s","id":"c7cc1f2bec3a52b5","lvl":"info","msg":"end","pg":"/api/tunnels","status":200,"t":"2026-07-25T15:01:10.0982018+07:00"}
+{"id":"fa83f63ed8cf68d4","lvl":"info","msg":"start","pg":"/api/tunnels","t":"2026-07-25T15:01:10.615311+07:00"}
+{"dur":"0s","id":"fa83f63ed8cf68d4","lvl":"info","msg":"end","pg":"/api/tunnels","status":200,"t":"2026-07-25T15:01:10.615311+07:00"}
+{"id":"0ce20bbebc467e44","lvl":"info","msg":"start","pg":"/api/tunnels","t":"2026-07-25T15:01:11.1307269+07:00"}
+{"dur":"0s","id":"0ce20bbebc467e44","lvl":"info","msg":"end","pg":"/api/tunnels","status":200,"t":"2026-07-25T15:01:11.1307269+07:00"}
+{"id":"04ef084e3b6c41bb","lvl":"info","msg":"start","pg":"/api/tunnels","t":"2026-07-25T15:01:11.6478636+07:00"}
+{"dur":"0s","id":"04ef084e3b6c41bb","lvl":"info","msg":"end","pg":"/api/tunnels","status":200,"t":"2026-07-25T15:01:11.6478636+07:00"}
+{"id":"78a9cb44f2d15b5e","lvl":"info","msg":"start","pg":"/api/tunnels","t":"2026-07-25T15:01:12.1638545+07:00"}
+{"dur":"577.6µs","id":"78a9cb44f2d15b5e","lvl":"info","msg":"end","pg":"/api/tunnels","status":200,"t":"2026-07-25T15:01:12.1644321+07:00"}
+{"id":"288040bfe3c8d4a4","lvl":"info","msg":"start","pg":"/api/tunnels","t":"2026-07-25T15:01:12.6790177+07:00"}
+{"dur":"88.3µs","id":"288040bfe3c8d4a4","lvl":"info","msg":"end","pg":"/api/tunnels","status":200,"t":"2026-07-25T15:01:12.679106+07:00"}
+{"id":"c3b739752f784e0c","lvl":"info","msg":"start","pg":"/api/tunnels","t":"2026-07-25T15:01:13.1923249+07:00"}
+{"dur":"0s","id":"c3b739752f784e0c","lvl":"info","msg":"end","pg":"/api/tunnels","status":200,"t":"2026-07-25T15:01:13.1923249+07:00"}
+{"id":"4c73ce96c5676aca","lvl":"info","msg":"start","pg":"/api/tunnels","t":"2026-07-25T15:01:13.7061265+07:00"}
+{"dur":"0s","id":"4c73ce96c5676aca","lvl":"info","msg":"end","pg":"/api/tunnels","status":200,"t":"2026-07-25T15:01:13.7061265+07:00"}
+{"id":"2500afe0c1c2a206","lvl":"info","msg":"start","pg":"/api/tunnels","t":"2026-07-25T15:01:14.2217595+07:00"}
+{"dur":"0s","id":"2500afe0c1c2a206","lvl":"info","msg":"end","pg":"/api/tunnels","status":200,"t":"2026-07-25T15:01:14.2217595+07:00"}
+{"err":"failed to send authentication request: tls: failed to verify certificate: x509: cannot validate certificate for 3.1.87.213 because it doesn't contain any IP SANs","lvl":"eror","msg":"failed to reconnect session","obj":"tunnels.session","t":"2026-07-25T15:01:16.4853665+07:00"}
+{"err":"failed to send authentication request: tls: failed to verify certificate: x509: cannot validate certificate for 3.1.87.213 because it doesn't contain any IP SANs","lvl":"eror","msg":"failed to reconnect session","obj":"tunnels.session","t":"2026-07-25T15:01:34.9031372+07:00"}
+{"err":"failed to send authentication request: tls: failed to verify certificate: x509: cannot validate certificate for 3.1.87.213 because it doesn't contain any IP SANs","lvl":"eror","msg":"failed to reconnect session","obj":"tunnels.session","t":"2026-07-25T15:02:07.3002078+07:00"}

@@ -29,9 +29,7 @@
               </el-col>
               <el-col :span="4">
                 <el-form-item label="产品名称">
-                  <el-select v-model="searchForm.productName" placeholder="请选择" clearable style="width: 100%">
-                    <el-option label="LY-160" value="LY-160" />
-                  </el-select>
+                  <el-input v-model="searchForm.productName" placeholder="请输入产品名称" clearable @keyup.enter="handleSearch" />
                 </el-form-item>
               </el-col>
               <el-col :span="4">
@@ -111,11 +109,7 @@
               </el-col>
               <el-col :span="4">
                 <el-form-item label="产品名称">
-                  <el-select v-model="searchForm.productName" placeholder="请选择" clearable style="width: 100%">
-                    <el-option label="A47-02" value="A47-02" />
-                    <el-option label="LY-160" value="LY-160" />
-                    <el-option label="A26-12" value="A26-12" />
-                  </el-select>
+                  <el-input v-model="searchForm.productName" placeholder="请输入产品名称" clearable @keyup.enter="handleSearch" />
                 </el-form-item>
               </el-col>
               <el-col :span="4">
@@ -187,10 +181,7 @@
               </el-col>
               <el-col :span="4">
                 <el-form-item label="产品名称">
-                  <el-select v-model="searchForm.productName" placeholder="请选择" clearable style="width: 100%">
-                    <el-option label="A47-02" value="A47-02" />
-                    <el-option label="LY-160" value="LY-160" />
-                  </el-select>
+                  <el-input v-model="searchForm.productName" placeholder="请输入产品名称" clearable @keyup.enter="handleSearch" />
                 </el-form-item>
               </el-col>
               <el-col :span="4">
@@ -274,11 +265,7 @@
               </el-col>
               <el-col :span="3">
                 <el-form-item label="产品名称" label-width="80px">
-                  <el-select v-model="searchForm.productName" placeholder="请选择" clearable style="width: 100%">
-                    <el-option label="A47-02" value="A47-02" />
-                    <el-option label="LY-160" value="LY-160" />
-                    <el-option label="A26-12" value="A26-12" />
-                  </el-select>
+                  <el-input v-model="searchForm.productName" placeholder="请输入产品名称" clearable @keyup.enter="handleSearch" />
                 </el-form-item>
               </el-col>
               <el-col :span="3">
@@ -370,7 +357,7 @@
         </div>
 
         <!-- 待收样表格 -->
-        <el-table v-if="activeTab === 'overview'" :data="overviewData" border stripe style="width: 100%" height="calc(100vh - 360px)">
+        <el-table v-if="activeTab === 'overview'" :data="filterByProductName(overviewData)" border stripe style="width: 100%" height="calc(100vh - 360px)">
           <el-table-column type="index" label="序号" width="60" align="center" />
           <el-table-column prop="productName" label="产品名称" width="140" show-overflow-tooltip />
           <el-table-column prop="productType" label="产品类型" width="110" />
@@ -395,7 +382,7 @@
         </el-table>
 
         <!-- 收样记录表格 -->
-        <el-table v-if="activeTab === 'receive_record'" :data="receiveRecordData" border stripe style="width: 100%" height="calc(100vh - 360px)">
+        <el-table v-if="activeTab === 'receive_record'" :data="filterByProductName(receiveRecordData)" border stripe style="width: 100%" height="calc(100vh - 360px)">
           <el-table-column type="index" label="序号" width="60" align="center" />
           <el-table-column prop="productType" label="产品类型" width="100" />
           <el-table-column prop="productName" label="产品名称" width="140" show-overflow-tooltip />
@@ -422,7 +409,7 @@
         </el-table>
 
         <!-- 加工列表表格 -->
-        <el-table v-if="activeTab === 'pending_machining'" :data="pendingMachiningData" border stripe style="width: 100%" height="calc(100vh - 360px)">
+        <el-table v-if="activeTab === 'pending_machining'" :data="filterByProductName(pendingMachiningData)" border stripe style="width: 100%" height="calc(100vh - 360px)">
           <el-table-column type="index" label="序号" width="60" align="center" />
           <el-table-column prop="productType" label="产品类型" width="100" />
           <el-table-column prop="productName" label="产品名称" width="140" show-overflow-tooltip />
@@ -454,7 +441,7 @@
         </el-table>
 
         <!-- 制/送样记录表格 -->
-        <el-table v-if="activeTab === 'preparation_record'" :data="mergedPreparationRecordData" border stripe style="width: 100%" height="calc(100vh - 360px)">
+        <el-table v-if="activeTab === 'preparation_record'" :data="filterByProductName(mergedPreparationRecordData)" border stripe style="width: 100%" height="calc(100vh - 360px)">
           <el-table-column type="index" label="序号" width="60" align="center" />
           <el-table-column prop="productType" label="产品类型" width="100" />
           <el-table-column prop="productName" label="产品名称" width="140" show-overflow-tooltip />
@@ -1045,9 +1032,17 @@ const mergedPreparationRecordData = computed(() => {
 const currentPage = ref(1)
 const pageSize = ref(20)
 const total = ref(1)
+const productNameKeyword = ref('')
+
+const filterByProductName = (data: Array<{ productName?: string }>) => {
+  const keyword = productNameKeyword.value.trim().toLowerCase()
+  if (!keyword) return data
+  return data.filter(item => String(item.productName || '').toLowerCase().includes(keyword))
+}
 
 const handleSearch = () => {
-  // TODO
+  productNameKeyword.value = searchForm.value.productName
+  currentPage.value = 1
 }
 
 const resetSearch = () => {
@@ -1066,6 +1061,8 @@ const resetSearch = () => {
     preparationCompleteDate: [],
     deliveryCompleteDate: []
   }
+  productNameKeyword.value = ''
+  currentPage.value = 1
 }
 </script>
 
