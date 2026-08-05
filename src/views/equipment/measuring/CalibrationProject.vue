@@ -11,9 +11,9 @@
             <el-button @click="toggleAdvancedSearch">{{ isAdvancedSearch ? '收起查询' : '高级查询' }}</el-button>
           </div>
           <div class="header-right">
-            <el-button type="primary">新增</el-button>
+            <el-button type="primary" @click="openCreateDialog">新增</el-button>
             <el-button>确认</el-button>
-            <el-button>批量导入</el-button>
+            <el-button @click="openImportDialog">批量导入</el-button>
             <el-button>导出excel</el-button>
           </div>
         </div>
@@ -62,21 +62,19 @@
           <el-table-column type="selection" width="55" align="center" />
           <el-table-column type="index" label="序号" width="60" align="center" />
           <el-table-column prop="projectCode" label="项目编号" width="100" align="center" />
-          <el-table-column prop="projectName" label="项目名称" min-width="180" show-overflow-tooltip />
+          <el-table-column prop="projectName" label="项目名称" width="300" show-overflow-tooltip />
           <el-table-column prop="dataType" label="数据类型" width="100" align="center" />
           <el-table-column prop="standardValue" label="标准值" width="120" align="center" />
+          <el-table-column prop="measuredValue" label="测量值" width="120" align="center" />
           <el-table-column prop="lowerLimit" label="允许误差下限" width="120" align="center" />
           <el-table-column prop="upperLimit" label="允许误差上限" width="120" align="center" />
+          <el-table-column prop="result" label="测量结果" width="100" align="center" />
           <el-table-column prop="decimals" label="小数位数" width="100" align="center" />
-          <el-table-column prop="status" label="状态" width="90" align="center">
-            <template #default="{ row }">
-              <span :class="row.status === '确认' ? 'status-confirmed' : 'status-draft'">{{ row.status }}</span>
-            </template>
-          </el-table-column>
+          <el-table-column prop="status" label="状态" width="90" align="center" />
           <el-table-column prop="remark" label="备注" min-width="150" show-overflow-tooltip />
           <el-table-column label="操作" width="120" align="center" fixed="right">
-            <template #default>
-              <el-button link type="primary" size="small">编辑</el-button>
+            <template #default="{ row }">
+              <el-button link type="primary" size="small" @click="openEditDialog(row)">编辑</el-button>
               <el-button link type="danger" size="small">删除</el-button>
             </template>
           </el-table-column>
@@ -90,12 +88,99 @@
           :page-sizes="[10, 20, 50]"
         />
       </div>
+
+      <el-dialog v-model="editDialogVisible" :title="isCreateDialog ? '新增' : '编辑'" width="950px" destroy-on-close>
+        <el-form :model="editForm" label-width="110px" class="project-edit-form">
+          <el-row :gutter="28">
+            <el-col :span="12">
+              <el-form-item label="项目编号" required>
+                <el-input v-model="editForm.projectCode" :disabled="!isCreateDialog" />
+              </el-form-item>
+            </el-col>
+            <el-col :span="12">
+              <el-form-item label="项目名称" required>
+                <el-input v-model="editForm.projectName" />
+              </el-form-item>
+            </el-col>
+            <el-col :span="12">
+              <el-form-item label="数据类型" required>
+                <el-select v-model="editForm.dataType" style="width: 100%">
+                  <el-option label="数值" value="数值" />
+                  <el-option label="文字" value="文字" />
+                </el-select>
+              </el-form-item>
+            </el-col>
+            <el-col :span="12">
+              <el-form-item label="小数位数">
+                <el-input-number v-model="editForm.decimals" :min="0" :max="6" controls-position="right" style="width: 100%" />
+              </el-form-item>
+            </el-col>
+            <el-col :span="12">
+              <el-form-item label="标准值">
+                <el-input v-model="editForm.standardValue" />
+              </el-form-item>
+            </el-col>
+            <el-col :span="12">
+              <el-form-item label="测量值">
+                <el-input v-model="editForm.measuredValue" />
+              </el-form-item>
+            </el-col>
+            <el-col :span="12">
+              <el-form-item label="允许误差下限">
+                <el-input v-model="editForm.lowerLimit" />
+              </el-form-item>
+            </el-col>
+            <el-col :span="12">
+              <el-form-item label="允许误差上限">
+                <el-input v-model="editForm.upperLimit" />
+              </el-form-item>
+            </el-col>
+            <el-col :span="12">
+              <el-form-item label="测量结果">
+                <el-select v-model="editForm.result" style="width: 100%">
+                  <el-option label="误差" value="误差" />
+                  <el-option label="判定" value="判定" />
+                </el-select>
+              </el-form-item>
+            </el-col>
+            <el-col :span="12">
+              <el-form-item label="备注">
+                <el-input v-model="editForm.remark" />
+              </el-form-item>
+            </el-col>
+          </el-row>
+        </el-form>
+        <template #footer>
+          <el-button @click="editDialogVisible = false">取消</el-button>
+          <el-button type="primary" @click="saveEdit">确定</el-button>
+        </template>
+      </el-dialog>
+
+      <el-dialog v-model="importDialogVisible" title="批量导入" width="520px" destroy-on-close>
+        <div class="import-container">
+          <div class="step-title">第一步：下载模板</div>
+          <div class="step-desc">
+            <p>请按照模板字段填写校验项目数据后上传。</p>
+            <el-button type="primary" link @click="downloadTemplate">点击下载模板文件</el-button>
+          </div>
+          <div class="step-title import-step">第二步：上传数据文件</div>
+          <el-upload drag action="#" :auto-upload="false" :show-file-list="false" accept=".xlsx,.xls" :on-change="handleBatchImport">
+            <el-icon class="el-icon--upload"><upload-filled /></el-icon>
+            <div class="el-upload__text">将文件拖到此处，或 <em>点击上传</em></div>
+            <template #tip><div class="el-upload__tip">仅支持 .xls、.xlsx 格式文件</div></template>
+          </el-upload>
+        </div>
+      </el-dialog>
     </el-card>
   </div>
 </template>
 
 <script setup lang="ts">
 import { computed, ref } from 'vue'
+import { ElMessage } from 'element-plus'
+import { UploadFilled } from '@element-plus/icons-vue'
+import type { UploadFile } from 'element-plus'
+import * as XLSX from 'xlsx'
 import { useTaskLiteralDomI18n } from '@/composables/useTaskLiteralDomI18n'
 useTaskLiteralDomI18n()
 
@@ -114,6 +199,118 @@ const searchForm = ref({
 
 const filters = ref({ ...searchForm.value })
 
+const editDialogVisible = ref(false)
+const importDialogVisible = ref(false)
+const isCreateDialog = ref(false)
+const editingRow = ref<Record<string, any> | null>(null)
+const editForm = ref({
+  projectCode: '',
+  projectName: '',
+  dataType: '',
+  standardValue: '',
+  measuredValue: '',
+  lowerLimit: '',
+  upperLimit: '',
+  result: '',
+  decimals: 0,
+  remark: ''
+})
+
+const openEditDialog = (row: Record<string, any>) => {
+  isCreateDialog.value = false
+  editingRow.value = row
+  editForm.value = {
+    projectCode: row.projectCode || '',
+    projectName: row.projectName || '',
+    dataType: row.dataType || '',
+    standardValue: row.standardValue || '',
+    measuredValue: row.measuredValue || '',
+    lowerLimit: row.lowerLimit || '',
+    upperLimit: row.upperLimit || '',
+    result: row.result || '',
+    decimals: Number(row.decimals) || 0,
+    remark: row.remark || ''
+  }
+  editDialogVisible.value = true
+}
+
+const openCreateDialog = () => {
+  isCreateDialog.value = true
+  editingRow.value = null
+  editForm.value = {
+    projectCode: '',
+    projectName: '',
+    dataType: '',
+    standardValue: '',
+    measuredValue: '',
+    lowerLimit: '',
+    upperLimit: '',
+    result: '',
+    decimals: 0,
+    remark: ''
+  }
+  editDialogVisible.value = true
+}
+
+const saveEdit = () => {
+  if (!editForm.value.projectCode.trim() || !editForm.value.projectName.trim() || !editForm.value.dataType) return
+  const values = { ...editForm.value, decimals: String(editForm.value.decimals) }
+  if (isCreateDialog.value) {
+    tableData.value.push({ ...values, status: '草稿' })
+  } else if (editingRow.value) {
+    Object.assign(editingRow.value, values)
+  }
+  editDialogVisible.value = false
+}
+
+const openImportDialog = () => {
+  importDialogVisible.value = true
+}
+
+const downloadTemplate = () => {
+  const templateName = '量检具检验项目模版.xlsx'
+  const link = document.createElement('a')
+  link.href = `${import.meta.env.BASE_URL}templates/${encodeURIComponent(templateName)}`
+  link.download = templateName
+  document.body.appendChild(link)
+  link.click()
+  document.body.removeChild(link)
+}
+
+const handleBatchImport = async (uploadFile: UploadFile) => {
+  const file = uploadFile.raw
+  if (!file) return
+  try {
+    const workbook = XLSX.read(await file.arrayBuffer(), { type: 'array' })
+    const sheet = workbook.Sheets[workbook.SheetNames[0]]
+    const rows = XLSX.utils.sheet_to_json<Record<string, any>>(sheet, { defval: '' })
+    const imported = rows
+      .map(row => ({
+        projectCode: String(row['项目编号'] || '').trim(),
+        projectName: String(row['项目名称'] || '').trim(),
+        dataType: String(row['数据类型'] || '').trim(),
+        standardValue: String(row['标准值'] || '').trim(),
+        measuredValue: String(row['测量值'] || '').trim(),
+        lowerLimit: String(row['允许误差下限'] || '').trim(),
+        upperLimit: String(row['允许误差上限'] || '').trim(),
+        result: String(row['测量结果'] || '').trim(),
+        decimals: String(row['小数位数'] || '0').trim(),
+        status: '草稿',
+        remark: String(row['备注'] || '').trim()
+      }))
+      .filter(row => row.projectCode && row.projectName && row.dataType)
+    if (!imported.length) {
+      ElMessage.warning('模板中没有可导入的数据，请检查项目编号、项目名称和数据类型')
+      return
+    }
+    tableData.value.push(...imported)
+    importDialogVisible.value = false
+    ElMessage.success(`成功导入 ${imported.length} 条校验项目`)
+  } catch {
+    ElMessage.error('文件解析失败，请使用校验项目模版.xlsx')
+  }
+}
+
 const handleSearch = () => {
   filters.value = { ...searchForm.value }
 }
@@ -124,7 +321,7 @@ const handleReset = () => {
 }
 
 const tableData = ref([
-  { projectCode: 'PJ-001', projectName: '外观检查', dataType: '文字', standardValue: '无破损、锈蚀', measuredValue: '-', lowerLimit: '-', upperLimit: '-', result: '判定', decimals: '-', status: '确认', remark: '通用项目' },
+  { projectCode: '0504', projectName: 'B/C面垂直度/mm（A-底面；B-前竖面；C-侧面）', dataType: '数值', standardValue: '0.00', measuredValue: '-', lowerLimit: '0.00', upperLimit: '0.03', result: '误差', decimals: '2', status: '确认', remark: '垂直度检具' },
   { projectCode: 'PJ-002', projectName: '示值误差', dataType: '数值', standardValue: '0.00', measuredValue: '-', lowerLimit: '-0.02', upperLimit: '0.02', result: '误差', decimals: '2', status: '确认', remark: '游标卡尺' },
   { projectCode: 'PJ-003', projectName: '重复性', dataType: '数值', standardValue: '0.00', measuredValue: '-', lowerLimit: '0.00', upperLimit: '0.01', result: '误差', decimals: '2', status: '确认', remark: '游标卡尺' },
   { projectCode: 'PJ-004', projectName: '称量误差', dataType: '数值', standardValue: '10.00', measuredValue: '-', lowerLimit: '-0.01', upperLimit: '0.01', result: '误差', decimals: '2', status: '确认', remark: '30kg电子秤' },
@@ -185,6 +382,28 @@ const filteredData = computed(() => {
   margin-top: 16px;
   padding-top: 16px;
   border-top: 1px solid var(--border-subtle);
+}
+.import-step {
+  margin-top: 24px;
+}
+.step-title {
+  font-weight: 600;
+  color: var(--text-primary);
+}
+.step-desc {
+  color: var(--text-secondary);
+}
+.step-desc p {
+  margin: 8px 0;
+}
+.import-container :deep(.el-upload) {
+  width: 100%;
+}
+.import-container :deep(.el-upload-dragger) {
+  width: 100%;
+}
+.project-edit-form :deep(.el-form-item) {
+  margin-bottom: 18px;
 }
 :deep(.el-card__body) {
   flex: 1;

@@ -71,16 +71,14 @@
         </template>
         <template v-else>
           <el-table-column prop="scheduleNo" label="排程编号" width="170" show-overflow-tooltip />
-          <el-table-column prop="scheduleType" label="排程类型" width="110" align="center">
-            <template #default="scope">
-              <el-tag size="small" effect="plain">{{ scope.row.scheduleType }}</el-tag>
-            </template>
-          </el-table-column>
+          <el-table-column prop="scheduleType" label="排程类型" width="110" align="center" />
           <el-table-column prop="orderNo" label="订单编号" width="140" show-overflow-tooltip />
           <el-table-column prop="customerCode" label="客户代码" width="100" show-overflow-tooltip />
           <el-table-column prop="productName" label="产品名称" min-width="180" show-overflow-tooltip />
           <el-table-column prop="length" label="长度(mm)" width="100" align="right" />
-          <el-table-column prop="extrusionBatchNo" label="挤压批次号" width="170" show-overflow-tooltip />
+          <el-table-column label="挤压批次号" min-width="220" show-overflow-tooltip>
+            <template #default="scope">{{ formatBatchNos(scope.row) }}</template>
+          </el-table-column>
           <el-table-column prop="moldNo" label="模具号" width="140" show-overflow-tooltip />
           <el-table-column prop="furnaceNo" label="炉次号" width="130" show-overflow-tooltip />
           <el-table-column prop="lineNo" label="锯台" width="110" align="center" />
@@ -271,8 +269,18 @@
             </el-form-item>
           </el-col>
           <el-col :span="6">
-            <el-form-item label="挤压批次号" prop="extrusionBatchNo">
-              <el-select v-model="cuttingAddForm.extrusionBatchNo" placeholder="请选择挤压批次号" filterable style="width: 100%" @change="handleSelectExtrusionSchedule">
+            <el-form-item label="挤压批次号" prop="extrusionBatchNos">
+              <el-select
+                v-model="cuttingAddForm.extrusionBatchNos"
+                placeholder="请选择挤压批次号"
+                multiple
+                filterable
+                collapse-tags
+                collapse-tags-tooltip
+                :max-collapse-tags="1"
+                style="width: 100%"
+                @change="handleSelectExtrusionSchedules"
+              >
                 <el-option v-for="s in extrusionScheduleOptions" :key="s.scheduleNo" :label="s.scheduleNo" :value="s.scheduleNo" />
               </el-select>
             </el-form-item>
@@ -326,11 +334,11 @@
           </el-col>
         </el-row>
 
-        <div v-if="cuttingAddForm.extrusionBatchNo" class="related-frames-section">
+        <div v-if="cuttingAddForm.extrusionBatchNos.length" class="related-frames-section">
           <div class="related-frames-header">
             <div class="related-frames-title">
               <span>挤压批次关联料框与检验结果</span>
-              <span class="related-frames-subtitle">当前批次可用于裁切排程的料框明细</span>
+              <span class="related-frames-subtitle">当前所选批次可用于裁切排程的料框明细</span>
             </div>
             <div class="related-frames-summary">
               <span>料框数 <strong>{{ relatedFrames.length }}</strong></span>
@@ -340,6 +348,7 @@
           </div>
 
           <el-table :data="relatedFrames" border size="small" class="related-frames-table" empty-text="暂无关联料框">
+            <el-table-column prop="extrusionBatchNo" label="挤压批次号" min-width="170" show-overflow-tooltip />
             <el-table-column prop="frameNo" label="料框编号" min-width="180" show-overflow-tooltip />
             <el-table-column prop="location" label="所在位置" min-width="150" show-overflow-tooltip />
             <el-table-column prop="furnaceBatch" label="铝棒炉次号" min-width="160" show-overflow-tooltip />
@@ -376,7 +385,8 @@ import { useTaskLiteralDomI18n } from '@/composables/useTaskLiteralDomI18n'
 import {
   removeIssuedCuttingSchedule,
   upsertIssuedCuttingSchedule,
-  type CuttingScheduleMaterialType
+  type CuttingScheduleMaterialType,
+  type IssuedCuttingSourceFrame
 } from '@/utils/cuttingScheduleFlow'
 
 useTaskLiteralDomI18n()
@@ -442,8 +452,12 @@ interface CuttingScheduleRow {
   productName: string
   lineNo: string
   extrusionBatchNo: string
+  extrusionBatchNos: string[]
   moldNo: string
+  moldNos: string[]
   furnaceNo: string
+  furnaceNos: string[]
+  sourceFrames: IssuedCuttingSourceFrame[]
   customerCode: string
   customerName: string
   length: string
@@ -567,6 +581,32 @@ const schedules = ref<Array<ExtrusionScheduleRow | CuttingScheduleRow>>([
     estimatedStartTime: '2026-04-16 11:00:00'
   },
   {
+    id: 'E-003',
+    type: 'extrusion',
+    scheduleNo: 'JY-20260416-0003',
+    orderNo: 'ORD-2026-001',
+    productName: 'FC18',
+    lineNo: 'L001',
+    rodMaterialNo: '20-X152-6063-0007-L1000',
+    rodDiameter: 152,
+    rodLength: 1000,
+    furnaceNo: '26-412-03-05-06',
+    inputQtyRods: 45,
+    materialNo: 'MAT-6063-001',
+    category: '电子类',
+    productCode: 'P-6063-T5-A',
+    moldNo: 'M10-0649-200',
+    alloy: '6063',
+    hourlyCapacity: 500,
+    usedHours: 1.1,
+    yieldRate: 91,
+    estimatedOutputKg: 680,
+    remark: '',
+    status: '已下发',
+    createdAt: '2026-04-16 10:30:00',
+    estimatedStartTime: '2026-04-16 11:30:00'
+  },
+  {
     id: 'C-001',
     type: 'cutting',
     scheduleType: '量产物料',
@@ -575,8 +615,12 @@ const schedules = ref<Array<ExtrusionScheduleRow | CuttingScheduleRow>>([
     productName: 'FC47',
     lineNo: 'JT-1',
     extrusionBatchNo: 'JY-20260416-0001',
+    extrusionBatchNos: ['JY-20260416-0001'],
     moldNo: 'M10-0649-200',
+    moldNos: ['M10-0649-200'],
     furnaceNo: '26-412-03-05-04',
+    furnaceNos: ['26-412-03-05-04'],
+    sourceFrames: [],
     customerCode: 'CUST001',
     customerName: '客户A',
     length: '6000',
@@ -594,6 +638,9 @@ const schedules = ref<Array<ExtrusionScheduleRow | CuttingScheduleRow>>([
 ])
 
 const selectedRows = ref<Array<ExtrusionScheduleRow | CuttingScheduleRow>>([])
+
+const formatBatchNos = (row: Partial<CuttingScheduleRow>) =>
+  row.extrusionBatchNos?.length ? row.extrusionBatchNos.join('、') : row.extrusionBatchNo || '-'
 
 const filteredSchedules = computed(() => {
   const { lineNo, productName, moldNo, furnaceNo, status, estimatedStartTimeRange } = searchForm.value
@@ -708,7 +755,7 @@ const cuttingAddForm = ref({
   orderNo: '',
   productName: '',
   lineNo: '',
-  extrusionBatchNo: '',
+  extrusionBatchNos: [] as string[],
   moldNo: '',
   furnaceNo: '',
   customerCode: '',
@@ -741,7 +788,7 @@ const cuttingAddRules = {
   scheduleType: [{ required: true, message: '请选择排程类型', trigger: 'change' }],
   orderNo: [{ required: true, message: '请选择订单编号', trigger: 'change' }],
   lineNo: [{ required: true, message: '请选择锯台', trigger: 'change' }],
-  extrusionBatchNo: [{ required: true, message: '请选择挤压批次号', trigger: 'change' }],
+  extrusionBatchNos: [{ type: 'array', required: true, min: 1, message: '请选择挤压批次号', trigger: 'change' }],
   planQty: [{ required: true, message: '请输入计划量', trigger: 'blur' }],
   capacityPerHour: [{ required: true, message: '请输入产能/小时', trigger: 'blur' }],
   bomPlanWeightT: [{ required: true, message: '请输入BOM计划量', trigger: 'blur' }],
@@ -797,9 +844,10 @@ const handleSelectCuttingOrder = (orderNo: string) => {
   cuttingAddForm.value.length = row.length
   cuttingAddForm.value.unitWeight = row.unitWeight
   cuttingAddForm.value.remark = row.remark || ''
-  cuttingAddForm.value.extrusionBatchNo = ''
+  cuttingAddForm.value.extrusionBatchNos = []
   cuttingAddForm.value.moldNo = ''
   cuttingAddForm.value.furnaceNo = ''
+  relatedFrames.value = []
 }
 
 const extrusionScheduleOptions = computed(() => {
@@ -809,25 +857,34 @@ const extrusionScheduleOptions = computed(() => {
     .filter(s => !orderNo || s.orderNo === orderNo)
 })
 
-const relatedFrames = ref<any[]>([])
+const relatedFrames = ref<IssuedCuttingSourceFrame[]>([])
 const relatedFrameTotalQty = computed(() =>
   relatedFrames.value.reduce((total, frame) => total + Number(frame.qty || 0), 0)
 )
 
-const handleSelectExtrusionSchedule = (scheduleNo: string) => {
-  const row = schedules.value.find((s): s is ExtrusionScheduleRow => s.type === 'extrusion' && s.scheduleNo === scheduleNo)
-  if (!row) {
+const uniqueValues = (values: string[]) => [...new Set(values.filter(Boolean))]
+
+const handleSelectExtrusionSchedules = (scheduleNos: string[]) => {
+  const rows = schedules.value.filter(
+    (s): s is ExtrusionScheduleRow => s.type === 'extrusion' && scheduleNos.includes(s.scheduleNo)
+  )
+  if (!rows.length) {
+    cuttingAddForm.value.moldNo = ''
+    cuttingAddForm.value.furnaceNo = ''
     relatedFrames.value = []
     return
   }
-  cuttingAddForm.value.moldNo = row.moldNo
-  cuttingAddForm.value.furnaceNo = row.furnaceNo
-  
-  // mock some related frames data based on selected extrusion schedule
-  relatedFrames.value = [
-    { frameNo: 'CV-A-A-L6000*W1250*H650*0209', location: '时效区-出炉缓存位', furnaceBatch: row.furnaceNo, qty: 20, agingInTime: '2026-04-16 08:00:00', agingOutTime: '2026-04-16 14:10:00', qcResult: 'OK' },
-    { frameNo: 'CV-A-A-L6000*W1250*H650*0210', location: '时效区-出炉缓存位', furnaceBatch: row.furnaceNo, qty: 18, agingInTime: '2026-04-16 08:00:00', agingOutTime: '2026-04-16 14:10:00', qcResult: 'OK' }
-  ]
+  cuttingAddForm.value.moldNo = uniqueValues(rows.map(row => row.moldNo)).join('、')
+  cuttingAddForm.value.furnaceNo = uniqueValues(rows.map(row => row.furnaceNo)).join('、')
+
+  relatedFrames.value = rows.flatMap(row => {
+    const scheduleIndex = schedules.value.filter(s => s.type === 'extrusion').findIndex(s => s.scheduleNo === row.scheduleNo)
+    const frameSeed = 209 + Math.max(scheduleIndex, 0) * 2
+    return [
+      { extrusionBatchNo: row.scheduleNo, frameNo: `CV-A-A-L6000*W1250*H650*${String(frameSeed).padStart(4, '0')}`, location: '时效区-出炉缓存位', furnaceBatch: row.furnaceNo, qty: 20, agingInTime: '2026-04-16 08:00:00', agingOutTime: '2026-04-16 14:10:00', qcResult: 'OK' },
+      { extrusionBatchNo: row.scheduleNo, frameNo: `CV-A-A-L6000*W1250*H650*${String(frameSeed + 1).padStart(4, '0')}`, location: '时效区-出炉缓存位', furnaceBatch: row.furnaceNo, qty: 18, agingInTime: '2026-04-16 08:00:00', agingOutTime: '2026-04-16 14:10:00', qcResult: 'OK' }
+    ]
+  })
 }
 
 const recalcCuttingPlanHours = () => {
@@ -873,7 +930,7 @@ const handleAdd = () => {
       orderNo: '',
       productName: '',
       lineNo: '',
-      extrusionBatchNo: '',
+      extrusionBatchNos: [],
       moldNo: '',
       furnaceNo: '',
       customerCode: '',
@@ -945,6 +1002,12 @@ const confirmAdd = async () => {
   await cuttingAddFormRef.value.validate((valid: boolean) => {
     if (!valid) return
     recalcCuttingPlanHours()
+    const extrusionBatchNos = [...cuttingAddForm.value.extrusionBatchNos]
+    const selectedExtrusionSchedules = schedules.value.filter(
+      (s): s is ExtrusionScheduleRow => s.type === 'extrusion' && extrusionBatchNos.includes(s.scheduleNo)
+    )
+    const furnaceNos = uniqueValues(selectedExtrusionSchedules.map(row => row.furnaceNo))
+    const moldNos = uniqueValues(selectedExtrusionSchedules.map(row => row.moldNo))
     schedules.value.unshift({
       id: `CQ-${Date.now()}`,
       type: 'cutting',
@@ -953,9 +1016,13 @@ const confirmAdd = async () => {
       orderNo: cuttingAddForm.value.orderNo,
       productName: cuttingAddForm.value.productName,
       lineNo: cuttingAddForm.value.lineNo,
-      extrusionBatchNo: cuttingAddForm.value.extrusionBatchNo,
-      moldNo: cuttingAddForm.value.moldNo,
-      furnaceNo: cuttingAddForm.value.furnaceNo,
+      extrusionBatchNo: extrusionBatchNos.join('、'),
+      extrusionBatchNos,
+      moldNo: moldNos.join('、'),
+      moldNos,
+      furnaceNo: furnaceNos.join('、'),
+      furnaceNos,
+      sourceFrames: relatedFrames.value.map(frame => ({ ...frame })),
       customerCode: cuttingAddForm.value.customerCode,
       customerName: cuttingAddForm.value.customerName,
       length: cuttingAddForm.value.length,
@@ -997,8 +1064,12 @@ const syncCuttingScheduleToWorkbench = (row: CuttingScheduleRow) => {
     customerCode: row.customerCode,
     customerName: row.customerName,
     furnaceNo: row.furnaceNo,
+    furnaceNos: row.furnaceNos,
     extrusionBatchNo: row.extrusionBatchNo,
+    extrusionBatchNos: row.extrusionBatchNos,
     moldNo: row.moldNo,
+    moldNos: row.moldNos,
+    sourceFrames: row.sourceFrames,
     alloy: '',
     productName: row.productName,
     componentMaterialNo: '',

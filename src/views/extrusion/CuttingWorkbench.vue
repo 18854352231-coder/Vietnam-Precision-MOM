@@ -114,7 +114,9 @@
                 <el-descriptions-item label="客户代码">{{ scheduleInfo.customerCode }}</el-descriptions-item>
                 <el-descriptions-item label="客户名称">{{ scheduleInfo.customerName }}</el-descriptions-item>
                 <el-descriptions-item label="炉次号">{{ scheduleInfo.furnaceNo }}</el-descriptions-item>
-                <el-descriptions-item label="挤压批次号">{{ scheduleInfo.extrusionBatchNo }}</el-descriptions-item>
+                <el-descriptions-item label="挤压批次号">
+                  {{ formatScheduleValues(scheduleInfo.extrusionBatchNos, scheduleInfo.extrusionBatchNo) }}
+                </el-descriptions-item>
                 <el-descriptions-item label="长度(mm)">{{ scheduleInfo.fixedLength }}</el-descriptions-item>
                 <el-descriptions-item label="合金牌号">{{ scheduleInfo.alloy }}</el-descriptions-item>
               </el-descriptions>
@@ -356,7 +358,11 @@
         <el-table-column prop="singleWeight" label="单重(kg)" width="100" align="right" />
         <el-table-column prop="fixedLength" label="长度(mm)" width="100" align="right" />
         <el-table-column prop="furnaceNo" label="炉次号" width="160" />
-        <el-table-column prop="extrusionBatchNo" label="挤压批次号" width="160" />
+        <el-table-column label="挤压批次号" min-width="220" show-overflow-tooltip>
+          <template #default="scope">
+            {{ formatScheduleValues(scope.row.extrusionBatchNos, scope.row.extrusionBatchNo) }}
+          </template>
+        </el-table-column>
         <el-table-column prop="moldNo" label="模具号" width="120" />
         <el-table-column prop="alloy" label="合金牌号" width="120" />
       </el-table>
@@ -753,13 +759,20 @@ const refreshScheduleList = () => {
     ...defaultScheduleList.filter(item => !issuedScheduleNos.has(item.scheduleNo))
   ]
 }
-refreshScheduleList()
 const selectedSchedule = ref<any | null>(null)
 const processDocDialogVisible = ref(false)
 const processDocContext = ref({
   productNo: '',
   productName: ''
 })
+
+const normalizeScheduleValues = (values: unknown, fallback: unknown) => {
+  if (Array.isArray(values)) return [...new Set(values.map(String).filter(Boolean))]
+  return [...new Set(String(fallback || '').split('、').filter(Boolean))]
+}
+
+const formatScheduleValues = (values: unknown, fallback: unknown) =>
+  normalizeScheduleValues(values, fallback).join('、') || '-'
 
 const labelContext = ref<any>({
   sourcePackageId: null,
@@ -777,6 +790,7 @@ const labelContext = ref<any>({
 
 const openScheduleDialog = () => {
   refreshScheduleList()
+  syncIssuedScheduleFrames()
   selectedSchedule.value = { ...scheduleInfo.value }
   scheduleDialogVisible.value = true
 }
@@ -786,13 +800,17 @@ const handleScheduleRowClick = (row: any) => {
 }
 
 const resetPrintForSchedule = (row: any) => {
+  const extrusionBatchNos = normalizeScheduleValues(row.extrusionBatchNos, row.extrusionBatchNo || row.extrusionBatch)
+  const furnaceNos = normalizeScheduleValues(row.furnaceNos, row.furnaceNo)
+  const moldNos = normalizeScheduleValues(row.moldNos, row.moldNo)
+
   labelContext.value = {
     ...labelContext.value,
     sourcePackageId: null,
     productName: row.productName || '',
-    extrusionBatch: row.extrusionBatchNo || row.extrusionBatch || '',
-    furnaceNo: row.furnaceNo || '',
-    moldNo: row.moldNo || '',
+    extrusionBatch: extrusionBatchNos.join('、'),
+    furnaceNo: furnaceNos.join('、'),
+    moldNo: moldNos.join('、'),
     frameNo: row.frameNo || '',
     fixedLength: row.fixedLength || '',
     extrusionMachine: row.extrusionMachine || '',
@@ -808,9 +826,12 @@ const resetPrintForSchedule = (row: any) => {
     scheduleType: row.scheduleType || '',
     customerCode: row.customerCode || '',
     customerName: row.customerName || '',
-    furnaceNo: row.furnaceNo || '',
-    extrusionBatchNo: row.extrusionBatchNo || row.extrusionBatch || '',
-    moldNo: row.moldNo || '',
+    furnaceNo: furnaceNos.join('、'),
+    furnaceNos,
+    extrusionBatchNo: extrusionBatchNos.join('、'),
+    extrusionBatchNos,
+    moldNo: moldNos.join('、'),
+    moldNos,
     fixedLength: row.fixedLength || '',
     alloy: row.alloy || '',
     productName: row.productName || '',
@@ -877,6 +898,44 @@ const materialList = ref<any[]>([
   { id: 5, frameNo: 'CV-A-A-L6000*W1250*H650*0200', locationNo: 'B2-07', isCPK: '是', productName: 'FC113', furnaceNo: '25-412-06-11-03', extrusionBatch: 'JY2603070002', extrusionMachine: 'JY-07', status: '待收料', moldNo: '999#', productType: '试产', scheduleType: '产发物料', scheduleNo: 'PC-20260424-002', isCoded: '否', cuttingSchedule: '是', quantity: 18, fixedLength: 130.0, netWeight: 32.4, feedingTime: '-', completionTime: '-', goodQty: 0, defectiveQty: 0 },
   { id: 6, frameNo: 'CV-A-A-L6000*W1250*H650*0201', locationNo: 'B2-08', isCPK: '否', productName: 'FC113', furnaceNo: '25-412-06-11-03', extrusionBatch: 'JY2603070002', extrusionMachine: 'JY-07', status: '待收料', moldNo: '999#', productType: '试产', scheduleType: '产发物料', scheduleNo: 'PC-20260424-002', isCoded: '否', cuttingSchedule: '是', quantity: 30, fixedLength: 130.0, netWeight: 54.0, feedingTime: '-', completionTime: '-', goodQty: 0, defectiveQty: 0 }
 ])
+
+const syncIssuedScheduleFrames = () => {
+  const existingFrameNos = new Set(materialList.value.map(item => item.frameNo))
+  loadIssuedCuttingSchedules().forEach(schedule => {
+    const sourceFrames = schedule.sourceFrames || []
+    sourceFrames.forEach((frame, index) => {
+      if (!frame.frameNo || existingFrameNos.has(frame.frameNo)) return
+      materialList.value.push({
+        id: `issued-${schedule.scheduleNo}-${index}`,
+        frameNo: frame.frameNo,
+        locationNo: frame.location,
+        isCPK: '否',
+        productName: schedule.productName,
+        furnaceNo: frame.furnaceBatch,
+        extrusionBatch: frame.extrusionBatchNo,
+        extrusionMachine: schedule.extrusionMachine,
+        status: '待收料',
+        moldNo: schedule.moldNo,
+        productType: schedule.productionType,
+        scheduleType: schedule.scheduleType,
+        scheduleNo: schedule.scheduleNo,
+        isCoded: '是',
+        cuttingSchedule: '是',
+        quantity: frame.qty,
+        fixedLength: schedule.fixedLength,
+        netWeight: Number(frame.qty || 0) * Number(schedule.singleWeight || 0),
+        feedingTime: '-',
+        completionTime: '-',
+        goodQty: 0,
+        defectiveQty: 0
+      })
+      existingFrameNos.add(frame.frameNo)
+    })
+  })
+}
+
+refreshScheduleList()
+syncIssuedScheduleFrames()
 
 const filteredMaterialList = computed(() => {
   return materialList.value.filter(item => {
@@ -1232,8 +1291,11 @@ const completeSchedule = () => {
       planQty: 0,
       singleWeight: 0,
       furnaceNo: '',
+      furnaceNos: [],
       extrusionBatchNo: '',
+      extrusionBatchNos: [],
       moldNo: '',
+      moldNos: [],
       fixedLength: '',
       alloy: '',
       productName: '',
@@ -1254,8 +1316,11 @@ const scheduleInfo = ref({
   planQty: 0,
   singleWeight: 0,
   furnaceNo: '',
+  furnaceNos: [] as string[],
   extrusionBatchNo: '',
+  extrusionBatchNos: [] as string[],
   moldNo: '',
+  moldNos: [] as string[],
   fixedLength: '',
   alloy: '',
   productName: '',
@@ -1562,7 +1627,7 @@ const syncPackageRecord = () => {
       frameNo: printForm.value.frameNo,
       palletNo: printForm.value.frameNo,
       productName: scheduleInfo.value.productName,
-      extrusionBatch: scheduleInfo.value.extrusionBatchNo,
+      extrusionBatch: formatScheduleValues(scheduleInfo.value.extrusionBatchNos, scheduleInfo.value.extrusionBatchNo),
       furnaceNo: scheduleInfo.value.furnaceNo,
       moldNo: scheduleInfo.value.moldNo,
       fixedLength: scheduleInfo.value.fixedLength,

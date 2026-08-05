@@ -484,6 +484,22 @@
       </template>
     </el-dialog>
 
+    <!-- 样品二维码打印预览 -->
+    <el-dialog v-model="samplePrintDialogVisible" title="打印二维码" width="480px" destroy-on-close>
+      <div class="sample-print-preview">
+        <div id="sawingSamplePrintArea" class="sample-print-label">
+          <img v-if="sampleQrCodeUrl" :src="sampleQrCodeUrl" class="sample-print-qr" alt="样品二维码" />
+          <div v-else class="sample-print-qr-placeholder">二维码生成中</div>
+          <div class="sample-print-code">{{ currentPrintSample?.sampleCode || '-' }}</div>
+          <div class="sample-print-type">{{ currentPrintSample?.sampleType || '-' }}</div>
+        </div>
+      </div>
+      <template #footer>
+        <el-button @click="samplePrintDialogVisible = false">取消</el-button>
+        <el-button type="primary" :disabled="!sampleQrCodeUrl" @click="confirmSamplePrint">确认打印</el-button>
+      </template>
+    </el-dialog>
+
     <ProcessDocumentDialog
       v-model="processDocDialogVisible"
       process-type="extrusion"
@@ -497,6 +513,7 @@
 import { computed, ref } from 'vue'
 import { ElMessage, ElMessageBox } from 'element-plus'
 import { ArrowDown, List, Grid, Search, Box, DataAnalysis } from '@element-plus/icons-vue'
+import QRCode from 'qrcode'
 import ProcessDocumentDialog from '@/components/ProcessDocumentDialog.vue'
 import { useTaskLiteralDomI18n } from '@/composables/useTaskLiteralDomI18n'
 import { extrusionSawingMachines, extrusionSawingTeams, useExtrusionSawingShift } from '@/composables/useExtrusionSawingShift'
@@ -1005,9 +1022,80 @@ const sampleListData = ref([
   { frameNo: 'CV-A-A-L6000*W1250*H650*0226', batchNo: 'JY20260412-001', sampleCode: 'NK-00-JY20260412-001-Z-02', sampleLength: 250, sampleType: 'B19-金相长支', samplingTime: '2026-04-14 15:10:05', isPrinted: false }
 ])
 
-const printSampleCode = (row: any) => {
-  row.isPrinted = true
-  ElMessage.success(`已打印样品码：${row.sampleCode}`)
+const samplePrintDialogVisible = ref(false)
+const currentPrintSample = ref<any>(null)
+const sampleQrCodeUrl = ref('')
+
+const printSampleCode = async (row: any) => {
+  currentPrintSample.value = row
+  sampleQrCodeUrl.value = ''
+  samplePrintDialogVisible.value = true
+
+  try {
+    sampleQrCodeUrl.value = await QRCode.toDataURL(row.sampleCode, {
+      width: 220,
+      margin: 1,
+      errorCorrectionLevel: 'M'
+    })
+  } catch (error) {
+    console.error('生成样品二维码失败', error)
+    ElMessage.error('二维码生成失败，请重试')
+  }
+}
+
+const confirmSamplePrint = () => {
+  const printArea = document.getElementById('sawingSamplePrintArea')
+  if (!printArea || !currentPrintSample.value || !sampleQrCodeUrl.value) {
+    ElMessage.warning('打印内容尚未准备完成')
+    return
+  }
+
+  const printWindow = window.open('', '_blank', 'width=520,height=620')
+  if (!printWindow) {
+    ElMessage.error('无法打开打印窗口，请检查浏览器弹窗拦截设置')
+    return
+  }
+
+  printWindow.addEventListener('load', () => {
+    printWindow.focus()
+    printWindow.print()
+  }, { once: true })
+
+  printWindow.document.write(`
+    <!DOCTYPE html>
+    <html lang="zh-CN">
+      <head>
+        <meta charset="UTF-8" />
+        <title>样品二维码标签</title>
+        <style>
+          @page { size: 70mm 50mm; margin: 0; }
+          * { box-sizing: border-box; }
+          body { margin: 0; font-family: Arial, "Microsoft YaHei", sans-serif; color: #000; }
+          .sample-print-label {
+            width: 70mm;
+            height: 50mm;
+            padding: 3mm;
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            justify-content: center;
+            gap: 1.5mm;
+            overflow: hidden;
+          }
+          .sample-print-qr { width: 28mm; height: 28mm; display: block; }
+          .sample-print-qr-placeholder { display: none; }
+          .sample-print-code { max-width: 64mm; font-size: 10pt; font-weight: 700; line-height: 1.2; text-align: center; overflow-wrap: anywhere; }
+          .sample-print-type { max-width: 64mm; font-size: 9pt; line-height: 1.2; text-align: center; overflow-wrap: anywhere; }
+        </style>
+      </head>
+      <body>${printArea.outerHTML}</body>
+    </html>
+  `)
+  printWindow.document.close()
+
+  currentPrintSample.value.isPrinted = true
+  samplePrintDialogVisible.value = false
+  ElMessage.success(`已发送打印：${currentPrintSample.value.sampleCode}`)
 }
 
 const revokeSample = (row: any) => {
@@ -1342,5 +1430,59 @@ const submitScrap = async () => {
   font-weight: 500;
   border-radius: 6px;
   box-shadow: 0 2px 4px rgba(0, 0, 0, 0.05);
+}
+
+.sample-print-preview {
+  display: flex;
+  justify-content: center;
+  padding: 12px 0;
+  background: var(--el-fill-color-light);
+}
+
+.sample-print-label {
+  width: 350px;
+  min-height: 250px;
+  padding: 16px;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  gap: 8px;
+  background: #fff;
+  border: 1px solid #dcdfe6;
+  color: #000;
+}
+
+.sample-print-qr {
+  width: 150px;
+  height: 150px;
+  display: block;
+}
+
+.sample-print-qr-placeholder {
+  width: 150px;
+  height: 150px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  background: #f5f7fa;
+  color: #909399;
+}
+
+.sample-print-code {
+  max-width: 100%;
+  font-size: 16px;
+  font-weight: 700;
+  line-height: 1.35;
+  text-align: center;
+  overflow-wrap: anywhere;
+}
+
+.sample-print-type {
+  max-width: 100%;
+  font-size: 14px;
+  line-height: 1.35;
+  text-align: center;
+  overflow-wrap: anywhere;
 }
 </style>

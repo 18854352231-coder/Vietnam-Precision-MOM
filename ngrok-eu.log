@@ -1,0 +1,14 @@
+t=2026-08-05T13:45:06+0700 lvl=info msg="command usage" msg="Flag --region has been deprecated, ngrok automatically chooses the region with lowest latency"
+t=2026-08-05T13:45:06+0700 lvl=info msg="no configuration paths supplied"
+t=2026-08-05T13:45:06+0700 lvl=info msg="using configuration at default config path" path=C:\\Users\\ptn_z\\AppData\\Local\\ngrok\\ngrok.yml
+t=2026-08-05T13:45:06+0700 lvl=info msg="open config file" path=C:\\Users\\ptn_z\\AppData\\Local\\ngrok\\ngrok.yml err=nil
+t=2026-08-05T13:45:06+0700 lvl=info msg="FIPS 140 mode" enabled=false
+t=2026-08-05T13:45:06+0700 lvl=warn msg="can't bind default web address, trying alternatives" obj=web addr=127.0.0.1:4040
+t=2026-08-05T13:45:06+0700 lvl=info msg="starting web service" obj=web addr=127.0.0.1:4041 allow_hosts=[]
+t=2026-08-05T13:45:11+0700 lvl=info msg="client session established" obj=tunnels.session
+t=2026-08-05T13:45:11+0700 lvl=info msg="tunnel session started" obj=tunnels.session
+t=2026-08-05T13:45:11+0700 lvl=info msg="started tunnel" obj=tunnels name=command_line addr=http://localhost:5173 url=https://appointee-zigzagged-arena.ngrok-free.dev
+t=2026-08-05T13:45:24+0700 lvl=info msg=start pg=/api/tunnels id=7d99b4b9eab76bca
+t=2026-08-05T13:45:24+0700 lvl=info msg=end pg=/api/tunnels id=7d99b4b9eab76bca status=200 dur=0s
+t=2026-08-05T13:46:29+0700 lvl=info msg=start pg=/api/tunnels id=bca0e6a66e3176c6
+t=2026-08-05T13:46:29+0700 lvl=info msg=end pg=/api/tunnels id=bca0e6a66e3176c6 status=200 dur=506µs

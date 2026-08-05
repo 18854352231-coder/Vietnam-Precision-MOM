@@ -7,6 +7,10 @@ export interface IssuedCuttingSchedule {
   customerName: string
   furnaceNo: string
   extrusionBatchNo: string
+  furnaceNos?: string[]
+  extrusionBatchNos?: string[]
+  moldNos?: string[]
+  sourceFrames?: IssuedCuttingSourceFrame[]
   moldNo: string
   alloy: string
   productName: string
@@ -20,6 +24,17 @@ export interface IssuedCuttingSchedule {
   extrusionMachine: string
 }
 
+export interface IssuedCuttingSourceFrame {
+  frameNo: string
+  extrusionBatchNo: string
+  location: string
+  furnaceBatch: string
+  qty: number
+  agingInTime: string
+  agingOutTime: string
+  qcResult: string
+}
+
 const ISSUED_CUTTING_SCHEDULES_KEY = 'mom_issued_cutting_schedules'
 
 const canUseStorage = () => typeof window !== 'undefined' && typeof window.localStorage !== 'undefined'
@@ -29,7 +44,20 @@ export const loadIssuedCuttingSchedules = (): IssuedCuttingSchedule[] => {
 
   try {
     const parsed = JSON.parse(window.localStorage.getItem(ISSUED_CUTTING_SCHEDULES_KEY) || '[]')
-    return Array.isArray(parsed) ? parsed : []
+    if (!Array.isArray(parsed)) return []
+    return parsed.map(item => ({
+      ...item,
+      extrusionBatchNos: Array.isArray(item.extrusionBatchNos)
+        ? item.extrusionBatchNos
+        : String(item.extrusionBatchNo || '').split('、').filter(Boolean),
+      furnaceNos: Array.isArray(item.furnaceNos)
+        ? item.furnaceNos
+        : String(item.furnaceNo || '').split('、').filter(Boolean),
+      moldNos: Array.isArray(item.moldNos)
+        ? item.moldNos
+        : String(item.moldNo || '').split('、').filter(Boolean),
+      sourceFrames: Array.isArray(item.sourceFrames) ? item.sourceFrames : []
+    }))
   } catch {
     return []
   }
