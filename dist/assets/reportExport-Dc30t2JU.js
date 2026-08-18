@@ -1,0 +1,1 @@
+import{u as s,w as i}from"./xlsx-2HnPwbhG.js";const a=e=>e.replace(/[\\/:*?"<>|]/g,"-").replace(/\.xlsx$/i,""),m=(e,n)=>{const r=s.book_new();n.forEach(o=>{var c;const t=s.json_to_sheet(o.rows);(c=o.columnWidths)!=null&&c.length&&(t["!cols"]=o.columnWidths.map(l=>({wch:l}))),s.book_append_sheet(r,t,o.name.slice(0,31))}),i(r,`${a(e)}.xlsx`,{compression:!0})};export{m as e};

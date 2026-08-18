@@ -75,7 +75,7 @@
           <el-table-column label="操作" width="120" align="center" fixed="right">
             <template #default="{ row }">
               <el-button link type="primary" size="small" @click="openEditDialog(row)">编辑</el-button>
-              <el-button link type="danger" size="small">删除</el-button>
+              <el-button link type="danger" size="small" @click="handleDelete(row)">删除</el-button>
             </template>
           </el-table-column>
         </el-table>
@@ -177,11 +177,12 @@
 
 <script setup lang="ts">
 import { computed, ref } from 'vue'
-import { ElMessage } from 'element-plus'
+import { ElMessage, ElMessageBox } from 'element-plus'
 import { UploadFilled } from '@element-plus/icons-vue'
 import type { UploadFile } from 'element-plus'
 import * as XLSX from 'xlsx'
 import { useTaskLiteralDomI18n } from '@/composables/useTaskLiteralDomI18n'
+import { calibrationProjectRecords } from '@/utils/measuringMasterData'
 useTaskLiteralDomI18n()
 
 const isAdvancedSearch = ref(false)
@@ -320,13 +321,28 @@ const handleReset = () => {
   handleSearch()
 }
 
-const tableData = ref([
-  { projectCode: '0504', projectName: 'B/C面垂直度/mm（A-底面；B-前竖面；C-侧面）', dataType: '数值', standardValue: '0.00', measuredValue: '-', lowerLimit: '0.00', upperLimit: '0.03', result: '误差', decimals: '2', status: '确认', remark: '垂直度检具' },
-  { projectCode: 'PJ-002', projectName: '示值误差', dataType: '数值', standardValue: '0.00', measuredValue: '-', lowerLimit: '-0.02', upperLimit: '0.02', result: '误差', decimals: '2', status: '确认', remark: '游标卡尺' },
-  { projectCode: 'PJ-003', projectName: '重复性', dataType: '数值', standardValue: '0.00', measuredValue: '-', lowerLimit: '0.00', upperLimit: '0.01', result: '误差', decimals: '2', status: '确认', remark: '游标卡尺' },
-  { projectCode: 'PJ-004', projectName: '称量误差', dataType: '数值', standardValue: '10.00', measuredValue: '-', lowerLimit: '-0.01', upperLimit: '0.01', result: '误差', decimals: '2', status: '确认', remark: '30kg电子秤' },
-  { projectCode: 'PJ-005', projectName: '温度示值误差', dataType: '数值', standardValue: '25.0', measuredValue: '-', lowerLimit: '-0.5', upperLimit: '0.5', result: '误差', decimals: '1', status: '确认', remark: '温湿度计' }
-])
+const tableData = calibrationProjectRecords
+
+const handleDelete = async (row: Record<string, any>) => {
+  try {
+    await ElMessageBox.confirm(
+      `确定删除校验项目“${row.projectName}”吗？`,
+      '删除确认',
+      {
+        confirmButtonText: '确定',
+        cancelButtonText: '取消',
+        type: 'warning'
+      }
+    )
+  } catch {
+    return
+  }
+
+  const rowIndex = tableData.value.findIndex(item => item === row)
+  if (rowIndex < 0) return
+  tableData.value.splice(rowIndex, 1)
+  ElMessage.success('删除成功')
+}
 
 const filteredData = computed(() => {
   const query = filters.value.keyword.trim().toLowerCase()

@@ -202,8 +202,8 @@
                       : !printForm.sourceFrameNo
                         ? '请先选择料框'
                         : printForm.isBoxed
-                          ? '扫码绑定到当前小箱，停止输入1.5秒后自动添加'
-                          : '输入二维码编号，停止输入1.5秒后自动添加'"
+                          ? '扫码绑定到当前小箱，停止输入0.5秒后自动添加'
+                          : '输入二维码编号，停止输入0.5秒后自动添加'"
                   />
                 </div>
                 <el-table :data="boundBranches" style="width: 100%" border size="small" height="380">
@@ -1472,7 +1472,7 @@ watch(
     longBranchAutoAddTimer = setTimeout(() => {
       longBranchAutoAddTimer = null
       handleAddLongBranch()
-    }, 1500)
+    }, 500)
   }
 )
 

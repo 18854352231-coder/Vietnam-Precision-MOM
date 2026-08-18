@@ -11,7 +11,7 @@
             <el-button @click="toggleAdvancedSearch">{{ isAdvancedSearch ? '收起查询' : '高级查询' }}</el-button>
           </div>
           <div class="header-right">
-            <el-button type="primary">新增</el-button>
+            <el-button type="primary" @click="openAddDialog">新增</el-button>
           </div>
         </div>
         <div v-show="isAdvancedSearch" class="advanced-search-panel">
@@ -83,7 +83,7 @@
           <div class="detail-toolbar">
             <span>{{ selectedTemplate.templateName }}</span>
             <div class="sub-actions">
-              <el-button size="small">新增</el-button>
+              <el-button size="small" @click="openProjectSelector">新增</el-button>
               <el-button size="small">批量删除</el-button>
             </div>
           </div>
@@ -96,8 +96,8 @@
             <el-table-column prop="standardValue" label="标准值" min-width="130" show-overflow-tooltip />
             <el-table-column prop="allow" label="允许误差" width="120" />
             <el-table-column label="操作" width="70" align="center" fixed="right">
-              <template #default>
-                <el-button link type="danger" size="small">删除</el-button>
+              <template #default="{ row }">
+                <el-button link type="danger" size="small" @click="removeProject(row.projectCode)">删除</el-button>
               </template>
             </el-table-column>
           </el-table>
@@ -107,7 +107,7 @@
           <div class="detail-toolbar">
             <span>{{ selectedTemplate.templateName }}</span>
             <div class="sub-actions">
-              <el-button size="small">新增</el-button>
+              <el-button size="small" @click="openInstrumentSelector">新增</el-button>
               <el-button size="small">批量删除</el-button>
             </div>
           </div>
@@ -117,23 +117,145 @@
             <el-table-column prop="name" label="名称" min-width="160" />
             <el-table-column prop="spec" label="型号/规格" min-width="180" />
             <el-table-column prop="manageCode" label="管理编号" width="130" />
-            <el-table-column prop="to" label="有效期至" width="130" />
+            <el-table-column prop="validDate" label="有效期至" width="130" />
             <el-table-column label="操作" width="70" align="center" fixed="right">
-              <template #default>
-                <el-button link type="danger" size="small">删除</el-button>
+              <template #default="{ row }">
+                <el-button link type="danger" size="small" @click="removeInstrument(row.manageCode)">删除</el-button>
               </template>
             </el-table-column>
           </el-table>
         </el-tab-pane>
       </el-tabs>
     </el-card>
+
+    <el-dialog
+      v-model="addDialogVisible"
+      title="新增"
+      width="880px"
+      destroy-on-close
+      @closed="resetAddForm"
+    >
+      <el-form ref="addFormRef" :model="addForm" :rules="addRules" label-width="100px">
+        <el-row :gutter="48">
+          <el-col :span="12">
+            <el-form-item label="模板编号" prop="templateCode">
+              <el-input v-model="addForm.templateCode" />
+            </el-form-item>
+          </el-col>
+          <el-col :span="12">
+            <el-form-item label="模板名称">
+              <el-input v-model="addForm.templateName" />
+            </el-form-item>
+          </el-col>
+        </el-row>
+        <el-row :gutter="48">
+          <el-col :span="12">
+            <el-form-item label="校准依据">
+              <el-input v-model="addForm.basis" />
+            </el-form-item>
+          </el-col>
+          <el-col :span="12">
+            <el-form-item label="备注">
+              <el-input v-model="addForm.remark" />
+            </el-form-item>
+          </el-col>
+        </el-row>
+      </el-form>
+      <template #footer>
+        <el-button @click="addDialogVisible = false">取消</el-button>
+        <el-button type="primary" @click="saveTemplate">确定</el-button>
+      </template>
+    </el-dialog>
+
+    <el-dialog v-model="projectDialogVisible" title="选择校验项目" width="900px" destroy-on-close>
+      <el-alert title="仅显示校验项目管理中状态为“确认”的数据" type="info" :closable="false" show-icon />
+      <el-table
+        class="selector-table"
+        :data="availableProjectOptions"
+        border
+        row-key="projectCode"
+        max-height="420"
+        empty-text="暂无可选的已确认校验项目"
+        @selection-change="handleProjectSelection"
+      >
+        <el-table-column type="selection" width="48" align="center" />
+        <el-table-column prop="projectCode" label="项目编号" width="110" />
+        <el-table-column prop="projectName" label="项目名称" min-width="220" show-overflow-tooltip />
+        <el-table-column prop="dataType" label="数据类型" width="100" />
+        <el-table-column prop="standardValue" label="标准值" width="110" />
+        <el-table-column label="允许误差" width="170">
+          <template #default="{ row }">{{ formatAllow(row) }}</template>
+        </el-table-column>
+        <el-table-column prop="status" label="状态" width="90" align="center" />
+      </el-table>
+      <template #footer>
+        <el-button @click="projectDialogVisible = false">取消</el-button>
+        <el-button type="primary" @click="addSelectedProjects">确定</el-button>
+      </template>
+    </el-dialog>
+
+    <el-dialog v-model="instrumentDialogVisible" title="选择标准器具" width="900px" destroy-on-close>
+      <el-alert title="仅显示台账管理中用途为“量具”的数据" type="info" :closable="false" show-icon />
+      <el-table
+        class="selector-table"
+        :data="availableInstrumentOptions"
+        border
+        row-key="manageCode"
+        max-height="420"
+        empty-text="暂无可选的量具数据"
+        @selection-change="handleInstrumentSelection"
+      >
+        <el-table-column type="selection" width="48" align="center" />
+        <el-table-column prop="manageCode" label="管理编号" width="120" />
+        <el-table-column prop="name" label="名称" min-width="160" />
+        <el-table-column prop="spec" label="型号/规格" min-width="160" />
+        <el-table-column prop="usage" label="用途" width="90" align="center" />
+        <el-table-column prop="status" label="状态" width="100" align="center" />
+        <el-table-column prop="validDate" label="有效期至" width="130" />
+      </el-table>
+      <template #footer>
+        <el-button @click="instrumentDialogVisible = false">取消</el-button>
+        <el-button type="primary" @click="addSelectedInstruments">确定</el-button>
+      </template>
+    </el-dialog>
   </div>
 </template>
 
 <script setup lang="ts">
 import { computed, ref } from 'vue'
+import { ElMessage } from 'element-plus'
+import type { FormInstance, FormRules } from 'element-plus'
 import { useTaskLiteralDomI18n } from '@/composables/useTaskLiteralDomI18n'
+import {
+  calibrationProjectRecords,
+  measuringLedgerRecords
+} from '@/utils/measuringMasterData'
+import type {
+  CalibrationProjectRecord,
+  MeasuringLedgerRecord
+} from '@/utils/measuringMasterData'
 useTaskLiteralDomI18n()
+
+interface TemplateRow {
+  seq: string
+  templateCode: string
+  templateName: string
+  status: string
+  basis: string
+  remark: string
+}
+
+interface TemplateRelation {
+  projectCodes: string[]
+  instrumentCodes: string[]
+}
+
+interface AddTemplateForm {
+  templateCode: string
+  templateName: string
+  basis: string
+  remark: string
+}
 
 const isAdvancedSearch = ref(false)
 const toggleAdvancedSearch = () => {
@@ -158,43 +280,59 @@ const handleReset = () => {
   handleSearch()
 }
 
-const templateData = ref([
+const templateData = ref<TemplateRow[]>([
   { seq: '1', templateCode: 'MB-001', templateName: '游标卡尺校验模板', status: '确认', basis: 'JJG 30-2012', remark: '适用0-150mm卡尺' },
   { seq: '2', templateCode: 'MB-002', templateName: '电子秤校验模板', status: '确认', basis: 'JJG 539-2016', remark: '适用30kg电子秤' },
   { seq: '3', templateCode: 'MB-003', templateName: '温湿度计校验模板', status: '草稿', basis: 'JJF 1076-2020', remark: '待审批' }
 ])
 
-const templateDetails = {
-  'MB-001': {
-    projects: [
-      { projectCode: 'PJ-001', projectName: '外观检查', dataType: '文字', standardValue: '无破损、锈蚀', measuredValue: '-', allow: '-' },
-      { projectCode: 'PJ-002', projectName: '示值误差', dataType: '数值', standardValue: '0.00', measuredValue: '-', allow: '±0.02mm' },
-      { projectCode: 'PJ-003', projectName: '重复性', dataType: '数值', standardValue: '0.00', measuredValue: '-', allow: '≤0.01mm' }
-    ],
-    instruments: [{ name: '量块', spec: '0.5-100mm', manageCode: 'BZ-001', to: '2027-05-31' }]
-  },
-  'MB-002': {
-    projects: [
-      { projectCode: 'PJ-001', projectName: '外观检查', dataType: '文字', standardValue: '无破损、锈蚀', measuredValue: '-', allow: '-' },
-      { projectCode: 'PJ-004', projectName: '称量误差', dataType: '数值', standardValue: '10.00', measuredValue: '-', allow: '±0.01kg' }
-    ],
-    instruments: [{ name: '标准砝码', spec: 'M1级 1-10kg', manageCode: 'BZ-003', to: '2027-02-28' }]
-  },
-  'MB-003': {
-    projects: [
-      { projectCode: 'PJ-001', projectName: '外观检查', dataType: '文字', standardValue: '无破损、锈蚀', measuredValue: '-', allow: '-' },
-      { projectCode: 'PJ-005', projectName: '温度示值误差', dataType: '数值', standardValue: '25.0', measuredValue: '-', allow: '±0.5℃' }
-    ],
-    instruments: [{ name: '标准温度计', spec: '-20-100℃', manageCode: 'BZ-005', to: '2026-12-31' }]
-  }
+const templateDetails = ref<Record<string, TemplateRelation>>({
+  'MB-001': { projectCodes: ['PJ-002', 'PJ-003'], instrumentCodes: ['LJ-001'] },
+  'MB-002': { projectCodes: ['PJ-004'], instrumentCodes: ['ZL-003'] },
+  'MB-003': { projectCodes: ['PJ-005'], instrumentCodes: ['WD-002'] }
+})
+
+const selectedTemplateCode = ref('MB-001')
+const detailTab = ref('projects')
+const emptyTemplate: TemplateRow = {
+  seq: '',
+  templateCode: '',
+  templateName: '',
+  status: '',
+  basis: '',
+  remark: ''
 }
 
-const selectedTemplateCode = ref<keyof typeof templateDetails>('MB-001')
-const detailTab = ref('projects')
+const selectedTemplate = computed(() => (
+  templateData.value.find(item => item.templateCode === selectedTemplateCode.value) || emptyTemplate
+))
 
-const selectedTemplate = computed(() => templateData.value.find(item => item.templateCode === selectedTemplateCode.value) || templateData.value[0])
-const projectData = computed(() => templateDetails[selectedTemplateCode.value].projects)
-const instrumentData = computed(() => templateDetails[selectedTemplateCode.value].instruments)
+const currentRelation = computed(() => (
+  templateDetails.value[selectedTemplateCode.value] || { projectCodes: [], instrumentCodes: [] }
+))
+
+const formatAllow = (row: Pick<CalibrationProjectRecord, 'lowerLimit' | 'upperLimit'>) => {
+  const lower = String(row.lowerLimit || '').trim()
+  const upper = String(row.upperLimit || '').trim()
+  if (lower && lower !== '-' && upper && upper !== '-') return `${lower} ～ ${upper}`
+  if (upper && upper !== '-') return `≤ ${upper}`
+  if (lower && lower !== '-') return `≥ ${lower}`
+  return '-'
+}
+
+const projectData = computed(() => {
+  const projectCodes = currentRelation.value.projectCodes
+  return calibrationProjectRecords.value
+    .filter(item => item.status === '确认' && projectCodes.includes(item.projectCode))
+    .map(item => ({ ...item, allow: formatAllow(item) }))
+})
+
+const instrumentData = computed(() => {
+  const instrumentCodes = currentRelation.value.instrumentCodes
+  return measuringLedgerRecords.value.filter(item => (
+    item.usage === '量具' && instrumentCodes.includes(item.manageCode)
+  ))
+})
 
 const filteredTemplateData = computed(() => {
   const query = filters.value.keyword.trim().toLowerCase()
@@ -208,9 +346,124 @@ const filteredTemplateData = computed(() => {
 })
 
 const handleTemplateChange = (row: { templateCode: string } | null) => {
-  if (row && row.templateCode in templateDetails) {
-    selectedTemplateCode.value = row.templateCode as keyof typeof templateDetails
+  if (!row) return
+  selectedTemplateCode.value = row.templateCode
+  if (!templateDetails.value[row.templateCode]) {
+    templateDetails.value[row.templateCode] = { projectCodes: [], instrumentCodes: [] }
   }
+}
+
+const addDialogVisible = ref(false)
+const addFormRef = ref<FormInstance>()
+const createEmptyAddForm = (): AddTemplateForm => ({
+  templateCode: '',
+  templateName: '',
+  basis: '',
+  remark: ''
+})
+const addForm = ref<AddTemplateForm>(createEmptyAddForm())
+const addRules: FormRules<AddTemplateForm> = {
+  templateCode: [{ required: true, message: '请输入模板编号', trigger: 'blur' }]
+}
+
+const resetAddForm = () => {
+  addForm.value = createEmptyAddForm()
+  addFormRef.value?.clearValidate()
+}
+
+const openAddDialog = () => {
+  resetAddForm()
+  addDialogVisible.value = true
+}
+
+const saveTemplate = async () => {
+  const valid = await addFormRef.value?.validate().catch(() => false)
+  if (!valid) return
+
+  const templateCode = addForm.value.templateCode.trim()
+  if (templateData.value.some(item => item.templateCode === templateCode)) {
+    ElMessage.warning('模板编号已存在')
+    return
+  }
+
+  templateData.value.push({
+    seq: String(templateData.value.length + 1),
+    templateCode,
+    templateName: addForm.value.templateName.trim(),
+    status: '草稿',
+    basis: addForm.value.basis.trim(),
+    remark: addForm.value.remark.trim()
+  })
+  templateDetails.value[templateCode] = { projectCodes: [], instrumentCodes: [] }
+  selectedTemplateCode.value = templateCode
+  addDialogVisible.value = false
+  ElMessage.success('新增成功')
+}
+
+const projectDialogVisible = ref(false)
+const selectedProjects = ref<CalibrationProjectRecord[]>([])
+const availableProjectOptions = computed(() => calibrationProjectRecords.value.filter(item => (
+  item.status === '确认' && !currentRelation.value.projectCodes.includes(item.projectCode)
+)))
+
+const openProjectSelector = () => {
+  selectedProjects.value = []
+  projectDialogVisible.value = true
+}
+
+const handleProjectSelection = (rows: CalibrationProjectRecord[]) => {
+  selectedProjects.value = rows
+}
+
+const addSelectedProjects = () => {
+  if (!selectedProjects.value.length) {
+    ElMessage.warning('请选择校验项目')
+    return
+  }
+  const relation = templateDetails.value[selectedTemplateCode.value]
+  if (!relation) return
+  relation.projectCodes.push(...selectedProjects.value.map(item => item.projectCode))
+  projectDialogVisible.value = false
+  ElMessage.success(`已添加 ${selectedProjects.value.length} 个校验项目`)
+}
+
+const removeProject = (projectCode: string) => {
+  const relation = templateDetails.value[selectedTemplateCode.value]
+  if (!relation) return
+  relation.projectCodes = relation.projectCodes.filter(code => code !== projectCode)
+}
+
+const instrumentDialogVisible = ref(false)
+const selectedInstruments = ref<MeasuringLedgerRecord[]>([])
+const availableInstrumentOptions = computed(() => measuringLedgerRecords.value.filter(item => (
+  item.usage === '量具' && !currentRelation.value.instrumentCodes.includes(item.manageCode)
+)))
+
+const openInstrumentSelector = () => {
+  selectedInstruments.value = []
+  instrumentDialogVisible.value = true
+}
+
+const handleInstrumentSelection = (rows: MeasuringLedgerRecord[]) => {
+  selectedInstruments.value = rows
+}
+
+const addSelectedInstruments = () => {
+  if (!selectedInstruments.value.length) {
+    ElMessage.warning('请选择标准器具')
+    return
+  }
+  const relation = templateDetails.value[selectedTemplateCode.value]
+  if (!relation) return
+  relation.instrumentCodes.push(...selectedInstruments.value.map(item => item.manageCode))
+  instrumentDialogVisible.value = false
+  ElMessage.success(`已添加 ${selectedInstruments.value.length} 个标准器具`)
+}
+
+const removeInstrument = (manageCode: string) => {
+  const relation = templateDetails.value[selectedTemplateCode.value]
+  if (!relation) return
+  relation.instrumentCodes = relation.instrumentCodes.filter(code => code !== manageCode)
 }
 </script>
 
@@ -289,6 +542,9 @@ const handleTemplateChange = (row: { templateCode: string } | null) => {
 .sub-actions {
   display: flex;
   gap: 8px;
+}
+.selector-table {
+  margin-top: 16px;
 }
 .status-confirmed {
   color: #409eff;

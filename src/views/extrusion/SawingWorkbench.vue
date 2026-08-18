@@ -510,13 +510,14 @@
 </template>
 
 <script setup lang="ts">
-import { computed, ref } from 'vue'
+import { computed, ref, watch } from 'vue'
 import { ElMessage, ElMessageBox } from 'element-plus'
 import { ArrowDown, List, Grid, Search, Box, DataAnalysis } from '@element-plus/icons-vue'
 import QRCode from 'qrcode'
 import ProcessDocumentDialog from '@/components/ProcessDocumentDialog.vue'
 import { useTaskLiteralDomI18n } from '@/composables/useTaskLiteralDomI18n'
 import { extrusionSawingMachines, extrusionSawingTeams, useExtrusionSawingShift } from '@/composables/useExtrusionSawingShift'
+import { upsertSawingProductionRecord, type SawingProductionStatus } from '@/utils/sawingProductionFlow'
 
 useTaskLiteralDomI18n()
 
@@ -793,7 +794,10 @@ const handleTaskBatchChange = (extrusionBatchNo: string) => {
 
 const confirmStartWork = () => {
   if (!selectedRow.value) return
-  currentTask.value = { ...selectedRow.value }
+  currentTask.value = {
+    ...selectedRow.value,
+    startTime: selectedRow.value.startTime || formatDateTime(new Date())
+  }
   taskSelectionForm.value = {
     moldNo: currentTask.value.moldNo || '',
     extrusionBatchNo: currentTask.value.extrusionBatchNo || ''
@@ -807,6 +811,7 @@ const confirmComplete = () => {
   if (currentTask.value) {
     currentTask.value.sawedQty = Number(completeForm.value.actualQty || 0)
     currentTask.value.remark = completeForm.value.remark.trim()
+    persistSawingProductionRecord('已完成', formatDateTime(new Date()))
   }
   currentTask.value = null
   sawingQueue.value = []
@@ -1196,6 +1201,46 @@ const totalCompletedQty = computed(() => {
   return frameListData.value
     .reduce((sum, item) => sum + item.branchQty, 0)
 })
+
+const formatDateTime = (date: Date) => {
+  const pad = (value: number) => String(value).padStart(2, '0')
+  return `${date.getFullYear()}-${pad(date.getMonth() + 1)}-${pad(date.getDate())} ${pad(date.getHours())}:${pad(date.getMinutes())}:${pad(date.getSeconds())}`
+}
+
+const persistSawingProductionRecord = (status: SawingProductionStatus = '生产中', endTime = '') => {
+  const task = currentTask.value
+  if (!task) return
+
+  upsertSawingProductionRecord({
+    scheduleNo: task.scheduleNo,
+    orderNo: task.orderNo,
+    productName: task.productName,
+    planDate: task.planDate,
+    alloy: task.alloy,
+    moldNo: task.moldNo,
+    extrusionBatchNo: task.extrusionBatchNo || '',
+    machineNo: currentMachine.value,
+    fixedLength: Number(task.fixedLength || 0),
+    planQty: Number(task.issueQty || 0),
+    actualQty: Number(task.sawedQty || totalCompletedQty.value),
+    framedQty: totalCompletedQty.value,
+    frameCount: frameListData.value.length,
+    completedFrameCount: frameListData.value.filter(item => item.status === '已完工').length,
+    sampleCount: sampleListData.value.length,
+    scrapQty: totalScrapQty.value,
+    startTime: task.startTime || '',
+    endTime,
+    status,
+    remark: task.remark || '',
+    updatedAt: formatDateTime(new Date())
+  })
+}
+
+watch(
+  [currentTask, currentMachine, frameListData, sampleListData, scrapHistoryData],
+  () => persistSawingProductionRecord(),
+  { deep: true }
+)
 
 const completeDialogVisible = ref(false)
 const completeForm = ref({

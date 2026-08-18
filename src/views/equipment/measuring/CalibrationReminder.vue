@@ -5,7 +5,7 @@
         <div class="card-header">
           <div class="title">校验提醒规则</div>
           <div class="header-right">
-            <el-button>新增</el-button>
+            <el-button @click="openAddDialog">新增</el-button>
           </div>
         </div>
       </template>
@@ -41,11 +41,63 @@
         </el-table>
       </div>
     </el-card>
+
+    <el-dialog
+      v-model="addDialogVisible"
+      title="新增"
+      width="1100px"
+      destroy-on-close
+      @closed="resetAddForm"
+    >
+      <el-form
+        ref="addFormRef"
+        :model="addForm"
+        :rules="addFormRules"
+        label-width="110px"
+        class="reminder-add-form"
+      >
+        <el-row :gutter="72">
+          <el-col :span="12">
+            <el-form-item label="计量方式" prop="method">
+              <el-select v-model="addForm.method" placeholder="请选择" style="width: 100%">
+                <el-option label="内部校验" value="内部校验" />
+                <el-option label="委外校验" value="委外校验" />
+              </el-select>
+            </el-form-item>
+          </el-col>
+          <el-col :span="12">
+            <el-form-item label="提醒天数" prop="days">
+              <el-input-number
+                v-model="addForm.days"
+                :min="0"
+                :max="365"
+                style="width: 100%"
+              />
+            </el-form-item>
+          </el-col>
+          <el-col :span="12">
+            <el-form-item label="提醒颜色" prop="color">
+              <el-select v-model="addForm.color" placeholder="请选择" style="width: 100%">
+                <el-option label="红色" value="红色" />
+                <el-option label="橙色" value="橙色" />
+                <el-option label="黄色" value="黄色" />
+              </el-select>
+            </el-form-item>
+          </el-col>
+        </el-row>
+      </el-form>
+      <template #footer>
+        <el-button @click="addDialogVisible = false">取消</el-button>
+        <el-button type="primary" @click="submitAddForm">确定</el-button>
+      </template>
+    </el-dialog>
   </div>
 </template>
 
 <script setup lang="ts">
-import { ref } from 'vue'
+import { reactive, ref } from 'vue'
+import { ElMessage } from 'element-plus'
+import type { FormInstance, FormRules } from 'element-plus'
 import { useTaskLiteralDomI18n } from '@/composables/useTaskLiteralDomI18n'
 useTaskLiteralDomI18n()
 
@@ -54,7 +106,49 @@ const tableData = ref([
   { method: '委外校验', days: '30', color: '红色', auto: true }
 ])
 
-const reminderColor = (color: string) => color === '红色' ? '#f56c6c' : '#e6a23c'
+const addDialogVisible = ref(false)
+const addFormRef = ref<FormInstance>()
+const createEmptyAddForm = () => ({
+  method: '',
+  days: 0,
+  color: ''
+})
+const addForm = reactive(createEmptyAddForm())
+const addFormRules: FormRules = {
+  method: [{ required: true, message: '请选择计量方式', trigger: 'change' }],
+  days: [{ required: true, message: '请输入提醒天数', trigger: 'change' }],
+  color: [{ required: true, message: '请选择提醒颜色', trigger: 'change' }]
+}
+
+const openAddDialog = () => {
+  addDialogVisible.value = true
+}
+
+const resetAddForm = () => {
+  Object.assign(addForm, createEmptyAddForm())
+  addFormRef.value?.clearValidate()
+}
+
+const submitAddForm = async () => {
+  if (!addFormRef.value) return
+  const valid = await addFormRef.value.validate().catch(() => false)
+  if (!valid) return
+
+  tableData.value.push({
+    method: addForm.method,
+    days: String(addForm.days),
+    color: addForm.color,
+    auto: true
+  })
+  addDialogVisible.value = false
+  ElMessage.success('新增成功')
+}
+
+const reminderColor = (color: string) => {
+  if (color === '红色') return '#f56c6c'
+  if (color === '黄色') return '#f2c037'
+  return '#e6a23c'
+}
 </script>
 
 <style scoped>
@@ -100,5 +194,11 @@ const reminderColor = (color: string) => color === '红色' ? '#f56c6c' : '#e6a2
   margin-right: 6px;
   border-radius: 50%;
   vertical-align: 1px;
+}
+.reminder-add-form {
+  padding: 0 36px;
+}
+.reminder-add-form :deep(.el-form-item) {
+  margin-bottom: 20px;
 }
 </style>

@@ -3,16 +3,56 @@
 > vite --host 0.0.0.0
 
 
-  [32m[1mVITE[22m v5.4.21[39m  [2mready in [0m[1m856[22m[2m[0m ms[22m
+  VITE v5.4.21  ready in 7985 ms
 
-  [32m➜[39m  [1mLocal[22m:   [36mhttp://localhost:[1m5173[22m/[39m
-  [32m➜[39m  [1mNetwork[22m: [36mhttp://10.105.9.96:[1m5173[22m/[39m
-[2m[32m  ➜[39m[22m[2m  press [22m[1mh + enter[22m[2m to show help[22m
+  ➜  Local:   http://localhost:5173/
+  ➜  Network: http://10.105.9.96:5173/
+  ➜  press h + enter to show help
 DEPRECATION WARNING [legacy-js-api]: The legacy JS API is deprecated and will be removed in Dart Sass 2.0.0.
 
 More info: https://sass-lang.com/d/legacy-js-api
 
-[2m14:05:32[22m [33m[1m[vite][22m[39m [33mwarning: <tr> cannot be child of <table>, according to HTML specifications. This can cause hydration errors or potentially disrupt future functionality.
+16:57:54 [vite] hmr update /src/views/reports/extrusion/ExtrusionReport.vue
+16:57:54 [vite] hmr update /src/views/reports/extrusion/CuttingReport.vue
+17:00:17 [vite] hmr update /src/views/reports/extrusion/ExtrusionReport.vue, /src/views/reports/extrusion/ExtrusionReport.vue?vue&type=style&index=0&scoped=3e3d888a&lang.css
+17:00:17 [vite] hmr update /src/views/reports/extrusion/CuttingReport.vue, /src/views/reports/extrusion/CuttingReport.vue?vue&type=style&index=0&scoped=6ed5b3b8&lang.css
+08:29:33 [vite] hmr update /src/views/reports/extrusion/ExtrusionReport.vue, /src/views/reports/extrusion/ExtrusionReport.vue?vue&type=style&index=0&scoped=3e3d888a&lang.css
+08:31:14 [vite] hmr update /src/views/reports/extrusion/ExtrusionReport.vue, /src/views/reports/extrusion/ExtrusionReport.vue?vue&type=style&index=0&scoped=3e3d888a&lang.css
+08:31:19 [vite] hmr update /src/views/reports/extrusion/CuttingReport.vue, /src/views/reports/extrusion/CuttingReport.vue?vue&type=style&index=0&scoped=6ed5b3b8&lang.css
+08:33:09 [vite] hmr update /src/views/reports/extrusion/CuttingReport.vue, /src/views/reports/extrusion/CuttingReport.vue?vue&type=style&index=0&scoped=6ed5b3b8&lang.css
+08:34:40 [vite] page reload src/i18n/locales/task7ReportSystemLiterals.ts
+08:42:36 [vite] hmr update /src/views/reports/extrusion/ExtrusionReport.vue, /src/views/reports/extrusion/ExtrusionReport.vue?vue&type=style&index=0&scoped=3e3d888a&lang.css
+08:45:04 [vite] hmr update /src/views/reports/extrusion/CuttingReport.vue, /src/views/reports/extrusion/CuttingReport.vue?vue&type=style&index=0&scoped=6ed5b3b8&lang.css
+08:48:28 [vite] page reload src/i18n/locales/task7ReportSystemLiterals.ts
+08:48:28 [vite] hmr update /src/views/reports/extrusion/CuttingReport.vue, /src/views/reports/extrusion/CuttingReport.vue?vue&type=style&index=0&scoped=6ed5b3b8&lang.css
+08:50:20 [vite] hmr update /src/views/reports/extrusion/CuttingReport.vue?vue&type=style&index=0&scoped=6ed5b3b8&lang.css, /src/views/reports/extrusion/CuttingReport.vue
+08:52:25 [vite] page reload src/i18n/locales/task7ReportSystemLiterals.ts
+08:52:25 [vite] hmr update /src/views/reports/extrusion/ExtrusionReport.vue, /src/views/reports/extrusion/ExtrusionReport.vue?vue&type=style&index=0&scoped=3e3d888a&lang.css
+09:01:59 [vite] hmr update /src/views/reports/extrusion/CuttingReport.vue
+09:02:06 [vite] page reload src/i18n/locales/task7ReportSystemLiterals.ts
+09:07:11 [vite] hmr update /src/views/reports/extrusion/ExtrusionReport.vue
+09:07:33 [vite] hmr update /src/views/reports/extrusion/ExtrusionReport.vue
+09:07:42 [vite] hmr update /src/views/reports/extrusion/ExtrusionReport.vue
+09:07:53 [vite] hmr update /src/views/reports/extrusion/ExtrusionReport.vue?vue&type=style&index=0&scoped=3e3d888a&lang.css
+09:08:09 [vite] page reload src/i18n/locales/task7ReportSystemLiterals.ts
+09:13:08 [vite] hmr update /src/views/reports/extrusion/ExtrusionReport.vue
+09:13:31 [vite] hmr update /src/views/reports/extrusion/ExtrusionReport.vue
+09:14:07 [vite] hmr update /src/views/reports/extrusion/ExtrusionReport.vue, /src/views/reports/extrusion/ExtrusionReport.vue?vue&type=style&index=0&scoped=3e3d888a&lang.css
+09:14:21 [vite] hmr update /src/views/reports/extrusion/ExtrusionReport.vue
+09:14:31 [vite] hmr update /src/views/reports/extrusion/ExtrusionReport.vue
+09:14:39 [vite] page reload src/i18n/locales/task7ReportSystemLiterals.ts
+09:18:56 [vite] hmr update /src/views/reports/extrusion/ExtrusionReport.vue, /src/views/reports/extrusion/ExtrusionReport.vue?vue&type=style&index=0&scoped=3e3d888a&lang.css
+09:20:37 [vite] hmr update /src/views/reports/extrusion/CuttingReport.vue
+09:21:37 [vite] hmr update /src/views/reports/extrusion/ExtrusionReport.vue?vue&type=style&index=0&scoped=3e3d888a&lang.css, /src/views/reports/extrusion/ExtrusionReport.vue
+09:21:37 [vite] hmr update /src/views/reports/extrusion/CuttingReport.vue?vue&type=style&index=0&scoped=6ed5b3b8&lang.css, /src/views/reports/extrusion/CuttingReport.vue
+09:22:43 [vite] hmr update /src/views/reports/extrusion/ExtrusionReport.vue?vue&type=style&index=0&scoped=3e3d888a&lang.css, /src/views/reports/extrusion/ExtrusionReport.vue
+09:22:43 [vite] hmr update /src/views/reports/extrusion/CuttingReport.vue?vue&type=style&index=0&scoped=6ed5b3b8&lang.css, /src/views/reports/extrusion/CuttingReport.vue
+09:23:42 [vite] hmr update /src/views/reports/extrusion/ExtrusionReport.vue
+09:23:42 [vite] hmr update /src/views/reports/extrusion/CuttingReport.vue
+09:24:15 [vite] page reload src/i18n/locales/task7ReportSystemLiterals.ts
+09:24:15 [vite] hmr update /src/views/reports/extrusion/ExtrusionReport.vue
+09:24:29 [vite] hmr update /src/views/reports/extrusion/ExtrusionReport.vue
+09:38:02 [vite] warning: <tr> cannot be child of <table>, according to HTML specifications. This can cause hydration errors or potentially disrupt future functionality.
 454|        <div v-if="previewType === 'pallet'" class="label-preview">
 455|          <table class="material-tag-table">
 456|            <tr>
@@ -68,10 +108,10 @@ More info: https://sass-lang.com/d/legacy-js-api
 481|              </td>
    |  ^^^^^^^^^^^^^^^^^
 482|            </tr>
-   |  ^^^^^^^^^^^^^^^[39m
-  Plugin: [35mvite:vue[39m
-  File: [36mD:/越南MOM/MOM/src/views/extrusion/CuttingWorkbench.vue[39m
-[2m14:05:32[22m [33m[1m[vite][22m[39m [33mwarning: <tr> cannot be child of <table>, according to HTML specifications. This can cause hydration errors or potentially disrupt future functionality.
+   |  ^^^^^^^^^^^^^^^
+  Plugin: vite:vue
+  File: D:/越南MOM/MOM/src/views/extrusion/CuttingWorkbench.vue
+09:38:02 [vite] warning: <tr> cannot be child of <table>, according to HTML specifications. This can cause hydration errors or potentially disrupt future functionality.
 482|            </tr>
 483|  
 484|            <tr>
@@ -97,10 +137,10 @@ More info: https://sass-lang.com/d/legacy-js-api
 494|              </td>
    |  ^^^^^^^^^^^^^^^^^
 495|            </tr>
-   |  ^^^^^^^^^^^^^^^[39m
-  Plugin: [35mvite:vue[39m
-  File: [36mD:/越南MOM/MOM/src/views/extrusion/CuttingWorkbench.vue[39m
-[2m14:05:32[22m [33m[1m[vite][22m[39m [33mwarning: <tr> cannot be child of <table>, according to HTML specifications. This can cause hydration errors or potentially disrupt future functionality.
+   |  ^^^^^^^^^^^^^^^
+  Plugin: vite:vue
+  File: D:/越南MOM/MOM/src/views/extrusion/CuttingWorkbench.vue
+09:38:02 [vite] warning: <tr> cannot be child of <table>, according to HTML specifications. This can cause hydration errors or potentially disrupt future functionality.
 495|            </tr>
 496|  
 497|            <tr>
@@ -114,10 +154,10 @@ More info: https://sass-lang.com/d/legacy-js-api
 501|              <td class="tag-value">{{ previewData.moldNo || '-' }}</td>
    |  ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
 502|            </tr>
-   |  ^^^^^^^^^^^^^^^[39m
-  Plugin: [35mvite:vue[39m
-  File: [36mD:/越南MOM/MOM/src/views/extrusion/CuttingWorkbench.vue[39m
-[2m14:05:32[22m [33m[1m[vite][22m[39m [33mwarning: <tr> cannot be child of <table>, according to HTML specifications. This can cause hydration errors or potentially disrupt future functionality.
+   |  ^^^^^^^^^^^^^^^
+  Plugin: vite:vue
+  File: D:/越南MOM/MOM/src/views/extrusion/CuttingWorkbench.vue
+09:38:02 [vite] warning: <tr> cannot be child of <table>, according to HTML specifications. This can cause hydration errors or potentially disrupt future functionality.
 502|            </tr>
 503|  
 504|            <tr>
@@ -131,10 +171,10 @@ More info: https://sass-lang.com/d/legacy-js-api
 508|              <td class="tag-value">{{ previewData.frameNo || '-' }}</td>
    |  ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
 509|            </tr>
-   |  ^^^^^^^^^^^^^^^[39m
-  Plugin: [35mvite:vue[39m
-  File: [36mD:/越南MOM/MOM/src/views/extrusion/CuttingWorkbench.vue[39m
-[2m14:05:32[22m [33m[1m[vite][22m[39m [33mwarning: <tr> cannot be child of <table>, according to HTML specifications. This can cause hydration errors or potentially disrupt future functionality.
+   |  ^^^^^^^^^^^^^^^
+  Plugin: vite:vue
+  File: D:/越南MOM/MOM/src/views/extrusion/CuttingWorkbench.vue
+09:38:02 [vite] warning: <tr> cannot be child of <table>, according to HTML specifications. This can cause hydration errors or potentially disrupt future functionality.
 509|            </tr>
 510|  
 511|            <tr>
@@ -148,10 +188,10 @@ More info: https://sass-lang.com/d/legacy-js-api
 515|              <td class="tag-value">{{ previewData.extrusionMachine || '-' }}</td>
    |  ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
 516|            </tr>
-   |  ^^^^^^^^^^^^^^^[39m
-  Plugin: [35mvite:vue[39m
-  File: [36mD:/越南MOM/MOM/src/views/extrusion/CuttingWorkbench.vue[39m
-[2m14:05:32[22m [33m[1m[vite][22m[39m [33mwarning: <tr> cannot be child of <table>, according to HTML specifications. This can cause hydration errors or potentially disrupt future functionality.
+   |  ^^^^^^^^^^^^^^^
+  Plugin: vite:vue
+  File: D:/越南MOM/MOM/src/views/extrusion/CuttingWorkbench.vue
+09:38:02 [vite] warning: <tr> cannot be child of <table>, according to HTML specifications. This can cause hydration errors or potentially disrupt future functionality.
 516|            </tr>
 517|  
 518|            <tr>
@@ -165,10 +205,10 @@ More info: https://sass-lang.com/d/legacy-js-api
 522|              <td class="tag-value">{{ previewData.alloy || '-' }}</td>
    |  ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
 523|            </tr>
-   |  ^^^^^^^^^^^^^^^[39m
-  Plugin: [35mvite:vue[39m
-  File: [36mD:/越南MOM/MOM/src/views/extrusion/CuttingWorkbench.vue[39m
-[2m14:05:32[22m [33m[1m[vite][22m[39m [33mwarning: <tr> cannot be child of <table>, according to HTML specifications. This can cause hydration errors or potentially disrupt future functionality.
+   |  ^^^^^^^^^^^^^^^
+  Plugin: vite:vue
+  File: D:/越南MOM/MOM/src/views/extrusion/CuttingWorkbench.vue
+09:38:02 [vite] warning: <tr> cannot be child of <table>, according to HTML specifications. This can cause hydration errors or potentially disrupt future functionality.
 529|          <div v-for="(box, index) in (previewData.boxes || []).slice(0, 3)" :key="box.boxCode" class="mb-4">
 530|            <table class="label-table">
 531|              <tr>
@@ -180,10 +220,10 @@ More info: https://sass-lang.com/d/legacy-js-api
 534|                </td>
    |  ^^^^^^^^^^^^^^^^^^^
 535|              </tr>
-   |  ^^^^^^^^^^^^^^^^^[39m
-  Plugin: [35mvite:vue[39m
-  File: [36mD:/越南MOM/MOM/src/views/extrusion/CuttingWorkbench.vue[39m
-[2m14:05:32[22m [33m[1m[vite][22m[39m [33mwarning: <tr> cannot be child of <table>, according to HTML specifications. This can cause hydration errors or potentially disrupt future functionality.
+   |  ^^^^^^^^^^^^^^^^^
+  Plugin: vite:vue
+  File: D:/越南MOM/MOM/src/views/extrusion/CuttingWorkbench.vue
+09:38:02 [vite] warning: <tr> cannot be child of <table>, according to HTML specifications. This can cause hydration errors or potentially disrupt future functionality.
 534|                </td>
 535|              </tr>
 536|              <tr>
@@ -193,10 +233,10 @@ More info: https://sass-lang.com/d/legacy-js-api
 538|                <td class="header-cell">客户代码</td><td colspan="2">{{ previewData.customerCode || scheduleInfo.customerCode || '-' }}</td>
    |  ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
 539|              </tr>
-   |  ^^^^^^^^^^^^^^^^^[39m
-  Plugin: [35mvite:vue[39m
-  File: [36mD:/越南MOM/MOM/src/views/extrusion/CuttingWorkbench.vue[39m
-[2m14:05:32[22m [33m[1m[vite][22m[39m [33mwarning: <tr> cannot be child of <table>, according to HTML specifications. This can cause hydration errors or potentially disrupt future functionality.
+   |  ^^^^^^^^^^^^^^^^^
+  Plugin: vite:vue
+  File: D:/越南MOM/MOM/src/views/extrusion/CuttingWorkbench.vue
+09:38:02 [vite] warning: <tr> cannot be child of <table>, according to HTML specifications. This can cause hydration errors or potentially disrupt future functionality.
 538|                <td class="header-cell">客户代码</td><td colspan="2">{{ previewData.customerCode || scheduleInfo.customerCode || '-' }}</td>
 539|              </tr>
 540|              <tr>
@@ -206,10 +246,10 @@ More info: https://sass-lang.com/d/legacy-js-api
 542|                <td class="header-cell">炉次号</td><td colspan="2">{{ previewData.furnaceNo || '25-412-06-11-03(10PCS)' }}</td>
    |  ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
 543|              </tr>
-   |  ^^^^^^^^^^^^^^^^^[39m
-  Plugin: [35mvite:vue[39m
-  File: [36mD:/越南MOM/MOM/src/views/extrusion/CuttingWorkbench.vue[39m
-[2m14:05:32[22m [33m[1m[vite][22m[39m [33mwarning: <tr> cannot be child of <table>, according to HTML specifications. This can cause hydration errors or potentially disrupt future functionality.
+   |  ^^^^^^^^^^^^^^^^^
+  Plugin: vite:vue
+  File: D:/越南MOM/MOM/src/views/extrusion/CuttingWorkbench.vue
+09:38:02 [vite] warning: <tr> cannot be child of <table>, according to HTML specifications. This can cause hydration errors or potentially disrupt future functionality.
 542|                <td class="header-cell">炉次号</td><td colspan="2">{{ previewData.furnaceNo || '25-412-06-11-03(10PCS)' }}</td>
 543|              </tr>
 544|              <tr>
@@ -219,10 +259,10 @@ More info: https://sass-lang.com/d/legacy-js-api
 546|                <td class="header-cell">模具号</td><td colspan="2">{{ previewData.moldNo || '-' }}</td>
    |  ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
 547|              </tr>
-   |  ^^^^^^^^^^^^^^^^^[39m
-  Plugin: [35mvite:vue[39m
-  File: [36mD:/越南MOM/MOM/src/views/extrusion/CuttingWorkbench.vue[39m
-[2m14:05:32[22m [33m[1m[vite][22m[39m [33mwarning: <tr> cannot be child of <table>, according to HTML specifications. This can cause hydration errors or potentially disrupt future functionality.
+   |  ^^^^^^^^^^^^^^^^^
+  Plugin: vite:vue
+  File: D:/越南MOM/MOM/src/views/extrusion/CuttingWorkbench.vue
+09:38:02 [vite] warning: <tr> cannot be child of <table>, according to HTML specifications. This can cause hydration errors or potentially disrupt future functionality.
 546|                <td class="header-cell">模具号</td><td colspan="2">{{ previewData.moldNo || '-' }}</td>
 547|              </tr>
 548|              <tr>
@@ -232,10 +272,10 @@ More info: https://sass-lang.com/d/legacy-js-api
 550|                <td class="header-cell">栈板编号</td><td colspan="2">{{ previewData.frameNo || '-' }}</td>
    |  ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
 551|              </tr>
-   |  ^^^^^^^^^^^^^^^^^[39m
-  Plugin: [35mvite:vue[39m
-  File: [36mD:/越南MOM/MOM/src/views/extrusion/CuttingWorkbench.vue[39m
-[2m14:05:32[22m [33m[1m[vite][22m[39m [33mwarning: <tr> cannot be child of <table>, according to HTML specifications. This can cause hydration errors or potentially disrupt future functionality.
+   |  ^^^^^^^^^^^^^^^^^
+  Plugin: vite:vue
+  File: D:/越南MOM/MOM/src/views/extrusion/CuttingWorkbench.vue
+09:38:02 [vite] warning: <tr> cannot be child of <table>, according to HTML specifications. This can cause hydration errors or potentially disrupt future functionality.
 550|                <td class="header-cell">栈板编号</td><td colspan="2">{{ previewData.frameNo || '-' }}</td>
 551|              </tr>
 552|              <tr>
@@ -245,10 +285,10 @@ More info: https://sass-lang.com/d/legacy-js-api
 554|                <td class="header-cell">机台号</td><td colspan="2">{{ previewData.extrusionMachine || '-' }}</td>
    |  ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
 555|              </tr>
-   |  ^^^^^^^^^^^^^^^^^[39m
-  Plugin: [35mvite:vue[39m
-  File: [36mD:/越南MOM/MOM/src/views/extrusion/CuttingWorkbench.vue[39m
-[2m14:05:32[22m [33m[1m[vite][22m[39m [33mwarning: <tr> cannot be child of <table>, according to HTML specifications. This can cause hydration errors or potentially disrupt future functionality.
+   |  ^^^^^^^^^^^^^^^^^
+  Plugin: vite:vue
+  File: D:/越南MOM/MOM/src/views/extrusion/CuttingWorkbench.vue
+09:38:02 [vite] warning: <tr> cannot be child of <table>, according to HTML specifications. This can cause hydration errors or potentially disrupt future functionality.
 554|                <td class="header-cell">机台号</td><td colspan="2">{{ previewData.extrusionMachine || '-' }}</td>
 555|              </tr>
 556|              <tr>
@@ -258,10 +298,10 @@ More info: https://sass-lang.com/d/legacy-js-api
 558|                <td class="header-cell">牌号</td><td colspan="2">{{ previewData.alloy || '-' }}</td>
    |  ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
 559|              </tr>
-   |  ^^^^^^^^^^^^^^^^^[39m
-  Plugin: [35mvite:vue[39m
-  File: [36mD:/越南MOM/MOM/src/views/extrusion/CuttingWorkbench.vue[39m
-[2m14:05:32[22m [33m[1m[vite][22m[39m [33mwarning: <tr> cannot be child of <table>, according to HTML specifications. This can cause hydration errors or potentially disrupt future functionality.
+   |  ^^^^^^^^^^^^^^^^^
+  Plugin: vite:vue
+  File: D:/越南MOM/MOM/src/views/extrusion/CuttingWorkbench.vue
+09:38:02 [vite] warning: <tr> cannot be child of <table>, according to HTML specifications. This can cause hydration errors or potentially disrupt future functionality.
 558|                <td class="header-cell">牌号</td><td colspan="2">{{ previewData.alloy || '-' }}</td>
 559|              </tr>
 560|              <tr>
@@ -269,162 +309,17 @@ More info: https://sass-lang.com/d/legacy-js-api
 561|                <td class="header-cell">纸箱号</td><td colspan="5">{{ box.boxCode || `${previewData.frameNo}-${String(index + 1).padStart(2, '0')}` }}</td>
    |  ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
 562|              </tr>
-   |  ^^^^^^^^^^^^^^^^^[39m
-  Plugin: [35mvite:vue[39m
-  File: [36mD:/越南MOM/MOM/src/views/extrusion/CuttingWorkbench.vue[39m
-[2m14:05:35[22m [33m[1m[vite][22m[39m [33mwarning: <tr> cannot be child of <table>, according to HTML specifications. This can cause hydration errors or potentially disrupt future functionality.
-437|        <div class="label-preview">
-438|          <table class="material-tag-table">
-439|            <tr>
-   |            ^^^^
-440|              <td colspan="3" class="tag-title-cell">
-   |  ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
-441|                <div class="tag-title-main">Thẻ nhận dạng vật liệu</div>
-   |  ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
-442|                <div class="tag-title-sub">Material tag</div>
-   |  ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
-443|                <div class="tag-title-sub">物料标识卡</div>
-   |  ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
-444|              </td>
    |  ^^^^^^^^^^^^^^^^^
-445|              <td colspan="3" class="tag-top-right">
-   |  ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
-446|                <div class="tag-top-right-row">
-   |  ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
-447|                  <span class="tag-top-right-label">Khách hàng</span>
-   |  ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
-448|                  <span class="tag-top-right-value">{{ previewData.customerName || '-' }}</span>
-   |  ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
-449|                </div>
-   |  ^^^^^^^^^^^^^^^^^^^^
-450|                <div class="tag-checkbox-grid">
-   |  ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
-451|                  <div class="tag-checkbox-item">
-   |  ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
-452|                    <span>Vật liệu phát triển SP</span><span class="tag-checkbox" :class="{ checked: previewData.isPD }"></span>
-   |  ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
-453|                    <span class="tag-checkbox-hint">PD</span>
-   |  ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
-454|                  </div>
-   |  ^^^^^^^^^^^^^^^^^^^^^^
-455|                  <div class="tag-checkbox-item">
-   |  ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
-456|                    <span>Vật liệu sản xuất hàng loạt</span><span class="tag-checkbox" :class="{ checked: previewData.isMassProduction }"></span>
-   |  ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
-457|                    <span class="tag-checkbox-hint">Mass production</span>
-   |  ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
-458|                  </div>
-   |  ^^^^^^^^^^^^^^^^^^^^^^
-459|                  <div class="tag-checkbox-item">
-   |  ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
-460|                    <span>Vật liệu gia công lại</span><span class="tag-checkbox" :class="{ checked: previewData.isHeavyIndustry }"></span>
-   |  ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
-461|                    <span class="tag-checkbox-hint">Rework</span>
-   |  ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
-462|                  </div>
-   |  ^^^^^^^^^^^^^^^^^^^^^^
-463|                </div>
-   |  ^^^^^^^^^^^^^^^^^^^^
-464|              </td>
-   |  ^^^^^^^^^^^^^^^^^
-465|            </tr>
-   |  ^^^^^^^^^^^^^^^[39m
-  Plugin: [35mvite:vue[39m
-  File: [36mD:/越南MOM/MOM/src/views/extrusion/PackagingWorkbench.vue[39m
-[2m14:05:35[22m [33m[1m[vite][22m[39m [33mwarning: <tr> cannot be child of <table>, according to HTML specifications. This can cause hydration errors or potentially disrupt future functionality.
-465|            </tr>
-466|  
-467|            <tr>
-   |            ^^^^
-468|              <td class="tag-key">Tên vật liệu<br />Material name<br />物料名称</td>
-   |  ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
-469|              <td class="tag-value">{{ previewData.productName || '-' }}</td>
-   |  ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
-470|              <td class="tag-key">Mã số lô<br />Furnaces No.<br />炉次号</td>
-   |  ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
-471|              <td class="tag-value">{{ previewData.furnaceNo || '-' }}</td>
-   |  ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
-472|              <td colspan="2" rowspan="5" class="tag-qr-cell">
-   |  ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
-473|                <div class="tag-qr-box">
-   |  ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
-474|                  <img v-if="teamQrUrl" :src="teamQrUrl" class="tag-qr-img" alt="team-qr" />
-   |  ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
-475|                  <div v-else class="tag-qr-placeholder">二维码生成中</div>
-   |  ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
-476|                </div>
-   |  ^^^^^^^^^^^^^^^^^^^^
-477|              </td>
-   |  ^^^^^^^^^^^^^^^^^
-478|            </tr>
-   |  ^^^^^^^^^^^^^^^[39m
-  Plugin: [35mvite:vue[39m
-  File: [36mD:/越南MOM/MOM/src/views/extrusion/PackagingWorkbench.vue[39m
-[2m14:05:35[22m [33m[1m[vite][22m[39m [33mwarning: <tr> cannot be child of <table>, according to HTML specifications. This can cause hydration errors or potentially disrupt future functionality.
-478|            </tr>
-479|  
-480|            <tr>
-   |            ^^^^
-481|              <td class="tag-key">Số lô đùn<br />Extrusion batch No.<br />挤压批次号</td>
-   |  ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
-482|              <td class="tag-value">{{ previewData.extrusionBatch || '-' }}</td>
-   |  ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
-483|              <td class="tag-key">Số khuôn<br />Die No.<br />模号</td>
-   |  ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
-484|              <td class="tag-value">{{ previewData.moldNo || '-' }}</td>
-   |  ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
-485|            </tr>
-   |  ^^^^^^^^^^^^^^^[39m
-  Plugin: [35mvite:vue[39m
-  File: [36mD:/越南MOM/MOM/src/views/extrusion/PackagingWorkbench.vue[39m
-[2m14:05:35[22m [33m[1m[vite][22m[39m [33mwarning: <tr> cannot be child of <table>, according to HTML specifications. This can cause hydration errors or potentially disrupt future functionality.
-485|            </tr>
-486|  
-487|            <tr>
-   |            ^^^^
-488|              <td class="tag-key">Số lượng - Q’ty<br />数量</td>
-   |  ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
-489|              <td class="tag-value">{{ previewData.materialQty ?? '-' }} PCS</td>
-   |  ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
-490|              <td class="tag-key">Số kê<br />Frame No.<br />框号</td>
-   |  ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
-491|              <td class="tag-value">{{ previewData.frameNo || '-' }}</td>
-   |  ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
-492|            </tr>
-   |  ^^^^^^^^^^^^^^^[39m
-  Plugin: [35mvite:vue[39m
-  File: [36mD:/越南MOM/MOM/src/views/extrusion/PackagingWorkbench.vue[39m
-[2m14:05:35[22m [33m[1m[vite][22m[39m [33mwarning: <tr> cannot be child of <table>, according to HTML specifications. This can cause hydration errors or potentially disrupt future functionality.
-492|            </tr>
-493|  
-494|            <tr>
-   |            ^^^^
-495|              <td class="tag-key">Chiều dài cố định<br />Fixed length<br />定长</td>
-   |  ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
-496|              <td class="tag-value">{{ previewData.fixedLength ?? '-' }} mm</td>
-   |  ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
-497|              <td class="tag-key">Số máy<br />Machine No.<br />机台号</td>
-   |  ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
-498|              <td class="tag-value">{{ previewData.extrusionMachine || '-' }}</td>
-   |  ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
-499|            </tr>
-   |  ^^^^^^^^^^^^^^^[39m
-  Plugin: [35mvite:vue[39m
-  File: [36mD:/越南MOM/MOM/src/views/extrusion/PackagingWorkbench.vue[39m
-[2m14:05:35[22m [33m[1m[vite][22m[39m [33mwarning: <tr> cannot be child of <table>, according to HTML specifications. This can cause hydration errors or potentially disrupt future functionality.
-499|            </tr>
-500|  
-501|            <tr>
-   |            ^^^^
-502|              <td class="tag-key">Đội cắt/đóng gói<br />Cutting team/Packing team<br />裁切/包装班组</td>
-   |  ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
-503|              <td class="tag-value">{{ previewData.shiftTeam || '-' }}</td>
-   |  ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
-504|              <td class="tag-key">Nhãn hiệu<br />Material grade<br />牌号</td>
-   |  ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
-505|              <td class="tag-value">{{ previewData.alloy || '-' }}</td>
-   |  ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
-506|            </tr>
-   |  ^^^^^^^^^^^^^^^[39m
-  Plugin: [35mvite:vue[39m
-  File: [36mD:/越南MOM/MOM/src/views/extrusion/PackagingWorkbench.vue[39m
+  Plugin: vite:vue
+  File: D:/越南MOM/MOM/src/views/extrusion/CuttingWorkbench.vue
+09:40:31 [vite] hmr update /src/views/reports/extrusion/ExtrusionReport.vue
+09:40:31 [vite] hmr update /src/views/reports/extrusion/CuttingReport.vue
+09:45:26 [vite] hmr update /src/views/reports/extrusion/CuttingReport.vue
+09:45:27 [vite] hmr update /src/views/reports/extrusion/ExtrusionReport.vue
+08:06:22 [vite] hmr update /src/views/equipment/measuring/CalibrationReminder.vue, /src/views/equipment/measuring/CalibrationReminder.vue?vue&type=style&index=0&scoped=5f2bc8cb&lang.css
+08:06:36 [vite] hmr update /src/views/equipment/measuring/CalibrationReminder.vue
+08:19:32 [vite] hmr update /src/views/equipment/measuring/CalibrationProject.vue
+08:22:56 [vite] hmr update /src/views/equipment/measuring/CalibrationProject.vue
+08:23:42 [vite] hmr update /src/views/equipment/measuring/CalibrationTemplate.vue
+08:25:19 [vite] hmr update /src/views/equipment/measuring/CalibrationTemplate.vue
+08:27:30 [vite] hmr update /src/views/equipment/measuring/CalibrationTemplate.vue?vue&type=style&index=0&scoped=83ffb599&lang.css
